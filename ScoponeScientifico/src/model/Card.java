@@ -1,7 +1,7 @@
 package model;
 /**
  * 
- * @author TreCani
+ * @author Andrea
  *
  */
 public class Card {
