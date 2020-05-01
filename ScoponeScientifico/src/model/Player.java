@@ -10,10 +10,14 @@ import java.util.ArrayList;
 public class Player {
 
 	private Team team;
-	// per ora l'idea è di tenere le carte nell'array list, nel caso dopo lo cambieremo
+	// per ora l'idea ï¿½ di tenere le carte nell'array list, nel caso dopo lo cambieremo
 	// private ArrayList<Card> cards;
 	
 	public Player() {
 		
+	}
+	
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 }
