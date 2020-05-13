@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  *
- * @author Andrea
+ * @author Stefano
  *
  */
 public class Table {

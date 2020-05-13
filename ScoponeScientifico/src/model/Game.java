@@ -1,6 +1,11 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+
 
 /**
  * Rappresenta un gioco di scopone scientifico, questa classe fa da controller.
@@ -10,15 +15,16 @@ import java.util.Set;
  */
 public class Game {
 
-	private Game defaultGame = null;
+	private static Game defaultGame = null;
 	private Table defaultTable;
 	private Set<Card> deck;
 	
 	private Game() {
-		//new deck of cards
+		createDeck();
+		seeDeck();	//metodo di controllo, va eliminato nella versione finale
 	}
 	
-	public Game getDefaultGame(){
+	public static Game getDefaultGame(){
 		if(defaultGame == null) {
 			defaultGame = new Game();
 		}
@@ -32,15 +38,39 @@ public class Game {
 	 */
 	public void playGame() {
 		defaultTable = new Table();
+		/*
 		for (int i = 0; i < 10; i++) {
-			defaultTable.playRound(); // definire metodo playRound
+			//defaultTable.playRound(); // definire metodo playRound
 		}
-
+		*/
 	}
-
-	public static void main(String[] args) {
-		// TODO
-		System.out.println("It seems that there is nothing here...");
+	
+	private void createDeck() {
+		deck = new HashSet<Card>();
+		SeedType seeds[] = SeedType.values();
+		for(int i = 1; i <= Card.CARD_VALUES.length; i++) {
+			for(SeedType type : seeds) {
+				Card temp = new Card(i, type);
+				deck.add(temp);
+			}
+		}
 	}
-
+	
+	private void seeDeck() {
+		ArrayList<String> arrayCarte = new ArrayList<String>();
+		Iterator<Card> iterator = deck.iterator();
+		while(iterator.hasNext()) {
+			arrayCarte.add(iterator.next().toString());
+		}
+		Collections.sort(arrayCarte);
+		for(String s : arrayCarte) {
+			System.out.println(s);
+		}
+		
+	}
+	
+	public static void main (String args[]) {
+		Game.getDefaultGame();
+	}
+	
 }
