@@ -17,9 +17,9 @@ public class Game {
 	private Game() {
 		//new deck of cards
 	}
-
-	public Game getDefaultGame() {
-		if (defaultGame == null) {
+	
+	public Game getDefaultGame(){
+		if(defaultGame == null) {
 			defaultGame = new Game();
 		}
 		return defaultGame;
