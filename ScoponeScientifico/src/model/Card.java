@@ -27,6 +27,11 @@ public class Card {
 	public int getValue() {
 		return value;
 	}
+
+	@Override
+	public String toString() {
+		return getValue() + getSeed().toString();
+	}
 	
 	
 	
