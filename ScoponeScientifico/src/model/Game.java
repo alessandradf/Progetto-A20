@@ -15,7 +15,7 @@ public class Game {
 	
 	public Game getDefaultGame(){
 		if(defaultGame == null) {
-			defaultGame = new Game()
+			defaultGame = new Game();
 		}
 		return defaultGame;
 	}
