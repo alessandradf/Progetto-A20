@@ -10,6 +10,7 @@ public class HumanPlayer extends Player {
 	 */
 	@Override
 	public Card playCard() {
+		
 		// l'utente inserisce seme e numero della carta da tastiera
 		Card card = null;
 		Scanner sc = new Scanner(System.in);
@@ -25,7 +26,6 @@ public class HumanPlayer extends Player {
 				card = c;
 			}
 		}
-		
 		return card;
 	}
 	
