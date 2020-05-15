@@ -1,23 +1,39 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Rappresenta i 4 giocatori.
- * @author Andrea
- *
- */
-public class Player {
+ * Rappresenta i giocatori.
+ * 
+ **/
+
+public abstract class Player {
 
 	private Team team;
-	// per ora l'idea � di tenere le carte nell'array list, nel caso dopo lo cambieremo
-	// private ArrayList<Card> cards;
-	
+	protected ArrayList<Card> hand;
+
 	public Player() {
-		
+
 	}
-	
+
+	/**
+	 * @param hand carte date al giocatore all'inzio della partita
+	 */
+	public void setHand(ArrayList<Card> hand) {
+		this.hand = hand;
+	}
+
+	/**
+	 * @return la carta giocata dal giocatore nel turno
+	 */
+	public abstract Card playCard();
+
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+
+	public Team getTeam() {
+		return team;
 	}
 }
