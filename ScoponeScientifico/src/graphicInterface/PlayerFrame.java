@@ -1,4 +1,4 @@
-package model;
+package graphicInterface;
 
 import java.awt.EventQueue;
 import java.awt.Image;
