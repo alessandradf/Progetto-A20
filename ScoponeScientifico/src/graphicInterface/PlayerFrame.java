@@ -20,6 +20,9 @@ import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import CardTest.CardTester;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
@@ -80,18 +83,18 @@ public class PlayerFrame extends JFrame {
 		);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		/*
-		Card twoC = new Card("2c", "fiori", 2, ImageIO.read(new File("2C_1.png")));
-		Card twoD = new Card("2d", "denari", 2, ImageIO.read(new File("2D_1.png")));
-		Card twoH = new Card("2h", "cuori", 2, ImageIO.read(new File("2H_1.png")));
-		Card twoS = new Card("2s", "picche", 2, ImageIO.read(new File("2S_1.png")));
-		Card threeC = new Card("3c", "fiori", 3, ImageIO.read(new File("3C_1.png")));
-		Card threeD = new Card("3d", "denari", 3, ImageIO.read(new File("3D_1.png")));
-		Card threeH = new Card("3h", "cuori", 3, ImageIO.read(new File("3H_1.png")));
-		Card threeS = new Card("3s", "picche", 3, ImageIO.read(new File("3S_1.png")));
-		Card fourC = new Card("4c", "fiori", 4, ImageIO.read(new File("4C_1.png")));
-		Card fourD = new Card("4d", "denari", 4, ImageIO.read(new File("4D_1.png")));
+		CardTester twoC = new CardTester("2c", "fiori", 2, ImageIO.read(new File("Resources/Cards/2C_1.png")));
+		CardTester twoD = new CardTester("2d", "denari", 2, ImageIO.read(new File("Resources/Cards/2D_1.png")));
+		CardTester twoH = new CardTester("2h", "cuori", 2, ImageIO.read(new File("Resources/Cards/2H_1.png")));
+		CardTester twoS = new CardTester("2s", "picche", 2, ImageIO.read(new File("Resources/Cards/2S_1.png")));
+		CardTester threeC = new CardTester("3c", "fiori", 3, ImageIO.read(new File("Resources/Cards/3C_1.png")));
+		CardTester threeD = new CardTester("3d", "denari", 3, ImageIO.read(new File("Resources/Cards/3D_1.png")));
+		CardTester threeH = new CardTester("3h", "cuori", 3, ImageIO.read(new File("Resources/Cards/3H_1.png")));
+		CardTester threeS = new CardTester("3s", "picche", 3, ImageIO.read(new File("Resources/Cards/3S_1.png")));
+		CardTester fourC = new CardTester("4c", "fiori", 4, ImageIO.read(new File("Resources/Cards/4C_1.png")));
+		CardTester fourD = new CardTester("4d", "denari", 4, ImageIO.read(new File("Resources/Cards/4D_1.png")));
 		
+		/*
 		queste sono le istanze delle carte che mi ero fatto come prova su in altro programma. Per avere le
 		immagini nelle label dell'interfaccia avevo bisogno che fossero specificate nel costruttore di modo
 		da poter settare l'icona della label direttamente dalla carta.
