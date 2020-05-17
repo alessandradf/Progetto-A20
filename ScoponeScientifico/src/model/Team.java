@@ -10,22 +10,24 @@ import java.util.ArrayList;
  */
 public class Team {
 
-    private String teamName;
-    private ArrayList<Player> playersInTeam;
+	private String teamName;
+	private ArrayList<Player> playersInTeam;
 
-    public Team(String name) {
-        this.teamName = name;
-    }
-    
-    /*
-     * Aggiunge un Player al Team.
-     * Controlla prima se è già stato aggiunto
-     */
-    public boolean addPlayer(Player p) {
-    	if(!this.playersInTeam.contains(p)) {
-    		this.playersInTeam.add(p);
-    		return true;
-    	}
-    	return false;
-    }	
+	public Team(String name) {
+		this.teamName = name;
+		playersInTeam = new ArrayList<Player>();
+	}
+
+	/*
+	 * Aggiunge un Player al Team. Controlla prima se ï¿½ giï¿½ stato aggiunto
+	 */
+
+	public boolean addPlayer(Player p) {
+		if (!(this.playersInTeam.contains(p))) {
+			this.playersInTeam.add(p);
+			return true;
+		}
+		return false;
+	}
+
 }
