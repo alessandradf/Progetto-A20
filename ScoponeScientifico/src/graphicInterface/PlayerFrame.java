@@ -56,7 +56,8 @@ public class PlayerFrame extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public PlayerFrame() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,25 +65,17 @@ public class PlayerFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 432, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-					.addContainerGap())
-		);
+		gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup().addContainerGap()
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 432, Short.MAX_VALUE).addContainerGap()));
+		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup().addContainerGap()
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE).addContainerGap()));
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		CardTester twoC = new CardTester("2c", "fiori", 2, ImageIO.read(new File("Resources/Cards/2C_1.png")));
 		CardTester twoD = new CardTester("2d", "denari", 2, ImageIO.read(new File("Resources/Cards/2D_1.png")));
 		CardTester twoH = new CardTester("2h", "cuori", 2, ImageIO.read(new File("Resources/Cards/2H_1.png")));
@@ -93,27 +86,28 @@ public class PlayerFrame extends JFrame {
 		CardTester threeS = new CardTester("3s", "picche", 3, ImageIO.read(new File("Resources/Cards/3S_1.png")));
 		CardTester fourC = new CardTester("4c", "fiori", 4, ImageIO.read(new File("Resources/Cards/4C_1.png")));
 		CardTester fourD = new CardTester("4d", "denari", 4, ImageIO.read(new File("Resources/Cards/4D_1.png")));
-		
+
 		/*
-		queste sono le istanze delle carte che mi ero fatto come prova su in altro programma. Per avere le
-		immagini nelle label dell'interfaccia avevo bisogno che fossero specificate nel costruttore di modo
-		da poter settare l'icona della label direttamente dalla carta.
-		*/
-		
+		 * queste sono le istanze delle carte che mi ero fatto come prova su in altro
+		 * programma. Per avere le immagini nelle label dell'interfaccia avevo bisogno
+		 * che fossero specificate nel costruttore di modo da poter settare l'icona
+		 * della label direttamente dalla carta.
+		 */
+
 		Border blue = BorderFactory.createLineBorder(Color.BLUE, 3, true);
-		
+
 		JLabel lblNewLabel_2 = new JLabel(new ImageIcon(twoC.getImageCard()));
-		lblNewLabel_2.addMouseListener(new MouseListener(){
+		lblNewLabel_2.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				lblNewLabel_2.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -131,24 +125,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel(new ImageIcon(twoD.getImageCard()));
-		lblNewLabel_3.addMouseListener(new MouseListener(){
+		lblNewLabel_3.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e1) {
 				// TODO Auto-generated method stub
 				lblNewLabel_3.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e1) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -166,24 +160,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e1) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_1 = new JLabel(new ImageIcon(twoH.getImageCard()));
-		lblNewLabel_1.addMouseListener(new MouseListener(){
+		lblNewLabel_1.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e2) {
 				// TODO Auto-generated method stub
 				lblNewLabel_1.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e2) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -201,24 +195,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e2) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel = new JLabel(new ImageIcon(twoS.getImageCard()));
-		lblNewLabel.addMouseListener(new MouseListener(){
+		lblNewLabel.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e3) {
 				// TODO Auto-generated method stub
 				lblNewLabel.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e3) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -236,24 +230,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e3) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_4 = new JLabel(new ImageIcon(threeC.getImageCard()));
-		lblNewLabel_4.addMouseListener(new MouseListener(){
+		lblNewLabel_4.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e4) {
 				// TODO Auto-generated method stub
 				lblNewLabel_4.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e4) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -271,24 +265,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e4) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel(new ImageIcon(threeD.getImageCard()));
-		lblNewLabel_5.addMouseListener(new MouseListener(){
+		lblNewLabel_5.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e5) {
 				// TODO Auto-generated method stub
 				lblNewLabel_5.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e5) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -306,24 +300,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e5) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_5);
-		
+
 		JLabel lblNewLabel_6 = new JLabel(new ImageIcon(threeH.getImageCard()));
-		lblNewLabel_6.addMouseListener(new MouseListener(){
+		lblNewLabel_6.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e6) {
 				// TODO Auto-generated method stub
 				lblNewLabel_6.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e6) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -341,24 +335,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e6) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_6);
-		
+
 		JLabel lblNewLabel_7 = new JLabel(new ImageIcon(threeS.getImageCard()));
-		lblNewLabel_7.addMouseListener(new MouseListener(){
+		lblNewLabel_7.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e7) {
 				// TODO Auto-generated method stub
 				lblNewLabel_7.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e7) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -376,24 +370,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e7) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_7);
-		
+
 		JLabel lblNewLabel_8 = new JLabel(new ImageIcon(fourC.getImageCard()));
-		lblNewLabel_8.addMouseListener(new MouseListener(){
+		lblNewLabel_8.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e8) {
 				// TODO Auto-generated method stub
 				lblNewLabel_8.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e8) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -411,24 +405,24 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e8) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_9 = new JLabel(new ImageIcon(fourD.getImageCard()));
-		lblNewLabel_9.addMouseListener(new MouseListener(){
+		lblNewLabel_9.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e9) {
 				// TODO Auto-generated method stub
 				lblNewLabel_9.setVisible(false);
 			}
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e9) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
@@ -446,13 +440,13 @@ public class PlayerFrame extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e9) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		panel.add(lblNewLabel_9);
 		contentPane.setLayout(gl_contentPane);
-		
+
 	}
 
 }

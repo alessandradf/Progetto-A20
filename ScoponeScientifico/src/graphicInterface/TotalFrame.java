@@ -1,4 +1,5 @@
 package graphicInterface;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -13,11 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
-
 public class TotalFrame extends JFrame {
-	
-	//prova di come potrebbe essere l'interfaccia totale. I pannelli sono ancora tutti da implementare (quello del player ad esempio sarà quello che c'è già trasformato da JFrame a JPanel)
+
+	/*
+	 * prova di come potrebbe essere l'interfaccia totale. I pannelli sono ancora
+	 * tutti da implementare (quello del player ad esempio sarï¿½ quello che c'ï¿½ giï¿½
+	 * trasformato da JFrame a JPanel)
+	 */
 
 	private JPanel contentPane;
 	private JFrame thisFrame;
@@ -43,20 +46,20 @@ public class TotalFrame extends JFrame {
 	 */
 	public TotalFrame() {
 		thisFrame = this;
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 973, 599);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{4.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{2.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[] { 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 4.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 2.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-		
-		//Pannello che rappresenta il tavolo
+
+		// Pannello che rappresenta il tavolo
 		JPanel TablePanel = new JPanel();
 		TablePanel.setBackground(new Color(0, 100, 0));
 		GridBagConstraints gbc_TablePanel = new GridBagConstraints();
@@ -66,8 +69,8 @@ public class TotalFrame extends JFrame {
 		gbc_TablePanel.gridy = 0;
 		contentPane.add(TablePanel, gbc_TablePanel);
 		TablePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		//pannello con i mazzi dei team
+
+		// pannello con i mazzi dei team
 		JPanel TeamsPanel = new JPanel();
 		TeamsPanel.setBackground(new Color(0, 100, 0));
 		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
@@ -78,14 +81,14 @@ public class TotalFrame extends JFrame {
 		gbc_TeamsPanel.gridy = 0;
 		contentPane.add(TeamsPanel, gbc_TeamsPanel);
 		TeamsPanel.setLayout(new GridLayout(2, 1, 0, 0));
-		
+
 		JLabel Team1 = new JLabel("Team1");
 		TeamsPanel.add(Team1);
-		
+
 		JLabel Team2 = new JLabel("Team2");
 		TeamsPanel.add(Team2);
-		
-		//pannello del giocatore
+
+		// pannello del giocatore
 		JPanel PlayerPanel = new JPanel();
 		GridBagConstraints gbc_PlayerPanel = new GridBagConstraints();
 		gbc_PlayerPanel.insets = new Insets(0, 0, 0, 5);
