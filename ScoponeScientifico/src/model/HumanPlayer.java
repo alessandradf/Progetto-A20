@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class HumanPlayer extends Player {
 
+	public HumanPlayer(String name){
+		super(name);
+	}
+	
 	/**
 	 * @return Card la carta inserita dall'utente 
 	 */

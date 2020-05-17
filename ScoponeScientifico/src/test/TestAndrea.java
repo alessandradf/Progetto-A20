@@ -1,19 +1,18 @@
 package test;
 
-import java.util.ArrayList;
-
-import model.Card;
-import model.HumanPlayer;
-import model.Player;
-import model.SeedType;
+import model.Game;
 
 /**
  * NON TOCCATEMELA SERVE A ME PER FARE DEI PASTICCI
- * @author TreCani
+ * @author Andrea
  *
  */
 public class TestAndrea {
 	
+	public static void main(String args[]) {
+		Game game = Game.getDefaultGame();
+	}
+	/*
 	public static void main(String args[]) {
 		ArrayList<Card> carte = new ArrayList<Card>();
 		for(int i = 0; i < 10; i++) {
@@ -25,4 +24,5 @@ public class TestAndrea {
 		Card selectedCard = p.playCard();
 		System.out.println(selectedCard.toString());
 	}
+	*/
 }
