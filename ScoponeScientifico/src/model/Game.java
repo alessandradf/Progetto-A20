@@ -18,10 +18,16 @@ public class Game {
 	private static Game defaultGame = null;
 	private Table defaultTable;
 	private Set<Card> deck;
+	private ArrayList<Player> players;
+	private ArrayList<Team> teams;
 	
 	private Game() {
+
 		createDeck();
 		seeDeck();	//metodo di controllo, va eliminato nella versione finale
+		players = createPlayers();
+		teams = createTeams();
+		createTable(); //non ancora implementato
 	}
 	
 	public static Game getDefaultGame(){
@@ -56,6 +62,39 @@ public class Game {
 		}
 	}
 	
+	private ArrayList<Player> createPlayers(){
+		ArrayList<Player> players = new ArrayList<Player>();
+		/*
+		// Questo pezzo istanzia fisicamente i giocatori, ma Player and co non hanno ancora i metodi che mi servono
+		for(int i = 0; i < 4; i++) {
+			if(i == 0)
+				players.add(new HumanPlayer("Giocatore" + i));
+			else
+				players.add(new ComputerPlayer("Giocatore" + i));
+		}
+		*/
+		return players;
+	}
+
+	private ArrayList<Team> createTeams(){
+		ArrayList<Team> teams = new ArrayList<Team>();
+		for(int i = 0; i < 2; i++) {
+			teams.add(new Team("Team " + i));
+			/*
+			teams.get(i).addPlayer(players.get(i));
+			teams.get(i).addPlayer(players.get(i+1));
+			// oppure equivalente
+			*/
+		}
+
+
+		return teams;
+	}
+
+	private void createTable(){
+		
+	}
+
 	private void seeDeck() {
 		ArrayList<String> arrayCarte = new ArrayList<String>();
 		Iterator<Card> iterator = deck.iterator();
