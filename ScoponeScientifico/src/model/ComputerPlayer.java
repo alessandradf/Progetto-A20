@@ -1,16 +1,21 @@
 package model;
 
-import java.util.List;
 import java.util.Random;
 
 public class ComputerPlayer extends Player {
 	
 	Random random;
-	
-	public ComputerPlayer() {
+
+public ComputerPlayer() {
+		this("DefaultName");
+	}
+
+	public ComputerPlayer(String name) {
+		super(name);
 		this.random = new Random();
 	}	
 	
+
 	@Override	
 	public Card playCard() {
 		int index = random.nextInt(hand.size());

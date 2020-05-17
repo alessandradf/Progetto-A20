@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Rappresenta i giocatori.
@@ -11,10 +10,15 @@ import java.util.List;
 public abstract class Player {
 
 	private Team team;
-	protected ArrayList<Card> hand;
+	protected ArrayList<Card> hand; //va messo private, altrimenti tutto il model può modificarlo
+	private String playerName;
 
 	public Player() {
 
+	}
+
+	public Player(String name) {
+		this.playerName = name;
 	}
 
 	/**
