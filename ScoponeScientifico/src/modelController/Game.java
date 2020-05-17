@@ -1,10 +1,18 @@
-package model;
+package modelController;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import model.Card;
+import model.ComputerPlayer;
+import model.HumanPlayer;
+import model.Player;
+import model.SeedType;
+import model.Table;
+import model.Team;
 
 /**
  * Rappresenta un gioco di scopone scientifico, questa classe fa da controller.
@@ -23,10 +31,9 @@ public class Game {
 	private Game() {
 
 		createDeck();
-		seeDeck(); // metodo di controllo, va eliminato nella versione finale
 		players = createPlayers();
 		teams = createTeams();
-		createTable(); // non ancora implementato
+		defaultTable = createTable(); // non ancora implementato
 	}
 
 	public static Game getDefaultGame() {
@@ -60,9 +67,8 @@ public class Game {
 		}
 	}
 
-	private ArrayList<Player> createPlayers() {
+	private ArrayList<Player> createPlayers() {	
 		ArrayList<Player> players = new ArrayList<Player>();
-
 		/*
 		 * Questo pezzo istanzia fisicamente i giocatori, per ora uno solo è un vero
 		 * giocatore, gli altri sono controllati dal computer
@@ -85,32 +91,45 @@ public class Game {
 		ArrayList<Team> teams = new ArrayList<Team>();
 		for (int i = 0; i < 2; i++) {
 			teams.add(new Team("Team " + i));
-			/*
-			 * teams.get(i).addPlayer(players.get(i));
-			 * teams.get(i).addPlayer(players.get(i+1)); // oppure equivalente
-			 */
+			teams.get(i).addPlayer(players.get(i));
+			teams.get(i).addPlayer(players.get(i + 1));
 		}
 
 		return teams;
 	}
 
-	private void createTable() {
-
-	}
-
-	private void seeDeck() {
-		ArrayList<String> arrayCarte = new ArrayList<String>();
-		Iterator<Card> iterator = deck.iterator();
-		while (iterator.hasNext()) {
-			arrayCarte.add(iterator.next().toString());
-		}
-		Collections.sort(arrayCarte);
-		for (String s : arrayCarte) {
-			System.out.println(s);
-		}
-
+	private Table createTable() {
+		return null;
 	}
 	
+	
+	/**
+	 * @return the defaultTable
+	 */
+	public Table getDefaultTable() {
+		return defaultTable;
+	}
+
+	/**
+	 * @return the deck
+	 */
+	public Set<Card> getDeck() {
+		return deck;
+	}
+
+	/**
+	 * @return the players
+	 */
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	/**
+	 * @return the teams
+	 */
+	public ArrayList<Team> getTeams() {
+		return teams;
+	}
 
 	public static void main(String args[]) {
 		Game.getDefaultGame();
