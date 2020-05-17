@@ -47,6 +47,7 @@ public class TotalFrame extends JFrame {
 	public TotalFrame() {
 		thisFrame = this;
 
+		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 973, 599);
 		contentPane = new JPanel();

@@ -33,7 +33,7 @@ public class Table {
 	}
 	
 	
-	/*
+	/**
 	 * Adds a card on the table
 	 */
 	public void putCard(Card playedCard) {
