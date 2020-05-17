@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-
 /**
  * Rappresenta un gioco di scopone scientifico, questa classe fa da controller.
  * 
@@ -20,18 +19,18 @@ public class Game {
 	private Set<Card> deck;
 	private ArrayList<Player> players;
 	private ArrayList<Team> teams;
-	
+
 	private Game() {
 
 		createDeck();
-		seeDeck();	//metodo di controllo, va eliminato nella versione finale
+		seeDeck(); // metodo di controllo, va eliminato nella versione finale
 		players = createPlayers();
 		teams = createTeams();
-		createTable(); //non ancora implementato
+		createTable(); // non ancora implementato
 	}
-	
-	public static Game getDefaultGame(){
-		if(defaultGame == null) {
+
+	public static Game getDefaultGame() {
+		if (defaultGame == null) {
 			defaultGame = new Game();
 		}
 		return defaultGame;
@@ -45,71 +44,76 @@ public class Game {
 	public void playGame() {
 		defaultTable = new Table();
 		/*
-		for (int i = 0; i < 10; i++) {
-			//defaultTable.playRound(); // definire metodo playRound
-		}
-		*/
+		 * for (int i = 0; i < 10; i++) { //defaultTable.playRound(); // definire metodo
+		 * playRound }
+		 */
 	}
-	
+
 	private void createDeck() {
 		deck = new HashSet<Card>();
 		SeedType seeds[] = SeedType.values();
-		for(int i = 1; i <= Card.CARD_VALUES.length; i++) {
-			for(SeedType type : seeds) {
+		for (int i = 1; i <= Card.CARD_VALUES.length; i++) {
+			for (SeedType type : seeds) {
 				Card temp = new Card(i, type);
 				deck.add(temp);
 			}
 		}
 	}
-	
-	private ArrayList<Player> createPlayers(){
+
+	private ArrayList<Player> createPlayers() {
 		ArrayList<Player> players = new ArrayList<Player>();
+
 		/*
-		// Questo pezzo istanzia fisicamente i giocatori, ma Player and co non hanno ancora i metodi che mi servono
-		for(int i = 0; i < 4; i++) {
-			if(i == 0)
+		 * Questo pezzo istanzia fisicamente i giocatori, per ora uno solo è un vero
+		 * giocatore, gli altri sono controllati dal computer
+		 */
+		for (int i = 0; i < 4; i++) {
+			if (i == 0)
 				players.add(new HumanPlayer("Giocatore" + i));
 			else
 				players.add(new ComputerPlayer("Giocatore" + i));
 		}
-		*/
+
 		return players;
 	}
 
-	private ArrayList<Team> createTeams(){
+	/**
+	 * Crea due istanze di team, ma non lega i giocatori ai rispettivi team
+	 * @return i team di gioco
+	 */
+	private ArrayList<Team> createTeams() {
 		ArrayList<Team> teams = new ArrayList<Team>();
-		for(int i = 0; i < 2; i++) {
+		for (int i = 0; i < 2; i++) {
 			teams.add(new Team("Team " + i));
 			/*
-			teams.get(i).addPlayer(players.get(i));
-			teams.get(i).addPlayer(players.get(i+1));
-			// oppure equivalente
-			*/
+			 * teams.get(i).addPlayer(players.get(i));
+			 * teams.get(i).addPlayer(players.get(i+1)); // oppure equivalente
+			 */
 		}
-
 
 		return teams;
 	}
 
-	private void createTable(){
-		
+	private void createTable() {
+
 	}
 
 	private void seeDeck() {
 		ArrayList<String> arrayCarte = new ArrayList<String>();
 		Iterator<Card> iterator = deck.iterator();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			arrayCarte.add(iterator.next().toString());
 		}
 		Collections.sort(arrayCarte);
-		for(String s : arrayCarte) {
+		for (String s : arrayCarte) {
 			System.out.println(s);
 		}
-		
+
 	}
 	
-	public static void main (String args[]) {
+
+	public static void main(String args[]) {
 		Game.getDefaultGame();
 	}
-	
+
 }

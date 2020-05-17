@@ -13,6 +13,7 @@ public abstract class Player {
 	protected ArrayList<Card> hand; //va messo private, altrimenti tutto il model può modificarlo
 	private String playerName;
 
+	//TODO cercare di capire se ha senso o meno tenersi un costruttore vuoto -Andrea
 	public Player() {
 
 	}
