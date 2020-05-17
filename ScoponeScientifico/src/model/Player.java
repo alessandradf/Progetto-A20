@@ -11,24 +11,19 @@ import java.util.List;
 public abstract class Player {
 
 	private Team team;
+	private String playerName;
+	private List<Card> hand;
 
-	protected ArrayList<Card> hand;
-
-	public Player() {
-
+	public Player(String name) {
+		this.playerName = name;
 	}
 
 	/**
 	 * @param hand carte date al giocatore all'inzio della partita
 	 */
-	public void setHand(ArrayList<Card> hand) {
+	public void setHand(List<Card> hand) {
 		this.hand = hand;
 	}
-
-	/**
-	 * @return la carta giocata dal giocatore nel turno
-	 */
-	public abstract Card playCard();
 
 	public void setTeam(Team team) {
 		this.team = team;
@@ -36,5 +31,18 @@ public abstract class Player {
 
 	public Team getTeam() {
 		return team;
+	}
+
+	public List<Card> getHand() {
+		return hand;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	@Override
+	public String toString() {
+		return "Player (" + playerName + ", " + hand + ")";
 	}
 }

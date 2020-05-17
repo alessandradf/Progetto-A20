@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+
 import java.util.Random;
 
 public class ComputerPlayer extends Player {
@@ -8,14 +8,18 @@ public class ComputerPlayer extends Player {
 	Random random;
 
 	public ComputerPlayer() {
-		this.random = new Random();
+		this("DefaultName");
 	}
 
-	@Override
+	public ComputerPlayer(String name) {
+		super(name);
+		this.random = new Random();
+	}	
+
 	public Card playCard() {
-		int index = random.nextInt(hand.size());
-		Card card = hand.get(index);
-		hand.remove(index);
+		int index = random.nextInt(getHand().size());
+		Card card = getHand().get(index);
+		getHand().remove(index);
 		return card;
 	}
 
