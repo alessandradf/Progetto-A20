@@ -79,11 +79,6 @@ public class Game {
 		//e poi ci va la logica delle prese
 	}
 
-	public void cardPlayed(Card c, HumanPlayer p) {
-		p.playCard(c);
-		defaultTable.putCard(c);
-	}
-
 	private void createDeck() {
 		deck = new HashSet<Card>();
 		SeedType seeds[] = SeedType.values();
@@ -186,6 +181,7 @@ public class Game {
 	public ArrayList<ComputerPlayer> getComputerPlayers() {
 		return computerPlayers;
 	}
+	
 	/**
 	 * @return the defaultTable
 	 */
