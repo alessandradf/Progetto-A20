@@ -16,7 +16,7 @@ public class ComputerPlayer extends Player {
 		this.random = new Random();
 	}	
 
-	public Card getRandomCard() {
+	public Card playCard() {
 		int index = random.nextInt(getHand().size());
 		Card card = getHand().get(index);
 		getHand().remove(index);

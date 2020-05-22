@@ -10,7 +10,6 @@ public class HumanPlayer extends Player {
 	 * @param card carta scelta dall'utente
 	 * @return true se il player possiede la carta e la rimuove dalla propria mano, false altrimenti
 	 */
-	/*
 	public boolean playCard(Card card) {
 		for (Card c : getHand()) {
 			if (c.equals(card)) {
@@ -20,7 +19,5 @@ public class HumanPlayer extends Player {
 		}
 		return false;
 	}
-	*/
-	//è stato messo direttamente nella classe astratta, non serve più ma per sicurezza lo tengo commentato -Andrea
 
 }

@@ -1,17 +1,14 @@
 package test;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import model.Card;
 import model.ComputerPlayer;
 import model.HumanPlayer;
 import model.Player;
-import model.Table;
 import model.Team;
 import modelController.Game;
 
@@ -25,14 +22,21 @@ public class TestAndrea {
 
 	public static void main(String args[]) {
 		Game game = Game.getDefaultGame();
-		List<Player> players = game.getPlayers();
-		for(Player p : players) {
-			System.out.println(p.getHand());
+
+		ArrayList<Player> players = new ArrayList<Player>();
+		
+		players.add(new HumanPlayer("Cicciopasticcio"));
+		for (int i = 0; i < 3; i++) {
+			players.add(new ComputerPlayer("ComputerPlayer " + i));
 		}
-		List<Card> hand = players.get(0).getHand();
-		game.playRound(players.get(0), players.get(0).getHand().get(0));
-		Table t = game.getDefaultTable();
-		System.out.println(t.readCards());
+		
+		for(Player p : players) {
+			System.out.println(p);
+		};
+		
+		Team team = new Team("team1");
+		team.addPlayer(players.get(0));
+		// seeDeck(game.getDeck());
 	}
 
 	/**
