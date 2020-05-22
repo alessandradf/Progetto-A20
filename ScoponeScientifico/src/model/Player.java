@@ -16,13 +16,8 @@ public abstract class Player {
 
 	public Player(String name) {
 		this.playerName = name;
-		hand = new ArrayList<Card>();
 	}
-	
-	public boolean playCard(Card c) {
-		return hand.remove(c);
-	}
-	
+
 	/**
 	 * @param hand carte date al giocatore all'inzio della partita
 	 */
