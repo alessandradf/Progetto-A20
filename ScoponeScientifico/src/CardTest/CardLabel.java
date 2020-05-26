@@ -1,5 +1,4 @@
 package CardTest;
-
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -20,13 +19,13 @@ public class CardLabel extends JLabel {
 
 	// immagine della carta
 	private Icon imageCard;
-	
+
 	//seme e valore della carta
 	private SeedType seed;
 	private int value;
 
-	// indica se attualmente l'immagine della carta è frntale
-	// o girata con il dorso visibile (è nel mazzo)
+	// indica se attualmente l'immagine della carta ï¿½ frntale
+	// o girata con il dorso visibile (ï¿½ nel mazzo)
 	private CardPosition position;
 
 	// percorsi immagine e dorso carta
@@ -34,9 +33,9 @@ public class CardLabel extends JLabel {
 
 
 
-	// nel costruttore passo vettore di stringhe in cui al posto 0 c'è percorso
+	// nel costruttore passo vettore di stringhe in cui al posto 0 c'ï¿½ percorso
 	// dell'immagine della faccia
-	// e al posto 1 c'è percorso del retro della carta
+	// e al posto 1 c'ï¿½ percorso del retro della carta
 	public CardLabel(SeedType seed, int value, String[] imagesPaths) {
 		this.seed = seed;
 		this.value = value;

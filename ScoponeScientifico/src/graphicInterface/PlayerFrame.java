@@ -76,6 +76,7 @@ public class PlayerFrame extends JFrame {
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE).addContainerGap()));
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
+		/*
 		CardTester twoC = new CardTester("2c", "fiori", 2, ImageIO.read(new File("Resources/Cards/2C_1.png")));
 		CardTester twoD = new CardTester("2d", "denari", 2, ImageIO.read(new File("Resources/Cards/2D_1.png")));
 		CardTester twoH = new CardTester("2h", "cuori", 2, ImageIO.read(new File("Resources/Cards/2H_1.png")));
@@ -86,6 +87,8 @@ public class PlayerFrame extends JFrame {
 		CardTester threeS = new CardTester("3s", "picche", 3, ImageIO.read(new File("Resources/Cards/3S_1.png")));
 		CardTester fourC = new CardTester("4c", "fiori", 4, ImageIO.read(new File("Resources/Cards/4C_1.png")));
 		CardTester fourD = new CardTester("4d", "denari", 4, ImageIO.read(new File("Resources/Cards/4D_1.png")));
+		*/
+		
 
 		/*
 		 * queste sono le istanze delle carte che mi ero fatto come prova su in altro
