@@ -48,12 +48,10 @@ public class Game {
 	 * metodo restituisce void, se serve cambiarlo non farsi dei problemi. Questa
 	 * classe andrebbe istanziata una sola volta, secondo il pattern singleton
 	 */
-	public void playGame() {
-		defaultTable = new Table();
-		/*
-		 * for (int i = 0; i < 10; i++) { //defaultTable.playRound(); // definire metodo
-		 * playRound }
-		 */
+	public void playRound(Player p, Card c) {
+		p.playCard(c);
+		defaultTable.putCard(c);
+		//e poi ci va la logica delle prese
 	}
 
 	private void createDeck() {
@@ -101,7 +99,6 @@ public class Game {
 	private Table createTable() {
 		return null;
 	}
-	
 	
 	/**
 	 * @return the defaultTable

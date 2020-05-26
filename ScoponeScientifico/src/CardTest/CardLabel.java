@@ -13,92 +13,88 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.SeedType;
+
 public class CardLabel extends JLabel {
-	
-	
-	
+
 	// immagine della carta
 	private Icon imageCard;
-	
-	//indica se attualmente l'immagine della carta � frntale
-	//o girata con il dorso visibile (� nel mazzo)
+
+	//seme e valore della carta
+	private SeedType seed;
+	private int value;
+
+	// indica se attualmente l'immagine della carta � frntale
+	// o girata con il dorso visibile (� nel mazzo)
 	private CardPosition position;
-	
-	//percorsi immagine e dorso carta
+
+	// percorsi immagine e dorso carta
 	private String[] imagesPaths;
-	
-	
-	//prova di istanza, lascio commentato 
-/*	public static void main(String[] args) {
-	
-		
-		String[] imagesPaths = new String[2];
-		imagesPaths[0] = "Resources/Cards/2C_1.png";
-		imagesPaths[1] = "Resources/BackCards/Red_Back_Resized.png";
-		
-		CardLabel prova = new CardLabel(imagesPaths);
-		
-		JFrame provaFrame = new JFrame();
-		
-		provaFrame.add(prova);
-		
-		provaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		provaFrame.setVisible(true);
-		
-		
-		
-	}*/
-	
-	// nel costruttore passo vettore di stringhe in cui al posto 0 c'� percorso dell'immagine della faccia
+
+
+
+	// nel costruttore passo vettore di stringhe in cui al posto 0 c'� percorso
+	// dell'immagine della faccia
 	// e al posto 1 c'� percorso del retro della carta
-	public CardLabel(String[] imagesPaths)  {
-		
+	public CardLabel(SeedType seed, int value, String[] imagesPaths) {
+		this.seed = seed;
+		this.value = value;
+
 		// TODO Auto-generated constructor stub
 		this.imagesPaths = imagesPaths;
-		
-		//imposto di default l'immagine della faccia della carta
+
+		// imposto di default l'immagine della faccia della carta
 		position = CardPosition.FACE;
 		try {
-	    imageCard = new ImageIcon( ImageIO.read(new File(imagesPaths[0])));
-	
-		this.setIcon(imageCard);
-		
+			imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[0])));
+
+			this.setIcon(imageCard);
+
+		} catch (IOException e) {
+			System.out.println("IO EXCEPTION, NON TROVO PERCORSO FACCIA CARTA (costruttore)");
 		}
-		catch(IOException e) {
-			System.out.println("IO EXCEPTION, NON TROVO PERCORSO FACCIA CARTA");
-		}
-		
-		
-	
+
 	}
-	
+
+	//cambia posizione della carta (da fronte a retro e viceversa)
 	public void changePosition() {
-		position = CardPosition.BACK;
-		try {
-			
-		imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[1])));
-		this.setIcon(imageCard);
-		this.repaint();
-		this.validate();
-		
-		}
-		catch(IOException e) {
-			System.out.println("IO EXCEPTION, NON TROVO PERCORSO CARTA GIRATA");
+		if (this.position == CardPosition.FACE) {
+			position = CardPosition.BACK;
+			try {
+
+				imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[1])));
+				this.setIcon(imageCard);
+				this.repaint();
+				this.validate();
+
+			} catch (IOException e) {
+				System.out.println("IO EXCEPTION, NON TROVO PERCORSO CARTA GIRATA");
+			}
+		} else {
+			position = CardPosition.FACE;
+			try {
+
+				imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[0])));
+				this.setIcon(imageCard);
+				this.repaint();
+				this.validate();
+
+			} catch (IOException e) {
+				System.out.println("IO EXCEPTION, NON TROVO PERCORSO FACCIA CARTA");
+			}
 		}
 	}
-	
-		public CardPosition getPosition() {
-			return this.position;
-		}
 
-		public Icon getImageCard() {
-			return imageCard;
-		}
+	public CardPosition getPosition() {
+		return this.position;
+	}
 
-		public void setImageCard(Icon imageCard) {
-			this.imageCard = imageCard;
-		}
-		
-	
+	public SeedType getSeed() {
+		return seed;
+	}
+
+	public int getValue() {
+		return value;
+	}
 
 }

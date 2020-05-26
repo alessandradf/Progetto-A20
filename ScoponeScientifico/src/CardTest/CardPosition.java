@@ -1,6 +1,6 @@
 package CardTest;
-//indica se attualmente l'immagine della carta è frntale
-//o girata con il dorso visibile (è nel mazzo)
+//indica se attualmente l'immagine della carta ï¿½ frntale
+//o girata con il dorso visibile (ï¿½ nel mazzo)
 public enum CardPosition {
 FACE, BACK
 }
