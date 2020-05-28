@@ -22,7 +22,7 @@ public class Table {
 	
 	
 	/**
-	 * Aggiunge la carta passata a quelle del tavolo
+	 * Aggiunge la carta passata a quelle presenti nel tavolo
 	 */
 	public void putCardOnTable(Card playedCard) {
 		this.cardsOnTable.add(playedCard);

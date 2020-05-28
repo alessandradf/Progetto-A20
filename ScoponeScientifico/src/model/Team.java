@@ -53,7 +53,7 @@ public class Team {
 	}
 
 	/*
-	 * Aggiunge le carte a quelle del team
+	 * Aggiunge le carte passate a quelle del team
 	 */
 	public void addCards(ArrayList<Card> cards) {
 		this.cardsTaken.addAll(cards);
