@@ -18,7 +18,11 @@ public class Player {
 	public Player(String name) {
 		this.playerName = name;
 	}
-
+	
+	public Player() {
+		this("DefaultName");
+	}
+	
 	public void removeCardFromHand(Card card) throws CardNotFoundException {
 
 	}

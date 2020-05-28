@@ -7,8 +7,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import model.Card;
-import model.ComputerPlayer;
-import model.HumanPlayer;
 import model.Player;
 import model.SeedType;
 import model.Table;
@@ -22,8 +20,11 @@ import model.Team;
  */
 public class Game {
 
+	public static final int PLAYER_NUMBER = 4;
+	public static final int TEAM_NUMBER = 2;
+	
 	private static Game defaultGame = null;
-	private Table defaultTable;
+	private Table table;
 	private Set<Card> deck;
 	private ArrayList<Player> players;
 	private ArrayList<Team> teams;
@@ -33,7 +34,7 @@ public class Game {
 		createDeck();
 		players = createPlayers();
 		teams = createTeams();
-		defaultTable = createTable(); // non ancora implementato
+		table = createTable(); // non ancora implementato
 	}
 
 	public static Game getDefaultGame() {
@@ -44,13 +45,19 @@ public class Game {
 	}
 
 	/**
-	 * Metodo che crea tutto il resto del gioco, partendo dal tavolo per ora il
-	 * metodo restituisce void, se serve cambiarlo non farsi dei problemi. Questa
-	 * classe andrebbe istanziata una sola volta, secondo il pattern singleton
+	 * Permette di far giocare al giocatore p la carta c, mettendola sul tavolo
+	 * @param p giocatore che gioca
+	 * @param c	carta da giocare
 	 */
 	public void playRound(Player p, Card c) {
-		p.playCard(c);
-		defaultTable.putCard(c);
+		try {
+			p.removeCardFromHand(c);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		table.putCard(c);
 		//e poi ci va la logica delle prese
 	}
 
@@ -68,27 +75,25 @@ public class Game {
 	private ArrayList<Player> createPlayers() {	
 		ArrayList<Player> players = new ArrayList<Player>();
 		/*
-		 * Questo pezzo istanzia fisicamente i giocatori, per ora uno solo è un vero
-		 * giocatore, gli altri sono controllati dal computer
+		 * Istanzia 4 giocatori, tutti uguali. La distinzione fra giocatore vero e finto viene fatta a livello più alto
 		 */
-		for (int i = 0; i < 4; i++) {
-			if (i == 0)
-				players.add(new HumanPlayer("Giocatore" + i));
-			else
-				players.add(new ComputerPlayer("Giocatore" + i));
+		for (int i = 0; i < PLAYER_NUMBER; i++) {
+			players.add(new Player("Player" + i));
 		}
-
 		return players;
 	}
 
 	/**
-	 * Crea due istanze di team, ma non lega i giocatori ai rispettivi team
+	 * Crea due istanze di team
 	 * @return i team di gioco
 	 */
 	private ArrayList<Team> createTeams() {
 		ArrayList<Team> teams = new ArrayList<Team>();
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < TEAM_NUMBER; i++) {
 			teams.add(new Team("Team " + i));
+			/*
+			 *	L'idea è che i primi due giocatori vengono messi nel team 1 e gli altri 2 nel team 2 
+			 */
 			teams.get(i).addPlayer(players.get(i));
 			teams.get(i).addPlayer(players.get(i + 1));
 		}
@@ -97,14 +102,14 @@ public class Game {
 	}
 
 	private Table createTable() {
-		return null;
+		return new Table();
 	}
 	
 	/**
 	 * @return the defaultTable
 	 */
 	public Table getDefaultTable() {
-		return defaultTable;
+		return table;
 	}
 
 	/**

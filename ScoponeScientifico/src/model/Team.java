@@ -36,4 +36,19 @@ public class Team {
 		return false;
 	}
 
+	/**
+	 * @return the teamName
+	 */
+	public String getTeamName() {
+		return teamName;
+	}
+
+	/**
+	 * @return the playersInTeam
+	 */
+	public ArrayList<Player> getPlayersInTeam() {
+		return playersInTeam;
+	}
+	
+	
 }
