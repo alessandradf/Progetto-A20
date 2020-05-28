@@ -51,7 +51,7 @@ public class Game {
 			e.printStackTrace();
 		}
 		
-		table.putCard(c);
+		table.putCardOnTable(c);
 		//e poi ci va la logica delle prese
 	}
 

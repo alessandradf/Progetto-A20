@@ -8,24 +8,11 @@ import java.util.Set;
 import java.util.Iterator;
 
 import model.*;
-import modelController.*;
 
 public class TestAndrea {
 	
+	//SERVE A ME PER PASTICCIARE, NON TOCCATE STA CLASSE
 	public static void main(String[] args) {
-		Game game = Game.getDefaultGame();
-		ArrayList<Team> teams = game.getTeams();
-		for(Team t : teams) {
-			System.out.println(t.getPlayersInTeam());
-		}
-		
-		for(Player p : players) {
-			System.out.println(p);
-		};
-		
-		Team team = new Team("team1");
-		team.addPlayer(players.get(0));
-		// seeDeck(game.getDeck());
 	}
 
 	/**
