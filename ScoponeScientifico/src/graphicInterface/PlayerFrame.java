@@ -101,7 +101,7 @@ public class PlayerFrame extends JFrame {
 		 */
 		
 		//non dovrebbe essere così, modificare mettendo GUIController come Singlettons
-		GUIController cGUI = new GUIController();
+		GUIController cGUI = GUIController.getDefaultGUIController();
 
 		Border blue = BorderFactory.createLineBorder(Color.BLUE, 3, true);
 		
