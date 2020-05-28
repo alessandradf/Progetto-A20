@@ -19,7 +19,7 @@ public class CardListener implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		l.setVisible(true);
+		l.setVisible(false);
 	}
 
 	@Override
