@@ -21,7 +21,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import CardTest.CardLabel;
 import CardTest.CardTester;
+import graphicInterfaceController.GUIController;
+import model.SeedType;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -76,64 +79,41 @@ public class PlayerFrame extends JFrame {
 						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE).addContainerGap()));
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		/*
-		CardTester twoC = new CardTester("2c", "fiori", 2, ImageIO.read(new File("Resources/Cards/2C_1.png")));
-		CardTester twoD = new CardTester("2d", "denari", 2, ImageIO.read(new File("Resources/Cards/2D_1.png")));
-		CardTester twoH = new CardTester("2h", "cuori", 2, ImageIO.read(new File("Resources/Cards/2H_1.png")));
-		CardTester twoS = new CardTester("2s", "picche", 2, ImageIO.read(new File("Resources/Cards/2S_1.png")));
-		CardTester threeC = new CardTester("3c", "fiori", 3, ImageIO.read(new File("Resources/Cards/3C_1.png")));
-		CardTester threeD = new CardTester("3d", "denari", 3, ImageIO.read(new File("Resources/Cards/3D_1.png")));
-		CardTester threeH = new CardTester("3h", "cuori", 3, ImageIO.read(new File("Resources/Cards/3H_1.png")));
-		CardTester threeS = new CardTester("3s", "picche", 3, ImageIO.read(new File("Resources/Cards/3S_1.png")));
-		CardTester fourC = new CardTester("4c", "fiori", 4, ImageIO.read(new File("Resources/Cards/4C_1.png")));
-		CardTester fourD = new CardTester("4d", "denari", 4, ImageIO.read(new File("Resources/Cards/4D_1.png")));
-		*/
 		
-
+		CardTester twoC = new CardTester("2c", SeedType.FIORI, 2);
+		CardTester twoD = new CardTester("2d", SeedType.DENARI, 2);
+		CardTester twoH = new CardTester("2h", SeedType.CUORI, 2);
+		CardTester twoS = new CardTester("2s", SeedType.PICCHE, 2);
+		CardTester threeC = new CardTester("3c", SeedType.FIORI, 3);
+		CardTester threeD = new CardTester("3d", SeedType.DENARI, 3);
+		CardTester threeH = new CardTester("3h", SeedType.CUORI, 3);
+		CardTester threeS = new CardTester("3s", SeedType.PICCHE, 3);
+		CardTester fourC = new CardTester("4c", SeedType.FIORI, 4);
+		CardTester fourD = new CardTester("4d", SeedType.DENARI, 4);
+		
 		/*
 		 * queste sono le istanze delle carte che mi ero fatto come prova su in altro
 		 * programma. Per avere le immagini nelle label dell'interfaccia avevo bisogno
 		 * che fossero specificate nel costruttore di modo da poter settare l'icona
 		 * della label direttamente dalla carta.
 		 */
+		
+		//non dovrebbe essere così, modificare mettendo GUIController come Singlettons
+		GUIController cGUI = new GUIController();
 
 		Border blue = BorderFactory.createLineBorder(Color.BLUE, 3, true);
+		
+		CardLabel[] c = null;
+		
+		for(int i=0; i<10; i++) {
+			c[i] = cGUI.converter(twoC);
 
-		JLabel lblNewLabel_2 = new JLabel(new ImageIcon(twoC.getImageCard()));
-		lblNewLabel_2.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				lblNewLabel_2.setVisible(false);
-			}
+			//JLabel lblNewLabel_2 = new JLabel(new ImageIcon(twoC.getImageCard()));
+			c[i].addMouseListener(new CardListener(c[i], blue));
+			panel.add(c[i]);
+		}
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				lblNewLabel_2.setBorder(blue);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				lblNewLabel_2.setBorder(null);
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-		});
-		panel.add(lblNewLabel_2);
-
+		/*
 		JLabel lblNewLabel_3 = new JLabel(new ImageIcon(twoD.getImageCard()));
 		lblNewLabel_3.addMouseListener(new MouseListener() {
 			@Override
@@ -448,6 +428,8 @@ public class PlayerFrame extends JFrame {
 
 		});
 		panel.add(lblNewLabel_9);
+		*/
+		
 		contentPane.setLayout(gl_contentPane);
 
 	}
