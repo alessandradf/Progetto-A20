@@ -10,18 +10,34 @@ import java.util.ArrayList;
  */
 public class Team {
 
-	private String teamName;
 	private ArrayList<Player> playersInTeam;
+	private int score;
+	private ArrayList<Card> cardsTaken;
 
-	public Team(String name) {
-		this.teamName = name;
-		playersInTeam = new ArrayList<Player>();
+	
+	/*
+	 * Il team viene inizializzato senza giocatori e carte
+	 */
+	public Team() {
+		this.playersInTeam = new ArrayList<Player>();
+		this.cardsTaken = new ArrayList<Card>();
+		this.score = 0;
+	}
+	
+	/*
+	 * Calcola il punteggio della squadra e lo restituisce
+	 */
+	public int calculateScore() {
+		/*
+		 * TODO va aggiunta la logica con cui calcolare il punteggio in base alle carte
+		 */
+		return 0;
 	}
 
+	
 	/**
 	 * Aggiunge un Player al Team. Controlla prima se � gi� stato aggiunto
 	 */
-
 	public boolean addPlayer(Player p) {
 		/*
 		 * Nota: il metodo contains restituisce vero se esiste p tale che p.equals(e) == true
@@ -36,4 +52,25 @@ public class Team {
 		return false;
 	}
 
+	/*
+	 * Aggiunge le carte a quelle del team
+	 */
+	public void addCards(ArrayList<Card> cards) {
+		this.cardsTaken.addAll(cards);
+	}
+	
+	/*
+	 * Svuota l'ArrayList di carte prese dal team
+	 */
+	private void resetTeamCards() {
+		this.cardsTaken.clear();
+	}
+	
+	public int getScore() {
+		return this.score;
+	}
+	
+	public ArrayList<Player> getPlayers(){
+		return this.playersInTeam;
+	}
 }
