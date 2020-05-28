@@ -1,16 +1,10 @@
-package modelController;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import model.Card;
-import model.Player;
-import model.SeedType;
-import model.Table;
-import model.Team;
 
 /**
  * Rappresenta un gioco di scopone scientifico, questa classe fa da controller.
@@ -30,11 +24,11 @@ public class Game {
 	private ArrayList<Team> teams;
 
 	private Game() {
-
 		createDeck();
 		players = createPlayers();
 		teams = createTeams();
-		table = createTable(); // non ancora implementato
+		populateTeams();
+		table = createTable();	
 	}
 
 	public static Game getDefaultGame() {
@@ -91,16 +85,20 @@ public class Game {
 		ArrayList<Team> teams = new ArrayList<Team>();
 		for (int i = 0; i < TEAM_NUMBER; i++) {
 			teams.add(new Team("Team " + i));
-			/*
-			 *	L'idea è che i primi due giocatori vengono messi nel team 1 e gli altri 2 nel team 2 
-			 */
-			teams.get(i).addPlayer(players.get(i));
-			teams.get(i).addPlayer(players.get(i + 1));
 		}
 
 		return teams;
 	}
 
+	private void populateTeams() {
+		int j = 0;
+		for(int i = 0; i < TEAM_NUMBER; i++) {
+			//mette i primi due giocatori nel team 1 e gli altri 2 nel team 2
+			teams.get(i).addPlayer(players.get(j));
+			j++;	//dovrebbe valere 4 alla fine del ciclo
+		}
+	}
+	
 	private Table createTable() {
 		return new Table();
 	}

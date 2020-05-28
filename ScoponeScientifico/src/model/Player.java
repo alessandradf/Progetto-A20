@@ -23,7 +23,10 @@ public class Player {
 		this("DefaultName");
 	}
 	
-	public void removeCardFromHand(Card card) throws CardNotFoundException {
+	/*
+	 * Questo metodo va protetto perchè non può e non deve essere chiamato da fuori del controller
+	 */
+	protected void removeCardFromHand(Card card) throws CardNotFoundException {
 
 	}
 
@@ -48,6 +51,15 @@ public class Player {
 
 	public String getPlayerName() {
 		return playerName;
+	}
+	
+	
+
+	/**
+	 * @param playerName the playerName to set
+	 */
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 
 	@Override
