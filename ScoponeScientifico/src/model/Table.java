@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,41 +11,28 @@ import java.util.Set;
  */
 public class Table {
 
-	private Set<Card> cardsOnTable;
+	private ArrayList<Card> cardsOnTable;	//Rappresenta l'insieme delle carte sul tavolo
 	
 	/*
-	 * Initialize the table
-	 * The cards Set is initially empty
+	 * Inizializza il tavolo con un ArrayList vuoto
 	 */
 	public Table() {
-		this.cardsOnTable = new HashSet<Card>();
-	}
-	
-	
-	/*
-	 * Returns a List containing the cards on table. It also prints them
-	 */
-	public Set<Card> readCards(){
-		for(Card c : cardsOnTable) {
-			System.out.println(c.toString());
-		}	
-		
-		return cardsOnTable;
+		this.cardsOnTable = new ArrayList<Card>();
 	}
 	
 	
 	/**
-	 * Adds a card on the table
+	 * Aggiunge la carta passata a quelle presenti nel tavolo
 	 */
-	public void putCard(Card playedCard) {
+	public void putCardOnTable(Card playedCard) {
 		this.cardsOnTable.add(playedCard);
 	}
 	
 	
 	/*
-	 * Removes the specified cards from the table
+	 * Rimuove dal tavolo le carte passate come parametro
 	 */
-	public void removeCards(Card[] cards) {
+	public void removeCardsFromTable(Card[] cards) {
 		for(Card c : cardsOnTable) {
 			for(Card c1 : cards) {
 				if(c.equals(c1)){
@@ -56,12 +44,16 @@ public class Table {
 	
 	
 	/*
-	 * Removes all the cards from the table
+	 * Rimuove tutte le carte dal tavolo
 	 */
 	public void clearTable() {
-		this.cardsOnTable = new HashSet<Card>();
+		this.cardsOnTable.clear();
 	}
-	
+
+
+	public ArrayList<Card> getCardsOnTable(){
+		return this.cardsOnTable;
+	}
 	
 	
 }

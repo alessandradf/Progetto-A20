@@ -6,8 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import model.SeedType;
-
 public class CardTester {
 	
 	private String name;

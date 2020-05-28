@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.swing.*;
 
 import CardTest.*;
-import model.SeedType;
 
 public class GUIController {
 	
@@ -20,15 +19,15 @@ public class GUIController {
 	public CardLabel converter(CardTester card) {
 		String[] path = new String[2];
 		path[0] = "Resources/Cards/" + card.getValue() + "di" + card.getSeed() + ".png";
-		//System.out.println(path[0]);
-		cardLabel = new CardLabel(card.getSeed(), card.getValue(), path);
+		System.out.println(path[0]);
+		cardLabel = new CardLabel(path);
 		return cardLabel;
 	}
 	
 	public static void main(String[] args) {
 		GUIController c = new GUIController();
 		
-		CardTester card = new CardTester("Due di Fiori", SeedType.FIORI, 2);
+		CardTester card = new CardTester("Due di Fiori", "fiori", 2);
 		
 		CardLabel cl = c.converter(card);
 		
