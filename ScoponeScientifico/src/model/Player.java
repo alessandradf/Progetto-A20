@@ -1,27 +1,32 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import exception.CardNotFoundException;
 
 /**
  * Rappresenta i giocatori.
  * 
  **/
 
-public abstract class Player {
+public class Player {
 
 	private Team team;
 	private String playerName;
-	private List<Card> hand;
+	private ArrayList<Card> hand;
 
 	public Player(String name) {
 		this.playerName = name;
 	}
 
+	public void removeCardFromHand(Card card) throws CardNotFoundException {
+
+	}
+
 	/**
 	 * @param hand carte date al giocatore all'inzio della partita
 	 */
-	public void setHand(List<Card> hand) {
+	public void setHand(ArrayList<Card> hand) {
 		this.hand = hand;
 	}
 
@@ -33,7 +38,7 @@ public abstract class Player {
 		return team;
 	}
 
-	public List<Card> getHand() {
+	public ArrayList<Card> getHand() {
 		return hand;
 	}
 
