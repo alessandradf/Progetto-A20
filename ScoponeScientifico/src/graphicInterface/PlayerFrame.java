@@ -91,6 +91,8 @@ public class PlayerFrame extends JFrame {
 		CardTester fourC = new CardTester("4c", SeedType.FIORI, 4);
 		CardTester fourD = new CardTester("4d", SeedType.DENARI, 4);
 		
+		CardTester[] cT = {twoC, twoD, twoH, twoS, threeC, threeD, threeH, threeS, fourC, fourD};
+		
 		/*
 		 * queste sono le istanze delle carte che mi ero fatto come prova su in altro
 		 * programma. Per avere le immagini nelle label dell'interfaccia avevo bisogno
@@ -106,7 +108,7 @@ public class PlayerFrame extends JFrame {
 		CardLabel[] c = null;
 		
 		for(int i=0; i<10; i++) {
-			c[i] = cGUI.converter(twoC);
+			c[i] = cGUI.converter(cT[i]);
 
 			//JLabel lblNewLabel_2 = new JLabel(new ImageIcon(twoC.getImageCard()));
 			c[i].addMouseListener(new CardListener(c[i], blue));
