@@ -9,11 +9,11 @@ import javax.imageio.ImageIO;
 public class CardTester {
 	
 	private String name;
-	private String seed;
+	private SeedType seed;
 	private int value;
 	//private BufferedImage imageCard;
 	
-	public CardTester(String name, String seed, int value) {
+	public CardTester(String name, SeedType seed, int value) {
 		this.name = name;
 		this.seed = seed;
 		this.value = value;
@@ -34,11 +34,11 @@ public class CardTester {
 		return name;
 	}
 
-	public String getSeed() {
+	public SeedType getSeed() {
 		return seed;
 	}
 
-	public void setSeed(String seed) {
+	public void setSeed(SeedType seed) {
 		this.seed = seed;
 	}
 
