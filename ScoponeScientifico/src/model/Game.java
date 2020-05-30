@@ -131,8 +131,5 @@ public class Game {
 		return teams;
 	}
 
-	public static void main(String args[]) {
-		Game.getDefaultGame();
-	}
 
 }
