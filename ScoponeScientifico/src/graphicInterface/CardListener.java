@@ -1,25 +1,31 @@
 package graphicInterface;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+
+import controller.HumanPlayerHandler;
 
 public class CardListener implements MouseListener{
 	
 	private JLabel l;
-	private Border border;
+	private static Border BORDER = BorderFactory.createLineBorder(Color.BLUE, 3, true);
+	private HumanPlayerHandler humanPlayer;
 	
-	public CardListener(JLabel l, Border border) {
+	public CardListener(JLabel l, HumanPlayerHandler humanPlayer) {
 		this.l = l;
-		this.border = border;
+		this.humanPlayer = humanPlayer;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		l.setVisible(false);
+		humanPlayer.unlockPlayer();
 	}
 
 	@Override
@@ -37,7 +43,7 @@ public class CardListener implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		l.setBorder(border);
+		l.setBorder(BORDER);
 	}
 
 	@Override
