@@ -3,7 +3,10 @@ package controller;
 import model.Player;
 
 public abstract class AbstractPlayerHandler {
-	private Player player; 
+	private Player player;
+	/*
+	 * private InterfaceCard cardPlayed;
+	 */
 	
 	public AbstractPlayerHandler(Player player) {
 		this.player = player;

@@ -17,6 +17,8 @@ import CardTest.CardLabel;
  */
 public class CardConverter {
 	
+	private CardConverter() {} // per evitare casino col javadoc
+
 	public static CardLabel toCardLabel(Card c) {
 		String[] imagePath = new String[2];
 		imagePath[0] = "Resources/Cards/" + c.getValue() + "di" + c.getSeed() + ".png";
