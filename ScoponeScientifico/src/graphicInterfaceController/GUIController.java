@@ -1,7 +1,5 @@
 package graphicInterfaceController;
 
-import java.io.IOException;
-
 import javax.swing.*;
 
 import CardTest.*;
@@ -11,9 +9,22 @@ public class GUIController {
 	
 	private CardLabel cardLabel;
 	//private CardTester card;
+
+	private static GUIController defaultGuiController = null;
 	
-	public GUIController() {}
+	public static GUIController getDefaultGUIController() {
+		if(defaultGuiController == null) {
+			defaultGuiController = new GUIController();
+			return defaultGuiController;
+		}
+		else
+			return defaultGuiController;
+	}
 	
+	private GUIController() {
+
+	}
+
 	//"converte" una carta in una CardLabel semplicemente
 	//creando una CardLabel ex novo aggiungendo i valori
 	//in base a quelli della carta "normale".

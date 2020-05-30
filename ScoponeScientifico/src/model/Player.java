@@ -25,10 +25,15 @@ public class Player {
 	}
 	
 	/*
-	 * Questo metodo va protetto perchè non può e non deve essere chiamato da fuori del controller
+	 * Rimuove la carta dalla mano 
 	 */
 	protected void removeCardFromHand(Card card) throws CardNotFoundException {
-
+		if (hand.contains(card)) {
+			hand.remove(card);	
+		}
+		else {
+			throw new CardNotFoundException("Unexpected card: " + card);
+		}
 	}
 
 	/**
