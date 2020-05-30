@@ -110,7 +110,7 @@ public class PlayerFrame extends JFrame {
 		
 		for(int i=0; i<10; i++) {
 			
-			c[i] = cGUI.converter(cT[i]);
+		//	c[i] = cGUI.converter(cT[i]);
 
 			//JLabel lblNewLabel_2 = new JLabel(new ImageIcon(twoC.getImageCard()));
 			c[i].addMouseListener(new CardListener(c[i], blue));

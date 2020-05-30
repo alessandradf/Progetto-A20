@@ -1,13 +1,21 @@
 package graphicInterfaceController;
 
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import CardTest.*;
+import controller.CardConverter;
+import graphicInterface.TotalFrame;
+import model.Card;
+import model.Player;
 import model.SeedType;
 
 public class GUIController {
 	
 	private CardLabel cardLabel;
+	private TotalFrame[] playerView;
+	private JPanel tablePanel;
 	//private CardTester card;
 
 	private static GUIController defaultGuiController = null;
@@ -22,19 +30,19 @@ public class GUIController {
 	}
 	
 	private GUIController() {
-
+		tablePanel = new JPanel();
 	}
 
 	//"converte" una carta in una CardLabel semplicemente
 	//creando una CardLabel ex novo aggiungendo i valori
 	//in base a quelli della carta "normale".
-	public CardLabel converter(CardTester card) {
+/*	public CardLabel converter(CardTester card) {
 		String[] path = new String[2];
 		path[0] = "Resources/Cards/" + card.getValue() + "di" + card.getSeed() + ".png";
 		//System.out.println(path[0]);
 		cardLabel = new CardLabel(card.getSeed(), card.getValue(), path);
 		return cardLabel;
-	}
+	}*/
 	
 	/*
 	public static void main(String[] args) {
@@ -52,7 +60,32 @@ public class GUIController {
 		p.add(cl);
 	}
 	*/
+	public void init(Player[] players) {
+		int i = 0;
+		
+		for (Player player : players) {
+			playerView[i] = new TotalFrame(player.getPlayerName(), tablePanel);
+			/* playerView[i].getPlayerPanel.setCards(cardsConverter(player.getHandCards()));
+			 * 
+			 */
+		}
+		
+	}
 	
+	
+	private ArrayList<CardLabel> cardsConverter(ArrayList<Card> cards){
+		
+		ArrayList<CardLabel> cardLabels = new ArrayList<CardLabel>();
+		
+		for (Card card : cards) {
+			cardLabels.add(CardConverter.toCardLabel(card));
+		}
+		return cardLabels;
+	}
+
+	public TotalFrame[] getPlayerView() {
+		return playerView;
+	}
 	
 	
 

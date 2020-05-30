@@ -24,28 +24,34 @@ public class TotalFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame thisFrame;
+	private JPanel PlayerPanel;
+	private JPanel tablePanel;
+	private String playerName;
+	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TotalFrame frame = new TotalFrame();
+					TotalFrame frame = new TotalFrame("ciccio");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public TotalFrame() {
+	public TotalFrame(String playerName, JPanel tablePanel) {
 		thisFrame = this;
+		this.playerName = playerName;
+		this.tablePanel = tablePanel;
 
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,13 +96,17 @@ public class TotalFrame extends JFrame {
 		TeamsPanel.add(Team2);
 
 		// pannello del giocatore
-		JPanel PlayerPanel = new JPanel();
+		 PlayerPanel = new JPanel();
 		GridBagConstraints gbc_PlayerPanel = new GridBagConstraints();
 		gbc_PlayerPanel.insets = new Insets(0, 0, 0, 5);
 		gbc_PlayerPanel.fill = GridBagConstraints.BOTH;
 		gbc_PlayerPanel.gridx = 0;
 		gbc_PlayerPanel.gridy = 1;
 		contentPane.add(PlayerPanel, gbc_PlayerPanel);
+	}
+
+	public JPanel getPlayerPanel() {
+		return PlayerPanel;
 	}
 
 }
