@@ -25,6 +25,7 @@ public class GUIController {
 		return cardLabel;
 	}
 	
+	/*
 	public static void main(String[] args) {
 		GUIController c = new GUIController();
 		
@@ -39,6 +40,7 @@ public class GUIController {
 		f.add(p);
 		p.add(cl);
 	}
+	*/
 	
 	
 	

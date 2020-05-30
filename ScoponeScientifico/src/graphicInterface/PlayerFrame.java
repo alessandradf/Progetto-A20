@@ -62,6 +62,7 @@ public class PlayerFrame extends JFrame {
 	 * 
 	 * @throws IOException
 	 */
+	@SuppressWarnings("null")
 	public PlayerFrame() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -108,6 +109,7 @@ public class PlayerFrame extends JFrame {
 		CardLabel[] c = null;
 		
 		for(int i=0; i<10; i++) {
+			
 			c[i] = cGUI.converter(cT[i]);
 
 			//JLabel lblNewLabel_2 = new JLabel(new ImageIcon(twoC.getImageCard()));
