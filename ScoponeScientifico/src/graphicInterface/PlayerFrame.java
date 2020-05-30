@@ -106,7 +106,7 @@ public class PlayerFrame extends JFrame {
 
 		Border blue = BorderFactory.createLineBorder(Color.BLUE, 3, true);
 		
-		CardLabel[] c = null;
+		CardLabel[] c = new CardLabel[10];
 		
 		for(int i=0; i<10; i++) {
 			
