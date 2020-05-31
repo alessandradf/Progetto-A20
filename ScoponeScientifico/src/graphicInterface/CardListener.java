@@ -25,7 +25,6 @@ public class CardListener implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		l.setVisible(false);
-		humanPlayer.unlockPlayer();
 	}
 
 	@Override
