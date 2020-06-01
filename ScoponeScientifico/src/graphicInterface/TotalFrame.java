@@ -24,8 +24,9 @@ public class TotalFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame thisFrame;
-	private JPanel PlayerPanel;
-	private JPanel tablePanel;
+	private PlayerPanel playerPanel;
+	private TablePanel tablePanel;
+	private JPanel teamsPanel;
 	private String playerName;
 	
 
@@ -48,10 +49,11 @@ public class TotalFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TotalFrame(String playerName, JPanel tablePanel) {
+	public TotalFrame(String playerName, TablePanel tablePanel, PlayerPanel playerPanel) {
 		thisFrame = this;
 		this.playerName = playerName;
 		this.tablePanel = tablePanel;
+		this.playerPanel = playerPanel;
 
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,15 +69,17 @@ public class TotalFrame extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 
 		// Pannello che rappresenta il tavolo
-		JPanel TablePanel = new JPanel();
-		TablePanel.setBackground(new Color(0, 100, 0));
+		
+	/*	tablePanel.setBackground(new Color(0, 100, 0));
+	 * tablePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));*/
 		GridBagConstraints gbc_TablePanel = new GridBagConstraints();
 		gbc_TablePanel.insets = new Insets(0, 0, 5, 5);
 		gbc_TablePanel.fill = GridBagConstraints.BOTH;
 		gbc_TablePanel.gridx = 0;
 		gbc_TablePanel.gridy = 0;
-		contentPane.add(TablePanel, gbc_TablePanel);
-		TablePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		contentPane.add(tablePanel, gbc_TablePanel);
+		
 
 		// pannello con i mazzi dei team
 		JPanel TeamsPanel = new JPanel();
@@ -96,17 +100,32 @@ public class TotalFrame extends JFrame {
 		TeamsPanel.add(Team2);
 
 		// pannello del giocatore
-		 PlayerPanel = new JPanel();
+		
 		GridBagConstraints gbc_PlayerPanel = new GridBagConstraints();
 		gbc_PlayerPanel.insets = new Insets(0, 0, 0, 5);
 		gbc_PlayerPanel.fill = GridBagConstraints.BOTH;
 		gbc_PlayerPanel.gridx = 0;
 		gbc_PlayerPanel.gridy = 1;
-		contentPane.add(PlayerPanel, gbc_PlayerPanel);
+		contentPane.add(playerPanel, gbc_PlayerPanel);
 	}
 
 	public JPanel getPlayerPanel() {
-		return PlayerPanel;
+		return playerPanel;
 	}
+	
+	public TablePanel getTablePanel() {
+		return tablePanel;
+	}
+
+	//metodi per sbloccare e bloccare il frame del giocatore
+	public void unlockPlayer() {
+		this.setVisible(true);
+	}
+	public void lockPlayer() {
+		this.setVisible(false);
+	}
+
+	
+	
 
 }

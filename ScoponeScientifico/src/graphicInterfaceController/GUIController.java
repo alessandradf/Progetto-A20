@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import CardTest.*;
 import controller.CardConverter;
+import graphicInterface.TablePanel;
 import graphicInterface.TotalFrame;
 import model.Card;
 import model.Player;
@@ -15,7 +16,7 @@ public class GUIController {
 	
 	private CardLabel cardLabel;
 	private TotalFrame[] playerView;
-	private JPanel tablePanel;
+	private TablePanel tablePanel;
 	//private CardTester card;
 
 	private static GUIController defaultGuiController = null;
@@ -30,7 +31,7 @@ public class GUIController {
 	}
 	
 	private GUIController() {
-		tablePanel = new JPanel();
+		tablePanel = new TablePanel();
 	}
 
 	//"converte" una carta in una CardLabel semplicemente
@@ -60,17 +61,17 @@ public class GUIController {
 		p.add(cl);
 	}
 	*/
-	public void init(Player[] players) {
+/*	public void init(Player[] players) {
 		int i = 0;
 		
 		for (Player player : players) {
 			playerView[i] = new TotalFrame(player.getPlayerName(), tablePanel);
-			/* playerView[i].getPlayerPanel.setCards(cardsConverter(player.getHandCards()));
-			 * 
-			 */
+			 playerView[i].getPlayerPanel.setCards(cardsConverter(player.getHandCards()));
+			 
+			 
 		}
 		
-	}
+	}*/
 	
 	
 	private ArrayList<CardLabel> cardsConverter(ArrayList<Card> cards){
