@@ -12,12 +12,15 @@ import exception.CardNotFoundException;
 
 public class Player {
 
+	public static final int CARDS_PER_PLAYER = 10;
+	
 	private Team team;
 	private String playerName;
 	private ArrayList<Card> hand;
 
 	public Player(String name) {
 		this.playerName = name;
+		hand = new ArrayList<Card>();
 	}
 	
 	public Player() {

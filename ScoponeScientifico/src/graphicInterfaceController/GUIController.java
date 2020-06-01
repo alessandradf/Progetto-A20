@@ -19,7 +19,7 @@ import model.SeedType;
 public class GUIController {
 
 	private CardLabel cardLabel;
-	private TotalFrame[] playerView;
+	private TotalFrame[] playerView = new TotalFrame[4];
 	private TablePanel tablePanel;
 	// private CardTester card;
 
@@ -52,7 +52,8 @@ public class GUIController {
 			playerPanel = new PlayerPanel(playerCards);
 			playerHandler.setPlayerPanel(playerPanel);
 			playerView[i] = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel, playerPanel);
-
+			playerView[i].unlockPlayer();
+			//playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 
 	}
@@ -70,7 +71,5 @@ public class GUIController {
 	public TotalFrame[] getPlayerView() {
 		return playerView;
 	}
-	
-
 
 }

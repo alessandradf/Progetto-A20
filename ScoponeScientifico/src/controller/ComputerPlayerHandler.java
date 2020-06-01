@@ -19,8 +19,8 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 	@Override
 	public boolean unlockPlayer() {
 		Card c = this.pickACard();
-		//setPlayedCard(c);
-		//this.getController().hasPlayed(this);
+		setPlayedCard(c);
+		this.getController().hasPlayed(this);
 		return true;
 	}
 	
