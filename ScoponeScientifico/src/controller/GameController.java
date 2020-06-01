@@ -21,7 +21,7 @@ public class GameController {
 	 */
 	// per ora uno solo
 	private void createPlayers() {
-		players.add(new HumanPlayerHandler(game.getPlayers().get(0)));
+		players.add(new HumanPlayerHandler(game.getPlayers().get(0), this));
 	}
 	
 	private void nextPlayer() {
