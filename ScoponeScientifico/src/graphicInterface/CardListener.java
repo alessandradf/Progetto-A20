@@ -8,23 +8,26 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
+import CardTest.CardLabel;
 import controller.HumanPlayerHandler;
 
 public class CardListener implements MouseListener{
 	
-	private JLabel l;
+	private CardLabel cardLabel;
 	private static Border BORDER = BorderFactory.createLineBorder(Color.BLUE, 3, true);
 	private HumanPlayerHandler humanPlayer;
 	
-	public CardListener(JLabel l, HumanPlayerHandler humanPlayer) {
-		this.l = l;
+	public CardListener(CardLabel l, HumanPlayerHandler humanPlayer) {
+		cardLabel = l;
 		this.humanPlayer = humanPlayer;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		l.setVisible(false);
+		cardLabel.setVisible(false);
+		System.out.println("ciao");
+		humanPlayer.cardPlayed(cardLabel);
 	}
 
 	@Override
@@ -42,13 +45,13 @@ public class CardListener implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		l.setBorder(BORDER);
+		cardLabel.setBorder(BORDER);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		l.setBorder(null);
+		cardLabel.setBorder(null);
 	}
 
 }

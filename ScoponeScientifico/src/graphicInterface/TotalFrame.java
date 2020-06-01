@@ -33,18 +33,23 @@ public class TotalFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TotalFrame frame = new TotalFrame("ciccio");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	/*	public static void main(String[] args) {
+	HumanPlayerHandler[] playerProva = new HumanPlayerHandler[1];
+	playerProva[0] = new HumanPlayerHandler(new Player(), new GameController());
+	GUIController prova = GUIController.getDefaultGUIController();
+	prova.init(playerProva);
+	String[] cardPaths = new String[2];
+	cardPaths[0] = "Resources/Cards/2diCUORI.png";
+	cardPaths[1] = "Resources/Cards/2diCUORI.png";
+	ArrayList<CardLabel> arrayCards= new ArrayList<CardLabel>();
+	CardLabel card = new CardLabel(SeedType.CUORI, 2, cardPaths);
+	card.addMouseListener(new CardListener(card, new HumanPlayerHandler(new Player(), new GameController())));
+	arrayCards.add(card);
+	
+	TotalFrame prova = new TotalFrame("ciao", new TablePanel(), new PlayerPanel(arrayCards));
+	
+	prova.setVisible(true);
+}*/
 
 	/**
 	 * Create the frame.

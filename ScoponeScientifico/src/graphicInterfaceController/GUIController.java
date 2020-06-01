@@ -6,6 +6,10 @@ import javax.swing.*;
 
 import CardTest.*;
 import controller.CardConverter;
+import controller.GameController;
+import controller.HumanPlayerHandler;
+import graphicInterface.CardListener;
+import graphicInterface.PlayerPanel;
 import graphicInterface.TablePanel;
 import graphicInterface.TotalFrame;
 import model.Card;
@@ -13,71 +17,50 @@ import model.Player;
 import model.SeedType;
 
 public class GUIController {
-	
+
 	private CardLabel cardLabel;
 	private TotalFrame[] playerView;
 	private TablePanel tablePanel;
-	//private CardTester card;
+	// private CardTester card;
 
 	private static GUIController defaultGuiController = null;
-	
+
 	public static GUIController getDefaultGUIController() {
-		if(defaultGuiController == null) {
+		if (defaultGuiController == null) {
 			defaultGuiController = new GUIController();
 			return defaultGuiController;
-		}
-		else
+		} else
 			return defaultGuiController;
 	}
-	
+
 	private GUIController() {
 		tablePanel = new TablePanel();
 	}
 
-	//"converte" una carta in una CardLabel semplicemente
-	//creando una CardLabel ex novo aggiungendo i valori
-	//in base a quelli della carta "normale".
-/*	public CardLabel converter(CardTester card) {
-		String[] path = new String[2];
-		path[0] = "Resources/Cards/" + card.getValue() + "di" + card.getSeed() + ".png";
-		//System.out.println(path[0]);
-		cardLabel = new CardLabel(card.getSeed(), card.getValue(), path);
-		return cardLabel;
-	}*/
 	
-	/*
-	public static void main(String[] args) {
-		GUIController c = new GUIController();
-		
-		CardTester card = new CardTester("Due di Fiori", SeedType.FIORI, 2);
-		
-		CardLabel cl = c.converter(card);
-		
-		JFrame f = new JFrame();
-		f.setBounds(100, 100, 450, 300);
-		f.setVisible(true);
-		JPanel p = new JPanel();
-		f.add(p);
-		p.add(cl);
-	}
-	*/
-/*	public void init(Player[] players) {
+	public void init(HumanPlayerHandler[] playerHandlers) {
 		int i = 0;
-		
-		for (Player player : players) {
-			playerView[i] = new TotalFrame(player.getPlayerName(), tablePanel);
-			 playerView[i].getPlayerPanel.setCards(cardsConverter(player.getHandCards()));
-			 
-			 
+		PlayerPanel playerPanel;
+		ArrayList<CardLabel> playerCards;
+		for (HumanPlayerHandler playerHandler : playerHandlers) {
+			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
+			for (CardLabel cardLabel : playerCards) {
+
+				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler));
+
+			}
+			playerPanel = new PlayerPanel(playerCards);
+			playerHandler.setPlayerPanel(playerPanel);
+			playerView[i] = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel, playerPanel);
+
 		}
-		
-	}*/
-	
-	
-	private ArrayList<CardLabel> cardsConverter(ArrayList<Card> cards){
-		
+
+	}
+
+	private ArrayList<CardLabel> cardsConverter(ArrayList<Card> cards) {
+
 		ArrayList<CardLabel> cardLabels = new ArrayList<CardLabel>();
-		
+
 		for (Card card : cards) {
 			cardLabels.add(CardConverter.toCardLabel(card));
 		}
@@ -88,6 +71,6 @@ public class GUIController {
 		return playerView;
 	}
 	
-	
+
 
 }
