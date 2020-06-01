@@ -25,7 +25,7 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 	}
 	
 	/*
-	 * Ritorna una carta casuale dall'ArrayList del Player del modello al quale è associato
+	 * Ritorna una carta casuale dall'ArrayList del Player del modello al quale ï¿½ associato
 	 */
 	public Card pickACard() {
 		int handSize = this.getPlayer().getHand().size();
@@ -39,7 +39,7 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 	public static void main(String[] args) {
 		
 		Player p = new Player("Debug");
-		ComputerPlayerHandler ph = new ComputerPlayerHandler(p, new GameController());
+		ComputerPlayerHandler ph = new ComputerPlayerHandler(p, getDefaultGameController());
 		
 		ArrayList<Card> cards = new ArrayList<Card>();
 		
