@@ -15,8 +15,9 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	}
 
 	public void cardPlayed(CardLabel cardLabel) {
-		Card card = CardConverter.toModelCard(cardLabel);
-		//controller.playCard(this, card);
+		Card playedCard = CardConverter.toModelCard(cardLabel);
+		setPlayedCard(playedCard);
+		getController().hasPlayed(this);
 	}
 	
 	@Override

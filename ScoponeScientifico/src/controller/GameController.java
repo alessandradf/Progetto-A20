@@ -1,6 +1,7 @@
 package controller;
 
 import graphicInterfaceController.GUIController;
+import model.Card;
 import model.Game;
 
 public class GameController {
@@ -32,9 +33,7 @@ public class GameController {
 	}
 	
 	public void hasPlayed(AbstractPlayerHandler p) {
-		/*
-		 * Converter.ConvertIntoDomainCard(p.getPlayedCard());
-		 */
-		//game.playRound(Card c, Player p);
+		//Card card = p.getPlayedCard();
+		//game.playRound(p.getPlayer(), card);
 	}
 }
