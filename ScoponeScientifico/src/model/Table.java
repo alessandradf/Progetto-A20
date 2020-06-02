@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import utility.TableObserver;
+
 /**
  *
  * @author Stefano
@@ -12,6 +14,7 @@ import java.util.Set;
 public class Table {
 
 	private ArrayList<Card> cardsOnTable;	//Rappresenta l'insieme delle carte sul tavolo
+	private TableObserver obs;	//observer del tavolo
 	
 	/*
 	 * Inizializza il tavolo con un ArrayList vuoto
@@ -26,13 +29,14 @@ public class Table {
 	 */
 	public void putCardOnTable(Card playedCard) {
 		this.cardsOnTable.add(playedCard);
+		this.obs.updateOnAddition(playedCard);
 	}
 	
 	
 	/*
 	 * Rimuove dal tavolo le carte passate come parametro
 	 */
-	public void removeCardsFromTable(Card[] cards) {
+	public void removeCardsFromTable(ArrayList<Card> cards) {
 		for(Card c : cardsOnTable) {
 			for(Card c1 : cards) {
 				if(c.equals(c1)){
@@ -40,6 +44,7 @@ public class Table {
 				}
 			}
 		}
+		this.obs.updateOnRemoval(cards);
 	}
 	
 	
@@ -53,6 +58,11 @@ public class Table {
 
 	public ArrayList<Card> getCardsOnTable(){
 		return this.cardsOnTable;
+	}
+	
+	
+	public void addObserver(TableObserver o) {
+		this.obs = o; 
 	}
 	
 	
