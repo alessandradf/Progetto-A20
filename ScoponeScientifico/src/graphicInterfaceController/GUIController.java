@@ -15,8 +15,9 @@ import graphicInterface.TotalFrame;
 import model.Card;
 import model.Player;
 import model.SeedType;
+import utility.TableObserver;
 
-public class GUIController {
+public class GUIController implements TableObserver{
 
 	private CardLabel cardLabel;
 	private TotalFrame[] playerView = new TotalFrame[4];
@@ -70,6 +71,28 @@ public class GUIController {
 
 	public TotalFrame[] getPlayerView() {
 		return playerView;
+	}
+
+	//metodi per aggiornare il tavolo e i frame dei giocatori
+	@Override
+	public void updateOnAddition(Card c) {
+		// TODO Auto-generated method stub
+		this.tablePanel.putCardOnTable(CardConverter.toCardLabel(c));
+		for (TotalFrame totalFrame : playerView) {
+			totalFrame.repaint();
+			totalFrame.validate();
+		}
+	}
+
+	@Override
+	public void updateOnRemoval(ArrayList<Card> removedCards) {
+		// TODO Auto-generated method stub
+		this.tablePanel.removeCardsFromTable(cardsConverter(removedCards));
+		for (TotalFrame totalFrame : playerView) {
+			totalFrame.repaint();
+			totalFrame.validate();
+		}
+		
 	}
 
 }

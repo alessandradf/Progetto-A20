@@ -36,9 +36,11 @@ public class TablePanel extends JPanel {
 	public void putCardOnTable(CardLabel playedCard) {
 		this.cardsOnTable.add(playedCard);
 		add(playedCard);
+		this.repaint();
+		this.validate();
 	
 	}
-	public void removeCardsFromTable(CardLabel[] cardsRemoved) {
+	public void removeCardsFromTable(ArrayList<CardLabel> cardsRemoved) {
 		for(CardLabel c : cardsOnTable) {
 			for(CardLabel c1 : cardsRemoved) {
 				if(c.equals(c1)){
@@ -54,6 +56,8 @@ public class TablePanel extends JPanel {
 	public void clearTable() {
 		this.cardsOnTable.clear();
 		this.removeAll();
+		this.repaint();
+		this.validate();
 	}
 
 }
