@@ -29,7 +29,7 @@ public class Table {
 	 */
 	public void putCardOnTable(Card playedCard) {
 		this.cardsOnTable.add(playedCard);
-		this.obs.updateOnAddition(playedCard);
+		//this.obs.updateOnAddition(playedCard);
 	}
 	
 	
