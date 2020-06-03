@@ -21,7 +21,7 @@ public class GUIController implements TableObserver{
 
 	private CardLabel cardLabel;
 	private TotalFrame[] playerView = new TotalFrame[4];
-	private TablePanel tablePanel;
+	private TablePanel[] tablePanel = new TablePanel[4];
 	// private CardTester card;
 
 	private static GUIController defaultGuiController = null;
@@ -35,7 +35,7 @@ public class GUIController implements TableObserver{
 	}
 
 	private GUIController() {
-		tablePanel = new TablePanel();
+		
 	}
 
 	
@@ -52,8 +52,10 @@ public class GUIController implements TableObserver{
 			}
 			playerPanel = new PlayerPanel(playerCards);
 			playerHandler.setPlayerPanel(playerPanel);
-			playerView[i] = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel, playerPanel);
+			tablePanel[i] = new TablePanel();
+			playerView[i] = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel[i], playerPanel);
 			playerView[i].unlockPlayer();
+			i++;
 			//playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 
@@ -77,22 +79,30 @@ public class GUIController implements TableObserver{
 	@Override
 	public void updateOnAddition(Card c) {
 		// TODO Auto-generated method stub
-		this.tablePanel.putCardOnTable(CardConverter.toCardLabel(c));
+		int i = 0;
 		for (TotalFrame totalFrame : playerView) {
+			this.tablePanel[i].putCardOnTable(CardConverter.toCardLabel(c));
 			totalFrame.repaint();
 			totalFrame.validate();
+			i ++;
 		}
 	}
 
 	@Override
 	public void updateOnRemoval(ArrayList<Card> removedCards) {
 		// TODO Auto-generated method stub
-		this.tablePanel.removeCardsFromTable(cardsConverter(removedCards));
+		int i = 0;
+		
 		for (TotalFrame totalFrame : playerView) {
+			this.tablePanel[i].removeCardsFromTable(cardsConverter(removedCards));
 			totalFrame.repaint();
 			totalFrame.validate();
 		}
 		
+	}
+
+	public TablePanel[] getTablePanel() {
+		return tablePanel;
 	}
 
 }
