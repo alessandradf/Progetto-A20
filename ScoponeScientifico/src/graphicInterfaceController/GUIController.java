@@ -17,7 +17,7 @@ import model.Player;
 import model.SeedType;
 import utility.TableObserver;
 
-public class GUIController implements TableObserver{
+public class GUIController implements TableObserver {
 
 	private CardLabel cardLabel;
 	private TotalFrame[] playerView = new TotalFrame[4];
@@ -35,10 +35,9 @@ public class GUIController implements TableObserver{
 	}
 
 	private GUIController() {
-		
+
 	}
 
-	
 	public void init(HumanPlayerHandler[] playerHandlers) {
 		int i = 0;
 		PlayerPanel playerPanel;
@@ -56,7 +55,7 @@ public class GUIController implements TableObserver{
 			playerView[i] = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel[i], playerPanel);
 			playerView[i].unlockPlayer();
 			i++;
-			//playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 
 	}
@@ -75,7 +74,7 @@ public class GUIController implements TableObserver{
 		return playerView;
 	}
 
-	//metodi per aggiornare il tavolo e i frame dei giocatori
+	// metodi per aggiornare il tavolo e i frame dei giocatori
 	@Override
 	public void updateOnAddition(Card c) {
 		// TODO Auto-generated method stub
@@ -84,7 +83,7 @@ public class GUIController implements TableObserver{
 			this.tablePanel[i].putCardOnTable(CardConverter.toCardLabel(c));
 			totalFrame.repaint();
 			totalFrame.validate();
-			i ++;
+			i++;
 		}
 	}
 
@@ -92,17 +91,13 @@ public class GUIController implements TableObserver{
 	public void updateOnRemoval(ArrayList<Card> removedCards) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		
 		for (TotalFrame totalFrame : playerView) {
 			this.tablePanel[i].removeCardsFromTable(cardsConverter(removedCards));
 			totalFrame.repaint();
 			totalFrame.validate();
+			i++;
 		}
-		
-	}
 
-	public TablePanel[] getTablePanel() {
-		return tablePanel;
 	}
 
 }

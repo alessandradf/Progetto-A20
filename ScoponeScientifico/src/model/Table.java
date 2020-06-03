@@ -14,13 +14,14 @@ import utility.TableObserver;
 public class Table {
 
 	private ArrayList<Card> cardsOnTable;	//Rappresenta l'insieme delle carte sul tavolo
-	private TableObserver obs;	//observer del tavolo
+	private ArrayList<TableObserver> obs;	//observer del tavolo
 	
 	/*
 	 * Inizializza il tavolo con un ArrayList vuoto
 	 */
 	public Table() {
 		this.cardsOnTable = new ArrayList<Card>();
+		this.obs = new ArrayList<TableObserver>();
 	}
 	
 	
@@ -29,10 +30,16 @@ public class Table {
 	 */
 	public void putCardOnTable(Card playedCard) {
 		this.cardsOnTable.add(playedCard);
-		//this.obs.updateOnAddition(playedCard);
+		this.updateOnAddition(playedCard);
 	}
 	
 	
+	private void updateOnAddition(Card playedCard) {
+		for (TableObserver o : obs)
+			o.updateOnAddition(playedCard);		
+	}
+
+
 	/*
 	 * Rimuove dal tavolo le carte passate come parametro
 	 */
@@ -44,7 +51,7 @@ public class Table {
 				}
 			}
 		}
-		this.obs.updateOnRemoval(cards);
+		this.updateOnRemoval(cards);
 	}
 	
 	
@@ -62,8 +69,11 @@ public class Table {
 	
 	
 	public void addObserver(TableObserver o) {
-		this.obs = o; 
+		this.obs.add(o); 
 	}
 	
-	
+	public void updateOnRemoval(ArrayList<Card> cards) {
+		for (TableObserver o : obs)
+			o.updateOnRemoval(cards);
+	}
 }

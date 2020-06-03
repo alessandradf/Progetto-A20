@@ -1,6 +1,5 @@
 package graphicInterface;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -18,8 +17,8 @@ import java.awt.Insets;
 
 public class TablePanel extends JPanel {
 
-	ArrayList<CardLabel> cardsOnTable; //carte sul tavolo
-	
+	ArrayList<CardLabel> cardsOnTable; // carte sul tavolo
+
 	/**
 	 * Create the panel.
 	 */
@@ -27,23 +26,22 @@ public class TablePanel extends JPanel {
 		this.setBackground(new Color(0, 100, 0));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		this.cardsOnTable = new ArrayList<CardLabel>();
-		
 
 	}
-	
-	//ho copiato i metodi del tavolo del modello, adattati all'interfaccia
-	
+
+	// ho copiato i metodi del tavolo del modello, adattati all'interfaccia
+
 	public void putCardOnTable(CardLabel playedCard) {
 		this.cardsOnTable.add(playedCard);
 		add(playedCard);
 		this.repaint();
 		this.validate();
-	
 	}
+
 	public void removeCardsFromTable(ArrayList<CardLabel> cardsRemoved) {
-		for(CardLabel c : cardsOnTable) {
-			for(CardLabel c1 : cardsRemoved) {
-				if(c.equals(c1)){
+		for (CardLabel c : cardsOnTable) {
+			for (CardLabel c1 : cardsRemoved) {
+				if (c.equals(c1)) {
 					cardsOnTable.remove(c1);
 					this.remove(c1);
 				}
@@ -52,7 +50,7 @@ public class TablePanel extends JPanel {
 		this.repaint();
 		this.validate();
 	}
-	
+
 	public void clearTable() {
 		this.cardsOnTable.clear();
 		this.removeAll();
