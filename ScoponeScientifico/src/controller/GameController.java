@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import graphicInterfaceController.GUIController;
 import model.Card;
 import model.Game;
+import utility.CircularArrayList;
 
 public class GameController {
 
@@ -12,35 +13,22 @@ public class GameController {
 	
 	private Game game;
 	private CircularArrayList<AbstractPlayerHandler> players;
-	private ArrayList<HumanPlayerHandler> humanPlayers;
 	private HumanPlayerHandler[] humanPlayers2 = new HumanPlayerHandler[1];
 
 	private GUIController guiController;
 	
+	/*
 	public static GameController getDefaultGameController() {
 		if(defaultGameController == null) {
 			defaultGameController =  new GameController();
 		}
 		return defaultGameController;
 	}
+	*/
 	
-	private GameController() {
+	public GameController(CircularArrayList<AbstractPlayerHandler> players) {
 		this.game = Game.getDefaultGame();
-		this.players = new CircularArrayList<AbstractPlayerHandler>();
-		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
-		guiController = GUIController.getDefaultGUIController();
-		createPlayers();
-		guiController.init((humanPlayers2)); //lista di giocatori umani
-	}
-
-	/**
-	 * Crea i PlayerHandler del gioco
-	 */
-	// per ora uno solo
-	private void createPlayers() {
-		players.add(new HumanPlayerHandler(game.getPlayers().get(0), this));
-		humanPlayers2[0] = new HumanPlayerHandler(game.getPlayers().get(0), this); // orribile, va tolto appena si riesce -Andrea
-		System.out.println(humanPlayers2[0].getPlayer().getHand());
+		this.players = players;
 	}
 
 	private void nextPlayer() {
@@ -56,8 +44,5 @@ public class GameController {
 		// o comunque qualcosa del genere //
 		nextPlayer();
 	}
-	
-	public static void main(String args[]) {
-		GameController g = getDefaultGameController();
-	}
+
 }
