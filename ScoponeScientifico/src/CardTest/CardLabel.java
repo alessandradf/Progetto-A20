@@ -1,4 +1,5 @@
 package CardTest;
+
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -20,7 +21,7 @@ public class CardLabel extends JLabel {
 	// immagine della carta
 	private Icon imageCard;
 
-	//seme e valore della carta
+	// seme e valore della carta
 	private SeedType seed;
 	private int value;
 
@@ -30,8 +31,6 @@ public class CardLabel extends JLabel {
 
 	// percorsi immagine e dorso carta
 	private String[] imagesPaths;
-
-
 
 	// nel costruttore passo vettore di stringhe in cui al posto 0 c'� percorso
 	// dell'immagine della faccia
@@ -56,7 +55,7 @@ public class CardLabel extends JLabel {
 
 	}
 
-	//cambia posizione della carta (da fronte a retro e viceversa)
+	// cambia posizione della carta (da fronte a retro e viceversa)
 	public void changePosition() {
 		if (this.position == CardPosition.FACE) {
 			position = CardPosition.BACK;
@@ -84,18 +83,18 @@ public class CardLabel extends JLabel {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		if(((CardLabel)obj).getSeed() == this.seed && (((CardLabel)obj).getValue() == this.value )){
-			
+		if (((CardLabel) obj).getSeed() == this.seed && (((CardLabel) obj).getValue() == this.value)) {
+
 			return true;
-			
+
 		}
 		return false;
 	}
-	
+
 	public CardPosition getPosition() {
 		return this.position;
 	}
@@ -107,7 +106,5 @@ public class CardLabel extends JLabel {
 	public int getValue() {
 		return value;
 	}
-
-	
 
 }
