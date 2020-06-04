@@ -84,7 +84,18 @@ public class CardLabel extends JLabel {
 			}
 		}
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(((CardLabel)obj).getSeed() == this.seed && (((CardLabel)obj).getValue() == this.value )){
+			
+			return true;
+			
+		}
+		return false;
+	}
+	
 	public CardPosition getPosition() {
 		return this.position;
 	}
@@ -96,5 +107,7 @@ public class CardLabel extends JLabel {
 	public int getValue() {
 		return value;
 	}
+
+	
 
 }
