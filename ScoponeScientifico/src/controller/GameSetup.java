@@ -47,11 +47,5 @@ public class GameSetup {
 	
 	public static void main(String[] args) {
 		GameSetup g = new GameSetup(4);
-		ArrayList<Player> p = g.game.getPlayers();
-		for(Player p1: p) {
-			System.out.println(p1.getHand());
-			
-		}
-		//System.out.println(g.game.getDeck().size());
 	}
 }
