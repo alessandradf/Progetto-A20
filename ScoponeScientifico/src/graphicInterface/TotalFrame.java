@@ -8,11 +8,18 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
 import CardTest.CardLabel;
@@ -71,7 +78,7 @@ public class TotalFrame extends JFrame {
 
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 973, 599);
+		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -81,7 +88,7 @@ public class TotalFrame extends JFrame {
 		gbl_contentPane.columnWeights = new double[] { 4.0, 1.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 2.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-
+		
 		// Pannello che rappresenta il tavolo
 
 		/*

@@ -3,6 +3,8 @@ package graphicInterface;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -12,19 +14,27 @@ import model.Card;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
 public class TablePanel extends JPanel {
 
 	ArrayList<CardLabel> cardsOnTable; // carte sul tavolo
-
+	
 	/**
 	 * Create the panel.
 	 */
 	public TablePanel() {
 		this.setBackground(new Color(0, 100, 0));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JLabel background = new JLabel(new ImageIcon("Resources/Table/TableDefoult.jpeg")); //immagine di sfondo
+		background.setMinimumSize(this.getSize()); //in modo che non si ridimensioni
+		this.add(background);
 		this.cardsOnTable = new ArrayList<CardLabel>();
 
 	}

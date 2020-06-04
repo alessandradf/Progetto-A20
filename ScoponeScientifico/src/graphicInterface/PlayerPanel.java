@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import CardTest.CardLabel;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
@@ -16,6 +17,10 @@ public class PlayerPanel extends JPanel {
 	 */
 	public PlayerPanel(ArrayList<CardLabel> playerHand) {
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		//Dimension maximumSize = new Dimension(25, 175);
+		Dimension minimumSize = new Dimension(25, 175);
+		//this.setMaximumSize(maximumSize);
+		this.setMinimumSize(minimumSize); //fa si che il pannello non si ridimensioni
 		this.playerHand = playerHand;
 		for (CardLabel cardLabel : playerHand) {
 			add(cardLabel);
