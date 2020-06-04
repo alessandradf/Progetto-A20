@@ -113,14 +113,11 @@ public class Game {
 			deckArrayList.add(c);
 		}
 		Collections.shuffle(deckArrayList);
-		System.out.println(deckArrayList.size());
 		int j = 0;
 		for(Card c : deckArrayList) {
-			System.out.println(c);
 			if(players.get(j).getHand().size() == 10) {
 				j++;
 				players.get(j).getHand().add(c);
-				System.out.println("j = " + j);
 			}
 			else {
 				players.get(j).getHand().add(c);
