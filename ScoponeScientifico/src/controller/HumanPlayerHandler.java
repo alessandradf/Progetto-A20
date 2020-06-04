@@ -8,6 +8,7 @@ import model.Card;
 import model.Player;
 
 public class HumanPlayerHandler extends AbstractPlayerHandler {
+	
 	private PlayerPanel playerPanel;
 
 	public HumanPlayerHandler(Player player, GameController controller) {
@@ -25,9 +26,19 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 		playerPanel.unlockPlayer();
 		return true;
 	}
-
+	
+	
+	@Override
+		public boolean lockPlayer() {
+			this.playerPanel.lockPlayer();
+			return true;
+		}
+	
+	
 	public void setPlayerPanel(PlayerPanel playerPanel) {
 		this.playerPanel = playerPanel;
 	}
+
+	
 
 }

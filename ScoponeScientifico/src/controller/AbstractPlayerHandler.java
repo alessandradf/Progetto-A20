@@ -14,7 +14,9 @@ public abstract class AbstractPlayerHandler {
 		this.controller = controller;
 	}
 	
-	public abstract boolean unlockPlayer();
+	public abstract boolean lockPlayer();	// Blocca il panel relativo al giocatore
+	
+	public abstract boolean unlockPlayer();	// Sblocca il panel relativo al giocatore
 
 	public Player getPlayer() {
 		return player;

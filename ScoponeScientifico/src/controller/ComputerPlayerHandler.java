@@ -24,6 +24,13 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 		return true;
 	}
 	
+	
+	@Override
+	public boolean lockPlayer() {
+		return false;
+	}
+	
+	
 	/*
 	 * Ritorna una carta casuale dall'ArrayList del Player del modello al quale � associato
 	 */
@@ -32,6 +39,8 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 		int randIndex = this.randomGenerator.nextInt(handSize);
 		return this.getPlayer().getHand().get(randIndex);
 	}
+
+	
 
 	
 	//La uso per testare, poi la tolgo
