@@ -26,7 +26,6 @@ public class CardListener implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		cardLabel.setVisible(false);
-		System.out.println("ciao");
 		humanPlayer.cardPlayed(cardLabel);
 	}
 
