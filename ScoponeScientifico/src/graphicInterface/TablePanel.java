@@ -29,23 +29,27 @@ public class TablePanel extends JPanel {
 	ArrayList<CardLabel> cardsOnTable; // carte sul tavolo
 	JLabel background;
 	private BufferedImage image;
+	private int numberCardsOnTable; //numero di carte sul tavolo
+
 	/**
 	 * Create the panel.
 	 */
 	public TablePanel() {
+		this.numberCardsOnTable = 0;
 		this.setBackground(new Color(0, 100, 0));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		//this.background = new JLabel(new ImageIcon("Resources/Table/TableDefoult.jpeg")); //immagine di sfondo
-		//background.setMinimumSize(this.getSize()); //in modo che non si ridimensioni
-		//this.add(background);
-		
+		// this.background = new JLabel(new
+		// ImageIcon("Resources/Table/TableDefoult.jpeg")); //immagine di sfondo
+		// background.setMinimumSize(this.getSize()); //in modo che non si ridimensioni
+		// this.add(background);
+
 		try {
 			image = ImageIO.read(new File("Resources/Table/TableDefoult1.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		this.cardsOnTable = new ArrayList<CardLabel>();
 		setMinimumSize(new Dimension(25, 15));
 		setMaximumSize(new Dimension(25, 15));
@@ -56,7 +60,8 @@ public class TablePanel extends JPanel {
 
 	public void putCardOnTable(CardLabel playedCard) {
 		this.cardsOnTable.add(playedCard);
-		add(playedCard);
+		add(cardsOnTable.get(numberCardsOnTable));
+		numberCardsOnTable ++;
 		this.repaint();
 		this.validate();
 	}
@@ -67,6 +72,7 @@ public class TablePanel extends JPanel {
 				if ((c.getSeed() == c1.getSeed()) && (c.getValue() == c1.getValue())) {
 					cardsOnTable.remove(c);
 					this.remove(c);
+					numberCardsOnTable --;
 				}
 			}
 		}
@@ -80,13 +86,11 @@ public class TablePanel extends JPanel {
 		this.repaint();
 		this.validate();
 	}
-	
-	
+
 	@Override
-		protected void paintComponent(Graphics g) {
-	       super.paintComponent(g);
-	       g.drawImage(image, 0, 0, this);      
-	   }
-	
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(image, 0, 0, this);
+	}
 
 }
