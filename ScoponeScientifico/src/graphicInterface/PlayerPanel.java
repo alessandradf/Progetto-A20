@@ -19,8 +19,9 @@ public class PlayerPanel extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		//Dimension maximumSize = new Dimension(25, 175);
 		Dimension minimumSize = new Dimension(25, 175);
-		//this.setMaximumSize(maximumSize);
+		this.setMaximumSize(minimumSize);
 		this.setMinimumSize(minimumSize); //fa si che il pannello non si ridimensioni
+		this.setPreferredSize(minimumSize);
 		this.playerHand = playerHand;
 		for (CardLabel cardLabel : playerHand) {
 			add(cardLabel);

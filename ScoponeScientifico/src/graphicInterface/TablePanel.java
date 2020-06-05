@@ -13,30 +13,43 @@ import CardTest.CardTester;
 import model.Card;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class TablePanel extends JPanel {
 
 	ArrayList<CardLabel> cardsOnTable; // carte sul tavolo
-	
+	JLabel background;
+	private BufferedImage image;
 	/**
 	 * Create the panel.
 	 */
 	public TablePanel() {
 		this.setBackground(new Color(0, 100, 0));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		JLabel background = new JLabel(new ImageIcon("Resources/Table/TableDefoult.jpeg")); //immagine di sfondo
-		background.setMinimumSize(this.getSize()); //in modo che non si ridimensioni
-		this.add(background);
+		//this.background = new JLabel(new ImageIcon("Resources/Table/TableDefoult.jpeg")); //immagine di sfondo
+		//background.setMinimumSize(this.getSize()); //in modo che non si ridimensioni
+		//this.add(background);
+		
+		try {
+			image = ImageIO.read(new File("Resources/Table/TableDefoult1.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.cardsOnTable = new ArrayList<CardLabel>();
-
+		setMinimumSize(new Dimension(25, 15));
+		setMaximumSize(new Dimension(25, 15));
+		setPreferredSize(new Dimension(25, 15));
 	}
 
 	// ho copiato i metodi del tavolo del modello, adattati all'interfaccia
@@ -67,5 +80,13 @@ public class TablePanel extends JPanel {
 		this.repaint();
 		this.validate();
 	}
+	
+	
+	@Override
+		protected void paintComponent(Graphics g) {
+	       super.paintComponent(g);
+	       g.drawImage(image, 0, 0, this);      
+	   }
+	
 
 }

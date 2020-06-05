@@ -2,6 +2,7 @@ package graphicInterface;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -114,6 +115,9 @@ public class TotalFrame extends JFrame {
 		gbc_TeamsPanel.gridy = 0;
 		contentPane.add(TeamsPanel, gbc_TeamsPanel);
 		TeamsPanel.setLayout(new GridLayout(2, 1, 0, 0));
+		TeamsPanel.setMinimumSize(new Dimension(200, 200));
+		TeamsPanel.setMaximumSize(new Dimension(200, 200));
+		TeamsPanel.setPreferredSize(new Dimension(200, 200));
 
 		JLabel Team1 = new JLabel("Team1");
 		TeamsPanel.add(Team1);
