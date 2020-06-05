@@ -44,13 +44,15 @@ public class Table {
 	 * Rimuove dal tavolo le carte passate come parametro
 	 */
 	public void removeCardsFromTable(ArrayList<Card> cards) {
+		ArrayList<Card> toRemove = new ArrayList<Card>();
 		for(Card c : cardsOnTable) {
 			for(Card c1 : cards) {
 				if(c.equals(c1)){
-					cardsOnTable.remove(c1);
+					toRemove.add(c);
 				}
 			}
 		}
+		this.cardsOnTable.removeAll(toRemove);
 		this.updateOnRemoval(cards);
 	}
 	
