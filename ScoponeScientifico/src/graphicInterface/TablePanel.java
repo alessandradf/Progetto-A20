@@ -64,9 +64,9 @@ public class TablePanel extends JPanel {
 	public void removeCardsFromTable(ArrayList<CardLabel> cardsRemoved) {
 		for (CardLabel c : cardsOnTable) {
 			for (CardLabel c1 : cardsRemoved) {
-				if (c.equals(c1)) {
-					cardsOnTable.remove(c1);
-					this.remove(c1);
+				if ((c.getSeed() == c1.getSeed()) && (c.getValue() == c1.getValue())) {
+					cardsOnTable.remove(c);
+					this.remove(c);
 				}
 			}
 		}
