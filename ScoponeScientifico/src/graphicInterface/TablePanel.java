@@ -67,15 +67,17 @@ public class TablePanel extends JPanel {
 	}
 
 	public void removeCardsFromTable(ArrayList<CardLabel> cardsRemoved) {
+		ArrayList<CardLabel> toRemove = new ArrayList<CardLabel>();
 		for (CardLabel c : cardsOnTable) {
 			for (CardLabel c1 : cardsRemoved) {
 				if ((c.getSeed() == c1.getSeed()) && (c.getValue() == c1.getValue())) {
-					cardsOnTable.remove(c);
+					toRemove.add(c);
 					this.remove(c);
 					numberCardsOnTable --;
 				}
 			}
 		}
+		cardsOnTable.removeAll(toRemove);
 		this.repaint();
 		this.validate();
 	}
