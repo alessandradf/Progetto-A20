@@ -42,7 +42,7 @@ public class TotalFrame extends JFrame {
 	private JFrame thisFrame;
 	private PlayerPanel playerPanel;
 	private TablePanel tablePanel;
-	private JPanel teamsPanel;
+	private TeamPanel teamsPanel;
 	private String playerName;
 
 	/**
@@ -105,7 +105,7 @@ public class TotalFrame extends JFrame {
 		contentPane.add(tablePanel, gbc_TablePanel);
 
 		// pannello con i mazzi dei team
-		JPanel TeamsPanel = new JPanel();
+	/*	JPanel TeamsPanel = new JPanel();
 		TeamsPanel.setBackground(new Color(0, 100, 0));
 		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
 		gbc_TeamsPanel.gridheight = 2;
@@ -124,7 +124,16 @@ public class TotalFrame extends JFrame {
 
 		JLabel Team2 = new JLabel("Team2");
 		TeamsPanel.add(Team2);
-
+*/
+		
+		teamsPanel = new TeamPanel();
+		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
+		gbc_TeamsPanel.gridheight = 2;
+		gbc_TeamsPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_TeamsPanel.fill = GridBagConstraints.BOTH;
+		gbc_TeamsPanel.gridx = 1;
+		gbc_TeamsPanel.gridy = 0;
+		contentPane.add(teamsPanel, gbc_TeamsPanel);
 		// pannello del giocatore
 
 		GridBagConstraints gbc_PlayerPanel = new GridBagConstraints();
