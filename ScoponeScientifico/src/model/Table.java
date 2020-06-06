@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import utility.GameProcessor;
 import utility.TableObserver;
 
 /**
@@ -29,8 +30,15 @@ public class Table {
 	 * Aggiunge la carta passata a quelle presenti nel tavolo
 	 */
 	public void putCardOnTable(Card playedCard) {
+		ArrayList<Card> toRemove = GameProcessor.trick(cardsOnTable, playedCard);		
+		if ( toRemove != null) {
+			this.removeCardsFromTable(toRemove);
+		} else {	
+		
 		this.cardsOnTable.add(playedCard);
 		this.updateOnAddition(playedCard);
+		}
+		
 	}
 	
 	
@@ -77,5 +85,6 @@ public class Table {
 	public void updateOnRemoval(ArrayList<Card> cards) {
 		for (TableObserver o : obs)
 			o.updateOnRemoval(cards);
-	}
+	}	
+		
 }
