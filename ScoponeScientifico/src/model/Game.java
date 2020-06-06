@@ -3,11 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
+import exception.CardNotFoundException;
+
 /**
- * Rappresenta un gioco di scopone scientifico, questa classe fa da controller.
+ * Rappresenta una mano di scopone scientifico, costruendo mazzo, giocatori e team e permettendo di giocare le carte e consegnarle
+ * al giocatore che fa le prese.
+ * Più precisamente...
  * 
  * @author Andrea
  *
@@ -29,7 +32,7 @@ public class Game {
 		shuffleDeck();
 		teams = createTeams();
 		populateTeams();
-		table = createTable();	
+		table = new Table();	
 	}
 
 	public static Game getDefaultGame() {
@@ -47,13 +50,19 @@ public class Game {
 	public void playRound(Player p, Card c) {
 		try {
 			p.removeCardFromHand(c);
-		} catch (Exception e) {
+		} catch (CardNotFoundException e) {
 			// TODO: handle exception
+			// in realtà non dovrebbe mai succedere
 			e.printStackTrace();
 		}
 		
 		table.putCardOnTable(c);
-		//e poi ci va la logica delle prese
+		/*
+		//Bozza del vero playRound()
+		 
+		ArrayList<Card> result = table.putCardOnTable(c);
+		p.getTeam().addCards(result);
+		 */
 	}
 
 	private void createDeck() {
@@ -101,13 +110,6 @@ public class Game {
 	}
 	
 	private void shuffleDeck() {
-		/*
-		Iterator<Card> iterator = deck.iterator();
-		ArrayList<Card> deckArrayList = new ArrayList<Card>();
-		while(iterator.hasNext()) {
-			deckArrayList.add(iterator.next());
-		}
-		*/
 		ArrayList<Card> deckArrayList = new ArrayList<Card>();
 		for(Card c : deck) {
 			deckArrayList.add(c);
@@ -123,9 +125,6 @@ public class Game {
 				players.get(j).getHand().add(c);
 			}
 		}
-	}
-	private Table createTable() {
-		return new Table();
 	}
 	
 	/**

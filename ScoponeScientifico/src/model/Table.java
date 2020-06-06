@@ -14,9 +14,9 @@ import utility.TableObserver;
  */
 public class Table {
 
-	private ArrayList<Card> cardsOnTable;	//Rappresenta l'insieme delle carte sul tavolo
-	private ArrayList<TableObserver> obs;	//observer del tavolo
-	
+	private ArrayList<Card> cardsOnTable; // Rappresenta l'insieme delle carte sul tavolo
+	private ArrayList<TableObserver> obs; // observer del tavolo
+
 	/*
 	 * Inizializza il tavolo con un ArrayList vuoto
 	 */
@@ -24,41 +24,37 @@ public class Table {
 		this.cardsOnTable = new ArrayList<Card>();
 		this.obs = new ArrayList<TableObserver>();
 	}
-	
-	
+
 	/**
 	 * Aggiunge la carta passata a quelle presenti nel tavolo
 	 */
 	public void putCardOnTable(Card playedCard) {
-		ArrayList<Card> toRemove = GameProcessor.trick(cardsOnTable, playedCard);		
-		if ( toRemove != null) {
+		ArrayList<Card> toRemove = GameProcessor.trick(cardsOnTable, playedCard);
+		if (toRemove != null) {
 			this.removeCardsFromTable(toRemove);
-		} else {	
-		
-		this.cardsOnTable.add(playedCard);
-		this.updateOnAddition(playedCard);
+		} 
+		else {
+			this.cardsOnTable.add(playedCard);
+			this.updateOnAddition(playedCard);
 		}
-		
-	}
-	
-	
-	private void updateOnAddition(Card playedCard) {
-		for (TableObserver o : obs)
-			o.updateOnAddition(playedCard);		
+
 	}
 
+	private void updateOnAddition(Card playedCard) {
+		for (TableObserver o : obs)
+			o.updateOnAddition(playedCard);
+	}
 
 	/*
 	 * Rimuove dal tavolo le carte passate come parametro
 	 */
 	public void removeCardsFromTable(ArrayList<Card> cards) {
 		if (cards != null) {
-		this.cardsOnTable.removeAll(cards);
-		this.updateOnRemoval(cards);
+			this.cardsOnTable.removeAll(cards);
+			this.updateOnRemoval(cards);
 		}
 	}
-	
-	
+
 	/*
 	 * Rimuove tutte le carte dal tavolo
 	 */
@@ -66,19 +62,17 @@ public class Table {
 		this.cardsOnTable.clear();
 	}
 
-
-	public ArrayList<Card> getCardsOnTable(){
+	public ArrayList<Card> getCardsOnTable() {
 		return this.cardsOnTable;
 	}
-	
-	
+
 	public void addObserver(TableObserver o) {
-		this.obs.add(o); 
+		this.obs.add(o);
 	}
-	
+
 	public void updateOnRemoval(ArrayList<Card> cards) {
 		for (TableObserver o : obs)
 			o.updateOnRemoval(cards);
-	}	
-		
+	}
+
 }

@@ -9,15 +9,6 @@ public class GameController {
 	private Game game;
 	private CircularArrayList<AbstractPlayerHandler> players;
 	
-	/*
-	public static GameController getDefaultGameController() {
-		if(defaultGameController == null) {
-			defaultGameController =  new GameController();
-		}
-		return defaultGameController;
-	}
-	*/
-	
 	public GameController(CircularArrayList<AbstractPlayerHandler> players) {
 		this.game = Game.getDefaultGame();
 		this.players = players;
