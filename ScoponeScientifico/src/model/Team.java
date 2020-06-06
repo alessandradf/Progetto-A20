@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import utility.TeamObserver;
 
 /**
  * Rappresenta le due squadre di scopone
@@ -14,6 +15,8 @@ public class Team {
 	private int score;
 	private ArrayList<Card> cardsTaken;
 	private String teamName;
+	
+	private TeamObserver teamObserver;	//bisogna ancora inizializzarlo da qualche parte -Andrea
 
 	
 	/*
@@ -62,6 +65,11 @@ public class Team {
 	private void resetTeamCards() {
 		this.cardsTaken.clear();
 	}
+	
+	public void addTableObserver(TeamObserver teamObserver) {
+		this.teamObserver = teamObserver;
+	}
+	
 	
 	public int getScore() {
 		return this.score;

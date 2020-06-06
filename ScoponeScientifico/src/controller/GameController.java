@@ -1,21 +1,13 @@
 package controller;
 
-import java.util.ArrayList;
-
-import graphicInterfaceController.GUIController;
 import model.Card;
 import model.Game;
 import utility.CircularArrayList;
 
 public class GameController {
 
-	private static GameController defaultGameController = null;
-	
 	private Game game;
 	private CircularArrayList<AbstractPlayerHandler> players;
-	private HumanPlayerHandler[] humanPlayers2 = new HumanPlayerHandler[1];
-
-	private GUIController guiController;
 	
 	/*
 	public static GameController getDefaultGameController() {
@@ -42,6 +34,9 @@ public class GameController {
 		Card card = p.getPlayedCard();
 		game.playRound(p.getPlayer(), card);
 		// o comunque qualcosa del genere //
+		//p.lockPlayer();	// questa serve a fare in modo che i giocatori umani non si mettano a schiacciare carte a caso 
+						    // quando non è il loro turno
+		
 		nextPlayer();
 	}
 

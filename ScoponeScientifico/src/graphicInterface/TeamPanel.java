@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
 
-public class TeamPanel extends JPanel {
+public class TeamPanel extends JPanel /* implements TeamObserver*/{
 	private JPanel team1;
 	private JPanel team2;
 	//private ArrayList<CardLabel> cardsTeam1List;
