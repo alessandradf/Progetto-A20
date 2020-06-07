@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import utility.GameProcessor;
@@ -26,18 +27,19 @@ public class Table {
 	}
 
 	/**
-	 * Aggiunge la carta passata a quelle presenti nel tavolo
+	 * @param playedCard
+	 * @return la prima combinazione di carte che è possibile prendere, null
+	 *         altrimenti
 	 */
-	public void putCardOnTable(Card playedCard) {
-		ArrayList<Card> toRemove = GameProcessor.trick(cardsOnTable, playedCard);
-		if (toRemove != null) {
-			this.removeCardsFromTable(toRemove);
-		} 
-		else {
+	public List<Card> putCardOnTable(Card playedCard) {
+		List<Card> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
+		if (result != null) {
+			this.removeCardsFromTable(result);
+		} else {
 			this.cardsOnTable.add(playedCard);
 			this.updateOnAddition(playedCard);
 		}
-
+		return result;
 	}
 
 	private void updateOnAddition(Card playedCard) {
@@ -48,7 +50,7 @@ public class Table {
 	/*
 	 * Rimuove dal tavolo le carte passate come parametro
 	 */
-	public void removeCardsFromTable(ArrayList<Card> cards) {
+	public void removeCardsFromTable(List<Card> cards) {
 		if (cards != null) {
 			this.cardsOnTable.removeAll(cards);
 			this.updateOnRemoval(cards);
@@ -70,9 +72,9 @@ public class Table {
 		this.obs.add(o);
 	}
 
-	public void updateOnRemoval(ArrayList<Card> cards) {
+	public void updateOnRemoval(List<Card> toRemove) {
 		for (TableObserver o : obs)
-			o.updateOnRemoval(cards);
+			o.updateOnRemoval(toRemove);
 	}
 
 }

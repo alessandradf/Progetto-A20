@@ -1,6 +1,7 @@
 package utility;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Card;
 
@@ -13,6 +14,6 @@ public interface TableObserver {
 	
 	public void updateOnAddition(Card c);
 	
-	public void updateOnRemoval(ArrayList<Card> removedCards);
+	public void updateOnRemoval(List<Card> toRemove);
 
 }

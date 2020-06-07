@@ -1,6 +1,7 @@
 package graphicInterfaceController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -60,12 +61,10 @@ public class GUIController implements TableObserver {
 
 	}
 
-	private ArrayList<CardLabel> cardsConverter(ArrayList<Card> cards) {
-
+	private ArrayList<CardLabel> cardsConverter(List<Card> cards) {
 		ArrayList<CardLabel> cardLabels = new ArrayList<CardLabel>();
-
 		for (Card card : cards) {
-			cardLabels.add(CardConverter.toCardLabel(card));
+			cardLabels.add(CardConverter.toCardLabel(card));			
 		}
 		return cardLabels;
 	}
@@ -88,7 +87,7 @@ public class GUIController implements TableObserver {
 	}
 
 	@Override
-	public void updateOnRemoval(ArrayList<Card> removedCards) {
+	public void updateOnRemoval(List<Card> removedCards) {
 		// TODO Auto-generated method stub
 		int i = 0;
 		for (TotalFrame totalFrame : playerView) {
