@@ -1,10 +1,14 @@
 package model;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * 
  * @author Andrea
  *
  */
-public class Card {
+public class Card implements Comparable<Card> {
 	
 	public static final int CARD_VALUES[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	
@@ -42,5 +46,16 @@ public class Card {
 		}
 		return false;
 	}
+
+	@Override
+	public int compareTo(Card o) {
+		if (this.seed.ordinal() != o.getSeed().ordinal()) {
+			return this.seed.ordinal() - o.getSeed().ordinal();
+		}
+		else {
+			return this.value - o.getValue();
+		}
+	}
+
 
 }
