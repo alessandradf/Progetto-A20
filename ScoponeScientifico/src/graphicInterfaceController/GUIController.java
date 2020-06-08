@@ -76,7 +76,6 @@ public class GUIController implements TableObserver {
 	// metodi per aggiornare il tavolo e i frame dei giocatori
 	@Override
 	public void updateOnAddition(Card c) {
-		// TODO Auto-generated method stub
 		int i = 0;
 		for (TotalFrame totalFrame : playerView) {
 			this.tablePanel[i].putCardOnTable(CardConverter.toCardLabel(c));

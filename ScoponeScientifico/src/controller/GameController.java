@@ -14,6 +14,12 @@ public class GameController {
 		this.players = players;
 	}
 
+	public void init() {
+		for(AbstractPlayerHandler p : players) {
+			p.lockPlayer();
+		}
+		players.get(0).unlockPlayer();
+	}
 	private void nextPlayer() {
 		AbstractPlayerHandler next_player;
 		next_player = players.getNext();

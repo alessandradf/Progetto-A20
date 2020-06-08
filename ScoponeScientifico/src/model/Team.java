@@ -14,6 +14,7 @@ public class Team {
 	private ArrayList<Player> playersInTeam;
 	private int score;
 	private ArrayList<Card> cardsTaken;
+	private ArrayList<Card> scope;
 	private String teamName;
 	
 	private TeamObserver teamObserver;	//bisogna ancora inizializzarlo da qualche parte -Andrea
@@ -25,6 +26,7 @@ public class Team {
 	public Team(String teamName) {
 		this.playersInTeam = new ArrayList<Player>();
 		this.cardsTaken = new ArrayList<Card>();
+		this.scope = new ArrayList<Card>();
 		this.score = 0;
 		this.teamName = teamName;
 	}

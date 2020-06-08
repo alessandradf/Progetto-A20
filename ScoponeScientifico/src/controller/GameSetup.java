@@ -29,6 +29,7 @@ public class GameSetup {
 		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]));
 		
 		game.getDefaultTable().addObserver(guiController);
+		gameController.init();
 	}
 	
 	private GameSetup getDefaultGameSetup(int human_players_number) {
