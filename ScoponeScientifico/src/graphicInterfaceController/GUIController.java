@@ -21,8 +21,8 @@ import utility.TableObserver;
 public class GUIController implements TableObserver {
 
 	private CardLabel cardLabel;
-	private TotalFrame[] playerView = new TotalFrame[4];
-	private TablePanel[] tablePanel = new TablePanel[4];
+	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
+	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	// private CardTester card;
 
 	private static GUIController defaultGuiController = null;
@@ -52,9 +52,9 @@ public class GUIController implements TableObserver {
 			}
 			playerPanel = new PlayerPanel(playerCards);
 			playerHandler.setPlayerPanel(playerPanel);
-			tablePanel[i] = new TablePanel();
-			playerView[i] = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel[i], playerPanel);
-			playerView[i].unlockPlayer();
+			tablePanel.add(new TablePanel());
+			playerView.add( new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel.get(i), playerPanel));
+			playerView.get(i).unlockPlayer();
 			i++;
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
@@ -69,7 +69,7 @@ public class GUIController implements TableObserver {
 		return cardLabels;
 	}
 
-	public TotalFrame[] getPlayerView() {
+	public ArrayList<TotalFrame> getPlayerView() {
 		return playerView;
 	}
 
@@ -78,7 +78,7 @@ public class GUIController implements TableObserver {
 	public void updateOnAddition(Card c) {
 		int i = 0;
 		for (TotalFrame totalFrame : playerView) {
-			this.tablePanel[i].putCardOnTable(CardConverter.toCardLabel(c));
+			this.tablePanel.get(i).putCardOnTable(CardConverter.toCardLabel(c));
 			totalFrame.repaint();
 			totalFrame.validate();
 			i++;
@@ -90,9 +90,9 @@ public class GUIController implements TableObserver {
 		// TODO Auto-generated method stub
 		int i = 0;
 		for (TotalFrame totalFrame : playerView) {
-			this.tablePanel[i].removeCardsFromTable(cardsConverter(removedCards));
-			totalFrame.repaint();
-			totalFrame.validate();
+			this.tablePanel.get(i).removeCardsFromTable(cardsConverter(removedCards));
+			//totalFrame.repaint();
+			//totalFrame.validate();
 			i++;
 		}
 

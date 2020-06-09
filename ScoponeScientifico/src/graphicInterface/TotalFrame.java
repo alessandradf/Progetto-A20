@@ -39,10 +39,9 @@ public class TotalFrame extends JFrame {
 	 */
 
 	private JPanel contentPane;
-	private JFrame thisFrame;
 	private PlayerPanel playerPanel;
 	private TablePanel tablePanel;
-	private TeamPanel teamsPanel;
+	private TotalTeamPanel teamsPanel;
 	private String playerName;
 
 	/**
@@ -72,7 +71,6 @@ public class TotalFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public TotalFrame(String playerName, TablePanel tablePanel, PlayerPanel playerPanel) {
-		thisFrame = this;
 		this.playerName = playerName;
 		this.tablePanel = tablePanel;
 		this.playerPanel = playerPanel;
@@ -126,7 +124,7 @@ public class TotalFrame extends JFrame {
 		TeamsPanel.add(Team2);
 */
 		
-		teamsPanel = new TeamPanel();
+		teamsPanel = new TotalTeamPanel();
 		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
 		gbc_TeamsPanel.gridheight = 2;
 		gbc_TeamsPanel.insets = new Insets(0, 0, 5, 0);
@@ -159,6 +157,10 @@ public class TotalFrame extends JFrame {
 
 	public void lockPlayer() {
 		this.setVisible(false);
+	}
+
+	public TotalTeamPanel getTeamsPanel() {
+		return teamsPanel;
 	}
 
 }
