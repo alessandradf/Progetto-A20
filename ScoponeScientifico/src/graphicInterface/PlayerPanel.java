@@ -6,6 +6,7 @@ import CardTest.CardLabel;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class PlayerPanel extends JPanel {
@@ -31,7 +32,6 @@ public class PlayerPanel extends JPanel {
 	//metodo lock, blocca il pannello una volta passato il turno,
 	//impedendo al giocatore di interagirvi
 	public void lockPlayer() {
-		setVisible(false);
 		for (CardLabel cardLabel : playerHand) {
 			cardLabel.setEnabled(false);
 		}
@@ -40,7 +40,6 @@ public class PlayerPanel extends JPanel {
 	//metodo unlock, sblocca il pannello de giocatore non appena
 	//è il suo turno
 	public void unlockPlayer(){
-		setVisible(true);
 		for (CardLabel cardLabel : playerHand) {
 			cardLabel.setEnabled(true);
 		}

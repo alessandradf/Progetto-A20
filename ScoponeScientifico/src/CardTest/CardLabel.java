@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import graphicInterface.CardListener;
 import model.SeedType;
 
 public class CardLabel extends JLabel {
@@ -31,6 +32,9 @@ public class CardLabel extends JLabel {
 
 	// percorsi immagine e dorso carta
 	private String[] imagesPaths;
+	
+	//buleano per abilitare o disabilitare i listener sulla carta
+	private boolean isEnable;
 
 	// nel costruttore passo vettore di stringhe in cui al posto 0 c'� percorso
 	// dell'immagine della faccia
@@ -83,8 +87,18 @@ public class CardLabel extends JLabel {
 			}
 		}
 	}
-
-
+	
+	
+	//metodo per abilitare o disabilitare il mouse listenere realitvo
+	@Override
+	public void setEnabled(boolean b) {
+		this.isEnable = b;
+	}
+	
+	//metodo per verifcare se il mouse listener su questa label è attivo o no
+	public boolean isEnable() {
+		return isEnable;
+	}
 
 	public CardPosition getPosition() {
 		return this.position;

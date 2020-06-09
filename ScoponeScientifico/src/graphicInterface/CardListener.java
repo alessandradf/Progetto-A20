@@ -20,13 +20,16 @@ public class CardListener implements MouseListener{
 	public CardListener(CardLabel l, HumanPlayerHandler humanPlayer) {
 		cardLabel = l;
 		this.humanPlayer = humanPlayer;
+		this.cardLabel.setEnabled(true);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		cardLabel.setVisible(false);
-		humanPlayer.cardPlayed(cardLabel);
+		if(cardLabel.isEnable() == true) {
+			cardLabel.setVisible(false);
+			humanPlayer.cardPlayed(cardLabel);
+		}
 	}
 
 	@Override
@@ -44,13 +47,17 @@ public class CardListener implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		cardLabel.setBorder(BORDER);
+		if(cardLabel.isEnable() == true) {
+			cardLabel.setBorder(BORDER);
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		cardLabel.setBorder(null);
+		if(cardLabel.isEnable() == true) {
+			cardLabel.setBorder(null);
+		}
 	}
 
 }
