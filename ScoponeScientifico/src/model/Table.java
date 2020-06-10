@@ -33,6 +33,8 @@ public class Table {
 	 */
 	public List<Card> putCardOnTable(Card playedCard) {
 		List<Card> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
+		
+		
 		if (result != null) {
 			this.removeCardsFromTable(result);
 		} else {

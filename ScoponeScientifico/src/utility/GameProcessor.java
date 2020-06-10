@@ -13,65 +13,58 @@ public class GameProcessor {
 	/**
 	 * @param onTable carte sul tavolo esclusa playedCard
 	 * @param playedCard 
-	 * @return lista di carte che è possibile prendere con playedCard, null altrimenti 
+	 * @return tutte le possibili combinazioni di carte che è possibile prendere  
 	 */
-	public static List<Card> searchHandle(List<Card> onTable, Card playedCard) {
+	public static ArrayList<ArrayList<Integer>> searchHandle(List<Card> onTable, Card playedCard) {
 		int numberOfCard = onTable.size();
 		if (numberOfCard == 0)
 			return null;
-		else if (numberOfCard == 1)
-			return searchDouble(onTable, playedCard);
-		else
-			return searchCombination(onTable, playedCard, numberOfCard);
-	}
-
-	/**
-	 * @param onTable 
-	 * @param playedCard
-	 * @param n numero di carte sul tavolo 
-	 * @return lista di carte che è possibile prendere con playedCard, null altrimenti 
-	 */
-	private static List<Card> searchCombination(List<Card> onTable, Card playedCard, int n) {
-		List<Card> result = new ArrayList<Card>();
-		ArrayList<Card> copy = new ArrayList<Card>(onTable);
-		result = searchDouble(onTable, playedCard);
-
-		if (result != null)
-			return result;
-
+		
 		else {
-			int[] values = new int[n];
-			for (int i = 0; i < n; i++) {
-				values[i] = onTable.get(i).getValue();
+			ArrayList<Integer> numbers = new ArrayList<Integer>();
+			for (Card c : onTable) {
+				numbers.add(c.getValue());
 			}
-			int sum;
-			for (int j = 0; j < n; j++) {
-				for (int k = j + 2; k <= n; k++) {
-					sum = Arrays.stream(values, j, k).sum();
-					if (sum == playedCard.getValue()) {
-						result = copy.subList(j, k);						
-						return result;
-					}
-				}
-			}
+			int target = playedCard.getValue();
+			ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+			sum_up_recursive(numbers, target, new ArrayList<Integer>(), result);
+			return result;			
 		}
-		return null;
 	}
 
-	/**trova le coppie di carte 
-	 * @param onTable
-	 * @param playedCard
-	 * @return una carta sul tavolo uguale a playedCard
-	 */
-	private static List<Card> searchDouble(List<Card> onTable, Card playedCard) {
-		List<Card> trick = new ArrayList<Card>();
-		for (Card c : onTable) {
-			if ((c.getValue() == playedCard.getValue()) && (c.getSeed() != playedCard.getSeed())) {
-				trick.add(c);				
-				return trick;
-			}
-		}
-		return null;
+	
+	static void sum_up_recursive(ArrayList<Integer> numbers, int target, ArrayList<Integer> partial,ArrayList<ArrayList<Integer>> result) {
+    	
+	       int s = 0;
+	       for (int x: partial) s += x;
+	       if (s == target) {
+	           result.add(partial);
+	       }
+	       if (s >= target)
+	            return;
+	       for(int i=0;i<numbers.size();i++) {
+	             ArrayList<Integer> remaining = new ArrayList<Integer>();
+	             int n = numbers.get(i);
+	             for (int j=i+1; j<numbers.size();j++) remaining.add(numbers.get(j));
+	             ArrayList<Integer> partial_rec = new ArrayList<Integer>(partial);
+	             partial_rec.add(n);             
+	             sum_up_recursive(remaining,target,partial_rec,result);
+	       }
+	    }
+	
+	public static void main(String[] args) {
+		ArrayList<Card> onTable = new ArrayList<Card>();
+		Card due = new Card(2, SeedType.CUORI);
+		Card t = new Card(3, SeedType.CUORI);
+		Card c = new Card(5, SeedType.CUORI);
+		Card dieci = new Card(10, SeedType.CUORI);
+		Card o = new Card(8, SeedType.CUORI);
+		Card q = new Card(4, SeedType.CUORI);
+		Card u = new Card(1, SeedType.CUORI);
+		onTable.add(due); onTable.add(t); onTable.add(dieci); onTable.add(o); onTable.add(q); onTable.add(u);
+		ArrayList<ArrayList<Integer>> r = GameProcessor.searchHandle(onTable, c);
+		System.out.println(r);
 	}
+	
 
 }
