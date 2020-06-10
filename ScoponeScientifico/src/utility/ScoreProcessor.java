@@ -6,6 +6,9 @@ import java.util.Collections;
 import model.Card;
 import model.SeedType;
 
+/*
+ * Classe con metodi statici per il calcolo dei vari tipi di punti 
+ */
 public class ScoreProcessor {
 
 	
@@ -49,6 +52,8 @@ public class ScoreProcessor {
 			return 0;
 	}
 
+	
+	
 	/*
 	 * Ritorna il punteggio concorrente per il punto della PRIMIERA
 	 */
