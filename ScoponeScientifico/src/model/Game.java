@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -48,6 +49,7 @@ public class Game {
 	 * @param c	carta da giocare
 	 */
 	public void playRound(Player p, Card c) {
+		System.out.println(p.getTeam());
 		try {
 			p.removeCardFromHand(c);
 		} catch (CardNotFoundException e) {
@@ -56,13 +58,15 @@ public class Game {
 			e.printStackTrace();
 		}
 		
-		table.putCardOnTable(c);
-		/*
+		//
 		//Bozza del vero playRound()
 		 
-		ArrayList<Card> result = table.putCardOnTable(c);
-		p.getTeam().addCards(result);
-		 */
+		List<Card> result = table.putCardOnTable(c);
+		System.out.println(result);
+		if(result != null) {
+			p.getTeam().addCards((ArrayList<Card>)result);
+		}
+
 	}
 
 	private void createDeck() {
