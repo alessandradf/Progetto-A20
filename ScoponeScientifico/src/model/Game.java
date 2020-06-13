@@ -49,7 +49,6 @@ public class Game {
 	 * @param c	carta da giocare
 	 */
 	public void playRound(Player p, Card c) {
-		System.out.println(p.getTeam());
 		try {
 			p.removeCardFromHand(c);
 		} catch (CardNotFoundException e) {
@@ -62,7 +61,6 @@ public class Game {
 		//Bozza del vero playRound()
 		 
 		List<Card> result = table.putCardOnTable(c);
-		System.out.println(result);
 		if(result != null) {
 			p.getTeam().addCards((ArrayList<Card>)result);
 		}

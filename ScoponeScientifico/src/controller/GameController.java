@@ -58,5 +58,11 @@ public class GameController {
 		
 		nextPlayer();
 	}
-
+	
+	protected void multipleChoiceperformed(AbstractPlayerHandler player) {
+		player.lockPlayer();
+		nextPlayer();
+	}
+	
+	
 }
