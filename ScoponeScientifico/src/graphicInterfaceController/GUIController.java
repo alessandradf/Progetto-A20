@@ -2,14 +2,17 @@ package graphicInterfaceController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.swing.*;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import CardTest.*;
 import controller.CardConverter;
 import controller.GameController;
 import controller.HumanPlayerHandler;
 import graphicInterface.CardListener;
+import graphicInterface.OptionsPopUp;
 import graphicInterface.PlayerPanel;
 import graphicInterface.TablePanel;
 import graphicInterface.TotalFrame;
@@ -96,6 +99,19 @@ public class GUIController implements TableObserver {
 			i++;
 		}
 
+	}
+	
+	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard) {
+		ArrayList<String> s = new ArrayList<String>();
+		String st = null;
+		for(int i=0; i<optionCard.size(); i++) {
+			for(int j=0; j<optionCard.get(i).size(); j++) {
+				st += optionCard.get(i).get(j).toString();
+			}
+			s.add(st);
+			st = null;
+		}
+		OptionsPopUp op = new OptionsPopUp(s);
 	}
 
 }
