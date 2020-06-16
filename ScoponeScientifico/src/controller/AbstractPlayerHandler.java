@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.Card;
 import model.Player;
 
@@ -9,6 +11,7 @@ public abstract class AbstractPlayerHandler {
 	private Player player;	
 	private Card playedCard; //ultima carta giocata dal giocatore
 	
+	
 	public AbstractPlayerHandler(Player player, GameController controller) {
 		this.player = player;
 		this.controller = controller;
@@ -17,6 +20,8 @@ public abstract class AbstractPlayerHandler {
 	public abstract boolean lockPlayer();	// Blocca il panel relativo al giocatore
 	
 	public abstract boolean unlockPlayer();	// Sblocca il panel relativo al giocatore
+	
+	public abstract void multipleChoice(ArrayList<ArrayList<Card>> choices); //Permette di gestire la presa multipla
 
 	public Player getPlayer() {
 		return player;
@@ -36,4 +41,10 @@ public abstract class AbstractPlayerHandler {
 	public void setPlayedCard(Card playedCard) {
 		this.playedCard = playedCard;
 	}
+
+	/**
+	 * @return the multipleChoiceHandler
+	 */
+	
+	
 }

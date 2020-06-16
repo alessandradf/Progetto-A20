@@ -3,26 +3,44 @@ package controller;
 import java.util.ArrayList;
 
 import model.Card;
+import model.Game;
 import model.Table;
 import graphicInterfaceController.GUIController;
 
-public class MultipleChoiceHandler {
+/*
+* Implementa tre interfacce, di modo che i tre differenti oggetti che usano il MultipleChoiceHandler lo vedano differentemente
+* HumanPlayerHandler vede solo il metodo HumanMultipleChoice
+* ComputerPlayerHandler solo ComputerMultipleChoice
+* GUIController solo choiceMade
+*/
+public class MultipleChoiceHandler implements HumanMultipleChoiceHandler, ComputerMultipleChoiceHandler, ChoiceReceiver{
 	
 	
-	private GameController _controller;
+	private GameController controller;
 	private GUIController defaultGUIController;
-	private AbstractPlayerHandler _player;
-	private ArrayList<ArrayList<Card>> _result;
-	private Table _table;
+	private AbstractPlayerHandler player;
+	private ArrayList<ArrayList<Card>> choices;
+	private Table table;
 	
-	public MultipleChoiceHandler(GameController controller, AbstractPlayerHandler player, ArrayList<ArrayList<Card>> result, Table table) {
-		_controller = controller;
-		_player = player;
-		_result = result;
-		_table = table;
+	public MultipleChoiceHandler(GameController controller, AbstractPlayerHandler player) {
+		this.controller = controller;
+		this.player = player;
 		defaultGUIController = GUIController.getDefaultGUIController();
+		table = Game.getDefaultGame().getDefaultTable();
 		//createInterface();
 		
+	}
+	
+	@Override
+	public void humanMultipleChoice(ArrayList<ArrayList<Card>> choices) {
+		this.choices = choices;
+		createInterface();
+	}
+	
+	@Override
+	public void computerMultipleChoice(ArrayList<ArrayList<Card>> choices) {
+		this.choices = choices;
+		choiceMade(choices.get(0));
 	}
 	
 	
@@ -30,10 +48,20 @@ public class MultipleChoiceHandler {
 		//defaultGUIController.qualcosa;
 	}
 	
+	@Override
 	public void choiceMade(ArrayList<Card> choice) {
-		_table.removeCardsFromTable(choice);
-		_player.getPlayer().getTeam().addCards(choice);
-		_controller.multipleChoiceperformed(_player);
+		table.removeCardsFromTable(choice);
+		player.getPlayer().getTeam().addCards(choice);
+		controller.multipleChoiceperformed(player);
 	}
 
+	/**
+	 * @return the choices
+	 */
+	public ArrayList<ArrayList<Card>> getChoices() {
+		return choices;
+	}
+
+	
+	
 }

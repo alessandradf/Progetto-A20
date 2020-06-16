@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import CardTest.CardLabel;
@@ -10,9 +12,12 @@ import model.Player;
 public class HumanPlayerHandler extends AbstractPlayerHandler {
 	
 	private PlayerPanel playerPanel;
+	private HumanMultipleChoiceHandler humanMultipleChoiceHandler;
+	
 
 	public HumanPlayerHandler(Player player, GameController controller) {
 		super(player, controller);		
+		humanMultipleChoiceHandler = new MultipleChoiceHandler(controller, this);
 	}
 
 	public void cardPlayed(CardLabel cardLabel) {
@@ -37,6 +42,12 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	
 	public void setPlayerPanel(PlayerPanel playerPanel) {
 		this.playerPanel = playerPanel;
+	}
+
+	@Override
+	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
+		humanMultipleChoiceHandler.humanMultipleChoice(choices);
+		
 	}
 
 	

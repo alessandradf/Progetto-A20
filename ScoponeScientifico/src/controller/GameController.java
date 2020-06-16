@@ -63,6 +63,22 @@ public class GameController {
 		player.lockPlayer();
 		nextPlayer();
 	}
+
+	/**
+	 * @return the game
+	 */
+	public Game getGame() {
+		return game;
+	}
+
+	/**
+	 * @return the players
+	 */
+	public CircularArrayList<AbstractPlayerHandler> getPlayers() {
+		return players;
+	}
+	
+	
 	
 	
 }
