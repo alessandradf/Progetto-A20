@@ -16,12 +16,13 @@ public class GameProcessor {
 	 * @return tutte le possibili combinazioni di carte che è possibile prendere
 	 */
 	public static ArrayList<ArrayList<Card>> searchHandle(List<Card> onTable, Card playedCard) {
-
+		ArrayList<ArrayList<Card>> resultCards = new ArrayList<ArrayList<Card>>();
+		
 		int numberOfCard = onTable.size();
 		if (numberOfCard == 0)
-			return null;
+			return resultCards;
 
-		ArrayList<ArrayList<Card>> resultCards = new ArrayList<ArrayList<Card>>();
+	
 		ArrayList<Card> doubleCard = searchDouble(onTable, playedCard);
 
 		if (doubleCard != null) {
@@ -39,7 +40,7 @@ public class GameProcessor {
 			sum_up(numbers, target, resultNumbers);
 
 			if (resultNumbers.size() == 0)
-				return null;
+				return resultCards;
 
 			// costruisco il risultato
 			for (int i = 0; i < resultNumbers.size(); i++) {

@@ -17,7 +17,7 @@ public class Team {
 	private ArrayList<Card> scope;
 	private String teamName;
 	
-	private TeamObserver teamObserver;	//bisogna ancora inizializzarlo da qualche parte -Andrea
+	private ArrayList<TeamObserver> teamObservers;	//bisogna ancora inizializzarlo da qualche parte -Andrea
 
 	
 	/*
@@ -27,6 +27,7 @@ public class Team {
 		this.playersInTeam = new ArrayList<Player>();
 		this.cardsTaken = new ArrayList<Card>();
 		this.scope = new ArrayList<Card>();
+		this.teamObservers = new ArrayList<TeamObserver>();
 		this.score = 0;
 		this.teamName = teamName;
 	}
@@ -68,8 +69,8 @@ public class Team {
 		this.cardsTaken.clear();
 	}
 	
-	public void addTableObserver(TeamObserver teamObserver) {
-		this.teamObserver = teamObserver;
+	public void addTeamObserver(TeamObserver teamObserver) {
+		this.teamObservers.add(teamObserver);
 	}
 	
 	
@@ -93,6 +94,11 @@ public class Team {
 	 */
 	public ArrayList<Player> getPlayersInTeam() {
 		return playersInTeam;
+	}
+	
+	public void scopa(Card scopaCard) {
+		for (TeamObserver o : teamObservers)
+			o.scopa(scopaCard);
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import graphicInterfaceController.GUIController;
 import model.Game;
 import model.Player;
+import model.Team;
 import utility.CircularArrayList;
 
 public class GameSetup {
@@ -28,7 +29,13 @@ public class GameSetup {
 		createPlayers(this.human_players_number);
 		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]));
 		
-		game.getDefaultTable().addObserver(guiController);
+		game.getDefaultTable().addObserver(guiController);	
+		
+		for (int i = 0; i < 4; i++) {		
+		game.getTeams().get(0).addTeamObserver(guiController.getTeam1Panels().get(i));
+		game.getTeams().get(1).addTeamObserver(guiController.getTeam2Panels().get(i));		
+		} 
+		
 		gameController.init();
 	}
 	
