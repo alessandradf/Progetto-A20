@@ -28,20 +28,22 @@ public class Table {
 
 	/**
 	 * @param playedCard
-	 * @return la prima combinazione di carte che è possibile prendere, null
+	 * @return la prima combinazione di carte che ï¿½ possibile prendere, null
 	 *         altrimenti
 	 */
 	public List<Card> putCardOnTable(Card playedCard) {
-		List<Card> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
-		
+		ArrayList<ArrayList<Card>> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
+		ArrayList<Card> sub_result = new ArrayList<Card>();
 		
 		if (result != null) {
-			this.removeCardsFromTable(result);
+			sub_result = result.get(0);
+			this.removeCardsFromTable(sub_result);
+			sub_result.add(playedCard);
 		} else {
 			this.cardsOnTable.add(playedCard);
 			this.updateOnAddition(playedCard);
 		}
-		return result;
+		return sub_result;
 	}
 
 	private void updateOnAddition(Card playedCard) {

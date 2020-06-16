@@ -70,7 +70,7 @@ public class TotalFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TotalFrame(String playerName, TablePanel tablePanel, PlayerPanel playerPanel) {
+	public TotalFrame(String playerName, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1, TeamPanel team2) {
 		this.playerName = playerName;
 		this.tablePanel = tablePanel;
 		this.playerPanel = playerPanel;
@@ -124,7 +124,7 @@ public class TotalFrame extends JFrame {
 		TeamsPanel.add(Team2);
 */
 		
-		teamsPanel = new TotalTeamPanel();
+		teamsPanel = new TotalTeamPanel( team1, team2);
 		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
 		gbc_TeamsPanel.gridheight = 2;
 		gbc_TeamsPanel.insets = new Insets(0, 0, 5, 0);

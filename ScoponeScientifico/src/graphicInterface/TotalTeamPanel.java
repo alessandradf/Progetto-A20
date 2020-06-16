@@ -24,13 +24,13 @@ public class TotalTeamPanel extends JPanel /* implements TeamObserver*/{
 	/**
 	 * Create the panel.
 	 */
-	public TotalTeamPanel() {
+	public TotalTeamPanel(TeamPanel team1, TeamPanel team2) {
 		setLayout(new GridLayout(2, 1, 0, 0));
 	
-		team1 = new TeamPanel(1);
+		this.team1 = team1;
 		add(team1);
 		
-		team2 = new TeamPanel(2);
+		this.team2 = team2;
 		add(team2);
 		
 		
