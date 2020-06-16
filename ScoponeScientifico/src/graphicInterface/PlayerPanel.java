@@ -1,6 +1,8 @@
 package graphicInterface;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import CardTest.CardLabel;
 
@@ -42,6 +44,8 @@ public class PlayerPanel extends JPanel {
 	public void unlockPlayer(){
 		for (CardLabel cardLabel : playerHand) {
 			cardLabel.setEnabled(true);
+			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+			topFrame.toFront();
 		}
 	}
 

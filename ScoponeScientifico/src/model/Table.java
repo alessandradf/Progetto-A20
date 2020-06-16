@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import exception.MultipleChoiceException;
 import utility.GameProcessor;
 import utility.TableObserver;
 
@@ -30,19 +31,29 @@ public class Table {
 	 * @param playedCard
 	 * @return la prima combinazione di carte che � possibile prendere, null
 	 *         altrimenti
+	 * @throws MultipleChoiceException 
 	 */
-	public List<Card> putCardOnTable(Card playedCard) {
+	public ArrayList<Card> putCardOnTable(Card playedCard)  {
 		ArrayList<ArrayList<Card>> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
-		ArrayList<Card> sub_result = new ArrayList<Card>();
+		ArrayList<Card> sub_result = new ArrayList<Card>(); 
 		
-		if (result != null) {
+		int numberOfChoice = result.size();
+		
+		switch (numberOfChoice) {
+		case 0:
+			this.cardsOnTable.add(playedCard);
+			this.updateOnAddition(playedCard);	
+			sub_result = null;
+			break;
+		case 1:			
 			sub_result = result.get(0);
 			this.removeCardsFromTable(sub_result);
-			sub_result.add(playedCard);
-		} else {
-			this.cardsOnTable.add(playedCard);
-			this.updateOnAddition(playedCard);
-		}
+			sub_result.add(playedCard);			
+			break;
+		default:
+			//throw new MultipleChoiceException(result);	
+			sub_result = result.get(0);
+		}	
 		return sub_result;
 	}
 

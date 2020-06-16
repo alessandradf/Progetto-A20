@@ -140,6 +140,7 @@ public class TotalFrame extends JFrame {
 		gbc_PlayerPanel.gridx = 0;
 		gbc_PlayerPanel.gridy = 1;
 		contentPane.add(playerPanel, gbc_PlayerPanel);
+		
 	}
 
 	public JPanel getPlayerPanel() {
