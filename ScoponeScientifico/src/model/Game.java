@@ -8,6 +8,7 @@ import java.util.Set;
 
 import exception.CardNotFoundException;
 import exception.MultipleChoiceException;
+import utility.ScoreProcessor;
 
 /**
  * Rappresenta una mano di scopone scientifico, costruendo mazzo, giocatori e
@@ -26,8 +27,11 @@ public class Game {
 	private Table table;
 	private Set<Card> deck;
 	private ArrayList<Player> players;
+	private Player lastTakePlayer;
 	private ArrayList<Team> teams;
-	int turno;
+	private ScoreProcessor scoreProcessor;
+	
+	private int turno;
 
 	private Game() {
 		createDeck();
@@ -36,7 +40,8 @@ public class Game {
 		teams = createTeams();
 		populateTeams();
 		table = new Table();
-
+		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
+		
 		turno = 1;
 	}
 
@@ -66,14 +71,16 @@ public class Game {
 			ArrayList<Card> result = table.putCardOnTable(c);
 			if (result != null) {
 				p.getTeam().addCards(result);
+				lastTakePlayer = p;
 				if (table.getCardsOnTable().size() == 0)
 					p.getTeam().scopa(c);
 			}
 			turno++;
 		} else {
+			//va ancora implementata la logica dell'ultimo turno -Andrea
 			//ultimo turno, no scope 
 			//visualizza i punteggi 
-			
+			finalize();
 		}
 
 	}
@@ -140,7 +147,28 @@ public class Game {
 			}
 		}
 	}
+	
+	/**
+	 * Permette di concludere la mano, calcolare i punteggi e resettare il tavolo
+	 */
+	public void finalize() {
 
+		// le carte rimaste sul tavolo vanno date all'ultimo giocatore che ha fatto una presa
+		lastTakePlayer.getTeam().addCards(table.getCardsOnTable());
+		table.clearTable();
+		scoreProcessor.giveScore(); //calcola il punteggio
+		//setta a zero il conto turni
+		turno = 1;
+		
+		/*
+		 * Pezzo per il debug
+		
+		for(Team t : teams) {
+			System.out.println(t.getTeamName() + " " + t.getScore());
+		}
+		 */
+	}
+	
 	/**
 	 * @return the defaultTable
 	 */

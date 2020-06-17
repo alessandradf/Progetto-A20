@@ -76,6 +76,7 @@ public class Table {
 	 * Rimuove tutte le carte dal tavolo
 	 */
 	public void clearTable() {
+		updateOnRemoval(this.getCardsOnTable());
 		this.cardsOnTable.clear();
 	}
 
