@@ -123,7 +123,7 @@ public class GUIController implements TableObserver {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				multipleChoiceHandler.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
-
+				op.setVisible(false);
 			}
 		});
 
