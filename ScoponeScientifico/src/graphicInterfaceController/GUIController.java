@@ -1,5 +1,7 @@
 package graphicInterfaceController;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -112,17 +114,19 @@ public class GUIController implements TableObserver {
 
 	}
 
-	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard, MultipleChoiceHandler multipleChoiceHandler ) {
-		ArrayList<String> s = new ArrayList<String>();
-		String st = null;
-		for (int i = 0; i < optionCard.size(); i++) {
-			for (int j = 0; j < optionCard.get(i).size(); j++) {
-				st += optionCard.get(i).get(j).toString();
+	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard, MultipleChoiceHandler multipleChoiceHandler) {
+
+		OptionsPopUp op = new OptionsPopUp(optionCard);
+		op.getOkButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				multipleChoiceHandler.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
+
 			}
-			s.add(st);
-			st = null;
-		}
-		OptionsPopUp op = new OptionsPopUp(s);
+		});
+
 	}
 
 	public ArrayList<TeamPanel> getTeam1Panels() {
