@@ -11,6 +11,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 import CardTest.*;
 import controller.CardConverter;
+import controller.ChoiceReceiver;
 import controller.GameController;
 import controller.HumanPlayerHandler;
 import controller.MultipleChoiceHandler;
@@ -114,7 +115,7 @@ public class GUIController implements TableObserver {
 
 	}
 
-	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard, MultipleChoiceHandler multipleChoiceHandler) {
+	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard, ChoiceReceiver choiceReceiver) {
 
 		OptionsPopUp op = new OptionsPopUp(optionCard);
 		op.getOkButton().addActionListener(new ActionListener() {
@@ -122,7 +123,7 @@ public class GUIController implements TableObserver {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				multipleChoiceHandler.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
+				choiceReceiver.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
 				op.setVisible(false);
 			}
 		});
