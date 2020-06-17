@@ -5,21 +5,63 @@ import java.util.Collections;
 
 import model.Card;
 import model.SeedType;
+import model.Team;
 
 /*
- * Classe con metodi statici per il calcolo dei vari tipi di punti 
+ * Classe per il calcolo dei vari tipi di punti
+ * Va istanziata con i due team
+ * Dall'esterno è visibile solo il metodo giveScore()
  */
 public class ScoreProcessor {
-
 	
 	// punti posizionali da asso a re per il calcolo della primiera
-
 	private final static int[] PRIMIERA_POINTS = { 16, 12, 13, 14, 15, 18, 21, 10, 10, 10 };
+	
+	
+	private Team team1, team2;	//I due team della partita
+	
+	
+	public ScoreProcessor(Team team1, Team team2) {
+		this.team1 = team1;
+		this.team2 = team2;
+	}
+	
+	/*
+	 * Calcola e assegna i punteggi dei due team usando i metodi interni a questa classe 
+	 */
+	public void giveScore() {
+		
+		int score1 = 0;
+		int score2 = 0;
+		
+		ArrayList<Card> cards1 = team1.getCards();
+		ArrayList<Card> cards2 = team2.getCards();
+		
+		score1 += this.carte(cards1);
+		score1 += this.denariSettebello(cards1);
+		score1 += team1.getScope().size();
+		
+		score2 += this.carte(cards2);
+		score2 += this.denariSettebello(cards2);
+		score2 += team2.getScope().size();
+		
+		//Punti per la primiera
+		int prim1 = this.sommaPrimiera(cards1);
+		int prim2 = this.sommaPrimiera(cards2);
+		
+		if (prim1 > prim2)
+			score1++;
+		else
+			score2++;
+		
+		team1.addScore(score1);
+		team2.addScore(score2);
+	}
 
 	/*
 	 * Ritorna il punteggio concorrente per il punto della PRIMIERA
 	 */
-	public static int sommaPrimiera(ArrayList<Card> cards) {
+	private int sommaPrimiera(ArrayList<Card> cards) {
 
 		int sommaPrim = 0;
 
@@ -50,7 +92,7 @@ public class ScoreProcessor {
 	 * Ritorna il massimo valore (secondo i punteggi per la primiera) tra quelli delle carte passate
 	 * Per avere senso dovrebbero essere tutte carte di uno stesso seme 
 	 */
-	private static int maxCardValue(ArrayList<Card> seedCards) {
+	private int maxCardValue(ArrayList<Card> seedCards) {
 
 		int maxValue = 0;
 
@@ -67,7 +109,7 @@ public class ScoreProcessor {
 	 * Ritorna 1 o 2 in base ai punti SETTEBELLO e DENARI ottenuti, 0 se non sono
 	 * stati fatti questi tipi di punti
 	 */
-	public static int denariSettebello(ArrayList<Card> cards) {
+	private int denariSettebello(ArrayList<Card> cards) {
 		int points = 0;
 
 		int numDenari = 0;
@@ -91,7 +133,7 @@ public class ScoreProcessor {
 	/*
 	 * Ritorna 1 se è stato fatto il punto CARTE, 0 altrimenti
 	 */
-	public static int carte(ArrayList<Card> cards) {
+	private int carte(ArrayList<Card> cards) {
 		if (cards.size() >= 21) {
 			return 1;
 		} else
@@ -99,3 +141,4 @@ public class ScoreProcessor {
 	}
 	
 }
+

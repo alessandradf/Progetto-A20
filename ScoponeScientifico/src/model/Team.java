@@ -33,13 +33,12 @@ public class Team {
 	}
 	
 	/*
-	 * Calcola il punteggio della squadra e lo restituisce
+	 * Aggiora il punteggio con le carte della mano corrente
+	 * Questo metodo dovrebbe essere chiamato solo dallo ScoreProcessor e solo alla fine della mano!
+	 * NB qua le carte non vengono resettate!
 	 */
-	public int calculateScore() {
-		/*
-		 * TODO va aggiunta la logica con cui calcolare il punteggio in base alle carte
-		 */
-		return 0;
+	public void addScore(int newScore) {
+		this.score += newScore;
 	}
 
 	
@@ -73,9 +72,16 @@ public class Team {
 		this.teamObservers.add(teamObserver);
 	}
 	
+	public ArrayList<Card> getCards() {
+		return this.cardsTaken;
+	}
 	
 	public int getScore() {
 		return this.score;
+	}
+	
+	public ArrayList<Card> getScope() {
+		return this.scope;
 	}
 	
 	public ArrayList<Player> getPlayers(){
