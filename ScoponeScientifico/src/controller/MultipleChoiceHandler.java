@@ -27,7 +27,6 @@ public class MultipleChoiceHandler implements HumanMultipleChoiceHandler, Comput
 		this.player = player;
 		defaultGUIController = GUIController.getDefaultGUIController();
 		table = Game.getDefaultGame().getDefaultTable();
-		//createInterface();
 		
 	}
 	
@@ -45,7 +44,8 @@ public class MultipleChoiceHandler implements HumanMultipleChoiceHandler, Comput
 	
 	
 	private void createInterface() {
-		//defaultGUIController.qualcosa;
+		//fa creare l'interfaccia di scelta multipla al gui controller
+		defaultGUIController.chooseOptions(choices, this);
 	}
 	
 	@Override
@@ -53,6 +53,7 @@ public class MultipleChoiceHandler implements HumanMultipleChoiceHandler, Comput
 		table.removeCardsFromTable(choice);
 		player.getPlayer().getTeam().addCards(choice);
 		controller.multipleChoiceperformed(player);
+		choices = null; //per esser sicuri di non puntare più alle scelte precedenti
 	}
 
 	/**
