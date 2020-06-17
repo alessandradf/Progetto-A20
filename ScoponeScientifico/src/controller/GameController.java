@@ -52,11 +52,21 @@ public class GameController {
 	public void hasPlayed(AbstractPlayerHandler p) {
 		Card card = p.getPlayedCard();
 		game.playRound(p.getPlayer(), card);
+		
+		debugPlayer(p);
 		// o comunque qualcosa del genere //
 		p.lockPlayer();	// questa serve a fare in modo che i giocatori umani non si mettano a schiacciare carte a caso 
 						    // quando non è il loro turno
 		
 		nextPlayer();
+	}
+	
+	/*
+	 * Serve a controllare che la turnazione avvenga correttamente anche in presenza di giocatori gestiti dal pc
+	 */
+	public void debugPlayer(AbstractPlayerHandler p) {
+		System.out.println(p.getPlayer().getPlayerName() +  " ");
+		System.out.println(p.getPlayedCard());
 	}
 	
 	protected void multipleChoiceperformed(AbstractPlayerHandler player) {
