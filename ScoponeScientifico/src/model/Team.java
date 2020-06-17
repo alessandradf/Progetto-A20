@@ -64,7 +64,7 @@ public class Team {
 	/*
 	 * Svuota l'ArrayList di carte prese dal team
 	 */
-	private void resetTeamCards() {
+	protected void resetTeamCards() {
 		this.cardsTaken.clear();
 	}
 	

@@ -160,6 +160,20 @@ public class Game {
 		//setta a zero il conto turni
 		turno = 1;
 		
+		for(Team t : teams) {
+			t.resetTeamCards();
+		}
+		shuffleDeck();
+		
+		//andrà sostituito col pezzo qui sotto...
+		/*
+		if(max raggiunto) {
+			return;
+		}
+		shuffleDeck();
+		
+		*/
+		
 		/*
 		 * Pezzo per il debug
 		
