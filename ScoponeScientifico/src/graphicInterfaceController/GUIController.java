@@ -4,17 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-
-import javax.swing.*;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import CardTest.*;
 import controller.CardConverter;
 import controller.ChoiceReceiver;
-import controller.GameController;
+
 import controller.HumanPlayerHandler;
-import controller.MultipleChoiceHandler;
+
 import graphicInterface.CardListener;
 import graphicInterface.OptionsPopUp;
 import graphicInterface.PlayerPanel;
@@ -22,14 +18,11 @@ import graphicInterface.TablePanel;
 import graphicInterface.TeamPanel;
 import graphicInterface.TotalFrame;
 import model.Card;
-import model.Player;
-import model.SeedType;
-import model.Team;
+
 import utility.TableObserver;
 
 public class GUIController implements TableObserver {
 
-	private CardLabel cardLabel;
 	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
@@ -54,8 +47,6 @@ public class GUIController implements TableObserver {
 		int i = 0;
 
 		PlayerPanel playerPanel;
-		TeamPanel team1Panel;
-		TeamPanel team2Panel;
 		ArrayList<CardLabel> playerCards;
 		for (HumanPlayerHandler playerHandler : playerHandlers) {
 			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
@@ -124,7 +115,7 @@ public class GUIController implements TableObserver {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				choiceReceiver.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
-				op.setVisible(false);
+				op.dispose();
 			}
 		});
 
