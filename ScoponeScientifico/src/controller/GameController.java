@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+
 import model.Card;
 import model.Game;
 import model.Team;
@@ -50,8 +51,8 @@ public class GameController {
 	}
 
 	public void hasPlayed(AbstractPlayerHandler p) {
-		Card card = p.getPlayedCard();
-		game.playRound(p.getPlayer(), card);
+		Card card = p.getPlayedCard();			
+		game.playRound(p.getPlayer(), card);		
 		// o comunque qualcosa del genere //
 		p.lockPlayer();	// questa serve a fare in modo che i giocatori umani non si mettano a schiacciare carte a caso 
 						    // quando non è il loro turno
