@@ -39,6 +39,10 @@ public class Team {
 	 */
 	public void addScore(int newScore) {
 		this.score += newScore;
+		
+		for (TeamObserver o : teamObservers) {
+			o.updateScore(this.score);
+		}
 	}
 
 	
