@@ -33,7 +33,7 @@ public class Table {
 	 *         altrimenti
 	 * @throws MultipleChoiceException 
 	 */
-	public ArrayList<Card> putCardOnTable(Card playedCard)   {
+	public ArrayList<Card> putCardOnTable(Card playedCard) throws MultipleChoiceException   {
 		ArrayList<ArrayList<Card>> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
 		ArrayList<Card> sub_result = new ArrayList<Card>(); 
 		
@@ -51,8 +51,7 @@ public class Table {
 			sub_result.add(playedCard);			
 			break;
 		default:
-			//throw new MultipleChoiceException(result);	
-			sub_result = result.get(0);			
+			throw new MultipleChoiceException(result);						
 		}	
 		return sub_result;
 	}

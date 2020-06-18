@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-
+import exception.MultipleChoiceException;
 import model.Card;
 import model.Game;
 import model.Team;
@@ -53,17 +53,15 @@ public class GameController {
 	public void hasPlayed(AbstractPlayerHandler p) {
 
 		Card card = p.getPlayedCard();			
-		game.playRound(p.getPlayer(), card);		
-
-		
-		
-		debugPlayer(p);
-
-		// o comunque qualcosa del genere //
-		p.lockPlayer();	// questa serve a fare in modo che i giocatori umani non si mettano a schiacciare carte a caso 
-						    // quando non è il loro turno
-		
-		nextPlayer();
+		try {
+			game.playRound(p.getPlayer(), card);			
+			p.lockPlayer();
+			nextPlayer();
+			
+		} catch (MultipleChoiceException e) {
+			p.multipleChoice(e.getChoices());			
+		}			
+		debugPlayer(p);		
 	}
 	
 	/*
