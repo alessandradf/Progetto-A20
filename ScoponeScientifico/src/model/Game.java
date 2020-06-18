@@ -59,8 +59,8 @@ public class Game {
 	 * @param c carta da giocare
 	 * @throws MultipleChoiceException
 	 */
-	public void playRound(Player p, Card c)  {
-		if (turno < 40) {	//scrivere <39		
+	public void playRound(Player p, Card c) throws MultipleChoiceException   {
+		if (turno < 40) {	
 			try {
 				p.removeCardFromHand(c);
 			} catch (CardNotFoundException e) {
