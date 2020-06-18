@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CardTest.*;
+import controller.AbstractPlayerHandler;
 import controller.CardConverter;
 import controller.ChoiceReceiver;
 
 import controller.HumanPlayerHandler;
 
 import graphicInterface.CardListener;
+import graphicInterface.HistoryFrame;
 import graphicInterface.OptionsPopUp;
 import graphicInterface.PlayerPanel;
 import graphicInterface.TablePanel;
@@ -27,7 +29,8 @@ public class GUIController implements TableObserver {
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
-	// private CardTester card;
+
+	private HistoryFrame historyFrame;
 
 	private static GUIController defaultGuiController = null;
 
@@ -45,6 +48,7 @@ public class GUIController implements TableObserver {
 
 	public void init(HumanPlayerHandler[] playerHandlers) {
 		int i = 0;
+		historyFrame = new HistoryFrame();
 
 		PlayerPanel playerPanel;
 		ArrayList<CardLabel> playerCards;
@@ -99,8 +103,8 @@ public class GUIController implements TableObserver {
 		int i = 0;
 		for (TotalFrame totalFrame : playerView) {
 			this.tablePanel.get(i).removeCardsFromTable(cardsConverter(removedCards));
-			// totalFrame.repaint();
-			// totalFrame.validate();
+			totalFrame.repaint();
+			totalFrame.validate();
 			i++;
 		}
 
@@ -119,6 +123,28 @@ public class GUIController implements TableObserver {
 			}
 		});
 
+	}
+
+	// metodo per aggiornare la cronologia di gioco nel caso in cui non sia stata
+	// presa nessuna carta dal giocatore
+	public void updateHistory(AbstractPlayerHandler playerHandler, Card cardPlayed) {
+
+		historyFrame.setHistory("<html><br>" + playerHandler.getPlayer().getPlayerName() + " ha giocato la carta: "
+				+ cardPlayed.toString());
+	}
+
+	// overload del metodo precedente nel caso in cui siano state prese delle carte
+	public void updateHistory(AbstractPlayerHandler playerHandler, ArrayList<Card> cardsTaken) {
+
+		historyFrame.setHistory("<html><br>" + playerHandler.getPlayer().getPlayerName()
+				+ " ha preso le seguenti carte: " + cardsTaken.toString());
+	}
+
+	// aggiornamento della cronologia nel caso in cui venga fatta una scopa
+	public void updateHistoryScopa(AbstractPlayerHandler playerHandler, Card cardPlayed) {
+
+		historyFrame.setHistory("<html><br>" + playerHandler.getPlayer().getPlayerName()
+				+ " ha fatto scopa con la carta: " + cardPlayed.toString());
 	}
 
 	public ArrayList<TeamPanel> getTeam1Panels() {
