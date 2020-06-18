@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class PlayerPanel extends JPanel {
 	
 	ArrayList<CardLabel> playerHand;
+	TotalFrame parentFrame; //frame in cui è contenuto il panel
 
 	/**
 	 * Create the panel.
@@ -30,12 +31,17 @@ public class PlayerPanel extends JPanel {
 			add(cardLabel);
 		}
 	}
+	public void setTotalFrame(TotalFrame totalFrame) {
+		parentFrame = totalFrame;
+	}
 	
 	//metodo lock, blocca il pannello una volta passato il turno,
 	//impedendo al giocatore di interagirvi
 	public void lockPlayer() {
 		for (CardLabel cardLabel : playerHand) {
 			cardLabel.setEnabled(false);
+			parentFrame.setVisible(false);
+			
 		}
 	}
 	
@@ -46,6 +52,7 @@ public class PlayerPanel extends JPanel {
 			cardLabel.setEnabled(true);
 			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 			topFrame.toFront();
+			parentFrame.setVisible(true);
 		}
 	}
 

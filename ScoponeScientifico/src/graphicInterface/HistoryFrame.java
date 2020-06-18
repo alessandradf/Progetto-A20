@@ -19,7 +19,8 @@ public class HistoryFrame extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setResizable(false);
-
+		setTitle("Cronologia Eventi");
+		
 		historyLabel = new JLabel();
 		scrollPane = new JScrollPane(historyLabel);
 		add(scrollPane);

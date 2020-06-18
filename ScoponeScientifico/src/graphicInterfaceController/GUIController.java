@@ -50,7 +50,7 @@ public class GUIController implements TableObserver {
 	public void init(HumanPlayerHandler[] playerHandlers) {
 		int i = 0;
 		historyFrame = new HistoryFrame();
-
+		TotalFrame totalFrame;
 		PlayerPanel playerPanel;
 		ArrayList<CardLabel> playerCards;
 		for (HumanPlayerHandler playerHandler : playerHandlers) {
@@ -65,12 +65,14 @@ public class GUIController implements TableObserver {
 			tablePanel.add(new TablePanel());
 			team1Panels.add(new TeamPanel(1));
 			team2Panels.add(new TeamPanel(2));
-			playerView.add(new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel.get(i), playerPanel,
-					team1Panels.get(i), team2Panels.get(i)));
-			playerView.get(i).unlockPlayer();
+			totalFrame = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel.get(i), playerPanel,
+					team1Panels.get(i), team2Panels.get(i));
+			playerPanel.setTotalFrame(totalFrame);
+			playerView.add(totalFrame);
 			i++;
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
+		playerView.get(0).unlockPlayer();
 
 	}
 

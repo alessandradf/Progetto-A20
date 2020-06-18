@@ -74,7 +74,8 @@ public class TotalFrame extends JFrame {
 		this.playerName = playerName;
 		this.tablePanel = tablePanel;
 		this.playerPanel = playerPanel;
-
+		
+		this.setTitle(playerName);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
@@ -88,12 +89,7 @@ public class TotalFrame extends JFrame {
 		gbl_contentPane.rowWeights = new double[] { 2.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 		
-		// Pannello che rappresenta il tavolo
 
-		/*
-		 * tablePanel.setBackground(new Color(0, 100, 0)); tablePanel.setLayout(new
-		 * FlowLayout(FlowLayout.CENTER, 5, 5));
-		 */
 		GridBagConstraints gbc_TablePanel = new GridBagConstraints();
 		gbc_TablePanel.insets = new Insets(0, 0, 5, 5);
 		gbc_TablePanel.fill = GridBagConstraints.BOTH;
@@ -102,28 +98,7 @@ public class TotalFrame extends JFrame {
 
 		contentPane.add(tablePanel, gbc_TablePanel);
 
-		// pannello con i mazzi dei team
-	/*	JPanel TeamsPanel = new JPanel();
-		TeamsPanel.setBackground(new Color(0, 100, 0));
-		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
-		gbc_TeamsPanel.gridheight = 2;
-		gbc_TeamsPanel.insets = new Insets(0, 0, 5, 0);
-		gbc_TeamsPanel.fill = GridBagConstraints.BOTH;
-		gbc_TeamsPanel.gridx = 1;
-		gbc_TeamsPanel.gridy = 0;
-		contentPane.add(TeamsPanel, gbc_TeamsPanel);
-		TeamsPanel.setLayout(new GridLayout(2, 1, 0, 0));
-		TeamsPanel.setMinimumSize(new Dimension(200, 200));
-		TeamsPanel.setMaximumSize(new Dimension(200, 200));
-		TeamsPanel.setPreferredSize(new Dimension(200, 200));
 
-		JLabel Team1 = new JLabel("Team1");
-		TeamsPanel.add(Team1);
-
-		JLabel Team2 = new JLabel("Team2");
-		TeamsPanel.add(Team2);
-*/
-		
 		teamsPanel = new TotalTeamPanel( team1, team2);
 		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
 		gbc_TeamsPanel.gridheight = 2;
