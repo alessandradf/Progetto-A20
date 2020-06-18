@@ -16,6 +16,7 @@ import graphicInterface.CardListener;
 import graphicInterface.HistoryFrame;
 import graphicInterface.OptionsPopUp;
 import graphicInterface.PlayerPanel;
+import graphicInterface.StartFrame;
 import graphicInterface.TablePanel;
 import graphicInterface.TeamPanel;
 import graphicInterface.TotalFrame;
