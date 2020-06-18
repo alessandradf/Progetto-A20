@@ -59,7 +59,7 @@ public class Game {
 	 * @param c carta da giocare
 	 * @throws MultipleChoiceException
 	 */
-	public void playRound(Player p, Card c) throws MultipleChoiceException   {
+	public ArrayList<Card> playRound(Player p, Card c) throws MultipleChoiceException   {
 		if (turno < 40) {	
 			try {
 				p.removeCardFromHand(c);
@@ -76,11 +76,13 @@ public class Game {
 					p.getTeam().scopa(c);
 			}
 			turno++;
+			return result; //NB: se era disponibile solo una scelta per prendere dal tavolo allor result contiene anche la carta giocata 
 		} else {
 			//va ancora implementata la logica dell'ultimo turno -Andrea
 			//ultimo turno, no scope 
 			//visualizza i punteggi 
 			finalize();
+			return null;
 		}
 
 	}
