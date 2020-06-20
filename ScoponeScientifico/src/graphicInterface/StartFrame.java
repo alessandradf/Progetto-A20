@@ -60,7 +60,7 @@ public class StartFrame extends JFrame {
 	public StartFrame() {
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 455, 305);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -95,38 +95,81 @@ public class StartFrame extends JFrame {
 		JButton btnStartGame = new JButton("Start Game!");
 		btnStartGame.setForeground(Color.RED);
 		btnStartGame.addActionListener(new StartGameBottonListener(jComboBox, this));
+		
+		JLabel label = new JLabel("1");
+		label.setForeground(Color.YELLOW);
+		label.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
+		label.setBackground(Color.YELLOW);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("2");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(Color.YELLOW);
+		lblNewLabel.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
+		
+		JLabel label_1 = new JLabel("3");
+		label_1.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
+		label_1.setForeground(Color.YELLOW);
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblNewLabel_1 = new JLabel("4");
+		lblNewLabel_1.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
+		lblNewLabel_1.setForeground(Color.YELLOW);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(148)
 					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(161, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap(153, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(12, Short.MAX_VALUE)
 					.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnStartGame, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-					.addGap(20))
-				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(26))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
 					.addGap(148)
 					.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(161, Short.MAX_VALUE))
+					.addContainerGap(111, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(213)
+					.addComponent(label)
+					.addContainerGap(229, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(66)
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_1)
+					.addGap(95))
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(216)
+					.addComponent(label_1)
+					.addContainerGap(225, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(85)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(label_1)
+					.addGap(41)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_1)
+						.addComponent(lblNewLabel))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnStartGame)
 						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnStartGame))
-					.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+						.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+					.addComponent(label)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -149,5 +192,4 @@ public class StartFrame extends JFrame {
 	public void setComputerPlayers(int computerPlayers) {
 		this.computerPlayers = computerPlayers;
 	}
-	
 }
