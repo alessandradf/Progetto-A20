@@ -26,10 +26,7 @@ public class CardLabel extends JLabel {
 	private SeedType seed;
 	private int value;
 
-	// indica se attualmente l'immagine della carta � frntale
-	// o girata con il dorso visibile (� nel mazzo)
-	private CardPosition position;
-
+	
 	// percorsi immagine e dorso carta
 	private String[] imagesPaths;
 	
@@ -46,8 +43,7 @@ public class CardLabel extends JLabel {
 		// TODO Auto-generated constructor stub
 		this.imagesPaths = imagesPaths;
 
-		// imposto di default l'immagine della faccia della carta
-		position = CardPosition.FACE;
+	
 		try {
 			imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[0])));
 
@@ -59,34 +55,6 @@ public class CardLabel extends JLabel {
 
 	}
 
-	// cambia posizione della carta (da fronte a retro e viceversa)
-	public void changePosition() {
-		if (this.position == CardPosition.FACE) {
-			position = CardPosition.BACK;
-			try {
-
-				imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[1])));
-				this.setIcon(imageCard);
-				this.repaint();
-				this.validate();
-
-			} catch (IOException e) {
-				System.out.println("IO EXCEPTION, NON TROVO PERCORSO CARTA GIRATA");
-			}
-		} else {
-			position = CardPosition.FACE;
-			try {
-
-				imageCard = new ImageIcon(ImageIO.read(new File(imagesPaths[0])));
-				this.setIcon(imageCard);
-				this.repaint();
-				this.validate();
-
-			} catch (IOException e) {
-				System.out.println("IO EXCEPTION, NON TROVO PERCORSO FACCIA CARTA");
-			}
-		}
-	}
 	
 	
 	//metodo per abilitare o disabilitare il mouse listenere realitvo
@@ -100,9 +68,7 @@ public class CardLabel extends JLabel {
 		return isEnable;
 	}
 
-	public CardPosition getPosition() {
-		return this.position;
-	}
+	
 
 	public SeedType getSeed() {
 		return seed;

@@ -21,6 +21,7 @@ import javax.swing.border.Border;
 import javax.swing.plaf.ScrollBarUI;
 
 import CardTest.CardLabel;
+import graphicInterfaceController.GUIController;
 import model.Card;
 import model.SeedType;
 import utility.CardConverter;
@@ -85,6 +86,7 @@ public class TeamPanel extends JPanel implements TeamObserver {
 			scope.remove(ultimaScopa);
 		}
 		ultimaScopa = CardConverter.toCardLabel(scopaCard);
+		GUIController.getDefaultGUIController().updateHistoryScopa(scopaCard);
 		scope.add(ultimaScopa);
 		scope.repaint();
 		scope.validate();
