@@ -17,7 +17,7 @@ public class Team {
 	private ArrayList<Card> scope;
 	private String teamName;
 	
-	private ArrayList<TeamObserver> teamObservers;	//bisogna ancora inizializzarlo da qualche parte -Andrea
+	private ArrayList<TeamObserver> teamObservers;
 
 	
 	/*

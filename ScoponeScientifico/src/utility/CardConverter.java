@@ -1,4 +1,4 @@
-package controller;
+package utility;
 
 import CardTest.CardLabel;
 import model.Card;

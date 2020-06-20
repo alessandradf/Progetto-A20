@@ -17,16 +17,16 @@ public class GameSetup {
 	private GUIController guiController;
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private ArrayList<HumanPlayerHandler> humanPlayers;
-	private int human_players_number;
+	private int humanPlayerNumber;
 
 	private GameSetup(int human_players_number) {
-		this.human_players_number = human_players_number;
+		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		game = Game.getDefaultGame();
 		gameController = new GameController(players);
 		guiController = GUIController.getDefaultGUIController();
-		createPlayers(this.human_players_number);
+		createPlayers(this.humanPlayerNumber);
 		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]));
 
 		game.getDefaultTable().addObserver(guiController);

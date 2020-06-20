@@ -7,7 +7,6 @@ import java.util.List;
 
 import CardTest.*;
 import controller.AbstractPlayerHandler;
-import controller.CardConverter;
 import controller.ChoiceReceiver;
 
 import controller.HumanPlayerHandler;
@@ -21,7 +20,7 @@ import graphicInterface.TablePanel;
 import graphicInterface.TeamPanel;
 import graphicInterface.TotalFrame;
 import model.Card;
-
+import utility.CardConverter;
 import utility.TableObserver;
 
 public class GUIController implements TableObserver {

@@ -21,9 +21,9 @@ import javax.swing.border.Border;
 import javax.swing.plaf.ScrollBarUI;
 
 import CardTest.CardLabel;
-import controller.CardConverter;
 import model.Card;
 import model.SeedType;
+import utility.CardConverter;
 import utility.TeamObserver;
 
 public class TeamPanel extends JPanel implements TeamObserver {

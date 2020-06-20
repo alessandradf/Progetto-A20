@@ -8,6 +8,7 @@ import CardTest.CardLabel;
 import graphicInterface.PlayerPanel;
 import model.Card;
 import model.Player;
+import utility.CardConverter;
 
 public class HumanPlayerHandler extends AbstractPlayerHandler {
 	

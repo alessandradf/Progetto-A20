@@ -31,7 +31,7 @@ public class Game {
 	private ArrayList<Team> teams;
 	private ScoreProcessor scoreProcessor;
 	
-	private int turno;
+	private int turn;
 
 	private Game() {
 		createDeck();
@@ -42,7 +42,7 @@ public class Game {
 		table = new Table();
 		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
 		
-		turno = 1;
+		turn = 1;
 	}
 
 	public static Game getDefaultGame() {
@@ -60,7 +60,7 @@ public class Game {
 	 * @throws MultipleChoiceException
 	 */
 	public ArrayList<Card> playRound(Player p, Card c) throws MultipleChoiceException   {
-		if (turno < 40) {	
+		if (turn < 40) {	
 			try {
 				p.removeCardFromHand(c);
 			} catch (CardNotFoundException e) {
@@ -75,7 +75,7 @@ public class Game {
 				if (table.getCardsOnTable().size() == 0)
 					p.getTeam().scopa(c);
 			}
-			turno++;
+			turn++;
 			return result; //NB: se era disponibile solo una scelta per prendere dal tavolo allor result contiene anche la carta giocata 
 		} else {
 			//va ancora implementata la logica dell'ultimo turno -Andrea
@@ -160,7 +160,7 @@ public class Game {
 		table.clearTable();
 		scoreProcessor.giveScore(); //calcola il punteggio
 		//setta a zero il conto turni
-		turno = 1;
+		turn = 1;
 		
 		for(Team t : teams) {
 			t.resetTeamCards();
