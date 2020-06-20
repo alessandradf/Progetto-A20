@@ -30,7 +30,7 @@ public class Game {
 	private Player lastTakePlayer;
 	private ArrayList<Team> teams;
 	private ScoreProcessor scoreProcessor;
-	
+
 	private int turn;
 
 	private Game() {
@@ -41,7 +41,7 @@ public class Game {
 		populateTeams();
 		table = new Table();
 		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
-		
+
 		turn = 1;
 	}
 
@@ -59,9 +59,8 @@ public class Game {
 	 * @param c carta da giocare
 	 * @throws MultipleChoiceException
 	 */
-	public ArrayList<Card> playRound(Player p, Card c) throws MultipleChoiceException   {
+	public ArrayList<Card> playRound(Player p, Card c) throws MultipleChoiceException {
 		if (turn < 40) {
-			System.out.println(turn);
 			turn++;
 			try {
 				p.removeCardFromHand(c);
@@ -77,11 +76,26 @@ public class Game {
 				if (table.getCardsOnTable().size() == 0)
 					p.getTeam().scopa(c);
 			}
-			return result; //NB: se era disponibile solo una scelta per prendere dal tavolo allor result contiene anche la carta giocata 
+			return result; // NB: se era disponibile solo una scelta per prendere dal tavolo allor result
+							// contiene anche la carta giocata
 		} else {
-			//va ancora implementata la logica dell'ultimo turno -Andrea
-			//ultimo turno, no scope 
-			//visualizza i punteggi 
+			try {
+				p.removeCardFromHand(c);
+			} catch (CardNotFoundException e) {
+				// TODO: handle exception
+				// in realtà non dovrebbe mai succedere
+				e.printStackTrace();
+			}
+			ArrayList<Card> result = table.putCardOnTable(c);
+			if (result != null) {
+				p.getTeam().addCards(result);
+				lastTakePlayer = p;
+				if (table.getCardsOnTable().size() == 0)
+					p.getTeam().scopa(c);
+			}
+			// va ancora implementata la logica dell'ultimo turno -Andrea
+			// ultimo turno, no scope
+			// visualizza i punteggi
 			finalize();
 			return null;
 		}
@@ -144,48 +158,48 @@ public class Game {
 		for (Card c : deckArrayList) {
 			if (players.get(j).getHand().size() == 10) {
 				j++;
+
 				players.get(j).getHand().add(c);
+
 			} else {
 				players.get(j).getHand().add(c);
+
 			}
 		}
 	}
-	
+
 	/**
 	 * Permette di concludere la mano, calcolare i punteggi e resettare il tavolo
 	 */
 	public void finalize() {
 
-		// le carte rimaste sul tavolo vanno date all'ultimo giocatore che ha fatto una presa
+		// le carte rimaste sul tavolo vanno date all'ultimo giocatore che ha fatto una
+		// presa
 		lastTakePlayer.getTeam().addCards(table.getCardsOnTable());
 		table.clearTable();
-		scoreProcessor.giveScore(); //calcola il punteggio
-		//setta a zero il conto turni
+		scoreProcessor.giveScore(); // calcola il punteggio
+		// setta a zero il conto turni
 		turn = 1;
-		
-		for(Team t : teams) {
+
+		for (Team t : teams) {
 			t.resetTeamCards();
 		}
 		shuffleDeck();
-		
-		//andrà sostituito col pezzo qui sotto...
+
+		// andrà sostituito col pezzo qui sotto...
 		/*
-		if(max raggiunto) {
-			return;
-		}
-		shuffleDeck();
-		
-		*/
-		
+		 * if(max raggiunto) { return; } shuffleDeck();
+		 * 
+		 */
+
 		/*
 		 * Pezzo per il debug
-		
-		for(Team t : teams) {
-			System.out.println(t.getTeamName() + " " + t.getScore());
-		}
+		 * 
+		 * for(Team t : teams) { System.out.println(t.getTeamName() + " " +
+		 * t.getScore()); }
 		 */
 	}
-	
+
 	/**
 	 * @return the defaultTable
 	 */
