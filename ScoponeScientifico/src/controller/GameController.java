@@ -61,7 +61,7 @@ public class GameController {
 		} catch (MultipleChoiceException e) {
 			p.multipleChoice(e.getChoices());			
 		}			
-		debugPlayer(p);		
+		//debugPlayer(p);		
 	}
 	
 	/*

@@ -32,6 +32,7 @@ public class MultipleChoiceHandler implements HumanMultipleChoiceHandler, Comput
 	
 	@Override
 	public void humanMultipleChoice(ArrayList<ArrayList<Card>> choices) {
+		player.lockPlayer();
 		this.choices = choices;
 		createInterface();
 	}

@@ -60,7 +60,9 @@ public class Game {
 	 * @throws MultipleChoiceException
 	 */
 	public ArrayList<Card> playRound(Player p, Card c) throws MultipleChoiceException   {
-		if (turn < 40) {	
+		if (turn < 40) {
+			System.out.println(turn);
+			turn++;
 			try {
 				p.removeCardFromHand(c);
 			} catch (CardNotFoundException e) {
@@ -75,7 +77,6 @@ public class Game {
 				if (table.getCardsOnTable().size() == 0)
 					p.getTeam().scopa(c);
 			}
-			turn++;
 			return result; //NB: se era disponibile solo una scelta per prendere dal tavolo allor result contiene anche la carta giocata 
 		} else {
 			//va ancora implementata la logica dell'ultimo turno -Andrea
