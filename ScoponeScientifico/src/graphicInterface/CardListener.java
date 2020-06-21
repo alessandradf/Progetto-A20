@@ -11,6 +11,7 @@ import javax.swing.border.Border;
 import CardTest.CardLabel;
 import controller.HumanPlayerHandler;
 import graphicInterfaceController.GUIController;
+import utility.CardConverter;
 
 public class CardListener implements MouseListener{
 	
@@ -32,8 +33,9 @@ public class CardListener implements MouseListener{
 		if(cardLabel.isEnable() == true) {
 			cardLabel.setVisible(false);
 			playerPanel.remove(cardLabel);
+			GUIController.getDefaultGUIController().updateHistory(humanPlayer, CardConverter.toModelCard(cardLabel));
 			humanPlayer.cardPlayed(cardLabel);
-			GUIController.getDefaultGUIController().updateHistory(humanPlayer, humanPlayer.getPlayedCard());
+			
 		}
 	}
 
