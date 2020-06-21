@@ -1,9 +1,12 @@
 package graphicInterfaceController;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JFrame;
 
 import CardTest.*;
 import controller.AbstractPlayerHandler;
@@ -31,6 +34,7 @@ public class GUIController implements TableObserver {
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
 	private boolean newScopa;
 	private Card lastScopa = null;
+	private JFrame tableFrame; //frame per visualizzare il tavolo durante la scelta delle carte 
 
 	private HistoryFrame historyFrame;
 
@@ -56,14 +60,16 @@ public class GUIController implements TableObserver {
 		TotalFrame totalFrame;
 		PlayerPanel playerPanel;
 		ArrayList<CardLabel> playerCards;
+		
 		for (HumanPlayerHandler playerHandler : playerHandlers) {
 			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
+			playerPanel = new PlayerPanel(playerCards);
 			for (CardLabel cardLabel : playerCards) {
 
-				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler));
+				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel));
 
 			}
-			playerPanel = new PlayerPanel(playerCards);
+			
 			playerHandler.setPlayerPanel(playerPanel);
 			tablePanel.add(new TablePanel());
 			team1Panels.add(new TeamPanel(1));
@@ -76,6 +82,7 @@ public class GUIController implements TableObserver {
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		playerView.get(0).unlockPlayer();
+		
 
 	}
 
@@ -119,12 +126,19 @@ public class GUIController implements TableObserver {
 	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard, ChoiceReceiver choiceReceiver) {
 
 		OptionsPopUp op = new OptionsPopUp(optionCard);
+		tableFrame = new JFrame();
+		tableFrame.setSize(700, 400);
+		tableFrame.add(playerView.get(0).getTablePanel());
+		tableFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		tableFrame.setResizable(false);
+		tableFrame.setVisible(true);
 		op.getOkButton().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				choiceReceiver.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
+				tableFrame.dispose();
 				op.dispose();
 			}
 		});

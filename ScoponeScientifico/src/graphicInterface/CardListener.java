@@ -16,10 +16,12 @@ public class CardListener implements MouseListener{
 	private CardLabel cardLabel;
 	private static Border BORDER = BorderFactory.createLineBorder(Color.BLUE, 3, true);
 	private HumanPlayerHandler humanPlayer;
+	private PlayerPanel playerPanel;
 	
-	public CardListener(CardLabel l, HumanPlayerHandler humanPlayer) {
+	public CardListener(CardLabel l, HumanPlayerHandler humanPlayer, PlayerPanel playerPanel) {
 		cardLabel = l;
 		this.humanPlayer = humanPlayer;
+		this.playerPanel = playerPanel;
 		this.cardLabel.setEnabled(true);
 	}
 
@@ -28,6 +30,7 @@ public class CardListener implements MouseListener{
 		// TODO Auto-generated method stub
 		if(cardLabel.isEnable() == true) {
 			cardLabel.setVisible(false);
+			playerPanel.remove(cardLabel);
 			humanPlayer.cardPlayed(cardLabel);
 		}
 	}
