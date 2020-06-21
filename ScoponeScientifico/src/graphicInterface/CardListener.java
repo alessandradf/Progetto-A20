@@ -10,6 +10,7 @@ import javax.swing.border.Border;
 
 import CardTest.CardLabel;
 import controller.HumanPlayerHandler;
+import graphicInterfaceController.GUIController;
 
 public class CardListener implements MouseListener{
 	
@@ -17,12 +18,14 @@ public class CardListener implements MouseListener{
 	private static Border BORDER = BorderFactory.createLineBorder(Color.BLUE, 3, true);
 	private HumanPlayerHandler humanPlayer;
 	private PlayerPanel playerPanel;
+	private GUIController g;
 	
-	public CardListener(CardLabel l, HumanPlayerHandler humanPlayer, PlayerPanel playerPanel) {
+	public CardListener(CardLabel l, HumanPlayerHandler humanPlayer, PlayerPanel playerPanel, GUIController g) {
 		cardLabel = l;
 		this.humanPlayer = humanPlayer;
 		this.playerPanel = playerPanel;
 		this.cardLabel.setEnabled(true);
+		this.g = g;
 	}
 
 	@Override
@@ -32,6 +35,7 @@ public class CardListener implements MouseListener{
 			cardLabel.setVisible(false);
 			playerPanel.remove(cardLabel);
 			humanPlayer.cardPlayed(cardLabel);
+			g.updateHistory(humanPlayer, humanPlayer.getPlayedCard());
 		}
 	}
 

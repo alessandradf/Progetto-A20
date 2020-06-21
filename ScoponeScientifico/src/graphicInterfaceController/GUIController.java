@@ -66,7 +66,7 @@ public class GUIController implements TableObserver {
 			playerPanel = new PlayerPanel(playerCards);
 			for (CardLabel cardLabel : playerCards) {
 
-				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel));
+				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel, this));
 
 			}
 			
@@ -119,6 +119,7 @@ public class GUIController implements TableObserver {
 			totalFrame.repaint();
 			totalFrame.validate();
 			i++;
+			this.updateHistory((ArrayList)removedCards);
 		}
 
 	}
