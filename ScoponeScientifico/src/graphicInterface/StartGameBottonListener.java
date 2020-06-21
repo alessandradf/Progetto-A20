@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
+import controller.GameStartSetup;
+
 
 
 public class StartGameBottonListener implements ActionListener{
@@ -21,13 +23,18 @@ public class StartGameBottonListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		for (JComboBox jComboBox : comboBox) {
-			if(jComboBox.getSelectedItem().toString().equals("Human Player")) {
-				frame.setHumanPlayers(frame.getHumanPlayers()+1);
+		String[] config = new String[4];
+		for (int i = 0; i < comboBox.length; i++) {
+			if (comboBox[i].getSelectedItem().toString().equals("Human Player")) {
+				frame.setHumanPlayers(frame.getHumanPlayers() + 1);
+				config[i] = "Human";				
+			} else {
+				frame.setComputerPlayers(frame.getComputerPlayers() + 1);
+				config[i] = "Computer";
 			}
-			else frame.setComputerPlayers(frame.getComputerPlayers()+1);
 		}
+		frame.setVisible(false);
+		GameStartSetup g = GameStartSetup.getDefaultGameSetup(config, frame.getHumanPlayers());
 	}
 
 }
