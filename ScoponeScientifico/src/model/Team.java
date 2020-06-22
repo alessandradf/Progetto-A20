@@ -107,6 +107,7 @@ public class Team {
 	}
 	
 	public void scopa(Card scopaCard) {
+		this.scope.add(scopaCard);
 		for (TeamObserver o : teamObservers)
 			o.scopa(scopaCard);
 	}
