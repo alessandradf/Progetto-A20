@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import exception.MultipleChoiceException;
+import graphicInterfaceController.GUIController;
 import model.Card;
 import model.Game;
 import model.Team;
@@ -54,6 +55,7 @@ public class GameController {
 
 		Card card = p.getPlayedCard();			
 		try {
+			GUIController.getDefaultGUIController().updateHistory(p, card);
 			game.playRound(p.getPlayer(), card);			
 			p.lockPlayer();
 			nextPlayer();

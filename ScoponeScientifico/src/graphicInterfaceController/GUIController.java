@@ -35,6 +35,7 @@ public class GUIController implements TableObserver {
 	private boolean newScopa;
 	private Card lastScopa = null;
 	private JFrame tableFrame; //frame per visualizzare il tavolo durante la scelta delle carte 
+//	private int howManyTablePanels;
 
 	private HistoryFrame historyFrame;
 
@@ -69,6 +70,7 @@ public class GUIController implements TableObserver {
 				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel));
 
 			}
+		//	String playerNameAndTeam = playerHandler.getPlayer().getPlayerName() +"--"+ playerHandler.getPlayer().getTeam().getTeamName();
 			
 			playerHandler.setPlayerPanel(playerPanel);
 			tablePanel.add(new TablePanel());
@@ -81,6 +83,9 @@ public class GUIController implements TableObserver {
 			i++;
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
+		tablePanel.add(new TablePanel());
+	//	i++;
+	//	howManyTablePanels = i;
 		playerView.get(0).unlockPlayer();
 		
 
@@ -102,8 +107,14 @@ public class GUIController implements TableObserver {
 	@Override
 	public void updateOnAddition(Card c) {
 		int i = 0;
+		for (TablePanel tablePanel : tablePanel) {
+			tablePanel.putCardOnTable(CardConverter.toCardLabel(c));
+			tablePanel.repaint();
+			tablePanel.validate();
+			
+		}
 		for (TotalFrame totalFrame : playerView) {
-			this.tablePanel.get(i).putCardOnTable(CardConverter.toCardLabel(c));
+			
 			totalFrame.repaint();
 			totalFrame.validate();
 			i++;
@@ -114,8 +125,14 @@ public class GUIController implements TableObserver {
 	public void updateOnRemoval(List<Card> removedCards) {
 		// TODO Auto-generated method stub
 		int i = 0;
+		for (TablePanel tablePanel : tablePanel) {
+			tablePanel.removeCardsFromTable(cardsConverter(removedCards));
+			tablePanel.repaint();
+			tablePanel.validate();
+			
+		}
 		for (TotalFrame totalFrame : playerView) {
-			this.tablePanel.get(i).removeCardsFromTable(cardsConverter(removedCards));
+			
 			totalFrame.repaint();
 			totalFrame.validate();
 			i++;
@@ -129,7 +146,7 @@ public class GUIController implements TableObserver {
 		OptionsPopUp op = new OptionsPopUp(optionCard);
 		tableFrame = new JFrame();
 		tableFrame.setSize(700, 400);
-		tableFrame.add(playerView.get(0).getTablePanel());
+		tableFrame.add(tablePanel.get(tablePanel.size()-1));
 		tableFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		tableFrame.setResizable(false);
 		tableFrame.setVisible(true);

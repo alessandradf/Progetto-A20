@@ -42,7 +42,7 @@ public class TotalFrame extends JFrame {
 	private PlayerPanel playerPanel;
 	private TablePanel tablePanel;
 	private TotalTeamPanel teamsPanel;
-	private String playerName;
+	private String playerNameAndTeam;
 
 	/**
 	 * Launch the application.
@@ -70,12 +70,12 @@ public class TotalFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TotalFrame(String playerName, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1, TeamPanel team2) {
-		this.playerName = playerName;
+	public TotalFrame(String playerNameAndTeam, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1, TeamPanel team2) {
+		this.playerNameAndTeam = playerNameAndTeam;
 		this.tablePanel = tablePanel;
 		this.playerPanel = playerPanel;
 		
-		this.setTitle(playerName);
+		this.setTitle(playerNameAndTeam);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(425, 50, 1005, 705);
