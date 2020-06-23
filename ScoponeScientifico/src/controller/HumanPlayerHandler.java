@@ -12,45 +12,74 @@ import utility.CardConverter;
 
 public class HumanPlayerHandler extends AbstractPlayerHandler {
 	
-	private PlayerPanel playerPanel;
-	private HumanMultipleChoiceHandler humanMultipleChoiceHandler;
+	//private PlayerPanel playerPanel;
+	private HumanPlayerInterfaceController interfaceController = null;
 	
 
 	public HumanPlayerHandler(Player player, GameController controller) {
 		super(player, controller);		
-		humanMultipleChoiceHandler = new MultipleChoiceHandler(controller, this);
+	}
+	
+	/*
+	 * Magari può essere utile referenziare immediatamente l'interfaccia grafica/testuale
+	 */
+	public HumanPlayerHandler(Player player, GameController controller, HumanPlayerInterfaceController i) {
+		this(player, controller);
+		this.interfaceController = i;	
 	}
 
+	@Deprecated
+	//va cancellato quando siamo sicuri che non serve più ad un accidenti
 	public void cardPlayed(CardLabel cardLabel) {
 		Card playedCard = CardConverter.toModelCard(cardLabel);
 		setPlayedCard(playedCard);
 		getController().hasPlayed(this);
 	}
 	
+	public void cardPlayed(Card c) {
+		super.cardPlayed(c);
+		setResultFromFetch(getController().fetchCard(c));
+		
+		//faccio il controllo di quello che ho fetchato
+		if(getResultFromFetch().size() > 1) {
+			/*
+			 * passa il controllo all'interfaccia
+			 * l'interfaccia deve sapere da che giocatore arriva la scelta multipla, perchè quando il turno viene concluso
+			 * bisogna sapere chi ha concluso il turno.
+			 * - Andrea
+			*/
+		}
+		else {
+			getController().endTurn(this);
+		}
+		
+	}
+	
 	@Override
 	public boolean unlockPlayer() {
-		playerPanel.unlockPlayer();
+		interfaceController.unlock();
 		return true;
 	}
 	
 	
 	@Override
-		public boolean lockPlayer() {
-			this.playerPanel.lockPlayer();
-			return true;
-		}
-	
-	
-	public void setPlayerPanel(PlayerPanel playerPanel) {
-		this.playerPanel = playerPanel;
+	public boolean lockPlayer() {
+		//this.playerPanel.lockPlayer();
+		interfaceController.lock();
+		return true;
 	}
+	
 
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
-		humanMultipleChoiceHandler.humanMultipleChoice(choices);
+		interfaceController.multipleChoice(choices);
 		
 	}
 
 	
+	public void setInterfaceController(HumanPlayerInterfaceController i) {
+		this.interfaceController = i;
+	}
+
 
 }

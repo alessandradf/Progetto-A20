@@ -96,7 +96,7 @@ public class Game {
 			// va ancora implementata la logica dell'ultimo turno -Andrea
 			// ultimo turno, no scope
 			// visualizza i punteggi
-			finalize();
+			finalizeHand();
 			return null;
 		}
 
@@ -168,10 +168,25 @@ public class Game {
 		}
 	}
 
+	/*
+	 * Serve a controllare cosa succede quando viene giocata la carta. Restituisce null se non è possibile prendere carte
+	 */
+	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
+		return null;
+	}
+	
+	/*
+	 * Conclude il turno, togliendo le carte dal tavolo e dandole ai team
+	 */
+	public void finalizeTurn(ArrayList<Card> chosenCards) {
+		//...
+	}
+	
+	
 	/**
 	 * Permette di concludere la mano, calcolare i punteggi e resettare il tavolo
 	 */
-	public void finalize() {
+	public void finalizeHand() {
 
 		// le carte rimaste sul tavolo vanno date all'ultimo giocatore che ha fatto una
 		// presa
@@ -190,13 +205,6 @@ public class Game {
 		/*
 		 * if(max raggiunto) { return; } shuffleDeck();
 		 * 
-		 */
-
-		/*
-		 * Pezzo per il debug
-		 * 
-		 * for(Team t : teams) { System.out.println(t.getTeamName() + " " +
-		 * t.getScore()); }
 		 */
 	}
 

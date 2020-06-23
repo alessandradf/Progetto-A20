@@ -44,6 +44,7 @@ public class GameController {
 		
 		players.get(0).unlockPlayer();
 	}
+	
 	private void nextPlayer() {
 		AbstractPlayerHandler next_player;
 		next_player = players.getNext();
@@ -63,22 +64,33 @@ public class GameController {
 		} catch (MultipleChoiceException e) {
 			p.multipleChoice(e.getChoices());			
 		}			
-		//debugPlayer(p);		
 	}
 	
 	/*
-	 * Serve a controllare che la turnazione avvenga correttamente anche in presenza di giocatori gestiti dal pc
+	 * Deve controllare che cosa succede se viene giocata la carta che viene passata, e restituire le eventuali prese
+	 * null se non viene preso nulla 
 	 */
-	public void debugPlayer(AbstractPlayerHandler p) {
-		System.out.println(p.getPlayer().getPlayerName() +  " ");
-		System.out.println(p.getPlayedCard());
+	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
+		return null;
 	}
-	
-	protected void multipleChoiceperformed(AbstractPlayerHandler player) {
-		player.lockPlayer();
+	/*
+	 * Idea su come finalizzare il turno...
+	 */
+	public void endTurn(AbstractPlayerHandler p, ArrayList<Card> choiceMade) {
+		//game.endTurn(choiceMade);
+		p.lockPlayer();
 		nextPlayer();
 	}
-
+	
+	/*
+	 * finalizza il turno MA senza modificare nulla del dominio, utile quando non si prendono delle carte dal tavolo
+	 */
+	//è protetto perchè va chiamato solo dagli AbstractPlayerHandler
+	protected void endTurn(AbstractPlayerHandler player) {
+		player.lockPlayer();
+		nextPlayer();
+	}	
+	
 	/**
 	 * @return the game
 	 */

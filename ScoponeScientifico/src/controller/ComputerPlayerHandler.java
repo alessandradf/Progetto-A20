@@ -10,12 +10,10 @@ import model.SeedType;
 public class ComputerPlayerHandler extends AbstractPlayerHandler {
 	
 	private Random randomGenerator;
-	private ComputerMultipleChoiceHandler computerMultipleChoiceHandler;
 
 	public ComputerPlayerHandler(Player player, GameController controller) {
 		super(player, controller);
 		this.randomGenerator = new Random();
-		computerMultipleChoiceHandler = new MultipleChoiceHandler(controller, this);
 		
 	}
 
@@ -45,7 +43,7 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
-		computerMultipleChoiceHandler.computerMultipleChoice(choices);	
+		getController().endTurn(this, choices.get(0));
 	}
 
 	

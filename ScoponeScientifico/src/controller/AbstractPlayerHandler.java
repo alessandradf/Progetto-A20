@@ -10,6 +10,7 @@ public abstract class AbstractPlayerHandler {
 	private GameController controller;	//usato per la comunicazione della carta giocata
 	private Player player;	
 	private Card playedCard; //ultima carta giocata dal giocatore
+	private ArrayList<ArrayList<Card>> resultFromFetch;
 	
 	
 	public AbstractPlayerHandler(Player player, GameController controller) {
@@ -34,6 +35,10 @@ public abstract class AbstractPlayerHandler {
 	/**
 	 * @return playedCard l'ultima carta giocata
 	 */
+	public void cardPlayed(Card c) {
+		setPlayedCard(c);	
+	}
+	
 	public Card getPlayedCard() {
 		return playedCard;
 	}
@@ -43,8 +48,19 @@ public abstract class AbstractPlayerHandler {
 	}
 
 	/**
-	 * @return the multipleChoiceHandler
+	 * @return the resultFromFetch
 	 */
+	public ArrayList<ArrayList<Card>> getResultFromFetch() {
+		return resultFromFetch;
+	}
+
+	/**
+	 * @param resultFromFetch the resultFromFetch to set
+	 */
+	public void setResultFromFetch(ArrayList<ArrayList<Card>> resultFromFetch) {
+		this.resultFromFetch = resultFromFetch;
+	}
+
 	
 	
 }
