@@ -13,10 +13,12 @@ public class GameController {
 
 	private Game game;
 	private CircularArrayList<AbstractPlayerHandler> players;
+	private int turn;
 	
 	public GameController(CircularArrayList<AbstractPlayerHandler> players) {
 		this.game = Game.getDefaultGame();
 		this.players = players;
+		this.turn = 0;
 	}
 
 	public void init() {
@@ -53,31 +55,40 @@ public class GameController {
 	}
 
 	public void hasPlayed(AbstractPlayerHandler p) {
-
-		Card card = p.getPlayedCard();			
-		try {
+		
+		if(turn < 40) {
+			turn++;
+			Card card = p.getPlayedCard();
 			GUIController.getDefaultGUIController().updateHistory(p, card);
-			game.playRound(p.getPlayer(), card);			
-			p.lockPlayer();
-			nextPlayer();
+			ArrayList<ArrayList<Card>> choices = this.fetchCard(card);		//possibili scelte
 			
-		} catch (MultipleChoiceException e) {
-			p.multipleChoice(e.getChoices());			
-		}			
+			if(choices.size() >= 1) {
+				// con questa chiamate si va a fare una presa (obbligata o no che sia)
+				// poi sarà il listener o il PlayerHandler a chiamare endTurn con le carte prese
+				p.multipleChoice(choices);	// sarà il PlayerHandler a controllare se la scelta è effettivamente multipla p singola
+			}
+			this.endTurn(p, null);
+		}	
+		else {
+			//va aggiunta la logica dell'ultimo turno
+			// andrà chiamato un metodo del tipo finalizeHand()
+		}
 	}
 	
 	/*
-	 * Deve controllare che cosa succede se viene giocata la carta che viene passata, e restituire le eventuali prese
+	 * Deve controllare che cosa succede se viene giocata la carta che viene passata, e restituire le eventuali prese,
 	 * null se non viene preso nulla 
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
-		return null;
+		return game.fetchCard(c);
 	}
+	
+	
 	/*
-	 * Idea su come finalizzare il turno...
+	 * Pone fine al turno del giocatore corrente
 	 */
 	public void endTurn(AbstractPlayerHandler p, ArrayList<Card> choiceMade) {
-		//game.endTurn(choiceMade);
+		game.finalizeTurn(p.getPlayer(), choiceMade);
 		p.lockPlayer();
 		nextPlayer();
 	}

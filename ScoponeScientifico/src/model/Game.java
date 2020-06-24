@@ -1,13 +1,12 @@
 package model;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import exception.CardNotFoundException;
-import exception.MultipleChoiceException;
+import utility.GameProcessor;
 import utility.ScoreProcessor;
 
 /**
@@ -52,55 +51,6 @@ public class Game {
 		return defaultGame;
 	}
 
-	/**
-	 * Permette di far giocare al giocatore p la carta c, mettendola sul tavolo
-	 * 
-	 * @param p giocatore che gioca
-	 * @param c carta da giocare
-	 * @throws MultipleChoiceException
-	 */
-	public ArrayList<Card> playRound(Player p, Card c) throws MultipleChoiceException {
-		if (turn < 40) {
-			turn++;
-			try {
-				p.removeCardFromHand(c);
-			} catch (CardNotFoundException e) {
-				// TODO: handle exception
-				// in realtà non dovrebbe mai succedere
-				e.printStackTrace();
-			}
-			ArrayList<Card> result = table.putCardOnTable(c);
-			if (result != null) {
-				p.getTeam().addCards(result);
-				lastTakePlayer = p;
-				if (table.getCardsOnTable().size() == 0)
-					p.getTeam().scopa(c);
-			}
-			return result; // NB: se era disponibile solo una scelta per prendere dal tavolo allor result
-							// contiene anche la carta giocata
-		} else {
-			try {
-				p.removeCardFromHand(c);
-			} catch (CardNotFoundException e) {
-				// TODO: handle exception
-				// in realtà non dovrebbe mai succedere
-				e.printStackTrace();
-			}
-			ArrayList<Card> result = table.putCardOnTable(c);
-			if (result != null) {
-				p.getTeam().addCards(result);
-				lastTakePlayer = p;
-				if (table.getCardsOnTable().size() == 0)
-					p.getTeam().scopa(c);
-			}
-			// va ancora implementata la logica dell'ultimo turno -Andrea
-			// ultimo turno, no scope
-			// visualizza i punteggi
-			finalizeHand();
-			return null;
-		}
-
-	}
 
 	private void createDeck() {
 		deck = new HashSet<Card>();
@@ -169,17 +119,33 @@ public class Game {
 	}
 
 	/*
-	 * Serve a controllare cosa succede quando viene giocata la carta. Restituisce null se non è possibile prendere carte
+	 * Serve a controllare cosa succede quando viene giocata la carta.
+	 * 
+	 * @return ArrayList con le possibili scelte, se ce ne sono. Null altrimenti 
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
-		return null;
+		ArrayList<ArrayList<Card>> choices = GameProcessor.searchHandle(this.table.getCardsOnTable(), c);
+		
+		if(choices.size() == 0) {
+			return null;
+		}
+		
+		return choices;	
 	}
 	
+	
 	/*
-	 * Conclude il turno, togliendo le carte dal tavolo e dandole ai team
+	 * Conclude il turno, togliendo le carte dal tavolo e dandole a team
 	 */
-	public void finalizeTurn(ArrayList<Card> chosenCards) {
-		//...
+	public void finalizeTurn(Player p, ArrayList<Card> chosenCards) {
+		if(chosenCards.size() != 0) {
+			this.table.removeCardsFromTable(chosenCards);
+			p.getTeam().addCards(chosenCards);
+			
+			if(this.table.getCardsOnTable().size() == 0) {
+				// va aggiornata la scopa. Che carta passo?
+			}
+		}
 	}
 	
 	
