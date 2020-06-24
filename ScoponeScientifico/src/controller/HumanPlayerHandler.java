@@ -57,7 +57,7 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	
 	@Override
 	public boolean unlockPlayer() {
-		interfaceController.unlock();
+		interfaceController.unlock(this);
 		return true;
 	}
 	
@@ -65,14 +65,14 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	@Override
 	public boolean lockPlayer() {
 		//this.playerPanel.lockPlayer();
-		interfaceController.lock();
+		interfaceController.lock(this);
 		return true;
 	}
 	
 
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
-		interfaceController.multipleChoice(choices);
+		interfaceController.multipleChoice(this,choices);
 		
 	}
 

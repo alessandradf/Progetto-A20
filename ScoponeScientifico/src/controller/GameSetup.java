@@ -27,7 +27,7 @@ public class GameSetup {
 		gameController = new GameController(players);
 		guiController = GUIController.getDefaultGUIController();
 		createPlayers(this.humanPlayerNumber);
-		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]));
+		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);
 
 		game.getDefaultTable().addObserver(guiController);
 

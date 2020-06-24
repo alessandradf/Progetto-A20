@@ -29,7 +29,7 @@ public class GameStartSetup {
 		gameController = new GameController(players);
 		guiController = GUIController.getDefaultGUIController();
 		createPlayers(config);
-		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]));
+		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);
 
 		game.getDefaultTable().addObserver(guiController);
 
