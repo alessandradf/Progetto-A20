@@ -33,7 +33,7 @@ public class CardListener implements MouseListener{
 		if(cardLabel.isEnable() == true) {
 			cardLabel.setVisible(false);
 			playerPanel.remove(cardLabel);
-			humanPlayer.cardPlayed(cardLabel);
+			humanPlayer.cardPlayed(CardConverter.toModelCard(cardLabel));
 			
 		}
 	}

@@ -23,6 +23,7 @@ public abstract class AbstractPlayerHandler {
 	public abstract boolean unlockPlayer();	// Sblocca il panel relativo al giocatore
 	
 	public abstract void multipleChoice(ArrayList<ArrayList<Card>> choices); //Permette di gestire la presa multipla
+	
 
 	public Player getPlayer() {
 		return player;
@@ -36,7 +37,17 @@ public abstract class AbstractPlayerHandler {
 	 * @return playedCard l'ultima carta giocata
 	 */
 	public void cardPlayed(Card c) {
-		setPlayedCard(c);	
+		setPlayedCard(c);
+		setResultFromFetch(getController().fetchCard(c));
+
+		if (getResultFromFetch().size() == 0) {
+			//finisci il turno, cioè metti la carta sul tavolo
+			getController().endTurn(this);
+		}
+		if(getResultFromFetch().size() ==  1) {
+			//la presa è obbligata
+			getController().endTurn(this, getResultFromFetch().get(0));
+		}
 	}
 	
 	public Card getPlayedCard() {

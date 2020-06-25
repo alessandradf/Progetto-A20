@@ -29,10 +29,13 @@ public class Game {
 	private Player lastTakePlayer;
 	private ArrayList<Team> teams;
 	private ScoreProcessor scoreProcessor;
+	private int maxScore;
+	
 
-	private int turn;
 
 	private Game() {
+		maxScore = 20; //punteggio di default, per ora è messo a venti per non creare confusione
+		// nella versione finale bisognerà settarlo all'inizio
 		createDeck();
 		players = createPlayers();
 		shuffleDeck();
@@ -41,7 +44,6 @@ public class Game {
 		table = new Table();
 		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
 
-		turn = 1;
 	}
 
 	public static Game getDefaultGame() {
@@ -127,7 +129,7 @@ public class Game {
 		ArrayList<ArrayList<Card>> choices = GameProcessor.searchHandle(this.table.getCardsOnTable(), c);
 		
 		if(choices.size() == 0) {
-			return null;
+			return choices;
 		}
 		
 		return choices;	
@@ -148,30 +150,32 @@ public class Game {
 		}
 	}
 	
+	public void finalizeTurn(Card c) {
+		this.table.putCardOnTable(c);
+	}
 	
 	/**
 	 * Permette di concludere la mano, calcolare i punteggi e resettare il tavolo
 	 */
-	public void finalizeHand() {
-
+	public boolean finalizeHand() {
 		// le carte rimaste sul tavolo vanno date all'ultimo giocatore che ha fatto una
 		// presa
 		lastTakePlayer.getTeam().addCards(table.getCardsOnTable());
 		table.clearTable();
 		scoreProcessor.giveScore(); // calcola il punteggio
-		// setta a zero il conto turni
-		turn = 1;
+		
+		//e controlla se è stato raggiunto il punteggio massimo
+		if(getTeams().get(0).getScore() >= maxScore || getTeams().get(1).getScore() >= maxScore) {
+			return true;
+		}
 
+		//altrimenti si va avanti a giocare
 		for (Team t : teams) {
 			t.resetTeamCards();
 		}
 		shuffleDeck();
+		return false;
 
-		// andrà sostituito col pezzo qui sotto...
-		/*
-		 * if(max raggiunto) { return; } shuffleDeck();
-		 * 
-		 */
 	}
 
 	/**
@@ -202,4 +206,19 @@ public class Game {
 		return teams;
 	}
 
+	/**
+	 * @return the maxScore
+	 */
+	public int getMaxScore() {
+		return maxScore;
+	}
+
+	/**
+	 * @param maxScore the maxScore to set
+	 */
+	public void setMaxScore(int maxScore) {
+		this.maxScore = maxScore;
+	}
+
+	
 }

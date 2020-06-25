@@ -66,6 +66,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		ArrayList<CardLabel> playerCards;
 		
 		for (HumanPlayerHandler playerHandler : playerHandlers) {
+			playerHandler.setInterfaceController(this);
 			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
 			playerPanel = new PlayerPanel(playerCards);
 			playerPanels.put(playerHandler, playerPanel);
