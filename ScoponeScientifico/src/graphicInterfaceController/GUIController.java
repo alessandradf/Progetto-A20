@@ -172,14 +172,14 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	// presa nessuna carta dal giocatore
 	public void updateHistory(AbstractPlayerHandler playerHandler, Card cardPlayed) {
 
-		historyFrame.setHistory("<html><br>" + playerHandler.getPlayer().getPlayerName() + " ha giocato la carta: "
+		historyFrame.writeOnOutput("<html><br>" + playerHandler.getPlayer().getPlayerName() + " ha giocato la carta: "
 				+ cardPlayed.toString());
 	}
 
 	// overload del metodo precedente nel caso in cui siano state prese delle carte
 	public void updateHistory(ArrayList<Card> cardsTaken) {
 
-		historyFrame.setHistory("<html><br>" 
+		historyFrame.writeOnOutput("<html><br>" 
 				+ " sono state prese le seguenti carte: " + cardsTaken.toString());
 	}
 
@@ -188,7 +188,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		if(newScopa == false)
 		{
 		lastScopa = cardPlayed;
-		historyFrame.setHistory("<html><br>" + 
+		historyFrame.writeOnOutput("<html><br>" + 
 				 " nuova scopa con la carta: " + cardPlayed.toString());
 		newScopa = true;
 		}

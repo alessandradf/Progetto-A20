@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
-public class HistoryFrame extends JFrame {
+public class HistoryFrame extends JFrame implements OutputInterface {
 	private JLabel historyLabel;
 	private JScrollPane scrollPane;
 	private String historyText; // stringa contenente tutto il testo della cronologia
@@ -27,18 +27,21 @@ public class HistoryFrame extends JFrame {
 
 	}
 
-	public void setHistory(String newLine) {
+
+	@Override
+	public void writeOnOutput(String update) {
+		// TODO Auto-generated method stub
 		if (historyText == null) {
-			historyText = newLine;
+			historyText = update;
 		} else {
-			historyText += newLine;
+			historyText += update;
 		}
 		historyLabel.setText(historyText);
 		historyLabel.repaint();
 		historyLabel.validate();
 		this.repaint();
 		this.validate();
-
+		
 	}
 
 }
