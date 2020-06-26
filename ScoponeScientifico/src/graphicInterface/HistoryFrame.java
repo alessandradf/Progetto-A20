@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
+import utility.OutputInterface;
+
 public class HistoryFrame extends JFrame implements OutputInterface {
 	private JLabel historyLabel;
 	private JScrollPane scrollPane;

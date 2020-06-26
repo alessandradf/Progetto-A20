@@ -8,6 +8,7 @@ import controller.GameController;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
 import model.Card;
+import utility.CardConverter;
 import utility.TableObserver;
 
 public class TUIController implements TableObserver, HumanPlayerInterfaceController{
@@ -37,6 +38,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	public void init(HumanPlayerHandler[] playerHandlers, GameController gameController) {
 		this.gameController = gameController;
 		
+		scanner = new Scanner(System.in);
 		newScopa = false;
 		
 		System.out.println("Table" + "\n");
@@ -79,13 +81,27 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	@Override
 	public void lock(HumanPlayerHandler humanPlayerHandler) {
 		// TODO Auto-generated method stub
-		scanner.close();
+	
 	}
 
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
 		// TODO Auto-generated method stub
-		scanner = new Scanner(System.in);
+		System.out.println("\n Carte sul tavolo: " + table);
+		System.out.println("\n Turno di: " + humanPlayerHandler.getPlayer()+ ", scegli la carta che vuoi giocare!");
+		humanPlayerHandler.cardPlayed(CardConverter.toModelCard(scanner.next()));
 	}
+	
+	//test scanner + conversione da stringa a carta
+/*	public static void main(String[] args) {
+		Scanner scanner; 
+		scanner = new Scanner(System.in);
+		System.out.println(CardConverter.toModelCard(scanner.nextLine()));
+		System.out.println("Scrivi ancora");
+		System.out.println(CardConverter.toModelCard(scanner.nextLine()));
+		scanner.close();
+		
+		
+	}*/
 
 }
