@@ -1,7 +1,10 @@
 package utility;
 
+import java.util.StringTokenizer;
+
 import CardTest.CardLabel;
 import model.Card;
+import model.SeedType;
 import CardTest.CardLabel;
 //import graphicInterface.InterfaceCard?
 
@@ -27,5 +30,11 @@ public class CardConverter {
 	
 	public static Card toModelCard(CardLabel ic) {
 		return new Card(ic.getValue(), ic.getSeed());
+	}
+	
+	public static Card toModelCard(String CardString) {
+		StringTokenizer tokenizer = new StringTokenizer(CardString);
+		return new Card(Integer.parseInt(tokenizer.nextToken()), SeedType.valueOf(tokenizer.nextToken())); 
+		
 	}
 }

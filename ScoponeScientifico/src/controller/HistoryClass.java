@@ -2,8 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
-import graphicInterface.OutputInterface;
 import model.Card;
+import utility.OutputInterface;
 
 public class HistoryClass {
 	private OutputInterface output;
