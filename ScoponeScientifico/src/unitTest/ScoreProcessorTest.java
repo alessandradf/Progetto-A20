@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.Card;
@@ -16,11 +17,13 @@ import utility.ScoreProcessor;
 class ScoreProcessorTest {
 
 	private static Team t1, t2;
+	private static ScoreProcessor s;
 	
-	@BeforeAll
-	static void setUp() {
+	@BeforeEach
+	public void setUp() {
 		t1 = new Team("teamUno");
 		t2 = new Team("teamDue");
+		s = new ScoreProcessor(t1, t2);
 	}
 
 	/**
@@ -32,7 +35,6 @@ class ScoreProcessorTest {
 		deck = createCompleteDeck();
 		Collections.sort(deck);
 		t1.addCards(deck);
-		ScoreProcessor s = new ScoreProcessor(t1, t2);
 		s.giveScore();
 		int result1 = t1.getScore();
 		int result2 = t2.getScore();
@@ -58,7 +60,6 @@ class ScoreProcessorTest {
 		t2.addCards(onlyFioriDeck);
 		t2.addCards(onlyPiccheDeck);
 
-		ScoreProcessor s = new ScoreProcessor(t1, t2);
 		s.giveScore();
 		int result1 = t1.getScore();
 		int result2 = t2.getScore();
@@ -68,6 +69,75 @@ class ScoreProcessorTest {
 
 	}
 
+	
+	/*
+	 * test in cui un team ha prese tutte le carte di denari
+	 */
+	@Test
+	void soloDenariTest() throws Exception {
+		
+		ArrayList<Card> deck = createCompleteDeck();
+		ArrayList<Card> cards1 = new ArrayList<Card>();
+		ArrayList<Card> cards2 = new ArrayList<Card>();
+		
+		for (Card c : deck) {
+			if(c.getSeed() == SeedType.DENARI) {
+				cards1.add(c);
+			}
+			else {
+				cards2.add(c);
+			}
+		}
+		
+		t1.addCards(cards1);
+		t2.addCards(cards2);
+
+		s.giveScore();
+		
+		int res1 = t1.getScore();
+		int res2 = t2.getScore();
+		
+		//nessuna primiera
+		assertEquals(res1,  2);		//denari e settebello
+		assertEquals(res2, 1);		//carte
+		
+	}
+	
+	
+	/*
+	 * il team1 ha preso tutti e soli i 7 del mazzo
+	 */
+	@Test
+	void tuttiSette() throws Exception {
+		
+		ArrayList<Card> deck = createCompleteDeck();
+		ArrayList<Card> cards1 = new ArrayList<Card>();
+		ArrayList<Card> cards2 = new ArrayList<Card>();
+		
+		for (Card c : deck) {
+			if(c.getValue() == 7) {
+				cards1.add(c);
+			}
+			else {
+				cards2.add(c);
+			}
+		}
+		
+		t1.addCards(cards1);
+		t2.addCards(cards2);
+		
+		s.giveScore();
+		
+		int res1 = t1.getScore();
+		int res2 = t2.getScore();
+		
+		assertEquals(res1, 2);		//settebello e primiera
+		assertEquals(res2, 2);		//denari e carte
+		
+	}
+	
+	
+	
 	private ArrayList<Card> createCompleteDeck() {
 		ArrayList<Card> deck = new ArrayList<Card>();
 		SeedType seeds[] = SeedType.values();
