@@ -2,10 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
-import CardTest.CardLabel;
 import model.Card;
 import model.Player;
-import utility.CardConverter;
 
 public class HumanPlayerHandler extends AbstractPlayerHandler {
 

@@ -1,5 +1,7 @@
 package utility;
 
 public interface OutputInterface {
-public void writeOnOutput(String update); //metodo che permette di scrivere sull'output l'aggiornamento della cronologia
+	
+	// metodo che permette di scrivere sull'output l'aggiornamento della cronologia
+	public void writeOnOutput(String update); 
 }

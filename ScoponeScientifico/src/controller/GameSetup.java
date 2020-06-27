@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 import graphicInterfaceController.GUIController;
 import model.Game;
-import model.Player;
-import model.Team;
 import utility.CircularArrayList;
 
+@Deprecated
 public class GameSetup {
 
 	private static GameSetup defaultGameSetup = null;

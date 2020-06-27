@@ -2,8 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-import exception.MultipleChoiceException;
-import graphicInterfaceController.GUIController;
+
 import model.Card;
 import model.Game;
 import model.Team;
@@ -86,6 +85,7 @@ public class GameController {
 		game.finalizeTurn(p.getPlayer(), choiceMade);
 		p.lockPlayer();
 		nextPlayer();
+		checkLastTurn();
 	}
 
 	/*
@@ -97,8 +97,15 @@ public class GameController {
 		game.finalizeTurn(player.getPlayedCard());
 		player.lockPlayer();
 		nextPlayer();
+		checkLastTurn();
 	}
 
+	private void checkLastTurn() {
+		if(turn == 40) {
+			finalizeHand();
+		}
+	}
+	
 	private void finalizeHand() {
 		boolean isFinished = game.finalizeHand();
 		if(isFinished) {
