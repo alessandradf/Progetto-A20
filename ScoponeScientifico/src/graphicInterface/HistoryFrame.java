@@ -38,12 +38,13 @@ public class HistoryFrame extends JFrame implements OutputInterface {
 		} else {
 			historyText += update;
 		}
-		historyLabel.setText(historyText);
+		historyLabel.setText("<html><br>" +historyText);
 		historyLabel.repaint();
 		historyLabel.validate();
 		this.repaint();
 		this.validate();
 		
 	}
+
 
 }

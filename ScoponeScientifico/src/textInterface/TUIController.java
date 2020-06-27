@@ -1,4 +1,4 @@
-package graphicInterfaceController;
+package textInterface;
 
 import java.util.ArrayList;
 import java.util.List;
