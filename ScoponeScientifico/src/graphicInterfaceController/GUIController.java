@@ -32,8 +32,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
-	private boolean newScopa;
-	private Card lastScopa = null;
+	
 	private JFrame tableFrame; // frame per visualizzare il tavolo durante la scelta delle carte
 
 	// hashmap che associa playerpanel al rispettivo playerhandler
@@ -58,7 +57,6 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	public void init(HumanPlayerHandler[] playerHandlers, GameController gameController) {
 		this.gameController = gameController;
 
-		newScopa = false;
 
 		int i = 0;
 		historyFrame = new HistoryFrame();
@@ -142,7 +140,6 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			totalFrame.validate();
 			i++;
 		}
-		this.updateHistory((ArrayList) removedCards);
 
 	}
 
@@ -165,32 +162,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	 * }
 	 */
 
-	// metodo per aggiornare la cronologia di gioco nel caso in cui non sia stata
-	// presa nessuna carta dal giocatore
-	public void updateHistory(AbstractPlayerHandler playerHandler, Card cardPlayed) {
 
-		historyFrame.writeOnOutput("<html><br>" + playerHandler.getPlayer().getPlayerName() + " ha giocato la carta: "
-				+ cardPlayed.toString());
-	}
-
-	// overload del metodo precedente nel caso in cui siano state prese delle carte
-	public void updateHistory(ArrayList<Card> cardsTaken) {
-
-		historyFrame.writeOnOutput("<html><br>" + " sono state prese le seguenti carte: " + cardsTaken.toString());
-	}
-
-	// aggiornamento della cronologia nel caso in cui venga fatta una scopa
-	public void updateHistoryScopa(Card cardPlayed) {
-		if (newScopa == false) {
-			lastScopa = cardPlayed;
-			historyFrame.writeOnOutput("<html><br>" + " nuova scopa con la carta: " + cardPlayed.toString());
-			newScopa = true;
-		}
-		if (newScopa == true && lastScopa != cardPlayed) {
-			newScopa = false;
-		}
-
-	}
 
 	public ArrayList<TeamPanel> getTeam1Panels() {
 		return team1Panels;

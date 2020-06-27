@@ -16,16 +16,16 @@ public class History {
 	}
 
 	public void updateHistory(AbstractPlayerHandler playerHandler, Card cardPlayed) {
-		output.writeOnOutput("<html><br>" + playerHandler.getPlayer().getPlayerName() + " ha giocato la carta: "
-				+ cardPlayed.toString());
+		output.writeOnOutput(
+				playerHandler.getPlayer().getPlayerName() + "\n ha giocato la carta: " + cardPlayed.toString());
 	}
 
 	public void updateHistory(ArrayList<Card> cardsTaken) {
-		output.writeOnOutput("<html><br>" + " sono state prese le seguenti carte: " + cardsTaken.toString());
+		output.writeOnOutput("\n sono state prese le seguenti carte: " + cardsTaken.toString());
 	}
 
 	public void updateHistoryScopa(Card cardPlayed) {
-		output.writeOnOutput("<html><br>" + " nuova scopa con la carta: " + cardPlayed.toString());
+		output.writeOnOutput("\n nuova scopa con la carta: " + cardPlayed.toString());
 	}
 
 }
