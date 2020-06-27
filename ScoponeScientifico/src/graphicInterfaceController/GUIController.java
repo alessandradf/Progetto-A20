@@ -26,7 +26,7 @@ import model.Card;
 import utility.CardConverter;
 import utility.TableObserver;
 
-public class GUIController implements TableObserver, HumanPlayerInterfaceController{
+public class GUIController implements TableObserver, HumanPlayerInterfaceController {
 	private GameController gameController;
 	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
@@ -34,9 +34,10 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
 	private boolean newScopa;
 	private Card lastScopa = null;
-	private JFrame tableFrame; //frame per visualizzare il tavolo durante la scelta delle carte 
-	
-	private HashMap<HumanPlayerHandler, PlayerPanel> playerPanels = new HashMap<HumanPlayerHandler, PlayerPanel>(); //hashmap che associa playerpanel al rispettivo playerhandler
+	private JFrame tableFrame; // frame per visualizzare il tavolo durante la scelta delle carte
+
+	// hashmap che associa playerpanel al rispettivo playerhandler
+	private HashMap<HumanPlayerHandler, PlayerPanel> playerPanels = new HashMap<HumanPlayerHandler, PlayerPanel>();
 
 	private HistoryFrame historyFrame;
 
@@ -56,15 +57,15 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	public void init(HumanPlayerHandler[] playerHandlers, GameController gameController) {
 		this.gameController = gameController;
-		
+
 		newScopa = false;
-		
+
 		int i = 0;
 		historyFrame = new HistoryFrame();
 		TotalFrame totalFrame;
 		PlayerPanel playerPanel;
 		ArrayList<CardLabel> playerCards;
-		
+
 		for (HumanPlayerHandler playerHandler : playerHandlers) {
 			playerHandler.setInterfaceController(this);
 			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
@@ -75,9 +76,9 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel));
 
 			}
-		//	String playerNameAndTeam = playerHandler.getPlayer().getPlayerName() +"--"+ playerHandler.getPlayer().getTeam().getTeamName();
-			
-			
+			// String playerNameAndTeam = playerHandler.getPlayer().getPlayerName() +"--"+
+			// playerHandler.getPlayer().getTeam().getTeamName();
+
 			tablePanel.add(new TablePanel());
 			team1Panels.add(new TeamPanel(1));
 			team2Panels.add(new TeamPanel(2));
@@ -89,10 +90,9 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		tablePanel.add(new TablePanel());
-	//	i++;
-	//	howManyTablePanels = i;
+		// i++;
+		// howManyTablePanels = i;
 		playerView.get(0).unlockPlayer();
-		
 
 	}
 
@@ -116,10 +116,10 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			tablePanel.putCardOnTable(CardConverter.toCardLabel(c));
 			tablePanel.repaint();
 			tablePanel.validate();
-			
+
 		}
 		for (TotalFrame totalFrame : playerView) {
-			
+
 			totalFrame.repaint();
 			totalFrame.validate();
 			i++;
@@ -134,39 +134,36 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			tablePanel.removeCardsFromTable(cardsConverter(removedCards));
 			tablePanel.repaint();
 			tablePanel.validate();
-			
+
 		}
 		for (TotalFrame totalFrame : playerView) {
-			
+
 			totalFrame.repaint();
 			totalFrame.validate();
 			i++;
 		}
-		this.updateHistory((ArrayList)removedCards);
+		this.updateHistory((ArrayList) removedCards);
 
 	}
 
-/*	public void chooseOptions(ArrayList<ArrayList<Card>> optionCard, ChoiceReceiver choiceReceiver) {
-
-		OptionsPopUp op = new OptionsPopUp(optionCard);
-		tableFrame = new JFrame();
-		tableFrame.setSize(700, 400);
-		tableFrame.add(tablePanel.get(tablePanel.size()-1));
-		tableFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		tableFrame.setResizable(false);
-		tableFrame.setVisible(true);
-		op.getOkButton().addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				choiceReceiver.choiceMade((ArrayList<Card>) op.getComboBox().getSelectedItem());
-				tableFrame.dispose();
-				op.dispose();
-			}
-		});
-
-	}*/
+	/*
+	 * public void chooseOptions(ArrayList<ArrayList<Card>> optionCard,
+	 * ChoiceReceiver choiceReceiver) {
+	 * 
+	 * OptionsPopUp op = new OptionsPopUp(optionCard); tableFrame = new JFrame();
+	 * tableFrame.setSize(700, 400);
+	 * tableFrame.add(tablePanel.get(tablePanel.size()-1));
+	 * tableFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	 * tableFrame.setResizable(false); tableFrame.setVisible(true);
+	 * op.getOkButton().addActionListener(new ActionListener() {
+	 * 
+	 * @Override public void actionPerformed(ActionEvent e) { // TODO Auto-generated
+	 * method stub choiceReceiver.choiceMade((ArrayList<Card>)
+	 * op.getComboBox().getSelectedItem()); tableFrame.dispose(); op.dispose(); }
+	 * });
+	 * 
+	 * }
+	 */
 
 	// metodo per aggiornare la cronologia di gioco nel caso in cui non sia stata
 	// presa nessuna carta dal giocatore
@@ -179,23 +176,20 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	// overload del metodo precedente nel caso in cui siano state prese delle carte
 	public void updateHistory(ArrayList<Card> cardsTaken) {
 
-		historyFrame.writeOnOutput("<html><br>" 
-				+ " sono state prese le seguenti carte: " + cardsTaken.toString());
+		historyFrame.writeOnOutput("<html><br>" + " sono state prese le seguenti carte: " + cardsTaken.toString());
 	}
 
 	// aggiornamento della cronologia nel caso in cui venga fatta una scopa
 	public void updateHistoryScopa(Card cardPlayed) {
-		if(newScopa == false)
-		{
-		lastScopa = cardPlayed;
-		historyFrame.writeOnOutput("<html><br>" + 
-				 " nuova scopa con la carta: " + cardPlayed.toString());
-		newScopa = true;
+		if (newScopa == false) {
+			lastScopa = cardPlayed;
+			historyFrame.writeOnOutput("<html><br>" + " nuova scopa con la carta: " + cardPlayed.toString());
+			newScopa = true;
 		}
-		if(newScopa == true && lastScopa != cardPlayed) {
+		if (newScopa == true && lastScopa != cardPlayed) {
 			newScopa = false;
 		}
-		
+
 	}
 
 	public ArrayList<TeamPanel> getTeam1Panels() {
@@ -212,7 +206,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		OptionsPopUp op = new OptionsPopUp(choices);
 		tableFrame = new JFrame();
 		tableFrame.setSize(700, 400);
-		tableFrame.add(tablePanel.get(tablePanel.size()-1));
+		tableFrame.add(tablePanel.get(tablePanel.size() - 1));
 		tableFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		tableFrame.setResizable(false);
 		tableFrame.setVisible(true);
@@ -220,8 +214,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				gameController.endTurn(humanPlayerHandler,(ArrayList<Card>) op.getComboBox().getSelectedItem());
+				gameController.endTurn(humanPlayerHandler, (ArrayList<Card>) op.getComboBox().getSelectedItem());
 				tableFrame.dispose();
 				op.dispose();
 			}
@@ -230,16 +223,13 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	@Override
 	public void lock(HumanPlayerHandler humanPlayerHandler) {
-		// TODO Auto-generated method stub
 		playerPanels.get(humanPlayerHandler).lockPlayer();
-		
+
 	}
 
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
-		// TODO Auto-generated method stub
 		playerPanels.get(humanPlayerHandler).unlockPlayer();
 	}
-
 
 }

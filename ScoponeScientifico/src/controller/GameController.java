@@ -2,8 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-import exception.MultipleChoiceException;
-import graphicInterfaceController.GUIController;
+
 import model.Card;
 import model.Game;
 import model.Team;
@@ -14,14 +13,29 @@ public class GameController {
 
 	private Game game;
 	private CircularArrayList<AbstractPlayerHandler> players;
+	private History history;
 	private int turn;
 
+	/**
+	 * Crea una partita, dati i giocatori
+	 * @param players gli AbstractPlayerHandler che giocano la partita
+	 */
 	public GameController(CircularArrayList<AbstractPlayerHandler> players) {
 		this.game = Game.getDefaultGame();
 		this.players = players;
 		this.turn = 0;
 	}
 
+	/**
+	 * Consente di settare il punteggio massimo
+	 * @param players gli AbstractPlayerHandler che giocano la partita
+	 * @param maxScore il punteggio massimo a cui si arriva
+	 */
+	public GameController(CircularArrayList<AbstractPlayerHandler> players, int maxScore) {
+		this(players);
+		game.setMaxScore(maxScore);
+	}
+	
 	public void init() {
 		ArrayList<Team> teams = game.getTeams();
 		for (AbstractPlayerHandler p : players) {
@@ -55,17 +69,6 @@ public class GameController {
 
 	}
 
-	// non serve più, tanto vale chiamare direttamente fetchCard
-	//lo rimuoviamo quando siamo sicuri di non averne più bisogno
-	@Deprecated
-	public ArrayList<ArrayList<Card>> hasPlayed(AbstractPlayerHandler p) {
-		turn++;
-		Card card = p.getPlayedCard();
-		GUIController.getDefaultGUIController().updateHistory(p, card);
-		ArrayList<ArrayList<Card>> choices = this.fetchCard(card); // possibili scelte
-		return choices;
-	}
-
 	/*
 	 * Deve controllare che cosa succede se viene giocata la carta che viene
 	 * passata, e restituire le eventuali prese, null se non viene preso nulla
@@ -82,6 +85,7 @@ public class GameController {
 		game.finalizeTurn(p.getPlayer(), choiceMade);
 		p.lockPlayer();
 		nextPlayer();
+		checkLastTurn();
 	}
 
 	/*
@@ -93,10 +97,20 @@ public class GameController {
 		game.finalizeTurn(player.getPlayedCard());
 		player.lockPlayer();
 		nextPlayer();
+		checkLastTurn();
 	}
 
+	private void checkLastTurn() {
+		if(turn == 40) {
+			finalizeHand();
+		}
+	}
+	
 	private void finalizeHand() {
 		boolean isFinished = game.finalizeHand();
+		if(isFinished) {
+			// fa qualcosa per fare terminare il gioco
+		}
 	}
 	
 	/**
@@ -113,4 +127,19 @@ public class GameController {
 		return players;
 	}
 
+	/**
+	 * @return the history
+	 */
+	public History getHistory() {
+		return history;
+	}
+
+	/**
+	 * @param history the history to set
+	 */
+	public void setHistory(History history) {
+		this.history = history;
+	}
+
+	
 }

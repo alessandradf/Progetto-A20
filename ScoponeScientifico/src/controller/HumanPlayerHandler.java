@@ -2,13 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
-import CardTest.CardLabel;
-import graphicInterface.PlayerPanel;
 import model.Card;
 import model.Player;
-import utility.CardConverter;
 
 public class HumanPlayerHandler extends AbstractPlayerHandler {
 
@@ -26,14 +21,6 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	public HumanPlayerHandler(Player player, GameController controller, HumanPlayerInterfaceController i) {
 		this(player, controller);
 		this.interfaceController = i;
-	}
-
-	@Deprecated
-	// va cancellato quando siamo sicuri che non serve più ad un accidenti
-	public void cardPlayed(CardLabel cardLabel) {
-		Card playedCard = CardConverter.toModelCard(cardLabel);
-		setPlayedCard(playedCard);
-		getController().hasPlayed(this);
 	}
 
 	public void cardPlayed(Card c) {

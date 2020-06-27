@@ -26,10 +26,12 @@ public class Game {
 	private Table table;
 	private Set<Card> deck;
 	private ArrayList<Player> players;
-	private Player lastTakePlayer;
 	private ArrayList<Team> teams;
 	private ScoreProcessor scoreProcessor;
 	private int maxScore;
+	
+	private Player lastTakePlayer;
+	private Card lastCardPlayed;
 	
 
 
@@ -123,9 +125,11 @@ public class Game {
 	/*
 	 * Serve a controllare cosa succede quando viene giocata la carta.
 	 * 
-	 * @return ArrayList con le possibili scelte, se ce ne sono. Null altrimenti 
+	 * @return ArrayList con le possibili scelte, se ce ne sono.
+	 * Se non ci sono scelte, si ritorna un Arraylist vuoto 
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
+		lastCardPlayed = c;
 		ArrayList<ArrayList<Card>> choices = GameProcessor.searchHandle(this.table.getCardsOnTable(), c);
 		
 		if(choices.size() == 0) {
@@ -143,9 +147,10 @@ public class Game {
 		if(chosenCards.size() != 0) {
 			this.table.removeCardsFromTable(chosenCards);
 			p.getTeam().addCards(chosenCards);
-			
+			lastTakePlayer = p;
 			if(this.table.getCardsOnTable().size() == 0) {
 				// va aggiornata la scopa. Che carta passo?
+				p.getTeam().scopa(lastCardPlayed);
 			}
 		}
 	}
