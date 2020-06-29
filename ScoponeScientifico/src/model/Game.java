@@ -149,7 +149,6 @@ public class Game {
 			p.getTeam().addCards(chosenCards);
 			lastTakePlayer = p;
 			if(this.table.getCardsOnTable().size() == 0) {
-				// va aggiornata la scopa. Che carta passo?
 				p.getTeam().scopa(lastCardPlayed);
 			}
 		}

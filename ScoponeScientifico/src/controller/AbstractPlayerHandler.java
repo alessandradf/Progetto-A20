@@ -12,9 +12,6 @@ public abstract class AbstractPlayerHandler {
 	private Card playedCard; //ultima carta giocata dal giocatore
 	private ArrayList<ArrayList<Card>> resultFromFetch;
 	
-	private History history; //TODO metterla effettivamente
-	
-	
 	public AbstractPlayerHandler(Player player, GameController controller) {
 		this.player = player;
 		this.controller = controller;

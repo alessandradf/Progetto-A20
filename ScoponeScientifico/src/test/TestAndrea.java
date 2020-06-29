@@ -16,9 +16,6 @@ public class TestAndrea {
 	
 	//SERVE A ME PER PASTICCIARE, NON TOCCATE STA CLASSE
 	public static void main(String[] args) {
-		Card c = new Card(2, SeedType.CUORI);
-		CardLabel c1 = CardConverter.toCardLabel(c);
-		System.out.println(c1.getSeed() + " " +  c1.getValue());
 	}
 
 	/**
