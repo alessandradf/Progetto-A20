@@ -9,6 +9,8 @@ import model.Game;
 import model.Player;
 import model.Team;
 import utility.CircularArrayList;
+import utility.TableObserver;
+import utility.TeamObserver;
 
 public class GameStartSetup {
 
@@ -29,19 +31,29 @@ public class GameStartSetup {
 		gameController = new GameController(players);
 		guiController = GUIController.getDefaultGUIController();
 		createPlayers(config);
-		guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);
+	//	guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);
 
-		game.getDefaultTable().addObserver(guiController);
+	/*	game.getDefaultTable().addObserver(guiController);
 
 		for (int i = 0; i < human_players_number; i++) {
 			//nota: bisogna mettere human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non sono veramente 4
 			game.getTeams().get(0).addTeamObserver(guiController.getTeam1Panels().get(i));
 			game.getTeams().get(1).addTeamObserver(guiController.getTeam2Panels().get(i));
-		}
+		}*/
 
-		gameController.init();
+		//gameController.init();
 	}
+	
+	public void addObservers(TableObserver tableObserver, ArrayList<TeamObserver> team1Observers, ArrayList<TeamObserver> team2Observers) {
+		game.getDefaultTable().addObserver(guiController);
 
+		for (int i = 0; i < humanPlayerNumber; i++) {
+			//nota: bisogna mettere human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non sono veramente 4
+			game.getTeams().get(0).addTeamObserver(team1Observers.get(i));
+			game.getTeams().get(1).addTeamObserver(team2Observers.get(i));
+		}
+	}
+	
 	public static GameStartSetup getDefaultGameSetup(String[] config, int human_players_number) {
 		if (defaultGameSetup == null)
 			defaultGameSetup = new GameStartSetup(config, human_players_number);
@@ -62,8 +74,16 @@ public class GameStartSetup {
 		}
 	}
 
+	public GameController getGameController() {
+		return gameController;
+	}
+
+	public ArrayList<HumanPlayerHandler> getHumanPlayers() {
+		return humanPlayers;
+	}
+
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -74,5 +94,5 @@ public class GameStartSetup {
 				}
 			}
 		});
-	}
+	}*/
 }

@@ -1,6 +1,7 @@
 package graphicInterfaceController;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -51,10 +52,24 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	}
 
 	private GUIController() {
-
+		
+	}
+	
+	public void startGame() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StartFrame frame = new StartFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
 
-	public void init(HumanPlayerHandler[] playerHandlers, GameController gameController) {
+	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
 
 
@@ -175,6 +190,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	@Override
 	public void multipleChoice(HumanPlayerHandler humanPlayerHandler, ArrayList<ArrayList<Card>> choices) {
 		// TODO Auto-generated method stub
+		lock(humanPlayerHandler);
 		OptionsPopUp op = new OptionsPopUp(choices);
 		tableFrame = new JFrame();
 		tableFrame.setSize(700, 400);
@@ -202,6 +218,10 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
 		playerPanels.get(humanPlayerHandler).unlockPlayer();
+	}
+	
+	public static void main(String[] args) {
+		GUIController.getDefaultGUIController().startGame();
 	}
 
 }
