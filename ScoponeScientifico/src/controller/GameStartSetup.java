@@ -18,7 +18,6 @@ public class GameStartSetup {
 
 	private Game game;
 	private GameController gameController;
-	private GUIController guiController;
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private ArrayList<HumanPlayerHandler> humanPlayers;
 	private int humanPlayerNumber;
@@ -29,7 +28,6 @@ public class GameStartSetup {
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		game = Game.getDefaultGame();
 		gameController = new GameController(players);
-		guiController = GUIController.getDefaultGUIController();
 		createPlayers(config);
 	//	guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);
 
@@ -45,7 +43,7 @@ public class GameStartSetup {
 	}
 	
 	public void addObservers(TableObserver tableObserver, ArrayList<TeamObserver> team1Observers, ArrayList<TeamObserver> team2Observers) {
-		game.getDefaultTable().addObserver(guiController);
+		game.getDefaultTable().addObserver(tableObserver);
 
 		for (int i = 0; i < humanPlayerNumber; i++) {
 			//nota: bisogna mettere human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non sono veramente 4

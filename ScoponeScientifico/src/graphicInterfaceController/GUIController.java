@@ -15,6 +15,7 @@ import controller.AbstractPlayerHandler;
 import controller.GameController;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
+import controller.InterfaceTurnFinalizer;
 import graphicInterface.CardListener;
 import graphicInterface.HistoryFrame;
 import graphicInterface.OptionsPopUp;
@@ -24,15 +25,17 @@ import graphicInterface.TablePanel;
 import graphicInterface.TeamPanel;
 import graphicInterface.TotalFrame;
 import model.Card;
+import model.Team;
 import utility.CardConverter;
 import utility.TableObserver;
 
-public class GUIController implements TableObserver, HumanPlayerInterfaceController {
+public class GUIController implements TableObserver, HumanPlayerInterfaceController, InterfaceTurnFinalizer {
 	private GameController gameController;
 	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
+	private ArrayList<HumanPlayerHandler> players = new ArrayList<HumanPlayerHandler>();
 	
 	private JFrame tableFrame; // frame per visualizzare il tavolo durante la scelta delle carte
 
@@ -83,6 +86,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			playerHandler.setInterfaceController(this);
 			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
 			playerPanel = new PlayerPanel(playerCards);
+			players.add(playerHandler);
 			playerPanels.put(playerHandler, playerPanel);
 			for (CardLabel cardLabel : playerCards) {
 
@@ -218,6 +222,30 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
 		playerPanels.get(humanPlayerHandler).unlockPlayer();
+	}
+
+	@Override
+	public void newHand() {
+		// TODO Auto-generated method stub
+		ArrayList<CardLabel> playerCards = new ArrayList<CardLabel>();
+		for (HumanPlayerHandler humanPlayerHandler : players) {
+			playerCards = cardsConverter(humanPlayerHandler.getPlayer().getHand());
+			playerPanels.get(humanPlayerHandler).setCards(playerCards);
+			
+		}
+		for (TotalFrame totalFrame : playerView) {
+			
+			totalFrame.repaint();
+			totalFrame.validate();
+			
+		}
+	}
+
+	@Override
+	public void gameFinished(Team winnerTeam) {
+		// TODO Auto-generated method stub
+		//facciamo un frame dove diciamo il team vincitore?
+		
 	}
 	
 	public static void main(String[] args) {
