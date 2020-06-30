@@ -120,7 +120,7 @@ public class GameController {
 	 */
 	// è protetto perchè va chiamato solo dagli AbstractPlayerHandler
 	protected void endTurn(AbstractPlayerHandler player) {
-		game.finalizeTurn(player.getPlayedCard());
+		game.finalizeTurn(player.getPlayer(), player.getPlayedCard());
 		player.lockPlayer();
 		nextPlayer();
 		checkLastTurn();
