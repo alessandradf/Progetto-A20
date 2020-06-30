@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import model.Card;
 import model.Game;
+import model.Player;
 import model.Team;
 import utility.CircularArrayList;
 
@@ -24,6 +25,7 @@ public class GameController {
 		this.game = Game.getDefaultGame();
 		this.players = players;
 		this.turn = 0;
+		this.history = new History();
 	}
 
 	/**
@@ -60,13 +62,34 @@ public class GameController {
 		players.get(3).getPlayer().setTeam(teams.get(1));
 
 		players.get(0).unlockPlayer();
+		
+		initHistoryObserver();
+		
+	}
+	
+	/*
+	 * Aggiunge la History come observer a Table, Team e ai Player
+	 */
+	private void initHistoryObserver() {
+		
+		for (Team t : this.game.getTeams()) {
+			t.addTeamObserver(this.history);
+		}
+		
+		this.game.getDefaultTable().addObserver(this.history);
+		
+		for (Player p : this.game.getPlayers()) {
+			p.addObserver(this.history);
+		}
 	}
 
+	
+	
 	private void nextPlayer() {
 		AbstractPlayerHandler next_player;
 		next_player = players.getNext();
 		next_player.unlockPlayer();
-
+		
 	}
 
 	/*
@@ -134,12 +157,4 @@ public class GameController {
 		return history;
 	}
 
-	/**
-	 * @param history the history to set
-	 */
-	public void setHistory(History history) {
-		this.history = history;
-	}
-
-	
 }
