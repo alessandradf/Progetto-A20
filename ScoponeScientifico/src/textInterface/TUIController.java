@@ -2,6 +2,7 @@ package textInterface;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,8 +25,11 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	private Card lastScopa = null;
 	private ArrayList<String> table = new ArrayList<String>();
 	private ArrayList<String> player = new ArrayList<String>();
-	private ArrayList<ArrayList<String>> playerCards = new ArrayList<ArrayList<String>>(); //un arraylist di carte per ogni player
+//	private ArrayList<ArrayList<String>> playerCards = new ArrayList<ArrayList<String>>(); //un arraylist di carte per ogni player
 	private Scanner scanner;
+	private HashMap<HumanPlayerHandler, ArrayList<String>> playerCards= new HashMap<HumanPlayerHandler, ArrayList<String>>();
+	private ArrayList<HumanPlayerHandler> playerHandlers = new ArrayList<HumanPlayerHandler>();
+	private boolean isFirstUnlock;
 	
 	private static TUIController defaultTuiController = null;
 	
@@ -47,10 +51,29 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer);
 		TUIController.getDefaultTUIController().init(g.getHumanPlayers(), g.getGameController());
 		g.getGameController().init();
+		ArrayList<TeamObserver> prova = new ArrayList<TeamObserver>();
+		prova.add(new TeamObserver() {
+			
+			@Override
+			public void updateScore(int score) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void scopa(Card scopaCard) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		g.addObservers(this, prova, prova);
+		unlock(playerHandlers.get(0));
 	}
 	
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
+		this.playerHandlers = playerHandlers;
+		isFirstUnlock = true;
 		
 		scanner = new Scanner(System.in);
 		newScopa = false;
@@ -63,14 +86,15 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 			for(int i=0; i<10; i++) {
 				handCards.add(playerHandler.getPlayer().getHand().get(i).toString());
 			}
-			playerCards.add(handCards); //per ogni giocatore vengono aggiunte le carte nell'arraylist
+			playerCards.put(playerHandler, handCards) ;//per ogni giocatore vengono aggiunte le carte nell'arraylist
 			player.add(playerHandler.getPlayer().getPlayerName());
 			playerHandler.setInterfaceController(this);
 		}
 		
 		System.out.println(player.get(0) + "\n" + playerCards.get(0));
+	
 		
-		unlock(playerHandlers.get(0));
+		
 	}
 
 	@Override
@@ -105,9 +129,17 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
 		// TODO Auto-generated method stub
-		System.out.println("\n Carte sul tavolo: " + table);
+		if(isFirstUnlock) {
+			isFirstUnlock = false;
+			return;
+			
+		}
+		System.out.println("\n Carte sul tavolo: " + table.toString());
 		System.out.println("\n Turno di: " + humanPlayerHandler.getPlayer()+ ", scegli la carta che vuoi giocare!");
-		humanPlayerHandler.cardPlayed(CardConverter.toModelCard(scanner.nextLine()));
+		String stringa = scanner.nextLine();
+		humanPlayerHandler.cardPlayed(CardConverter.toModelCard(stringa));
+		playerCards.get(humanPlayerHandler).remove((String)stringa );
+		
 	}
 	
 	//test scanner + conversione da stringa a carta
@@ -121,6 +153,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 		
 		
 	}*/
+	
 	
 	public static void main(String[] args) {
 		TUIController.getDefaultTUIController().startGame();
