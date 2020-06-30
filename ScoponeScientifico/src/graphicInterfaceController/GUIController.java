@@ -235,7 +235,8 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			
 		}
 		for (TotalFrame totalFrame : playerView) {
-			
+			totalFrame.getTeamsPanel().getTeam1().removeAll();
+			totalFrame.getTeamsPanel().getTeam2().removeAll();
 			totalFrame.repaint();
 			totalFrame.validate();
 			
@@ -246,7 +247,11 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	public void gameFinished(Team winnerTeam) {
 		// TODO Auto-generated method stub
 		for (TotalFrame totalFrame : playerView) {
-			totalFrame.dispose();
+				totalFrame.getPlayerPanel().removeAll();
+				totalFrame.getTeamsPanel().getTeam1().removeAll();
+				totalFrame.getTeamsPanel().getTeam2().removeAll();
+				totalFrame.getTablePanel().removeAll();
+				totalFrame.dispose();
 		}
 		playerView.clear();
 		playerPanels.clear();
