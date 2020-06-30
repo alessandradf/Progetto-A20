@@ -14,8 +14,6 @@ import utility.TeamObserver;
 
 public class GameStartSetup {
 
-	private static GameStartSetup defaultGameSetup = null;
-
 	private Game game;
 	private GameController gameController;
 	private CircularArrayList<AbstractPlayerHandler> players;
@@ -26,9 +24,9 @@ public class GameStartSetup {
 		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
-		game = Game.getDefaultGame();
-		game.initGame();
-		gameController = new GameController(players);
+		game = new Game();
+		//game.initGame();
+		gameController = new GameController(players, game);
 		createPlayers(config);
 		// guiController.init(humanPlayers.toArray(new
 		// HumanPlayerHandler[human_players_number]), gameController);

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class PlayerPanel extends JPanel {
 	
 	ArrayList<CardLabel> playerHand;
-	TotalFrame parentFrame; //frame in cui è contenuto il panel
+	TotalFrame parentFrame; //frame in cui ï¿½ contenuto il panel
 	private boolean playerReady;
 	private PlayerPanel thisPanel;
 	private JButton readyButton;
@@ -94,9 +94,7 @@ public class PlayerPanel extends JPanel {
 	public void veryUnlock() {
 		for (CardLabel cardLabel : playerHand) {
 			cardLabel.setVisible(true);
-			cardLabel.setEnabled(true);
-			
-			
+			cardLabel.setEnabled(true);		
 		}
 		readyButton.setVisible(false);
 	}

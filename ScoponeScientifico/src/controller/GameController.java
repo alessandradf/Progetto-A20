@@ -24,8 +24,8 @@ public class GameController {
 	 * Crea una partita, dati i giocatori
 	 * @param players gli AbstractPlayerHandler che giocano la partita
 	 */
-	public GameController(CircularArrayList<AbstractPlayerHandler> players) {
-		this.game = Game.getDefaultGame();
+	public GameController(CircularArrayList<AbstractPlayerHandler> players, Game g) {
+		this.game = g;
 		this.players = players;
 		this.turn = 0;
 		this.history = new History();
@@ -36,8 +36,8 @@ public class GameController {
 	 * @param players gli AbstractPlayerHandler che giocano la partita
 	 * @param maxScore il punteggio massimo a cui si arriva
 	 */
-	public GameController(CircularArrayList<AbstractPlayerHandler> players, int maxScore) {
-		this(players);
+	public GameController(CircularArrayList<AbstractPlayerHandler> players, int maxScore, Game g) {
+		this(players, g);
 		game.setMaxScore(maxScore);
 	}
 	
@@ -64,10 +64,11 @@ public class GameController {
 		teams.get(1).addPlayer(players.get(3).getPlayer());
 		players.get(3).getPlayer().setTeam(teams.get(1));
 
-		players.get(0).unlockPlayer();
-		
 		initHistoryObserver();
-		
+	}
+	
+	public void start() {
+		players.get(0).unlockPlayer();
 	}
 	
 	/*
@@ -90,7 +91,8 @@ public class GameController {
 	
 	private void nextPlayer() {
 		AbstractPlayerHandler next_player;
-		next_player = players.getNext();
+		next_player = players.unlockNext(turn);
+		System.out.println(next_player);
 		next_player.unlockPlayer();
 		
 	}
@@ -101,6 +103,7 @@ public class GameController {
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
 		turn++;
+		System.out.println(turn + "turno normale");
 		return game.fetchCard(c);
 	}
 
@@ -130,7 +133,8 @@ public class GameController {
 
 	private boolean isLastTurn() {
 		if(turn == 40) {
-			turn++;
+			turn = 0;
+			System.out.println(turn + "turno finale");
 			finalizeHand();
 			return true;
 		}

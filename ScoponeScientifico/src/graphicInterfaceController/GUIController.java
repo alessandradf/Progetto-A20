@@ -108,8 +108,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		tablePanel.add(new TablePanel());
 		// i++;
 		// howManyTablePanels = i;
-		playerView.get(0).unlockPlayer();
-
+		//playerView.get(0).unlockPlayer();
 	}
 
 	private ArrayList<CardLabel> cardsConverter(List<Card> cards) {
