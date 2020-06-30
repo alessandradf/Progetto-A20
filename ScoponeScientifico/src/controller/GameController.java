@@ -109,6 +109,7 @@ public class GameController {
 	 */
 	public void endTurn(AbstractPlayerHandler p, ArrayList<Card> choiceMade) {
 		game.finalizeTurn(p.getPlayer(), choiceMade);
+		history.writeOnOutput();
 		p.lockPlayer();
 		nextPlayer();
 		checkLastTurn();
@@ -121,6 +122,7 @@ public class GameController {
 	// è protetto perchè va chiamato solo dagli AbstractPlayerHandler
 	protected void endTurn(AbstractPlayerHandler player) {
 		game.finalizeTurn(player.getPlayer(), player.getPlayedCard());
+		history.writeOnOutput();
 		player.lockPlayer();
 		nextPlayer();
 		checkLastTurn();
