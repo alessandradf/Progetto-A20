@@ -79,6 +79,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 		int i = 0;
 		historyFrame = new HistoryFrame();
+		gameController.getHistory().setOutput(historyFrame);
 		TotalFrame totalFrame;
 		PlayerPanel playerPanel;
 		ArrayList<CardLabel> playerCards;
