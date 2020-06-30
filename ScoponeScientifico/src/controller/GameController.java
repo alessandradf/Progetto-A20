@@ -92,7 +92,6 @@ public class GameController {
 	private void nextPlayer() {
 		AbstractPlayerHandler next_player;
 		next_player = players.unlockNext(turn);
-		System.out.println(next_player);
 		next_player.unlockPlayer();
 		
 	}
@@ -103,7 +102,6 @@ public class GameController {
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
 		turn++;
-		System.out.println(turn + "turno normale");
 		return game.fetchCard(c);
 	}
 
@@ -134,7 +132,6 @@ public class GameController {
 	private boolean isLastTurn() {
 		if(turn == 40) {
 			turn = 0;
-			System.out.println(turn + "turno finale");
 			finalizeHand();
 			return true;
 		}

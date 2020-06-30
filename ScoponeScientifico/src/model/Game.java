@@ -46,18 +46,6 @@ public class Game {
 		table = new Table();
 		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
 	}
-
-	public void initGame() {
-		maxScore = 1; //punteggio di default, per ora è messo a venti per non creare confusione
-		// nella versione finale bisognerà settarlo all'inizio
-		createDeck();
-		players = createPlayers();
-		shuffleDeck();
-		teams = createTeams();
-		populateTeams();
-		table = new Table();
-		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
-	}
 	
 	private void createDeck() {
 		deck = new HashSet<Card>();
