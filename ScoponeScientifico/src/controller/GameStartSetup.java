@@ -23,7 +23,7 @@ public class GameStartSetup {
 	private ArrayList<HumanPlayerHandler> humanPlayers;
 	private int humanPlayerNumber;
 
-	private GameStartSetup(String[] config, int human_players_number) {
+	public GameStartSetup(String[] config, int human_players_number) {
 		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
@@ -52,12 +52,6 @@ public class GameStartSetup {
 			game.getTeams().get(0).addTeamObserver(team1Observers.get(i));
 			game.getTeams().get(1).addTeamObserver(team2Observers.get(i));
 		}
-	}
-	
-	public static GameStartSetup getDefaultGameSetup(String[] config, int human_players_number) {
-		if (defaultGameSetup == null)
-			defaultGameSetup = new GameStartSetup(config, human_players_number);
-		return defaultGameSetup;
 	}
 
 	private void createPlayers(String[] config) {
