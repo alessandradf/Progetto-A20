@@ -30,24 +30,33 @@ public class GameStartSetup {
 		game.initGame();
 		gameController = new GameController(players);
 		createPlayers(config);
-	//	guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);
+		// guiController.init(humanPlayers.toArray(new
+		// HumanPlayerHandler[human_players_number]), gameController);
 
-	/*	game.getDefaultTable().addObserver(guiController);
+		/*
+		 * game.getDefaultTable().addObserver(guiController);
+		 * 
+		 * for (int i = 0; i < human_players_number; i++) { //nota: bisogna mettere
+		 * human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non
+		 * sono veramente 4
+		 * game.getTeams().get(0).addTeamObserver(guiController.getTeam1Panels().get(i))
+		 * ;
+		 * game.getTeams().get(1).addTeamObserver(guiController.getTeam2Panels().get(i))
+		 * ; }
+		 */
 
-		for (int i = 0; i < human_players_number; i++) {
-			//nota: bisogna mettere human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non sono veramente 4
-			game.getTeams().get(0).addTeamObserver(guiController.getTeam1Panels().get(i));
-			game.getTeams().get(1).addTeamObserver(guiController.getTeam2Panels().get(i));
-		}*/
-
-		//gameController.init();
+		// gameController.init();
 	}
-	
-	public void addObservers(TableObserver tableObserver, ArrayList<TeamObserver> team1Observers, ArrayList<TeamObserver> team2Observers) {
+
+	public void addTableObservers(TableObserver tableObserver) {
 		game.getDefaultTable().addObserver(tableObserver);
 
+	}
+
+	public void addTeamObservers(ArrayList<TeamObserver> team1Observers, ArrayList<TeamObserver> team2Observers) {
 		for (int i = 0; i < humanPlayerNumber; i++) {
-			//nota: bisogna mettere human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non sono veramente 4
+			// nota: bisogna mettere human_players_number e non 4 altrimenti c'è
+			// un'eccezione se i giocatori non sono veramente 4
 			game.getTeams().get(0).addTeamObserver(team1Observers.get(i));
 			game.getTeams().get(1).addTeamObserver(team2Observers.get(i));
 		}
@@ -55,7 +64,7 @@ public class GameStartSetup {
 
 	private void createPlayers(String[] config) {
 		// istanzia i giocatori umani e li associa ordinatamente a quelli del game
-		for (int i = 0; i < config.length; i++) {			
+		for (int i = 0; i < config.length; i++) {
 			if (config[i].equals("Human")) {
 				HumanPlayerHandler newest = new HumanPlayerHandler(game.getPlayers().get(i), this.gameController);
 				humanPlayers.add(newest);
@@ -75,17 +84,10 @@ public class GameStartSetup {
 		return humanPlayers;
 	}
 
-	
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartFrame frame = new StartFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	/*
+	 * public static void main(String[] args) { EventQueue.invokeLater(new
+	 * Runnable() { public void run() { try { StartFrame frame = new StartFrame();
+	 * frame.setVisible(true); } catch (Exception e) { e.printStackTrace(); } } });
+	 * }
+	 */
 }

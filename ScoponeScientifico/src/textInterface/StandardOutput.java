@@ -1,4 +1,4 @@
-package graphicInterfaceController;
+package textInterface;
 
 import utility.OutputInterface;
 

@@ -30,6 +30,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	private HashMap<HumanPlayerHandler, ArrayList<String>> playerCards= new HashMap<HumanPlayerHandler, ArrayList<String>>();
 	private ArrayList<HumanPlayerHandler> playerHandlers = new ArrayList<HumanPlayerHandler>();
 	private boolean isFirstUnlock;
+	private StandardOutput historyOutput;
 	
 	private static TUIController defaultTuiController = null;
 	
@@ -51,27 +52,15 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer);
 		TUIController.getDefaultTUIController().init(g.getHumanPlayers(), g.getGameController());
 		g.getGameController().init();
-		ArrayList<TeamObserver> prova = new ArrayList<TeamObserver>();
-		prova.add(new TeamObserver() {
-			
-			@Override
-			public void updateScore(int score) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void scopa(Card scopaCard) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		g.addObservers(this, prova, prova);
+		
+		g.addTableObservers(this);
 		unlock(playerHandlers.get(0));
 	}
 	
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
+		historyOutput = new StandardOutput();
+		this.gameController.getHistory().setOutput(historyOutput);
 		this.playerHandlers = playerHandlers;
 		isFirstUnlock = true;
 		

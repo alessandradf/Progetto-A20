@@ -52,7 +52,8 @@ public class StartGameBottonListener implements ActionListener{
 		}
 		
 		
-		g.addObservers((TableObserver)GUIController.getDefaultGUIController(),team1Observers, team2Observers);
+		g.addTableObservers(GUIController.getDefaultGUIController());
+		g.addTeamObservers(team1Observers, team2Observers);
 		
 	}
 
