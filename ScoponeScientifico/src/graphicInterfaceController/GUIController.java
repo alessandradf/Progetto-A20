@@ -7,11 +7,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.swing.JFrame;
-
 import CardTest.*;
-import controller.AbstractPlayerHandler;
 import controller.GameController;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
@@ -37,7 +34,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
 	private ArrayList<HumanPlayerHandler> players = new ArrayList<HumanPlayerHandler>();
-	
+
 	private JFrame tableFrame; // frame per visualizzare il tavolo durante la scelta delle carte
 
 	// hashmap che associa playerpanel al rispettivo playerhandler
@@ -56,9 +53,9 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	}
 
 	private GUIController() {
-		
+
 	}
-	
+
 	public void startGame() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -70,7 +67,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 				}
 			}
 		});
-		
+
 	}
 
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
@@ -164,25 +161,6 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	}
 
-	/*
-	 * public void chooseOptions(ArrayList<ArrayList<Card>> optionCard,
-	 * ChoiceReceiver choiceReceiver) {
-	 * 
-	 * OptionsPopUp op = new OptionsPopUp(optionCard); tableFrame = new JFrame();
-	 * tableFrame.setSize(700, 400);
-	 * tableFrame.add(tablePanel.get(tablePanel.size()-1));
-	 * tableFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	 * tableFrame.setResizable(false); tableFrame.setVisible(true);
-	 * op.getOkButton().addActionListener(new ActionListener() {
-	 * 
-	 * @Override public void actionPerformed(ActionEvent e) { // TODO Auto-generated
-	 * method stub choiceReceiver.choiceMade((ArrayList<Card>)
-	 * op.getComboBox().getSelectedItem()); tableFrame.dispose(); op.dispose(); }
-	 * });
-	 * 
-	 * }
-	 */
-
 
 
 	public ArrayList<TeamPanel> getTeam1Panels() {
@@ -233,14 +211,14 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		for (HumanPlayerHandler humanPlayerHandler : players) {
 			playerCards = cardsConverter(humanPlayerHandler.getPlayer().getHand());
 			playerPanels.get(humanPlayerHandler).setCards(playerCards);
-			
+
 		}
 		for (TotalFrame totalFrame : playerView) {
 			totalFrame.getTeamsPanel().getTeam1().removeAll();
 			totalFrame.getTeamsPanel().getTeam2().removeAll();
 			totalFrame.repaint();
 			totalFrame.validate();
-			
+
 		}
 	}
 
@@ -248,11 +226,11 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	public void gameFinished(Team winnerTeam) {
 		// TODO Auto-generated method stub
 		for (TotalFrame totalFrame : playerView) {
-				totalFrame.getPlayerPanel().removeAll();
-				totalFrame.getTeamsPanel().getTeam1().removeAll();
-				totalFrame.getTeamsPanel().getTeam2().removeAll();
-				totalFrame.getTablePanel().removeAll();
-				totalFrame.dispose();
+			totalFrame.getPlayerPanel().removeAll();
+			totalFrame.getTeamsPanel().getTeam1().removeAll();
+			totalFrame.getTeamsPanel().getTeam2().removeAll();
+			totalFrame.getTablePanel().removeAll();
+			totalFrame.dispose();
 		}
 		playerView.clear();
 		playerPanels.clear();
@@ -260,6 +238,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		tablePanel.clear();
 		team1Panels.clear();
 		team2Panels.clear();
+		historyFrame.dispose();
 		FinishFrame finishFrame = new FinishFrame(winnerTeam.getTeamName());
 		finishFrame.getOk().addActionListener(new ActionListener() {
 
@@ -267,13 +246,17 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (finishFrame.getChoose()) {
+					finishFrame.dispose();
 					GUIController.getDefaultGUIController().startGame();
-				}
 
+				} else {
+					finishFrame.dispose();
+					System.exit(0);
+				}
 			}
 		});
 	}
-	
+
 	public static void main(String[] args) {
 		GUIController.getDefaultGUIController().startGame();
 	}
