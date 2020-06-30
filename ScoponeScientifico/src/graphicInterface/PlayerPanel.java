@@ -105,6 +105,19 @@ public class PlayerPanel extends JPanel {
 		return playerHand;
 	}
 	
+	public void setCards(ArrayList<CardLabel> playerCards) {
+		playerHand.clear();
+		playerHand = playerCards;
+		
+		for (CardLabel cardLabel : playerHand) {
+			add(cardLabel);
+			cardLabel.setVisible(false);
+		}
+		repaint();
+		validate();
+		
+	}
+	
 	
 
 }

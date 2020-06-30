@@ -15,7 +15,10 @@ public class GameController {
 	private Game game;
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private History history;
+	private InterfaceTurnFinalizer turnFinalizer;
 	private int turn;
+	
+	
 
 	/**
 	 * Crea una partita, dati i giocatori
@@ -132,7 +135,14 @@ public class GameController {
 	private void finalizeHand() {
 		boolean isFinished = game.finalizeHand();
 		if(isFinished) {
-			// fa qualcosa per fare terminare il gioco
+			Team winner;
+			if(game.getTeams().get(0).getScore() > game.getTeams().get(1).getScore()) {
+				winner = game.getTeams().get(0);
+			}
+			else {
+				winner = game.getTeams().get(1);
+			}
+			turnFinalizer.gameFinished(winner);
 		}
 	}
 	
@@ -157,4 +167,30 @@ public class GameController {
 		return history;
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * @param history the history to set
+	 */
+	public void setHistory(History history) {
+		this.history = history;
+	}
+
+	/**
+	 * @return the turnFinalizer
+	 */
+	public InterfaceTurnFinalizer getTurnFinalizer() {
+		return turnFinalizer;
+	}
+
+	/**
+	 * @param turnFinalizer the turnFinalizer to set
+	 */
+	public void setTurnFinalizer(InterfaceTurnFinalizer turnFinalizer) {
+		this.turnFinalizer = turnFinalizer;
+	}
+
+	
+	
+>>>>>>> 4a2550b9cc81539eaffe7e60ba3fcf6e97466867
 }
