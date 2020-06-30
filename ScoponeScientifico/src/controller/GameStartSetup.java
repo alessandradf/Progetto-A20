@@ -27,7 +27,7 @@ public class GameStartSetup {
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		game = Game.getDefaultGame();
-		game.debugInit();
+		game.initGame();
 		gameController = new GameController(players);
 		createPlayers(config);
 	//	guiController.init(humanPlayers.toArray(new HumanPlayerHandler[human_players_number]), gameController);

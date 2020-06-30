@@ -38,7 +38,7 @@ public class Game {
 	private Game() {
 	}
 
-	public void debugInit() {
+	public void initGame() {
 		maxScore = 1; //punteggio di default, per ora è messo a venti per non creare confusione
 		// nella versione finale bisognerà settarlo all'inizio
 		createDeck();
