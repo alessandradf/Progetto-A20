@@ -44,7 +44,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	public void startGame() {
 		StartTextInterface startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
-		GameStartSetup g = GameStartSetup.getDefaultGameSetup(startText.getConfig(), humanPlayer);
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer);
 		TUIController.getDefaultTUIController().init(g.getHumanPlayers(), g.getGameController());
 		g.getGameController().init();
 	}

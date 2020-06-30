@@ -167,8 +167,7 @@ public class GameController {
 		return history;
 	}
 
-<<<<<<< HEAD
-=======
+
 	/**
 	 * @param history the history to set
 	 */
@@ -190,7 +189,4 @@ public class GameController {
 		this.turnFinalizer = turnFinalizer;
 	}
 
-	
-	
->>>>>>> 4a2550b9cc81539eaffe7e60ba3fcf6e97466867
 }
