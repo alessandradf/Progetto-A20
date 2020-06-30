@@ -17,6 +17,7 @@ import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
 import controller.InterfaceTurnFinalizer;
 import graphicInterface.CardListener;
+import graphicInterface.FinishFrame;
 import graphicInterface.HistoryFrame;
 import graphicInterface.OptionsPopUp;
 import graphicInterface.PlayerPanel;
@@ -244,8 +245,27 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 	@Override
 	public void gameFinished(Team winnerTeam) {
 		// TODO Auto-generated method stub
-		//facciamo un frame dove diciamo il team vincitore?
-		
+		for (TotalFrame totalFrame : playerView) {
+			totalFrame.dispose();
+		}
+		playerView.clear();
+		playerPanels.clear();
+		players.clear();
+		tablePanel.clear();
+		team1Panels.clear();
+		team2Panels.clear();
+		FinishFrame finishFrame = new FinishFrame(winnerTeam.getTeamName());
+		finishFrame.getOk().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (finishFrame.getChoose()) {
+					GUIController.getDefaultGUIController().startGame();
+				}
+
+			}
+		});
 	}
 	
 	public static void main(String[] args) {
