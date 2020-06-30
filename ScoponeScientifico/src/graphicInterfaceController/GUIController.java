@@ -75,7 +75,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
-
+		gameController.setTurnFinalizer(this);
 
 		int i = 0;
 		historyFrame = new HistoryFrame();

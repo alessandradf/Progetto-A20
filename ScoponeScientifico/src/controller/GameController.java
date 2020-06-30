@@ -111,8 +111,8 @@ public class GameController {
 		game.finalizeTurn(p.getPlayer(), choiceMade);
 		history.writeOnOutput();
 		p.lockPlayer();
-		nextPlayer();
-		checkLastTurn();
+		if(!isLastTurn())
+			nextPlayer();
 	}
 
 	/*
@@ -124,14 +124,17 @@ public class GameController {
 		game.finalizeTurn(player.getPlayer(), player.getPlayedCard());
 		history.writeOnOutput();
 		player.lockPlayer();
-		nextPlayer();
-		checkLastTurn();
+		if(!isLastTurn())
+			nextPlayer();
 	}
 
-	private void checkLastTurn() {
+	private boolean isLastTurn() {
 		if(turn == 40) {
+			turn++;
 			finalizeHand();
+			return true;
 		}
+		return false;
 	}
 	
 	private void finalizeHand() {

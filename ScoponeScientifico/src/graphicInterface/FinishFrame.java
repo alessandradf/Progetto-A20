@@ -57,7 +57,7 @@ public class FinishFrame extends JFrame {
 
 		JPanel yesOrnoPanel = new JPanel();
 		yesOrnoPanel.setLayout(new GridLayout(3, 1));
-		yes = new JRadioButton("sì");
+		yes = new JRadioButton("sï¿½");
 		yes.setSelected(true);
 		no = new JRadioButton("no");
 		yes.addActionListener(new ActionListener() {
@@ -90,7 +90,7 @@ public class FinishFrame extends JFrame {
 		yesOrnoPanel.add(no);
 		yesOrnoPanel.add(ok);
 		choosePanel.add(yesOrnoPanel);
-		
+		setVisible(true);
 		
 	}
 
