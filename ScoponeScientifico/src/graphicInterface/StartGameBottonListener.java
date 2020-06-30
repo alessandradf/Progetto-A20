@@ -41,7 +41,7 @@ public class StartGameBottonListener implements ActionListener{
 		GameStartSetup g = new GameStartSetup(config, frame.getHumanPlayers());
 		GUIController.getDefaultGUIController().init(g.getHumanPlayers(), g.getGameController());
 		g.getGameController().init();
-		ArrayList< TeamObserver> team1Observers = new ArrayList<TeamObserver>();
+		ArrayList<TeamObserver> team1Observers = new ArrayList<TeamObserver>();
 		for (TeamPanel teamPanel : GUIController.getDefaultGUIController().getTeam1Panels()) {
 			team1Observers.add(teamPanel);
 		}

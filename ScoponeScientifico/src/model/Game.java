@@ -36,6 +36,9 @@ public class Game {
 
 
 	private Game() {
+	}
+
+	public void debugInit() {
 		maxScore = 1; //punteggio di default, per ora è messo a venti per non creare confusione
 		// nella versione finale bisognerà settarlo all'inizio
 		createDeck();
@@ -45,9 +48,8 @@ public class Game {
 		populateTeams();
 		table = new Table();
 		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
-
 	}
-
+	
 	public static Game getDefaultGame() {
 		if (defaultGame == null) {
 			defaultGame = new Game();

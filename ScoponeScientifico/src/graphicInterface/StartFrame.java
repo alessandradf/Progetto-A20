@@ -175,8 +175,7 @@ public class StartFrame extends JFrame {
 					.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
-		panel.setLayout(gl_panel);
-			
+		panel.setLayout(gl_panel);	
 	}
 
 	public int getHumanPlayers() {
