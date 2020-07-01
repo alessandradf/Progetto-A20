@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+
 import controller.GameController;
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
+import controller.InterfaceController;
 import graphicInterface.StartFrame;
 import graphicInterface.TeamPanel;
 import graphicInterfaceController.GUIController;
@@ -18,7 +20,7 @@ import utility.CardConverter;
 import utility.TableObserver;
 import utility.TeamObserver;
 
-public class TUIController implements TableObserver, HumanPlayerInterfaceController{
+public class TUIController implements TableObserver, HumanPlayerInterfaceController, InterfaceController{
 	
 	private GameController gameController;
 	private boolean newScopa;
@@ -49,11 +51,11 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	public void startGame() {
 		StartTextInterface startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer);
-		TUIController.getDefaultTUIController().init(g.getHumanPlayers(), g.getGameController());
-		g.getGameController().init();
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
+		//TUIController.getDefaultTUIController().init(g.getHumanPlayers(), g.getGameController());
+		// g.getGameController().init();
 		
-		g.addTableObservers(this);
+		//g.addTableObservers(this);
 		unlock(playerHandlers.get(0));
 	}
 	
@@ -147,5 +149,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	public static void main(String[] args) {
 		TUIController.getDefaultTUIController().startGame();
 	}
+
+	
 
 }
