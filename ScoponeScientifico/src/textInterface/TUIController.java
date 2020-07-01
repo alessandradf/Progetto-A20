@@ -22,6 +22,10 @@ import utility.TeamObserver;
 
 public class TUIController implements TableObserver, HumanPlayerInterfaceController, InterfaceTurnFinalizer {
 
+	//TODO togliere variabili non usate
+	private static boolean playAgain = true;
+	private Team winnerTeam;
+	
 	private GameController gameController;
 	StartTextInterface startText;
 	private ArrayList<String> table = new ArrayList<String>();
@@ -36,13 +40,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	private static TUIController defaultTuiController = null;
 
-	public static TUIController getDefaultTUIController() {
-		if (defaultTuiController == null) {
-			defaultTuiController = new TUIController();
-			return defaultTuiController;
-		} else
-			return defaultTuiController;
-	}
+	
 
 	private TUIController() {
 		isFirstGame = true;
@@ -55,7 +53,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 		startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer);
-		TUIController.getDefaultTUIController().init(g.getHumanPlayers(), g.getGameController());
+		this.init(g.getHumanPlayers(), g.getGameController());
 		g.getGameController().init();
 
 		g.addTableObservers(this);
@@ -141,12 +139,14 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 			return;
 
 		}*/
-
+		if(humanPlayerHandler.getPlayer().getHand().size() == 0)
+			return;
+		
 		System.out.println("\n Carte sul tavolo: " + table.toString());
 		System.out.println("\n Turno di: " + humanPlayerHandler.getPlayer() + ", scegli la carta che vuoi giocare!");
 		String stringa = scanner.nextLine();
 		humanPlayerHandler.cardPlayed(CardConverter.toModelCard(stringa));
-		playerCards.get(humanPlayerHandler).remove((String) stringa);
+		//playerCards.get(humanPlayerHandler).remove((String) stringa);
 
 	}
 	@Override
@@ -157,18 +157,22 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	@Override
 	public void gameFinished(Team winnerTeam) {
+		this.winnerTeam = winnerTeam;
+	}
+	
+	private void trueEnd() {
 		// TODO Auto-generated method stub
 		System.out.println("GIOCO TERMINATO! COMPLIMENTI AL TEAM VINCITORE: " + winnerTeam + "!");
 		System.out.println("\n Vuoi fare un'altra partita? scrivi yes, se vuoi giocare ancora, se no schiaccia una lettera qualunque");
 		String scelta = scanner.nextLine();
 		
 		if(scelta.equals( "yes")) {
-			scanner.close();
+			//scanner.close();
 			table.clear();
 			player.clear();
 			playerHandlers.clear();
 			playerCards.clear();
-			startGame();
+			//startGame();
 		}
 		else
 		{
@@ -190,7 +194,13 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 	 */
 
 	public static void main(String[] args) {
-		TUIController.getDefaultTUIController().startGame();
+		
+		while(TUIController.playAgain) {
+			TUIController tui = new TUIController();
+			tui.startGame();
+			tui.trueEnd();
+			System.out.println("lalala");
+		}
 	}
 
 
