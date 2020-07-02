@@ -19,15 +19,15 @@ public class GameStartSetup {
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private ArrayList<HumanPlayerHandler> humanPlayers;
 	private int humanPlayerNumber;
+	private InterfaceController controller;
 
-	public GameStartSetup(String[] config, int human_players_number) {
+	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller) {
 		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
+		this.controller = controller;
 		game = new Game();
-		//game.initGame();
-		gameController = new GameController(players, game);
-		createPlayers(config);
+		init(config);
 		// guiController.init(humanPlayers.toArray(new
 		// HumanPlayerHandler[human_players_number]), gameController);
 
@@ -45,12 +45,26 @@ public class GameStartSetup {
 
 		// gameController.init();
 	}
-
+	public void init(String[] config) {
+		try {		
+		gameController = new GameController(players, game);
+		createPlayers(config);
+		controller.init(getHumanPlayers(), gameController);
+		gameController.init();
+		addTableObservers(controller);
+		//addTeamObservers(controller.getTeam1Observer(), controller.getTeam2Observer());
+		gameController.start();
+		} catch (Exception e) {
+			controller.startGame();
+		}
+		
+	}
 	public void addTableObservers(TableObserver tableObserver) {
 		game.getDefaultTable().addObserver(tableObserver);
 
 	}
-
+	
+	//non serve più
 	public void addTeamObservers(ArrayList<TeamObserver> team1Observers, ArrayList<TeamObserver> team2Observers) {
 		for (int i = 0; i < humanPlayerNumber; i++) {
 			// nota: bisogna mettere human_players_number e non 4 altrimenti c'Ã¨
@@ -61,6 +75,9 @@ public class GameStartSetup {
 	}
 
 	private void createPlayers(String[] config) {
+		if (allComputers(config))
+			throw new IllegalArgumentException("Deve esserci almeno un giocatore umano");
+		
 		// istanzia i giocatori umani e li associa ordinatamente a quelli del game
 		for (int i = 0; i < config.length; i++) {
 			if (config[i].equals("Human")) {
@@ -73,7 +90,14 @@ public class GameStartSetup {
 			}
 		}
 	}
-
+	
+	private boolean allComputers(String config[]) {
+		for (int i = 0; i < config.length; i++) {
+			if (config[i].equals("Human"))
+				return false;
+		}
+		return true;
+	}
 	public GameController getGameController() {
 		return gameController;
 	}
@@ -82,10 +106,5 @@ public class GameStartSetup {
 		return humanPlayers;
 	}
 
-	/*
-	 * public static void main(String[] args) { EventQueue.invokeLater(new
-	 * Runnable() { public void run() { try { StartFrame frame = new StartFrame();
-	 * frame.setVisible(true); } catch (Exception e) { e.printStackTrace(); } } });
-	 * }
-	 */
+	
 }

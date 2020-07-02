@@ -3,22 +3,28 @@ package textInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+
 import controller.GameController;
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
 import controller.InterfaceTurnFinalizer;
+import controller.InterfaceController;
+import graphicInterface.StartFrame;
+import graphicInterface.TeamPanel;
+import graphicInterfaceController.GUIController;
 import model.Card;
 import model.Team;
 import utility.CardConverter;
 import utility.TableObserver;
 
-public class TUIController implements TableObserver, HumanPlayerInterfaceController, InterfaceTurnFinalizer {
+public class TUIController implements InterfaceController, HumanPlayerInterfaceController, InterfaceTurnFinalizer {
 
 	// TODO togliere variabili non usate
 	private static boolean playAgain = true;
 	private Team winnerTeam;
-
+	
 	private GameController gameController;
 	StartTextInterface startText;
 	private ArrayList<String> table = new ArrayList<String>();
@@ -30,12 +36,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer);
-		this.init(g.getHumanPlayers(), g.getGameController());
-		g.getGameController().init();
-
-		g.addTableObservers(this);
-		g.getGameController().start();
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
 	}
 
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
@@ -142,5 +143,7 @@ public class TUIController implements TableObserver, HumanPlayerInterfaceControl
 			System.out.println("lalala");
 		}
 	}
+
+	
 
 }
