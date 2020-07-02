@@ -3,6 +3,7 @@ package controller;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
+import exception.HumanNotFoundException;
 import graphicInterface.StartFrame;
 import graphicInterfaceController.GUIController;
 import model.Game;
@@ -27,24 +28,9 @@ public class GameStartSetup {
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
 		game = new Game();
-		init(config);
-		// guiController.init(humanPlayers.toArray(new
-		// HumanPlayerHandler[human_players_number]), gameController);
-
-		/*
-		 * game.getDefaultTable().addObserver(guiController);
-		 * 
-		 * for (int i = 0; i < human_players_number; i++) { //nota: bisogna mettere
-		 * human_players_number e non 4 altrimenti c'è un'eccezione se i giocatori non
-		 * sono veramente 4
-		 * game.getTeams().get(0).addTeamObserver(guiController.getTeam1Panels().get(i))
-		 * ;
-		 * game.getTeams().get(1).addTeamObserver(guiController.getTeam2Panels().get(i))
-		 * ; }
-		 */
-
-		// gameController.init();
+		init(config);		
 	}
+	
 	public void init(String[] config) {
 		try {		
 		gameController = new GameController(players, game);
@@ -54,8 +40,8 @@ public class GameStartSetup {
 		addTableObservers(controller);
 		//addTeamObservers(controller.getTeam1Observer(), controller.getTeam2Observer());
 		gameController.start();
-		} catch (Exception e) {
-			controller.startGame();
+		} catch (HumanNotFoundException e) {
+			controller.startGame("Inserisci almeno un giocatore umano!");
 		}
 		
 	}
@@ -76,7 +62,7 @@ public class GameStartSetup {
 
 	private void createPlayers(String[] config) {
 		if (allComputers(config))
-			throw new IllegalArgumentException("Deve esserci almeno un giocatore umano");
+			throw new HumanNotFoundException();
 		
 		// istanzia i giocatori umani e li associa ordinatamente a quelli del game
 		for (int i = 0; i < config.length; i++) {

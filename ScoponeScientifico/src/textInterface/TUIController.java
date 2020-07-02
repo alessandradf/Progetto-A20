@@ -38,6 +38,13 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
 	}
+	public void startGame(String message) {
+		System.out.println(message);
+		scanner = new Scanner(System.in);
+		startText = new StartTextInterface();
+		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
+	}
 
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;

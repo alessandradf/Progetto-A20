@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JFrame;
-
+import javax.swing.JOptionPane;
 
 import CardTest.*;
 
@@ -75,7 +75,25 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		});
 
 	}
+	public void startGame(String message) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JFrame messageFrame = new JFrame();
+					JOptionPane.showMessageDialog(messageFrame,
+						    message,
+						    "Warning",
+						    JOptionPane.WARNING_MESSAGE);
+					StartFrame frame = new StartFrame();
+					frame.setVisible(true);
 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+	}
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
 		gameController.setTurnFinalizer(this);
