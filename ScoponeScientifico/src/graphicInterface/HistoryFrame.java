@@ -4,7 +4,9 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
 
 import utility.OutputInterface;
 
@@ -32,18 +34,26 @@ public class HistoryFrame extends JFrame implements OutputInterface {
 
 	@Override
 	public void writeOnOutput(String update) {
-		// TODO Auto-generated method stub
-		if (historyText == null) {
-			historyText = update;
-		} else {
-			historyText += update;
+		
+		String[] parts = update.split("\n");
+		String entry = "<html><body><ul><li>";
+		
+		for(String s : parts) {
+			entry += s + "<br>";
 		}
-		historyLabel.setText("<html><br>" +historyText);
+		
+		entry += "</li></ul>";
+		
+		String text = historyLabel.getText() + entry;
+		
+		historyLabel.setText(text);
 		historyLabel.repaint();
 		historyLabel.validate();
 		this.repaint();
 		this.validate();
 		
+		JScrollBar vert = this.scrollPane.getVerticalScrollBar();
+		vert.setValue(vert.getMaximum());
 	}
 
 

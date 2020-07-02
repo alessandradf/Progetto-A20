@@ -51,11 +51,11 @@ public class History implements TeamObserver, TableObserver, PlayerObserver {
 	 */
 	@Override
 	public void updateOnRemoval(List<Card> toRemove) {
-		String s = "\ne ha preso le seguenti carte : \n< ";
+		String s = "\ne ha preso le seguenti carte : \n[ ";
 		for (Card c : toRemove) {
 			s += c.toString() + " ";
 		}
-		s += ">";
+		s += "]";
 		
 		this.entry.append(s);
 	}
