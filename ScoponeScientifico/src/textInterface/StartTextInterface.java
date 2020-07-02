@@ -94,9 +94,6 @@ public class StartTextInterface {
 	}
 
 	public String[] getConfig() {
-		for (String string : config) {
-			System.out.println(string);
-		}
 		return config;
 	}
 
