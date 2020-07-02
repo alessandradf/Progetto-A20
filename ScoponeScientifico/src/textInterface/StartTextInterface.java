@@ -1,5 +1,6 @@
 package textInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,10 +18,19 @@ public class StartTextInterface {
 	public StartTextInterface() {
 		scanner = new Scanner(System.in);
 		System.out.println("Numero giocatori umani team 1:");
-		humanPlayerTeam1 = scanner.nextInt();
+		try {
+			humanPlayerTeam1 = scanner.nextInt();
+			if(humanPlayerTeam1<0 || humanPlayerTeam1>2) {
+				throw new IOException();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Il numero deve essere compreso tra 0 e 2");
+			humanPlayerTeam1 = scanner.nextInt();
+		}
 		humanPlayerNameTeam1 = new ArrayList<String>();
 		if(humanPlayerTeam1>1) {
-			System.out.println("Inserisci i nomi di giocatori:2");
+			System.out.println("Inserisci i nomi di giocatori:");
 			config[0] = "Human";
 			config[2] = "Human";
 		}
@@ -31,12 +41,12 @@ public class StartTextInterface {
 			humanPlayerNameTeam1.add(scanner.next());
 		}
 		if(humanPlayerTeam1==1) {
-			System.out.println("Gioca prima l'umano o il computer?");
+			System.out.println("Gioca prima l'umano o il computer? [Digitare 'umano' o 'computer']");
 			if(scanner.next().equals("umano")) {
-				config[0] = "Human";
-				config[2] = "Computer";
+					config[0] = "Human";
+					config[2] = "Computer";
 			}
-			else{
+			else if(scanner.next().equals("computer")){
 				config[0] = "Computer";
 				config[2] = "Human";
 			}
@@ -46,7 +56,16 @@ public class StartTextInterface {
 			config[2] = "Computer";
 		}
 		System.out.println("Numero giocatori umani team 2:");
-		humanPlayerTeam2 = scanner.nextInt();
+		try {
+			humanPlayerTeam2 = scanner.nextInt();
+			if(humanPlayerTeam2<0 || humanPlayerTeam2>2) {
+				throw new IOException();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Il numero deve essere compreso tra 0 e 2");
+			humanPlayerTeam2 = scanner.nextInt();
+		}
 		humanPlayerNameTeam2 = new ArrayList<String>();
 		if(humanPlayerTeam2>1) {
 			System.out.println("Inserisci i nomi di giocatori:");
@@ -60,12 +79,12 @@ public class StartTextInterface {
 			humanPlayerNameTeam2.add(scanner.next());
 		}
 		if(humanPlayerTeam2==1) {
-			System.out.println("Gioca prima l'umano o il computer?");
+			System.out.println("Gioca prima l'umano o il computer? [Digitare 'umano' o 'computer']");
 			if(scanner.next().equals("umano")) {
 				config[1] = "Human";
 				config[3] = "Computer";
 			}
-			else {
+			else if(scanner.next().equals("computer")){
 				config[1] = "Computer";
 				config[3] = "Human";
 			}
