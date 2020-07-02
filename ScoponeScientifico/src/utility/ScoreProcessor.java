@@ -49,10 +49,12 @@ public class ScoreProcessor {
 		int prim1 = this.sommaPrimiera(cards1);
 		int prim2 = this.sommaPrimiera(cards2);
 		
-		if (prim1 > prim2)
-			score1++;
-		else
-			score2++;
+		if (prim1 != 0 || prim2 != 0) {
+			if (prim1 > prim2)
+				score1++;
+			else
+				score2++;
+		}
 		
 		team1.addScore(score1);
 		team2.addScore(score2);

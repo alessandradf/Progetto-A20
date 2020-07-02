@@ -28,32 +28,11 @@ public class Table {
 	}
 
 	/**
-	 * @param playedCard
-	 * @return la prima combinazione di carte che � possibile prendere, null
-	 *         altrimenti
-	 * @throws MultipleChoiceException 
+	 * Aggiorna il tavolo a seguito di una carta giocata
 	 */
-	public ArrayList<Card> putCardOnTable(Card playedCard) throws MultipleChoiceException   {
-		ArrayList<ArrayList<Card>> result = GameProcessor.searchHandle(cardsOnTable, playedCard);
-		ArrayList<Card> sub_result = new ArrayList<Card>(); 
-		
-		int numberOfChoice = result.size();
-		
-		switch (numberOfChoice) {
-		case 0:
-			this.cardsOnTable.add(playedCard);
-			this.updateOnAddition(playedCard);	
-			sub_result = null;
-			break;
-		case 1:			
-			sub_result = result.get(0);
-			this.removeCardsFromTable(sub_result);
-			sub_result.add(playedCard);			
-			break;
-		default:
-			throw new MultipleChoiceException(result);						
-		}	
-		return sub_result;
+	public void putCardOnTable(Card playedCard) {
+		this.cardsOnTable.add(playedCard);
+		this.updateOnAddition(playedCard);
 	}
 
 	private void updateOnAddition(Card playedCard) {

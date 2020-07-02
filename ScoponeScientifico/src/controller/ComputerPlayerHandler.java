@@ -10,27 +10,35 @@ import model.SeedType;
 public class ComputerPlayerHandler extends AbstractPlayerHandler {
 	
 	private Random randomGenerator;
-	private ComputerMultipleChoiceHandler computerMultipleChoiceHandler;
 
 	public ComputerPlayerHandler(Player player, GameController controller) {
 		super(player, controller);
 		this.randomGenerator = new Random();
-		computerMultipleChoiceHandler = new MultipleChoiceHandler(controller, this);
 		
 	}
 
 	@Override
 	public boolean unlockPlayer() {
-		Card c = this.pickACard();
-		setPlayedCard(c);
-		this.getController().hasPlayed(this);
+		setPlayedCard(pickACard());
+		cardPlayed(getPlayedCard());
 		return true;
 	}
 	
 	
+	
+	@Override
+	public void cardPlayed(Card c) {
+		super.cardPlayed(c);
+		if(getResultFromFetch().size() >  1) {
+			getController().endTurn(this, getResultFromFetch().get(0));
+			//restituisce sempre la prima scelta, per semplicità
+		}
+	}
+
 	@Override
 	public boolean lockPlayer() {
-		return false;
+		//non fa nulla perchè è un giocatore computer
+		return true;
 	}
 	
 	
@@ -45,7 +53,7 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
-		computerMultipleChoiceHandler.computerMultipleChoice(choices);	
+		getController().endTurn(this, choices.get(0));
 	}
 
 	

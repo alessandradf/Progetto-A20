@@ -4,9 +4,13 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
 
-public class HistoryFrame extends JFrame {
+import utility.OutputInterface;
+
+public class HistoryFrame extends JFrame implements OutputInterface {
 	private JLabel historyLabel;
 	private JScrollPane scrollPane;
 	private String historyText; // stringa contenente tutto il testo della cronologia
@@ -27,18 +31,30 @@ public class HistoryFrame extends JFrame {
 
 	}
 
-	public void setHistory(String newLine) {
-		if (historyText == null) {
-			historyText = newLine;
-		} else {
-			historyText += newLine;
+
+	@Override
+	public void writeOnOutput(String update) {
+		
+		String[] parts = update.split("\n");
+		String entry = "<html><body><ul><li>";
+		
+		for(String s : parts) {
+			entry += s + "<br>";
 		}
-		historyLabel.setText(historyText);
+		
+		entry += "</li></ul>";
+		
+		String text = historyLabel.getText() + entry;
+		
+		historyLabel.setText(text);
 		historyLabel.repaint();
 		historyLabel.validate();
 		this.repaint();
 		this.validate();
-
+		
+		JScrollBar vert = this.scrollPane.getVerticalScrollBar();
+		vert.setValue(vert.getMaximum());
 	}
+
 
 }

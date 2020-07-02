@@ -3,11 +3,15 @@ package graphicInterface;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 import controller.GameStartSetup;
+import graphicInterfaceController.GUIController;
+import utility.TableObserver;
+import utility.TeamObserver;
 
 
 
@@ -34,7 +38,23 @@ public class StartGameBottonListener implements ActionListener{
 			}
 		}
 		frame.setVisible(false);
-		GameStartSetup g = GameStartSetup.getDefaultGameSetup(config, frame.getHumanPlayers());
+		GameStartSetup g = new GameStartSetup(config, frame.getHumanPlayers());
+		GUIController.getDefaultGUIController().init(g.getHumanPlayers(), g.getGameController());
+		g.getGameController().init();
+		ArrayList<TeamObserver> team1Observers = new ArrayList<TeamObserver>();
+		for (TeamPanel teamPanel : GUIController.getDefaultGUIController().getTeam1Panels()) {
+			team1Observers.add(teamPanel);
+		}
+		ArrayList<TeamObserver> team2Observers = new ArrayList<TeamObserver>();
+		
+		for (TeamPanel teamPanel : GUIController.getDefaultGUIController().getTeam2Panels()) {
+			team2Observers.add(teamPanel);
+		}
+		
+		
+		g.addTableObservers(GUIController.getDefaultGUIController());
+		g.addTeamObservers(team1Observers, team2Observers);
+		g.getGameController().start();
 	}
 
 }
