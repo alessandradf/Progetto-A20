@@ -8,6 +8,7 @@ import model.Game;
 import model.Player;
 import model.Team;
 import utility.CircularArrayList;
+import utility.TeamObserver;
 
 //TODO: non è ancora implementata la logica di fine mano e di fine partita
 public class GameController {
@@ -86,7 +87,15 @@ public class GameController {
 			p.addObserver(this.history);
 		}
 	}
-
+	
+	public void addTeamObserver(ArrayList<TeamObserver> team1obs, ArrayList<TeamObserver> team2obs) {
+		for (int i = 0; i < team1obs.size(); i++) {
+			this.game.getTeams().get(0).addTeamObserver(team1obs.get(i));
+		}
+		for (int i = 0; i < team2obs.size(); i++) {
+			this.game.getTeams().get(1).addTeamObserver(team2obs.get(i));
+		}
+	}
 	
 	
 	private void nextPlayer() {

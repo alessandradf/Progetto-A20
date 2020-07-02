@@ -8,10 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JFrame;
+
+
 import CardTest.*;
+
 import controller.GameController;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
+import controller.InterfaceController;
 import controller.InterfaceTurnFinalizer;
 import graphicInterface.CardListener;
 import graphicInterface.FinishFrame;
@@ -26,8 +30,9 @@ import model.Card;
 import model.Team;
 import utility.CardConverter;
 import utility.TableObserver;
+import utility.TeamObserver;
 
-public class GUIController implements TableObserver, HumanPlayerInterfaceController, InterfaceTurnFinalizer {
+public class GUIController implements HumanPlayerInterfaceController, InterfaceTurnFinalizer, InterfaceController {
 	private GameController gameController;
 	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
@@ -62,6 +67,7 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 				try {
 					StartFrame frame = new StartFrame();
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -108,7 +114,12 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 		tablePanel.add(new TablePanel());
 		// i++;
 		// howManyTablePanels = i;
-		//playerView.get(0).unlockPlayer();
+		// playerView.get(0).unlockPlayer();
+		addTeamObserver();
+	}
+
+	private void addTeamObserver() {
+		gameController.addTeamObserver(getTeam1Observer(), getTeam2Observer());
 	}
 
 	private ArrayList<CardLabel> cardsConverter(List<Card> cards) {
@@ -160,7 +171,21 @@ public class GUIController implements TableObserver, HumanPlayerInterfaceControl
 
 	}
 
+	public ArrayList<TeamObserver> getTeam1Observer() {
+		ArrayList<TeamObserver> team1Observers = new ArrayList<TeamObserver>();
+		for (TeamPanel t : getTeam1Panels()) {
+			team1Observers.add(t);
+		}
+		return team1Observers;
+	}
 
+	public ArrayList<TeamObserver> getTeam2Observer() {
+		ArrayList<TeamObserver> team2Observers = new ArrayList<TeamObserver>();
+		for (TeamPanel t : getTeam2Panels()) {
+			team2Observers.add(t);
+		}
+		return team2Observers;
+	}
 
 	public ArrayList<TeamPanel> getTeam1Panels() {
 		return team1Panels;
