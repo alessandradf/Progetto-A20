@@ -17,6 +17,7 @@ import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
 import controller.InterfaceController;
 import controller.InterfaceTurnFinalizer;
+import exception.CardNotFoundException;
 import graphicInterface.CardListener;
 import graphicInterface.FinishFrame;
 import graphicInterface.HistoryFrame;
@@ -29,7 +30,6 @@ import graphicInterface.TotalFrame;
 import model.Card;
 import model.Team;
 import utility.CardConverter;
-import utility.TableObserver;
 import utility.TeamObserver;
 
 public class GUIController implements HumanPlayerInterfaceController, InterfaceTurnFinalizer, InterfaceController {
@@ -228,7 +228,12 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+			try {
 				gameController.endTurn(humanPlayerHandler, (ArrayList<Card>) op.getComboBox().getSelectedItem());
+			}
+			catch(CardNotFoundException c){
+				System.out.println("Carta non trovata!");
+			}
 				tableFrame.dispose();
 				op.dispose();
 			}

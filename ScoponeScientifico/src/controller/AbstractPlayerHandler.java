@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import exception.CardNotFoundException;
 import model.Card;
 import model.Player;
 
@@ -35,7 +36,7 @@ public abstract class AbstractPlayerHandler {
 	/**
 	 * @return playedCard l'ultima carta giocata
 	 */
-	public void cardPlayed(Card c) {
+	public void cardPlayed(Card c) throws CardNotFoundException{
 		setPlayedCard(c);
 		setResultFromFetch(getController().fetchCard(c));
 

@@ -34,12 +34,15 @@ public class Player {
 	 * Rimuove la carta dalla mano 
 	 */
 	protected void removeCardFromHand(Card card) throws CardNotFoundException {
+	//	System.out.println("CARTA RIMOSSA" + card);
 		if (hand.contains(card)) {
+			
 			hand.remove(card);
 			updateObserver(card);
 		}
 		else {
 			throw new CardNotFoundException("Unexpected card: " + card);
+			
 		}
 	}
 	

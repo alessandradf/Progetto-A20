@@ -36,7 +36,7 @@ public class Card implements Comparable<Card> {
 
 	@Override
 	public String toString() {
-		return getValue() + getSeed().toString();
+		return getValue() +" "+getSeed().toString();
 	}
 	
 	@Override
