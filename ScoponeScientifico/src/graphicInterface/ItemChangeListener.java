@@ -21,8 +21,12 @@ public class ItemChangeListener implements ActionListener{
 		// TODO Auto-generated method stub
 		if(jComboBox.getSelectedItem().equals("Human Player")) {
 			textField.setEnabled(true);
+			textField.setText("Inserire nome");
 		}
-		else textField.setEnabled(false);
+		else{
+			textField.setEnabled(false);
+			textField.setText(null);
+		}
 	}
 
 }

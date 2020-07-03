@@ -113,21 +113,21 @@ public class StartFrame extends JFrame {
 		this.computerPlayers = 0;
 		
 		txtInserireNome = new JTextField();
-		txtInserireNome.setText("Inserire nome");
+		//txtInserireNome.setText("Inserire nome");
 		txtInserireNome.setColumns(10);
 		
 		txtInserireNome_2 = new JTextField();
-		txtInserireNome_2.setText("Inserire nome");
+		//txtInserireNome_2.setText("Inserire nome");
 		txtInserireNome_2.setEnabled(false);
 		txtInserireNome_2.setColumns(10);
 		
 		txtInserireNome_1 = new JTextField();
-		txtInserireNome_1.setText("Inserire nome");
+		//txtInserireNome_1.setText("Inserire nome");
 		txtInserireNome_1.setEnabled(false);
 		txtInserireNome_1.setColumns(10);
 		
 		txtInserireNome_3 = new JTextField();
-		txtInserireNome_3.setText("Inserire nome");
+		//txtInserireNome_3.setText("Inserire nome");
 		txtInserireNome_3.setEnabled(false);
 		txtInserireNome_3.setColumns(10);
 		
