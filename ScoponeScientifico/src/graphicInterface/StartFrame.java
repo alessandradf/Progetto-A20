@@ -46,10 +46,10 @@ public class StartFrame extends JFrame {
 	private ArrayList<String> s;
 	private int humanPlayers;
 	private int computerPlayers;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtInserireNome;
+	private JTextField txtInserireNome_2;
+	private JTextField txtInserireNome_1;
+	private JTextField txtInserireNome_3;
 
 	/**
 	 * Launch the application.
@@ -112,22 +112,26 @@ public class StartFrame extends JFrame {
 		this.humanPlayers = 0;
 		this.computerPlayers = 0;
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtInserireNome = new JTextField();
+		txtInserireNome.setText("Inserire nome");
+		txtInserireNome.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
+		txtInserireNome_2 = new JTextField();
+		txtInserireNome_2.setText("Inserire nome");
+		txtInserireNome_2.setEnabled(false);
+		txtInserireNome_2.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setColumns(10);
+		txtInserireNome_1 = new JTextField();
+		txtInserireNome_1.setText("Inserire nome");
+		txtInserireNome_1.setEnabled(false);
+		txtInserireNome_1.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setColumns(10);
+		txtInserireNome_3 = new JTextField();
+		txtInserireNome_3.setText("Inserire nome");
+		txtInserireNome_3.setEnabled(false);
+		txtInserireNome_3.setColumns(10);
 		
-		JTextField[] textFieldArray = {textField, textField_1, textField_2, textField_3};
+		JTextField[] textFieldArray = {txtInserireNome, txtInserireNome_2, txtInserireNome_1, txtInserireNome_3};
 		
 		for (JTextField jTextField : textFieldArray) {
 			jTextField.setEnabled(false);
@@ -181,14 +185,14 @@ public class StartFrame extends JFrame {
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(6)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(txtInserireNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 										.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
 										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
 										.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
 											.addGap(6)
-											.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(txtInserireNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(label)))
 							.addGap(193))
@@ -204,12 +208,12 @@ public class StartFrame extends JFrame {
 									.addGap(74))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(6)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtInserireNome_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(298)))
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(6)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(txtInserireNome_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap())))
 		);
@@ -221,7 +225,7 @@ public class StartFrame extends JFrame {
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtInserireNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(77)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
@@ -233,14 +237,14 @@ public class StartFrame extends JFrame {
 						.addComponent(btnStartGame))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtInserireNome_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtInserireNome_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(43)
 					.addComponent(label_1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(1)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtInserireNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);	
