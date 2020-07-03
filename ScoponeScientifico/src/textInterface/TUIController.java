@@ -2,14 +2,15 @@ package textInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
-
 
 import controller.GameController;
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
 import controller.HumanPlayerInterfaceController;
 import controller.InterfaceTurnFinalizer;
+import exception.CardNotFoundException;
 import controller.InterfaceController;
 import graphicInterface.StartFrame;
 import graphicInterface.TeamPanel;
@@ -24,7 +25,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	// TODO togliere variabili non usate
 	private static boolean playAgain = true;
 	private Team winnerTeam;
-	
+
 	private GameController gameController;
 	StartTextInterface startText;
 	private ArrayList<String> table = new ArrayList<String>();
@@ -38,6 +39,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
 	}
+
 	public void startGame(String message) {
 		System.out.println(message);
 		scanner = new Scanner(System.in);
@@ -91,9 +93,12 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		}
 
 		int scelta = Integer.parseInt(scanner.nextLine());
+		try {
 
-		gameController.endTurn(humanPlayerHandler, choices.get(scelta - 1));
+			gameController.endTurn(humanPlayerHandler, choices.get(scelta - 1));
+		} catch (CardNotFoundException e) {
 
+		}
 	}
 
 	@Override
@@ -110,8 +115,34 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 
 		System.out.println("\n Carte sul tavolo: " + table.toString());
 		System.out.println("\n Turno di: " + humanPlayerHandler.getPlayer() + ", scegli la carta che vuoi giocare!");
-		String stringa = scanner.nextLine();
-		humanPlayerHandler.cardPlayed(CardConverter.toModelCard(stringa));
+		boolean isValid = false;
+		while (!isValid) {
+
+			try {
+				String stringa = scanner.nextLine();
+
+				humanPlayerHandler.cardPlayed(CardConverter.toModelCard(stringa));
+				isValid = true;
+			} catch (NumberFormatException e) {
+				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
+				isValid = false;
+			}
+			catch (CardNotFoundException c) {
+				// TODO: handle exception
+				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
+				isValid = false;
+			}
+			catch (IllegalArgumentException il) {
+				// TODO: handle exception
+				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
+				isValid = false;
+			}
+			catch(NoSuchElementException no) {
+				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
+				isValid = false;
+				
+			}
+		}
 
 	}
 
@@ -150,7 +181,5 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 			System.out.println("lalala");
 		}
 	}
-
-	
 
 }

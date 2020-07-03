@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-
+import exception.CardNotFoundException;
 import model.Card;
 import model.Game;
 import model.Player;
@@ -117,7 +117,7 @@ public class GameController {
 	/**
 	 * Pone fine al turno del giocatore corrente, togliendo al tavolo le carte scelte
 	 */
-	public void endTurn(AbstractPlayerHandler p, ArrayList<Card> choiceMade) {
+	public void endTurn(AbstractPlayerHandler p, ArrayList<Card> choiceMade) throws CardNotFoundException{
 		game.finalizeTurn(p.getPlayer(), choiceMade);
 		history.writeOnOutput();
 		p.lockPlayer();
@@ -130,7 +130,7 @@ public class GameController {
 	 * prendono delle carte dal tavolo
 	 */
 	// è protetto perchè va chiamato solo dagli AbstractPlayerHandler
-	protected void endTurn(AbstractPlayerHandler player) {
+	protected void endTurn(AbstractPlayerHandler player) throws CardNotFoundException{
 		game.finalizeTurn(player.getPlayer(), player.getPlayedCard());
 		history.writeOnOutput();
 		player.lockPlayer();

@@ -43,6 +43,10 @@ public class StartFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
 /*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
