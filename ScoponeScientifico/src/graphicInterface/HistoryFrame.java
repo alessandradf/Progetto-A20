@@ -1,6 +1,7 @@
 package graphicInterface;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +21,12 @@ public class HistoryFrame extends JFrame implements OutputInterface {
 		historyText = new String();
 
 		setSize(new Dimension(400, 200));
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int w = this.getSize().width;
+        int h = this.getSize().height;
+        int x = (dim.width-w)/40;
+        int y = (dim.height-h)/5;
+        this.setLocation(x, y);
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setResizable(false);

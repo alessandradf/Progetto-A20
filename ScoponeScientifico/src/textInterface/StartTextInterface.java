@@ -10,8 +10,6 @@ public class StartTextInterface {
 	private int humanPlayerTeam2;
 	private ArrayList<String> humanPlayerNameTeam1;
 	private ArrayList<String> humanPlayerNameTeam2;
-	//private boolean isHumanPlayerTeam1First;
-	//private boolean isHumanPlayerTeam2First;
 	private Scanner scanner;
 	private String[] config = new String[4];
 	
