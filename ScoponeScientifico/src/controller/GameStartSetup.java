@@ -22,12 +22,12 @@ public class GameStartSetup {
 	private int humanPlayerNumber;
 	private InterfaceController controller;
 
-	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller) {
+	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller, ArrayList<String> playersNames) {
 		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
-		game = new Game();
+		game = new Game(playersNames);
 		init(config);		
 	}
 	

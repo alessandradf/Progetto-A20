@@ -35,15 +35,15 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
-		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
+		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames());
 	}
 	public void startGame(String message) {
 		System.out.println(message);
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
-		int humanPlayer = startText.getHumanPlayerTeam1() + startText.getHumanPlayerTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this);
+		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames());
 	}
 
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {

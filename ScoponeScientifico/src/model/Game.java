@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -35,11 +36,11 @@ public class Game {
 	
 
 
-	public Game() {
+	public Game(ArrayList<String> playersNames) {
 		maxScore = 1; //punteggio di default, per ora è messo a venti per non creare confusione
 		// nella versione finale bisognerà settarlo all'inizio
 		createDeck();
-		players = createPlayers();
+		players = createPlayers(playersNames);
 		shuffleDeck();
 		teams = createTeams();
 		populateTeams();
@@ -58,14 +59,19 @@ public class Game {
 		}
 	}
 
-	private ArrayList<Player> createPlayers() {
+	private ArrayList<Player> createPlayers(ArrayList<String> names) {
 		ArrayList<Player> players = new ArrayList<Player>();
 		/*
 		 * Istanzia 4 giocatori, tutti uguali. La distinzione fra giocatore vero e finto
 		 * viene fatta a livello più alto
 		 */
 		for (int i = 0; i < PLAYER_NUMBER; i++) {
-			players.add(new Player("Player" + i));
+			if(names.get(i) != null) {
+				players.add(new Player(names.get(i)));
+			}
+			else {
+				players.add(new Player("Player" + i));
+			}
 		}
 		return players;
 	}
