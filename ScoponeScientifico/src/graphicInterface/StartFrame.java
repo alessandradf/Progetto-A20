@@ -54,7 +54,7 @@ public class StartFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,6 +67,7 @@ public class StartFrame extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
@@ -146,7 +147,7 @@ public class StartFrame extends JFrame {
 		
 		JButton btnStartGame = new JButton("Start Game!");
 		btnStartGame.setForeground(Color.RED);
-		btnStartGame.addActionListener(new StartGameBottonListener(jComboBox, this));
+		btnStartGame.addActionListener(new StartGameBottonListener(jComboBox, textFieldArray, this));
 		
 		JLabel label = new JLabel("1");
 		label.setForeground(Color.YELLOW);
