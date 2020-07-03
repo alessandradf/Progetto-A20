@@ -12,6 +12,7 @@ import java.awt.Insets;
 import java.awt.Menu;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -78,7 +79,13 @@ public class TotalFrame extends JFrame {
 		this.setTitle(playerNameAndTeam);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(425, 50, 1005, 705);
+		setSize(1005, 705);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		int w = this.getSize().width;
+        int h = this.getSize().height;
+        int x = (dim.width-w);
+        int y = (dim.height-h)/5;
+        this.setLocation(x, y);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

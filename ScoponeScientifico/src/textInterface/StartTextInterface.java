@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StartTextInterface {
-	
 	private int humanNumbersTeam1;
 	private int humanNumbersTeam2;
 	
@@ -14,7 +13,6 @@ public class StartTextInterface {
 	 * l'ordine di inserimento è congruo a quello di config
 	 */
 	private ArrayList<String> allNames;
-	
 	private Scanner scanner;
 	private String[] config = new String[4];
 	private String[] playersNames = new String[4];
