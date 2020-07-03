@@ -121,7 +121,7 @@ public class StartTextInterface {
 		
 		String[] teamNames = {null, null};
 		
-		if(humanPlayers > 1) {
+		if(humanPlayers >= 1) {
 			System.out.println("Inserisci i nomi dei giocatori umani Team1:");
 			for(int i=0; i<humanPlayers; i++) {
 				teamNames[i] = scanner.next();
