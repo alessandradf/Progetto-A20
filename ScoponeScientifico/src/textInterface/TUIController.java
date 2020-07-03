@@ -120,26 +120,27 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 
 			try {
 				String stringa = scanner.nextLine();
-
-				humanPlayerHandler.cardPlayed(CardConverter.toModelCard(stringa));
+				Card cardPlayed = CardConverter.toModelCard(stringa);
+			
+				humanPlayerHandler.cardPlayed(cardPlayed);
 				isValid = true;
 			} catch (NumberFormatException e) {
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				isValid = false;
+				
 			}
 			catch (CardNotFoundException c) {
 				// TODO: handle exception
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				isValid = false;
+				
 			}
 			catch (IllegalArgumentException il) {
 				// TODO: handle exception
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				isValid = false;
+				
 			}
 			catch(NoSuchElementException no) {
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				isValid = false;
+				
 				
 			}
 		}

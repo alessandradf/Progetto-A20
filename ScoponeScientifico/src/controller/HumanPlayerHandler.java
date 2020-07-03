@@ -25,6 +25,14 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	}
 
 	public void cardPlayed(Card c) throws CardNotFoundException{
+		boolean isValid = false;
+		if(super.getPlayer().getHand().contains(c)) {
+			
+			isValid = true;
+		}
+		if(!isValid ) {
+			throw new CardNotFoundException();
+		}
 		super.cardPlayed(c);
 		if (getResultFromFetch().size() > 1) {
 			//passa il controllo all'interfaccia, per scegliere le carte da prendere

@@ -110,8 +110,9 @@ public class GameController {
 	 * passata, e restituire le eventuali prese, null se non viene preso nulla
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
+		ArrayList<ArrayList<Card>> choices = game.fetchCard(c);
 		turn++;
-		return game.fetchCard(c);
+		return choices;
 	}
 
 	/**
