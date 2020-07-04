@@ -18,6 +18,8 @@ import java.awt.Dimension;
 
 import javax.swing.JComboBox;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
+
 import java.awt.GridBagLayout;
 import java.awt.FlowLayout;
 import com.jgoodies.forms.layout.FormLayout;
@@ -59,10 +61,6 @@ public class StartFrame extends JFrame {
 
 
 	public static void main(String[] args) {
-
-	
-
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -79,7 +77,6 @@ public class StartFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public StartFrame() {
-		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 400);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -89,54 +86,139 @@ public class StartFrame extends JFrame {
         int y = (dim.height-h)/2;
         this.setLocation(x, y);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(3, 3, 0, 0));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 0));
 		panel.setForeground(new Color(0, 128, 0));
-		contentPane.add(panel, BorderLayout.NORTH);
+		contentPane.add(panel);
 		
-		s = new ArrayList<String>();
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 128, 0));
+		panel_1.setForeground(new Color(0, 128, 0));
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 		
-		String s1 = "Computer Player";
-		String s2 = "Human Player";
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(20, 17, 163, 27);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Computer Player", "Human Player"}));
+		panel_1.add(comboBox);
 		
-		s.add(s1);
-		s.add(s2);
+		JLabel label = new JLabel("1");
+		label.setBounds(20, 0, 163, 16);
+		label.setForeground(Color.YELLOW);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(label);
 		
-		JComboBox comboBox = new JComboBox(s.toArray());
+		txtInserireNome = new JTextField();
+		txtInserireNome.setEnabled(false);
+		txtInserireNome.setBounds(20, 45, 163, 26);
+		panel_1.add(txtInserireNome);
+		txtInserireNome.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox(s.toArray());
-
-		JComboBox comboBox_2 = new JComboBox(s.toArray());
-
-		JComboBox comboBox_3 = new JComboBox(s.toArray());
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(0, 128, 0));
+		panel_2.setForeground(new Color(0, 128, 0));
+		contentPane.add(panel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(0, 128, 0));
+		panel_3.setForeground(new Color(0, 128, 0));
+		contentPane.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(0, 42, 163, 26);
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Computer Player", "Human Player"}));
+		panel_3.add(comboBox_1);
+		
+		JLabel label_1 = new JLabel("2");
+		label_1.setBounds(0, 26, 163, 16);
+		label_1.setForeground(Color.YELLOW);
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(label_1);
+		
+		txtInserireNome_2 = new JTextField();
+		txtInserireNome_2.setEnabled(false);
+		txtInserireNome_2.setBounds(0, 68, 163, 26);
+		panel_3.add(txtInserireNome_2);
+		txtInserireNome_2.setColumns(10);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(0, 128, 0));
+		contentPane.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Start Game!");
+		btnNewButton.setBounds(44, 43, 116, 29);
+		btnNewButton.setForeground(Color.RED);
+		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
+		panel_4.add(btnNewButton);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setBounds(44, 72, 119, 27);
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Punteggio", "20", "25", "30"}));
+		panel_4.add(comboBox_4);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(0, 128, 0));
+		contentPane.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(27, 44, 163, 26);
+		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Computer Player", "Human Player"}));
+		panel_5.add(comboBox_3);
+		
+		JLabel label_3 = new JLabel("4");
+		label_3.setBounds(27, 27, 163, 16);
+		label_3.setForeground(Color.YELLOW);
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_5.add(label_3);
+		
+		txtInserireNome_3 = new JTextField();
+		txtInserireNome_3.setEnabled(false);
+		txtInserireNome_3.setBounds(27, 70, 163, 26);
+		panel_5.add(txtInserireNome_3);
+		txtInserireNome_3.setColumns(10);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(0, 128, 0));
+		contentPane.add(panel_6);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(0, 128, 0));
+		contentPane.add(panel_7);
+		panel_7.setLayout(null);
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(20, 71, 163, 26);
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Computer Player", "Human Player"}));
+		panel_7.add(comboBox_2);
+		
+		JLabel label_2 = new JLabel("3");
+		label_2.setBounds(20, 52, 163, 16);
+		label_2.setForeground(Color.YELLOW);
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_7.add(label_2);
+		
+		txtInserireNome_1 = new JTextField();
+		txtInserireNome_1.setEnabled(false);
+		txtInserireNome_1.setBounds(20, 96, 163, 26);
+		panel_7.add(txtInserireNome_1);
+		txtInserireNome_1.setColumns(10);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(0, 128, 0));
+		contentPane.add(panel_8);
 		
 		JComboBox[] jComboBox = {comboBox, comboBox_1, comboBox_2, comboBox_3};
 		
 		this.humanPlayers = 0;
 		this.computerPlayers = 0;
-		
-		txtInserireNome = new JTextField();
-		//txtInserireNome.setText("Inserire nome");
-		txtInserireNome.setColumns(10);
-		
-		txtInserireNome_2 = new JTextField();
-		//txtInserireNome_2.setText("Inserire nome");
-		txtInserireNome_2.setEnabled(false);
-		txtInserireNome_2.setColumns(10);
-		
-		txtInserireNome_1 = new JTextField();
-		//txtInserireNome_1.setText("Inserire nome");
-		txtInserireNome_1.setEnabled(false);
-		txtInserireNome_1.setColumns(10);
-		
-		txtInserireNome_3 = new JTextField();
-		//txtInserireNome_3.setText("Inserire nome");
-		txtInserireNome_3.setEnabled(false);
-		txtInserireNome_3.setColumns(10);
 		
 		JTextField[] textFieldArray = {txtInserireNome, txtInserireNome_2, txtInserireNome_1, txtInserireNome_3};
 		
@@ -151,131 +233,8 @@ public class StartFrame extends JFrame {
 			i++;
 		}
 		
-		JButton btnStartGame = new JButton("Start Game!");
-		btnStartGame.setForeground(Color.RED);
-		btnStartGame.addActionListener(new StartGameBottonListener(jComboBox, textFieldArray, this));
+		btnNewButton.addActionListener(new StartGameBottonListener(jComboBox, textFieldArray, this));
 		
-		JLabel label = new JLabel("1");
-		label.setForeground(Color.YELLOW);
-		label.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
-		label.setBackground(Color.YELLOW);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JLabel lblNewLabel = new JLabel("2");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.YELLOW);
-		lblNewLabel.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
-		
-		JLabel label_1 = new JLabel("3");
-		label_1.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
-		label_1.setForeground(Color.YELLOW);
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JLabel lblNewLabel_1 = new JLabel("4");
-		lblNewLabel_1.setFont(new Font("Bradley Hand", Font.PLAIN, 20));
-		lblNewLabel_1.setForeground(Color.YELLOW);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		String[] maxPuntiGioco = {"Punteggio", "20", "25", "30", "35"};
-		
-		JComboBox comboBox_4 = new JComboBox(maxPuntiGioco);
-
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(6, Short.MAX_VALUE)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(6)
-											.addComponent(txtInserireNome_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(65)
-											.addComponent(lblNewLabel)))
-									.addGap(101)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnStartGame, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addGap(6)
-											.addComponent(txtInserireNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_panel.createSequentialGroup()
-										.addGap(6)
-										.addComponent(txtInserireNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)))
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(45)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-											.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel.createSequentialGroup()
-													.addGap(6)
-													.addComponent(txtInserireNome_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-												.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-											.addPreferredGap(ComponentPlacement.RELATED))
-										.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-											.addComponent(lblNewLabel_1)
-											.addGap(70))))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(label)))
-							.addGap(6))
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addComponent(label_1)
-							.addGap(264))))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(label)
-										.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtInserireNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(81)
-									.addComponent(lblNewLabel)
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addComponent(lblNewLabel_1))
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtInserireNome_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtInserireNome_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(31)
-									.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap(167, Short.MAX_VALUE)
-							.addComponent(btnStartGame)
-							.addGap(83)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(label_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(1)
-					.addComponent(txtInserireNome_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		panel.setLayout(gl_panel);	
 	}
 
 	public int getHumanPlayers() {
