@@ -141,8 +141,10 @@ public class Game {
 	 * Conclude il turno, togliendo le carte dal tavolo e dandole a team
 	 */
 	public void finalizeTurn(Player p, ArrayList<Card> chosenCards) throws CardNotFoundException {
-		
-			p.removeCardFromHand(lastCardPlayed);
+		if(p.getHand().size() == 0)
+			return;
+		p.removeCardFromHand(lastCardPlayed);
+			
 		
 		if(chosenCards.size() != 0) {
 			this.table.removeCardsFromTable(chosenCards);
@@ -155,8 +157,9 @@ public class Game {
 	}
 	
 	public void finalizeTurn(Player p, Card c) throws CardNotFoundException{
-	    
-			p.removeCardFromHand(lastCardPlayed);
+		if(p.getHand().size() == 0)
+			return;
+		p.removeCardFromHand(lastCardPlayed);
 		
 		this.table.putCardOnTable(c);
 	}
