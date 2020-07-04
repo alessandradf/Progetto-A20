@@ -91,14 +91,30 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 			System.out.println("\n Opzione " + i + ": " + arrayList.toString());
 			i++;
 		}
+		int scelta = 0;
+		boolean isValid = false;
+		while (!isValid) {
+			try {
+				scelta = Integer.parseInt(scanner.nextLine());
+				if ((scelta > 0) && (scelta < choices.size())) {
+					isValid = true;
+				} else {
+					System.out.println("Devi inserire un numero tra quelli indicati tra le opzioni!");
 
-		int scelta = Integer.parseInt(scanner.nextLine());
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Devi inserire un numero tra quelli indicati tra le opzioni!");
+
+			}
+		}
+
 		try {
 
 			gameController.endTurn(humanPlayerHandler, choices.get(scelta - 1));
 		} catch (CardNotFoundException e) {
 
 		}
+
 	}
 
 	@Override
@@ -121,27 +137,23 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 			try {
 				String stringa = scanner.nextLine();
 				Card cardPlayed = CardConverter.toModelCard(stringa);
-			
+
 				humanPlayerHandler.cardPlayed(cardPlayed);
 				isValid = true;
 			} catch (NumberFormatException e) {
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				
-			}
-			catch (CardNotFoundException c) {
+
+			} catch (CardNotFoundException c) {
 				// TODO: handle exception
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				
-			}
-			catch (IllegalArgumentException il) {
+
+			} catch (IllegalArgumentException il) {
 				// TODO: handle exception
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				
-			}
-			catch(NoSuchElementException no) {
+
+			} catch (NoSuchElementException no) {
 				System.out.println("devi inserire una delle carte che hai in mano nel formato 'valore SEME'");
-				
-				
+
 			}
 		}
 
@@ -165,7 +177,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 				"\n Vuoi fare un'altra partita? scrivi yes, se vuoi giocare ancora, se no schiaccia una lettera qualunque");
 		String scelta = scanner.nextLine();
 
-		if (scelta.equals("yes")) {
+		if (scelta.equalsIgnoreCase("yes")) {
 			table.clear();
 
 		} else {
