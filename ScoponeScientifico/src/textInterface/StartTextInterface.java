@@ -2,6 +2,7 @@ package textInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StartTextInterface {
@@ -10,7 +11,7 @@ public class StartTextInterface {
 	
 	/*
 	 * contiene i nomi dei giocatoi dei team
-	 * l'ordine di inserimento è congruo a quello di config
+	 * l'ordine di inserimento ï¿½ congruo a quello di config
 	 */
 	private ArrayList<String> allNames;
 	private Scanner scanner;
@@ -52,15 +53,19 @@ public class StartTextInterface {
 		
 		while(numberOk == false) {
 			try {
-				humanNumber = scanner.nextInt();
+				humanNumber = Integer.parseInt(scanner.next());
 				if(humanNumber<0 || humanNumber>2) {
 					throw new IOException();
 				}
-				numberOk = true;
+				break;
 
-			} catch (Exception e) {
+			} catch (IOException e) {
 				System.err.println("Il numero deve essere compreso tra 0 e 2");
 			}
+			catch (NumberFormatException numberFormatException) {
+				System.err.println("Inserisci un numero tra 0 e 2");
+			}
+			
 		}
 		return humanNumber;	
 	}
@@ -134,7 +139,7 @@ public class StartTextInterface {
 	
 	/*
 	 * Viene chiamato nel caso in cui gioca prima il computer dell'umano
-	 * Inverte i nomi così che l'ordine coincida con l'ordine di gioco
+	 * Inverte i nomi cosï¿½ che l'ordine coincida con l'ordine di gioco
 	 */
 	private void swapOrderNames(int teamNumber) {
 		
