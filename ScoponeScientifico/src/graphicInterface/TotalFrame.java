@@ -145,5 +145,8 @@ public class TotalFrame extends JFrame {
 	public TotalTeamPanel getTeamsPanel() {
 		return teamsPanel;
 	}
+	public void setText(String playerAndTeam) {
+		this.setTitle(playerAndTeam);
+	}
 
 }

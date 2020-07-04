@@ -34,7 +34,8 @@ import utility.TeamObserver;
 
 public class GUIController implements HumanPlayerInterfaceController, InterfaceTurnFinalizer, InterfaceController {
 	private GameController gameController;
-	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
+//	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
+	private HashMap<HumanPlayerHandler, TotalFrame> playerView = new HashMap<HumanPlayerHandler, TotalFrame>();
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
@@ -125,7 +126,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 			totalFrame = new TotalFrame(playerHandler.getPlayer().getPlayerName(), tablePanel.get(i), playerPanel,
 					team1Panels.get(i), team2Panels.get(i));
 			playerPanel.setTotalFrame(totalFrame);
-			playerView.add(totalFrame);
+			playerView.put(playerHandler,totalFrame);
 			i++;
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
@@ -148,7 +149,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		return cardLabels;
 	}
 
-	public ArrayList<TotalFrame> getPlayerView() {
+	public HashMap<HumanPlayerHandler, TotalFrame> getPlayerView() {
 		return playerView;
 	}
 
@@ -162,7 +163,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 			tablePanel.validate();
 
 		}
-		for (TotalFrame totalFrame : playerView) {
+		for (TotalFrame totalFrame : playerView.values()) {
 
 			totalFrame.repaint();
 			totalFrame.validate();
@@ -180,7 +181,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 			tablePanel.validate();
 
 		}
-		for (TotalFrame totalFrame : playerView) {
+		for (TotalFrame totalFrame : playerView.values()) {
 
 			totalFrame.repaint();
 			totalFrame.validate();
@@ -211,6 +212,9 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 	public ArrayList<TeamPanel> getTeam2Panels() {
 		return team2Panels;
+	}
+	public ArrayList<HumanPlayerHandler> getPlayers() {
+		return players;
 	}
 
 	@Override
@@ -260,7 +264,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 			playerPanels.get(humanPlayerHandler).setCards(playerCards);
 
 		}
-		for (TotalFrame totalFrame : playerView) {
+		for (TotalFrame totalFrame : playerView.values()) {
 			totalFrame.getTeamsPanel().getTeam1().removeAll();
 			totalFrame.getTeamsPanel().getTeam2().removeAll();
 			totalFrame.repaint();
@@ -272,7 +276,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	@Override
 	public void gameFinished(Team winnerTeam) {
 		// TODO Auto-generated method stub
-		for (TotalFrame totalFrame : playerView) {
+		for (TotalFrame totalFrame : playerView.values()) {
 			totalFrame.getPlayerPanel().removeAll();
 			totalFrame.getTeamsPanel().getTeam1().removeAll();
 			totalFrame.getTeamsPanel().getTeam2().removeAll();
@@ -307,5 +311,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	public static void main(String[] args) {
 		GUIController.getDefaultGUIController().startGame();
 	}
+
 
 }

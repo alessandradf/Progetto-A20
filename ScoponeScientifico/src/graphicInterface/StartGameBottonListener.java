@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import controller.GameStartSetup;
+import controller.HumanPlayerHandler;
 import graphicInterfaceController.GUIController;
 import utility.TableObserver;
 import utility.TeamObserver;
@@ -54,7 +55,9 @@ public class StartGameBottonListener implements ActionListener {
 		else {
 			g.getGameController().getGame().setMaxScore(Integer.parseInt(maxScore.getSelectedItem().toString()));
 		}
-		
+		for (HumanPlayerHandler humanPlayerHandler : GUIController.getDefaultGUIController().getPlayers()) {
+			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler).setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " " + humanPlayerHandler.getPlayer().getTeam().getTeamName());
+		}
 	}
 
 }

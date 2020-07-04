@@ -130,7 +130,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 			return;
 
 		System.out.println("\n Carte sul tavolo: " + table.toString());
-		System.out.println("\n Turno di: " + humanPlayerHandler.getPlayer() + ", scegli la carta che vuoi giocare!");
+		System.out.println("\n Turno di: " + humanPlayerHandler.getPlayer() +"appartenente al team:  " +humanPlayerHandler.getPlayer().getTeam().getTeamName()+ ", scegli la carta che vuoi giocare!");
 		boolean isValid = false;
 		while (!isValid) {
 
