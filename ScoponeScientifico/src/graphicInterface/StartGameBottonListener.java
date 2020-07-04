@@ -17,11 +17,13 @@ import utility.TeamObserver;
 public class StartGameBottonListener implements ActionListener {
 
 	private JComboBox[] comboBox;
+	private JComboBox maxScore;
 	private StartFrame frame;
 	private JTextField[] textField;
 
-	public StartGameBottonListener(JComboBox[] comboBox, JTextField[] textField, StartFrame frame) {
+	public StartGameBottonListener(JComboBox[] comboBox, JComboBox maxScore, JTextField[] textField, StartFrame frame) {
 		this.comboBox = comboBox;
+		this.maxScore = maxScore;
 		this.textField = textField;
 		this.frame = frame;
 	}
@@ -43,7 +45,16 @@ public class StartGameBottonListener implements ActionListener {
 		}
 		frame.setVisible(false);
 		GameStartSetup g;		
-		g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames);		
+		g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames);
+		
+		//setto il punteggio massimo della partita dalla combobox punteggio
+		if(maxScore.getSelectedItem().toString().equals("Punteggio")) {
+			g.getGameController().getGame().setMaxScore(21);
+		}
+		else {
+			g.getGameController().getGame().setMaxScore(Integer.parseInt(maxScore.getSelectedItem().toString()));
+		}
+		
 	}
 
 }

@@ -57,10 +57,7 @@ public class StartFrame extends JFrame {
 	 * Launch the application.
 	 */
 
-
-
-
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -72,7 +69,7 @@ public class StartFrame extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
@@ -160,7 +157,7 @@ public class StartFrame extends JFrame {
 		
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(44, 72, 119, 27);
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Punteggio", "20", "25", "30"}));
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Punteggio", "26", "31", "36"}));
 		panel_4.add(comboBox_4);
 		
 		JPanel panel_5 = new JPanel();
@@ -233,7 +230,7 @@ public class StartFrame extends JFrame {
 			i++;
 		}
 		
-		btnNewButton.addActionListener(new StartGameBottonListener(jComboBox, textFieldArray, this));
+		btnNewButton.addActionListener(new StartGameBottonListener(jComboBox, comboBox_4, textFieldArray, this));
 		
 	}
 
