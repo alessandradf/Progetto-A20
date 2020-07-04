@@ -34,11 +34,12 @@ public class StartGameBottonListener implements ActionListener {
 			if (comboBox[i].getSelectedItem().toString().equals("Human Player")) {
 				frame.setHumanPlayers(frame.getHumanPlayers() + 1);
 				config[i] = "Human";
+				playerNames.add(textField[i].getText());
 			} else {
 				frame.setComputerPlayers(frame.getComputerPlayers() + 1);
 				config[i] = "Computer";
+				playerNames.add(null);
 			}
-			playerNames.add(textField[i].getText());
 		}
 		frame.setVisible(false);
 		GameStartSetup g;		
