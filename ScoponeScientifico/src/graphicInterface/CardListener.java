@@ -10,6 +10,7 @@ import javax.swing.border.Border;
 
 import CardTest.CardLabel;
 import controller.HumanPlayerHandler;
+import exception.CardNotFoundException;
 import graphicInterfaceController.GUIController;
 import utility.CardConverter;
 
@@ -33,8 +34,12 @@ public class CardListener implements MouseListener{
 		if(cardLabel.isEnable() == true) {
 			cardLabel.setVisible(false);
 			playerPanel.remove(cardLabel);
+			try {
 			humanPlayer.cardPlayed(CardConverter.toModelCard(cardLabel));
-			
+			}
+			catch(CardNotFoundException c) {
+				System.out.println("Carta non trovata!");
+			}
 		}
 	}
 
