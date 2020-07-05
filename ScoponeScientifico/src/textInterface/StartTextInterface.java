@@ -21,7 +21,7 @@ public class StartTextInterface {
 	public StartTextInterface() {
 		
 		scanner = new Scanner(System.in);
-		System.out.println("Giocatori umani Team1:");
+		System.out.println("Numero giocatori umani Team1:");
 		this.humanNumbersTeam1 = readHumanNumbers();
 		
 		readNames(humanNumbersTeam1, 1);
@@ -127,7 +127,7 @@ public class StartTextInterface {
 		String[] teamNames = {null, null};
 		
 		if(humanPlayers >= 1) {
-			System.out.println("Inserisci i nomi dei giocatori umani Team1:");
+			System.out.println("Inserisci i nomi dei giocatori umani Team" +teamNumber + ":");
 			for(int i=0; i<humanPlayers; i++) {
 				teamNames[i] = scanner.next();
 			}

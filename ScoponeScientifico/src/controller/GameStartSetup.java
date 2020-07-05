@@ -37,6 +37,7 @@ public class GameStartSetup {
 		createPlayers(config);
 		controller.init(getHumanPlayers(), gameController);
 		gameController.init();
+	
 		addTableObservers(controller);
 		//addTeamObservers(controller.getTeam1Observer(), controller.getTeam2Observer());
 		gameController.start();
