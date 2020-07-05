@@ -268,7 +268,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	public void newHand() {
 
 		initPlayerCards(this.players);
-		for (TotalFrame totalFrame : playerView) {
+		for (TotalFrame totalFrame : playerView.values()) {
 			totalFrame.getTeamsPanel().getTeam1().clear();
 			totalFrame.getTeamsPanel().getTeam2().clear();
 
