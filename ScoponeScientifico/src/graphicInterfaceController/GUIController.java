@@ -75,15 +75,13 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		});
 
 	}
+
 	public void startGame(String message) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					JFrame messageFrame = new JFrame();
-					JOptionPane.showMessageDialog(messageFrame,
-						    message,
-						    "Warning",
-						    JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(messageFrame, message, "Warning", JOptionPane.WARNING_MESSAGE);
 					StartFrame frame = new StartFrame();
 					frame.setVisible(true);
 
@@ -94,6 +92,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		});
 
 	}
+
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
 		gameController.setTurnFinalizer(this);
@@ -103,21 +102,12 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		gameController.getHistory().setOutput(historyFrame);
 		TotalFrame totalFrame;
 		PlayerPanel playerPanel;
-		ArrayList<CardLabel> playerCards;
 
 		for (HumanPlayerHandler playerHandler : playerHandlers) {
 			playerHandler.setInterfaceController(this);
-			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
-			playerPanel = new PlayerPanel(playerCards);
 			players.add(playerHandler);
+			playerPanel = new PlayerPanel();
 			playerPanels.put(playerHandler, playerPanel);
-			for (CardLabel cardLabel : playerCards) {
-
-				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel));
-
-			}
-			// String playerNameAndTeam = playerHandler.getPlayer().getPlayerName() +"--"+
-			// playerHandler.getPlayer().getTeam().getTeamName();
 
 			tablePanel.add(new TablePanel());
 			team1Panels.add(new TeamPanel(1));
@@ -129,11 +119,31 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 			i++;
 			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
+		initPlayerCards(players);
 		tablePanel.add(new TablePanel());
 		// i++;
 		// howManyTablePanels = i;
 		// playerView.get(0).unlockPlayer();
 		addTeamObserver();
+	}
+
+	/**
+	 * @param playerHandlers
+	 * 
+	 *                       Si occupa di inizializzare i playerPanel con le carte
+	 *                       del Player per ogni Player
+	 */
+	private void initPlayerCards(ArrayList<HumanPlayerHandler> playerHandlers) {
+		ArrayList<CardLabel> playerCards;
+		PlayerPanel playerPanel;
+		for (HumanPlayerHandler playerHandler : playerHandlers) {
+			playerCards = cardsConverter(playerHandler.getPlayer().getHand());
+			playerPanel = this.playerPanels.get(playerHandler);
+			for (CardLabel cardLabel : playerCards) {
+				cardLabel.addMouseListener(new CardListener(cardLabel, playerHandler, playerPanel));
+			}
+			playerPanel.setCards(playerCards);
+		}
 	}
 
 	private void addTeamObserver() {
@@ -228,12 +238,11 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			try {
-				gameController.endTurn(humanPlayerHandler, (ArrayList<Card>) op.getComboBox().getSelectedItem());
-			}
-			catch(CardNotFoundException c){
-				System.out.println("Carta non trovata!");
-			}
+				try {
+					gameController.endTurn(humanPlayerHandler, (ArrayList<Card>) op.getComboBox().getSelectedItem());
+				} catch (CardNotFoundException c) {
+					System.out.println("Carta non trovata!");
+				}
 				tableFrame.dispose();
 				op.dispose();
 			}
@@ -253,19 +262,12 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 	@Override
 	public void newHand() {
-		// TODO Auto-generated method stub
-		ArrayList<CardLabel> playerCards = new ArrayList<CardLabel>();
-		for (HumanPlayerHandler humanPlayerHandler : players) {
-			playerCards = cardsConverter(humanPlayerHandler.getPlayer().getHand());
-			playerPanels.get(humanPlayerHandler).setCards(playerCards);
-
-		}
+		initPlayerCards(this.players);
 		for (TotalFrame totalFrame : playerView) {
-			totalFrame.getTeamsPanel().getTeam1().removeAll();
-			totalFrame.getTeamsPanel().getTeam2().removeAll();
+			totalFrame.getTeamsPanel().getTeam1().clear();
+			totalFrame.getTeamsPanel().getTeam2().clear();
 			totalFrame.repaint();
 			totalFrame.validate();
-
 		}
 	}
 

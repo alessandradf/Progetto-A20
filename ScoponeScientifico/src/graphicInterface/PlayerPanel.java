@@ -39,7 +39,7 @@ public class PlayerPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PlayerPanel(ArrayList<CardLabel> playerHand) {
+	public PlayerPanel() {
 		playerReady = false;
 		thisPanel = this;
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -48,11 +48,12 @@ public class PlayerPanel extends JPanel {
 		this.setMaximumSize(minimumSize);
 		this.setMinimumSize(minimumSize); //fa si che il pannello non si ridimensioni
 		this.setPreferredSize(minimumSize);
-		this.playerHand = playerHand;
-		for (CardLabel cardLabel : playerHand) {
-			add(cardLabel);
-			cardLabel.setVisible(false);
-		}
+		this.playerHand = new ArrayList<CardLabel>();
+		//this.playerHand = playerHand;
+		//for (CardLabel cardLabel : playerHand) {
+		//	add(cardLabel);
+		//	cardLabel.setVisible(false);
+		//}
 		readyButton = new JButton("Ready");
 		readyButton.addActionListener(new ActionListener() {
 			

@@ -160,6 +160,11 @@ public class GameController {
 			}
 			turnFinalizer.gameFinished(winner);
 		}
+		else {
+			turnFinalizer.newHand();
+			this.start();
+		}
+			
 	}
 	
 	/**

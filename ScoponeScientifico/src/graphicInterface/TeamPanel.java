@@ -82,14 +82,18 @@ public class TeamPanel extends JPanel implements TeamObserver {
 	@Override
 	public void scopa(Card scopaCard) {
 		// TODO Auto-generated method stub
-		if (ultimaScopa != null) {
-			scope.remove(ultimaScopa);
-		}
+		this.clear();
 		ultimaScopa = CardConverter.toCardLabel(scopaCard);
 		scope.add(ultimaScopa);
 		scope.repaint();
 		scope.validate();
 
+	}
+	
+	public void clear() {
+		if (ultimaScopa != null) {
+			scope.remove(ultimaScopa);
+		}
 	}
 
 }
