@@ -84,7 +84,7 @@ public class Game {
 	private ArrayList<Team> createTeams() {
 		ArrayList<Team> teams = new ArrayList<Team>();
 		for (int i = 0; i < TEAM_NUMBER; i++) {
-			teams.add(new Team("Team " + i));
+			teams.add(new Team("Team " + (i + 1)));
 		}
 
 		return teams;
