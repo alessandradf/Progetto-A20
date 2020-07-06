@@ -3,6 +3,7 @@ package textInterface;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class StartTextInterface {
@@ -17,6 +18,7 @@ public class StartTextInterface {
 	private Scanner scanner;
 	private String[] config = new String[4];
 	private String[] playersNames = new String[4];
+	private int maxScore;
 	
 	public StartTextInterface() {
 		
@@ -40,6 +42,8 @@ public class StartTextInterface {
 		for(String s : playersNames) {
 			allNames.add(s);
 		}
+		chooseMaxScore();
+		
 		
 	}
 	
@@ -148,6 +152,26 @@ public class StartTextInterface {
 		this.playersNames[teamNumber + 1] = first;
 	}
 	
+	private void chooseMaxScore() {
+		System.out.println("Inserisci il punteggio che deve essere raggiunto dal team vincitore della partita: ");
+		boolean isValid = false;
+		while(!isValid) {
+			try {
+				maxScore = Integer.parseInt(scanner.next());
+				if(maxScore <= 0) {
+					throw new IOException();
+				}
+				isValid = true;
+			}
+			catch(NumberFormatException | NoSuchElementException| IllegalStateException e) {
+				System.out.println("Devi inserire il numero di punti da raggiungere per terminare la partita!");
+			}
+			catch(IOException ex) {
+				System.out.println("Il punteggio deve essere maggiore di 0!");
+			}
+		}
+	}
+	
 
 	public int getHumanNumbersTeam1() {
 		return humanNumbersTeam1;
@@ -163,5 +187,9 @@ public class StartTextInterface {
 
 	public String[] getConfig() {
 		return config;
+	}
+
+	public int getMaxScore() {
+		return maxScore;
 	}
 }

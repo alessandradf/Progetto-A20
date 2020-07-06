@@ -18,7 +18,7 @@ public class GameController {
 	private History history;
 	private InterfaceTurnFinalizer turnFinalizer;
 	private int turn;
-	
+	private int maxScore;
 	
 
 	/**
@@ -39,7 +39,7 @@ public class GameController {
 	 */
 	public GameController(CircularArrayList<AbstractPlayerHandler> players, int maxScore, Game g) {
 		this(players, g);
-		game.setMaxScore(maxScore);
+		this.maxScore = maxScore;
 	}
 	
 	public void init() {
@@ -64,11 +64,13 @@ public class GameController {
 
 		teams.get(1).addPlayer(players.get(3).getPlayer());
 		players.get(3).getPlayer().setTeam(teams.get(1));
-
+		
+		game.setMaxScore(maxScore);
 		initHistoryObserver();
 	}
 	
 	public void start() {
+		
 		players.get(0).unlockPlayer();
 	}
 	

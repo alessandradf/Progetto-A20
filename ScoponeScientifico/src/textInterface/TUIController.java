@@ -32,12 +32,15 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	private Scanner scanner;
 	private StandardOutput historyOutput;
 
+
 	public void startGame() {
 
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames());
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames(), startText.getMaxScore());
+		
+		
 	}
 
 	public void startGame(String message) {
@@ -45,7 +48,8 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames());
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames(), startText.getMaxScore());
+		
 	}
 
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
@@ -125,7 +129,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
-
+		
 		if (humanPlayerHandler.getPlayer().getHand().size() == 0)
 			return;
 

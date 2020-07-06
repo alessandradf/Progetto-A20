@@ -46,14 +46,16 @@ public class StartGameBottonListener implements ActionListener {
 		}
 		frame.setVisible(false);
 		GameStartSetup g;		
-		g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames);
+		
 		
 		//setto il punteggio massimo della partita dalla combobox punteggio
 		if(maxScore.getSelectedItem().toString().equals("Punteggio")) {
-			g.getGameController().getGame().setMaxScore(5);
+			g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames, 5);
+		//	g.getGameController().getGame().setMaxScore(5);
 		}
 		else {
-			g.getGameController().getGame().setMaxScore(Integer.parseInt(maxScore.getSelectedItem().toString()));
+			g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames, Integer.parseInt(maxScore.getSelectedItem().toString()));
+			
 		}
 		for (HumanPlayerHandler humanPlayerHandler : GUIController.getDefaultGUIController().getPlayers()) {
 			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler).setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " " + humanPlayerHandler.getPlayer().getTeam().getTeamName());

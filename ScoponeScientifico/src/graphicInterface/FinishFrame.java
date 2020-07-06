@@ -68,7 +68,9 @@ public class FinishFrame extends JFrame {
 				if (no.isSelected()) {
 					no.setSelected(false);
 				}
-
+				else if(!yes.isSelected()){
+					yes.setSelected(true);
+				}
 			}
 		});
 
@@ -79,6 +81,9 @@ public class FinishFrame extends JFrame {
 				// TODO Auto-generated method stub
 				if (yes.isSelected()) {
 					yes.setSelected(false);
+				}
+				else if(!no.isSelected()) {
+					no.setSelected(true);
 				}
 
 			}

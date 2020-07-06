@@ -21,23 +21,25 @@ public class GameStartSetup {
 	private ArrayList<HumanPlayerHandler> humanPlayers;
 	private int humanPlayerNumber;
 	private InterfaceController controller;
+	private int maxScore;
 
-	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller, ArrayList<String> playersNames) {
+	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller, ArrayList<String> playersNames, int maxScore) {
 		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
 		game = new Game(playersNames);
+		this.maxScore = maxScore;
 		init(config);		
+		
 	}
 	
 	public void init(String[] config) {
 		try {		
-		gameController = new GameController(players, game);
+		gameController = new GameController(players, maxScore, game);
 		createPlayers(config);
 		controller.init(getHumanPlayers(), gameController);
 		gameController.init();
-	
 		addTableObservers(controller);
 		//addTeamObservers(controller.getTeam1Observer(), controller.getTeam2Observer());
 		gameController.start();
