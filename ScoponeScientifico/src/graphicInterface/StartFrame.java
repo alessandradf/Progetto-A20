@@ -45,7 +45,6 @@ import javax.swing.JTextField;
 public class StartFrame extends JFrame {
 
 	private JPanel contentPane;
-	private ArrayList<String> s;
 	private int humanPlayers;
 	private int computerPlayers;
 	private JTextField txtInserireNome;
@@ -157,7 +156,7 @@ public class StartFrame extends JFrame {
 		
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(44, 72, 119, 27);
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Punteggio", "26", "31", "36"}));
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Punteggio", "10", "15"}));
 		panel_4.add(comboBox_4);
 		
 		JPanel panel_5 = new JPanel();
