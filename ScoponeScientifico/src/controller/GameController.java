@@ -150,6 +150,7 @@ public class GameController {
 	
 	private void finalizeHand() {
 		boolean isFinished = game.finalizeHand();
+		history.writeOnOutput();
 		if(isFinished) {
 			Team winner;
 			if(game.getTeams().get(0).getScore() > game.getTeams().get(1).getScore()) {
