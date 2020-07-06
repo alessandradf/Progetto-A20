@@ -294,7 +294,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		team1Panels.clear();
 		team2Panels.clear();
 		historyFrame.dispose();
-		FinishFrame finishFrame = new FinishFrame(winnerTeam.getTeamName());
+		FinishFrame finishFrame = new FinishFrame(winnerTeam);
 		finishFrame.getOk().addActionListener(new ActionListener() {
 
 			@Override

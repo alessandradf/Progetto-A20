@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
+import model.Team;
+
 public class FinishFrame extends JFrame {
 	private JPanel contentPane;
 	private JLabel winnerLabel;
@@ -24,7 +26,7 @@ public class FinishFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FinishFrame frame = new FinishFrame("Team 1");
+					FinishFrame frame = new FinishFrame(new Team("nameTestTeam"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,17 +38,17 @@ public class FinishFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FinishFrame(String winnerTeam) {
+	public FinishFrame(Team winnerTeam) {
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setSize(400, 200);
+		setSize(500, 300);
 	//	setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(2, 1));
 		setContentPane(contentPane);
 		JPanel panel = new JPanel();
-		winnerLabel = new JLabel("Gioco Terminato! complimenti al team vincitore: " + winnerTeam + "!");
+		winnerLabel = new JLabel("Gioco Terminato! complimenti al team vincitore: " + winnerTeam.getTeamName() + "! Punteggio: " + winnerTeam.getScore());
 		panel.add(winnerLabel);
 		contentPane.add(panel);
 
