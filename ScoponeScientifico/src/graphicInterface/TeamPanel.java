@@ -18,6 +18,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.plaf.ScrollBarUI;
 
 import CardTest.CardLabel;
@@ -34,6 +35,8 @@ public class TeamPanel extends JPanel implements TeamObserver {
 	private CardLabel ultimaScopa;
 	private int scoreTeam;
 	private int teamNumber;
+	
+	private JLabel scoreLastHand1;
 
 	public TeamPanel(int teamNumber) {
 		// TODO Auto-generated constructor stub
@@ -46,17 +49,19 @@ public class TeamPanel extends JPanel implements TeamObserver {
 
 		setBackground(new Color(0, 128, 0));
 
-		scoreTeamlbl = new JLabel("Score Team" + teamNumber);
+		scoreTeamlbl = new JLabel("<html><body><p style=\"font-size:10px;\">Punteggio totale: </p></body></html>");
+		scoreLastHand1 = new JLabel("<html><body><p style=\"font-size:10px;\">Ultima mano: </p></body></html>");
 		scoreTeamPanel = new JPanel();
-		scoreTeamPanel.setBorder(BorderFactory.createTitledBorder("Punteggio"));
+		scoreTeamPanel.setBorder(BorderFactory.createTitledBorder("Punteggio Team" + teamNumber));
 		scoreTeamPanel.setBackground(new Color(0, 128, 0));
-		scoreTeamPanel.setLayout(new BorderLayout());
-		scoreTeamPanel.add(scoreTeamlbl, BorderLayout.CENTER);
+		scoreTeamPanel.setLayout(new GridLayout(2, 1));
+		scoreTeamPanel.add(scoreTeamlbl);
+		scoreTeamPanel.add(scoreLastHand1);
 
 		scope = new JPanel();
 		scope.setLayout(new GridLayout(1, 1));
 		scope.setBackground(new Color(0, 128, 0));
-		scope.setBorder(BorderFactory.createTitledBorder("Ultima Scopa"));
+		scope.setBorder(BorderFactory.createTitledBorder("Ultima Scopa Team" + teamNumber));
 
 		/*
 		 * String[] paths = new String[2]; paths[0] = "Resources/Cards/2diCUORI.png";
@@ -64,17 +69,17 @@ public class TeamPanel extends JPanel implements TeamObserver {
 		 * 
 		 * scope.add(new CardLabel(SeedType.CUORI, 2, paths));
 		 */
-
 		add(scope);
 		add(scoreTeamPanel);
 
 	}
 
 	@Override
-	public void updateScore(int score) {
+	public void updateScore(int score, int lastHandScore) {
 		// TODO Auto-generated method stub
 		scoreTeam = score;
-		scoreTeamlbl.setText("Punteggio Team" + teamNumber + ":\n " + scoreTeam);
+		scoreTeamlbl.setText("<html><body><p style=\"font-size:10px;\">Punteggio totale:" + score + "</p></body></html>");
+		scoreLastHand1.setText("<html><body><p style=\"font-size:10px;\">Ultima mano:" + lastHandScore + "</p></body></html>");
 		this.repaint();
 		this.validate();
 	}

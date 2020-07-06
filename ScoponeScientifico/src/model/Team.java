@@ -13,6 +13,7 @@ public class Team {
 
 	private ArrayList<Player> playersInTeam;
 	private int score;
+	private int lastHandScore;
 	private ArrayList<Card> cardsTaken;
 	private ArrayList<Card> scope;
 	private String teamName;
@@ -29,6 +30,7 @@ public class Team {
 		this.scope = new ArrayList<Card>();
 		this.teamObservers = new ArrayList<TeamObserver>();
 		this.score = 0;
+		this.lastHandScore = 0;
 		this.teamName = teamName;
 	}
 	
@@ -38,10 +40,11 @@ public class Team {
 	 * NB qua le carte non vengono resettate!
 	 */
 	public void addScore(int newScore) {
+		this.lastHandScore = newScore;
 		this.score += newScore;
 		
 		for (TeamObserver o : teamObservers) {
-			o.updateScore(this.score);
+			o.updateScore(this.score, lastHandScore);
 		}
 	}
 

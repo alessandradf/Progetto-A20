@@ -62,7 +62,7 @@ public class History implements TeamObserver, TableObserver, PlayerObserver {
 
 	
 	@Override
-	public void updateScore(int score) {
+	public void updateScore(int score, int lastHandScore) {
 	}
 
 	@Override
