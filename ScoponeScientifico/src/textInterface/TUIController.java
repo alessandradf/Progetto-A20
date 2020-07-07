@@ -100,14 +100,14 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		while (!isValid) {
 			try {
 				scelta = Integer.parseInt(scanner.nextLine());
-				if ((scelta > 0) && (scelta < choices.size())) {
+				if ((scelta > 0) && (scelta <= choices.size())) {
 					isValid = true;
 				} else {
 					System.out.println("Devi inserire un numero tra quelli indicati tra le opzioni!");
 
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Devi inserire un numero tra quelli indicati tra le opzioni!");
+				System.out.println("NUMBER FORMAT Devi inserire un numero tra quelli indicati tra le opzioni!");
 
 			}
 		}
@@ -166,12 +166,16 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	@Override
 	public void newHand() {
 		// TODO Auto-generated method stub
+		System.out.println("Mano Terminata!");
+		System.out.println("Punteggio Team1:  "+gameController.getGame().getTeams().get(0).getScore());
+		System.out.println("Punteggio Team2:  "+gameController.getGame().getTeams().get(1).getScore());
 
 	}
 
 	@Override
 	public void gameFinished(Team winnerTeam) {
 		this.winnerTeam = winnerTeam;
+		System.out.println("Ha vinto il Team: " +winnerTeam.getTeamName()+ " con un punteggio di: " +winnerTeam.getScore() +" punti!");
 	}
 
 	private void trueEnd() {
@@ -195,7 +199,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 			TUIController tui = new TUIController();
 			tui.startGame();
 			tui.trueEnd();
-			System.out.println("lalala");
+			
 		}
 	}
 
