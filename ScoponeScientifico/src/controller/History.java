@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Card;
@@ -68,6 +69,23 @@ public class History implements TeamObserver, TableObserver, PlayerObserver {
 	@Override
 	public void scopa(Card scopaCard) {
 		String s = "\nE' stata fatta la seguente scopa: " + scopaCard.toString();
+		this.entry.append(s);
+	}
+	
+	/*
+	 * viene chiamato direttamente da GameController alla fine dell'ultima mano
+	 */
+	public void finalizeHand(Player lastToTake, ArrayList<Card> lastCards) {
+		this.entry = new StringBuilder();		// resetto lo StringBuilder per non avere una entry incompleta
+		String s = "Le carte rimanenti sul tavolo sono\n state prese da " + lastToTake.getPlayerName();
+		
+		s += "\n[ ";
+		
+		for(Card c : lastCards) {
+			s += c.toString() + " ";
+		}
+		s += " ]";
+		
 		this.entry.append(s);
 	}
 

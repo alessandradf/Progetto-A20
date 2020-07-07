@@ -31,9 +31,8 @@ public class Game {
 	private ScoreProcessor scoreProcessor;
 	private int maxScore;
 	
-	private Player lastTakePlayer;
+	private Player lastTakePlayer;		//ultimo giocatore ad avere affettuato una presa. Prenderà le carte sul tavolo a fine mano
 	private Card lastCardPlayed;
-	
 
 
 	public Game(ArrayList<String> playersNames) {
@@ -230,5 +229,8 @@ public class Game {
 		this.maxScore = maxScore;
 	}
 
+	public Player getLastTakePlayer() {
+		return lastTakePlayer;
+	}
 	
 }

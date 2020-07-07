@@ -151,7 +151,14 @@ public class GameController {
 	}
 	
 	private void finalizeHand() {
+		ArrayList<Card> lastCardsOnTable = new ArrayList<Card>();
+		
+		for(Card c : game.getDefaultTable().getCardsOnTable()) {
+			lastCardsOnTable.add(c);
+		}
+		
 		boolean isFinished = game.finalizeHand();
+		history.finalizeHand(game.getLastTakePlayer(), lastCardsOnTable);
 		history.writeOnOutput();
 		if(isFinished) {
 			Team winner;
