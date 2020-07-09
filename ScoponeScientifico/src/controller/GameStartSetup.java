@@ -1,18 +1,15 @@
 package controller;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
-
 import exception.HumanNotFoundException;
-import graphicInterface.StartFrame;
-import graphicInterfaceController.GUIController;
 import model.Game;
-import model.Player;
-import model.Team;
 import utility.CircularArrayList;
 import utility.TableObserver;
-import utility.TeamObserver;
 
+/**
+ * @author aless
+ *
+ */
 public class GameStartSetup {
 
 	private Game game;
@@ -23,51 +20,65 @@ public class GameStartSetup {
 	private InterfaceController controller;
 	private int maxScore;
 
-	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller, ArrayList<String> playersNames, int maxScore) {
+	/**
+	 * Initialize the Game
+	 * 
+	 * @param config               configuration of players
+	 * @param human_players_number
+	 * @param controller           controller of the interface
+	 * @param playersNames         names of the players
+	 * @param maxScore             maximum game score
+	 */
+	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller,
+			ArrayList<String> playersNames, int maxScore) {
 		this.humanPlayerNumber = human_players_number;
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
 		game = new Game(playersNames);
 		this.maxScore = maxScore;
-		init(config);		
-		
+		init(config);
+
 	}
-	
+
+	/**
+	 * Initialize the application
+	 * 
+	 * @param config configuration of the players
+	 */
 	public void init(String[] config) {
-		try {		
-		gameController = new GameController(players, maxScore, game);
-		createPlayers(config);
-		controller.init(getHumanPlayers(), gameController);
-		gameController.init();
-		addTableObservers(controller);
-		//addTeamObservers(controller.getTeam1Observer(), controller.getTeam2Observer());
-		gameController.start();
+		try {
+			gameController = new GameController(players, maxScore, game);
+			createPlayers(config);
+			controller.init(getHumanPlayers(), gameController);
+			gameController.init();
+			addTableObservers(controller);
+			gameController.start();
 		} catch (HumanNotFoundException e) {
 			controller.startGame("Inserisci almeno un giocatore umano!");
 		}
-		
+
 	}
+
+	/**
+	 * Adds observer to the table
+	 * 
+	 * @param tableObserver observer of the table
+	 */
 	public void addTableObservers(TableObserver tableObserver) {
 		game.getDefaultTable().addObserver(tableObserver);
 
 	}
-	
-	//non serve più
-	public void addTeamObservers(ArrayList<TeamObserver> team1Observers, ArrayList<TeamObserver> team2Observers) {
-		for (int i = 0; i < humanPlayerNumber; i++) {
-			// nota: bisogna mettere human_players_number e non 4 altrimenti c'Ã¨
-			// un'eccezione se i giocatori non sono veramente 4
-			game.getTeams().get(0).addTeamObserver(team1Observers.get(i));
-			game.getTeams().get(1).addTeamObserver(team2Observers.get(i));
-		}
-	}
 
+	/**
+	 * creates players based on the configuration
+	 * 
+	 * @param config configuration of the players
+	 */
 	private void createPlayers(String[] config) {
-		if (allComputers(config))
+		if (checkAllComputers(config))
 			throw new HumanNotFoundException();
-		
-		// istanzia i giocatori umani e li associa ordinatamente a quelli del game
+
 		for (int i = 0; i < config.length; i++) {
 			if (config[i].equals("Human")) {
 				HumanPlayerHandler newest = new HumanPlayerHandler(game.getPlayers().get(i), this.gameController);
@@ -79,14 +90,21 @@ public class GameStartSetup {
 			}
 		}
 	}
-	
-	private boolean allComputers(String config[]) {
+
+	/**
+	 * Checks if there are only computers in the configuration string.
+	 * 
+	 * @param config configuration
+	 * @return true if there are only computers, false otherwise
+	 */
+	private boolean checkAllComputers(String config[]) {
 		for (int i = 0; i < config.length; i++) {
 			if (config[i].equals("Human"))
 				return false;
 		}
 		return true;
 	}
+
 	public GameController getGameController() {
 		return gameController;
 	}
@@ -95,5 +113,4 @@ public class GameStartSetup {
 		return humanPlayers;
 	}
 
-	
 }
