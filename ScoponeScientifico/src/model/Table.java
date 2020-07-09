@@ -10,9 +10,9 @@ import utility.GameProcessor;
 import utility.TableObserver;
 
 /**
- *
- * @author Stefano
- *
+ * Represents the Table where a game of Scopone is played.
+ * This class offers methods to put cards and remove cards from the table, alongside
+ * the possibility to add observers which will be notified when a card is put or removed.
  */
 public class Table {
 
@@ -22,26 +22,32 @@ public class Table {
 	/*
 	 * Inizializza il tavolo con un ArrayList vuoto
 	 */
+	/**
+	 * Creates a new Table with no cards on it
+	 */
 	public Table() {
 		this.cardsOnTable = new ArrayList<Card>();
 		this.obs = new ArrayList<TableObserver>();
 	}
 
 	/**
-	 * Aggiorna il tavolo a seguito di una carta giocata
+	 * Updates the table, adding one card
+	 * @param playedCard the card to be put on the table
 	 */
 	public void putCardOnTable(Card playedCard) {
 		this.cardsOnTable.add(playedCard);
 		this.updateOnAddition(playedCard);
 	}
-
+	
+	
 	private void updateOnAddition(Card playedCard) {
 		for (TableObserver o : obs)
 			o.updateOnAddition(playedCard);
 	}
 
-	/*
-	 * Rimuove dal tavolo le carte passate come parametro
+	/**
+	 * Removes from the table all the cards specified in the collection
+	 * @param cards all the Cards to be removed
 	 */
 	public void removeCardsFromTable(List<Card> cards) {
 		if (cards != null) {
@@ -50,18 +56,25 @@ public class Table {
 		}
 	}
 
-	/*
-	 * Rimuove tutte le carte dal tavolo
+	/**
+	 * Removes all the Cards from the table
 	 */
 	public void clearTable() {
 		updateOnRemoval(this.getCardsOnTable());
 		this.cardsOnTable.clear();
 	}
 
+	/**
+	 * 
+	 * @return the Cards currently on the Table
+	 */
 	public ArrayList<Card> getCardsOnTable() {
 		return this.cardsOnTable;
 	}
-
+	/**
+	 * Add a single TableObserver to the table
+	 * @param o the TableObserver to be added
+	 */
 	public void addObserver(TableObserver o) {
 		this.obs.add(o);
 	}

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import utility.TeamObserver;
 
 /**
- * Rappresenta le due squadre di scopone
- * 
- * @author Stefano
- *
+ * Represents one Team of 2 Players in the game
+ * This class tracks also the information about the score (both of the last hand and of the entire game)
+ * and the scopas done in the current hand of the game
  */
 public class Team {
 
@@ -21,8 +20,9 @@ public class Team {
 	private ArrayList<TeamObserver> teamObservers;
 
 	
-	/*
-	 * Il team viene inizializzato senza giocatori e carte
+	/**
+	 * Creates an empty team, wih the given name
+	 * @param teamName the name of the team
 	 */
 	public Team(String teamName) {
 		this.playersInTeam = new ArrayList<Player>();
@@ -39,6 +39,12 @@ public class Team {
 	 * Questo metodo dovrebbe essere chiamato solo dallo ScoreProcessor e solo alla fine della mano!
 	 * NB qua le carte non vengono resettate!
 	 */
+	
+	/**
+	 * Updates the score done in the last hand and sums it to the total score of the game.
+	 * This method must be called only at the end of the hand.
+	 * @param newScore the score of the last hand
+	 */
 	public void addScore(int newScore) {
 		this.lastHandScore = newScore;
 		this.score += newScore;
@@ -50,7 +56,8 @@ public class Team {
 
 	
 	/**
-	 * Aggiunge un Player al Team. Controlla prima se � gi� stato aggiunto
+	 * Add one Player to the Team, controlling that the Player isn't alredy known.
+	 * @return true if the Player is correctly added.
 	 */
 	public boolean addPlayer(Player p) {
 		if (!(this.playersInTeam.contains(p))) {
@@ -61,15 +68,16 @@ public class Team {
 	}
 
 	
-	/*
-	 * Aggiunge le carte passate a quelle del team
+	/**
+	 * Add the list of Cards to those taken by the team
+	 * @param cards the cards to be added
 	 */
 	public void addCards(ArrayList<Card> cards) {
 		this.cardsTaken.addAll(cards);
 	}
 	
-	/*
-	 * Svuota l'ArrayList di carte prese dal team
+	/**
+	 * Clears the cards taken by the team.
 	 */
 	protected void resetTeamCards() {
 		this.cardsTaken.clear();
@@ -79,18 +87,34 @@ public class Team {
 		this.teamObservers.add(teamObserver);
 	}
 	
+	/**
+	 * 
+	 * @return the cards taken by the team
+	 */
 	public ArrayList<Card> getCards() {
 		return this.cardsTaken;
 	}
 	
+	/**
+	 * 
+	 * @return the score of the Team since the start of the game
+	 */
 	public int getScore() {
 		return this.score;
 	}
 	
+	/**
+	 * 
+	 * @return the scopas made by the team
+	 */
 	public ArrayList<Card> getScope() {
 		return this.scope;
 	}
 	
+	/**
+	 * 
+	 * @return the players in the Team
+	 */
 	public ArrayList<Player> getPlayers(){
 		return this.playersInTeam;
 	}
@@ -109,6 +133,10 @@ public class Team {
 		return playersInTeam;
 	}
 	
+	/**
+	 * Notify the team that the card scopaCard made a scopa.
+	 * @param scopaCard the card which made a scopa
+	 */
 	public void scopa(Card scopaCard) {
 		this.scope.add(scopaCard);
 		for (TeamObserver o : teamObservers)
