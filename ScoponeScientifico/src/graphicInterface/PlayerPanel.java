@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import CardTest.CardLabel;
 import model.Card;
 import model.SeedType;
 import utility.CardConverter;

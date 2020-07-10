@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-import CardTest.CardLabel;
 import controller.HumanPlayerHandler;
 import exception.CardNotFoundException;
 import graphicInterfaceController.GUIController;

@@ -2,8 +2,6 @@ package graphicInterface;
 
 import javax.swing.JPanel;
 
-import CardTest.CardLabel;
-
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;

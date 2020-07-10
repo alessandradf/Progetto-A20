@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import CardTest.*;
+
 
 import controller.GameController;
 import controller.HumanPlayerHandler;
@@ -18,6 +18,7 @@ import controller.HumanPlayerInterfaceController;
 import controller.InterfaceController;
 import controller.InterfaceTurnFinalizer;
 import exception.CardNotFoundException;
+import graphicInterface.CardLabel;
 import graphicInterface.CardListener;
 import graphicInterface.FinishFrame;
 import graphicInterface.HistoryFrame;

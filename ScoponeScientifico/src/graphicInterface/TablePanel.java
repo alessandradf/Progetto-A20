@@ -8,8 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import CardTest.CardLabel;
-import CardTest.CardTester;
+
 import model.Card;
 
 import java.awt.Color;

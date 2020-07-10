@@ -1,4 +1,4 @@
-package CardTest;
+package graphicInterface;
 
 import java.awt.Component;
 import java.awt.Graphics;
@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import graphicInterface.CardListener;
 import model.SeedType;
 
 public class CardLabel extends JLabel {

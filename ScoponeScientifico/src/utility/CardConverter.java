@@ -2,11 +2,9 @@ package utility;
 
 import java.util.StringTokenizer;
 
-import CardTest.CardLabel;
+import graphicInterface.CardLabel;
 import model.Card;
 import model.SeedType;
-import CardTest.CardLabel;
-//import graphicInterface.InterfaceCard?
 
 
 /*

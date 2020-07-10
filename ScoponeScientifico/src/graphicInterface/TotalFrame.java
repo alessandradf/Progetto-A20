@@ -24,7 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
-import CardTest.CardLabel;
 import controller.GameController;
 import controller.HumanPlayerHandler;
 import graphicInterfaceController.GUIController;
