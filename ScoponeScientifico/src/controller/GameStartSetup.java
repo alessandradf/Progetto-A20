@@ -6,32 +6,25 @@ import model.Game;
 import utility.CircularArrayList;
 import utility.TableObserver;
 
-/**
- * @author aless
- *
- */
 public class GameStartSetup {
 
 	private Game game;
 	private GameController gameController;
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private ArrayList<HumanPlayerHandler> humanPlayers;
-	private int humanPlayerNumber;
 	private InterfaceController controller;
 	private int maxScore;
 
 	/**
-	 * Initialize the Game
+	 * Initialize and start the Game
 	 * 
-	 * @param config               configuration of players
-	 * @param human_players_number
-	 * @param controller           controller of the interface
-	 * @param playersNames         names of the players
-	 * @param maxScore             maximum game score
+	 * @param config       configuration of players *
+	 * @param controller   controller of the interface
+	 * @param playersNames names of the players
+	 * @param maxScore     maximum game score
 	 */
-	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller,
-			ArrayList<String> playersNames, int maxScore) {
-		this.humanPlayerNumber = human_players_number;
+	public GameStartSetup(String[] config, InterfaceController controller, ArrayList<String> playersNames,
+			int maxScore) {
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
@@ -42,7 +35,8 @@ public class GameStartSetup {
 	}
 
 	/**
-	 * Initialize the application
+	 * Initialize {@link controller.GameController} and
+	 * {@link controller.InterfaceController}
 	 * 
 	 * @param config configuration of the players
 	 */
