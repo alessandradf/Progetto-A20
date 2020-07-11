@@ -6,15 +6,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
 import graphicInterfaceController.GUIController;
-import utility.TableObserver;
-import utility.TeamObserver;
 
+/**
+ * This listener instantiates the GameStartSetUp through the user's choices made
+ * in the StartFrame
+ *
+ */
 public class StartGameBottonListener implements ActionListener {
 
 	private JComboBox[] comboBox;
@@ -22,6 +24,14 @@ public class StartGameBottonListener implements ActionListener {
 	private StartFrame frame;
 	private JTextField[] textField;
 
+	/**
+	 * Initializes the listener with the StartFrame's elements
+	 * 
+	 * @param comboBox  array with the player type's comboBox
+	 * @param maxScore  comboBox with the maximum score's choice
+	 * @param textField array of textField with the names of the players
+	 * @param frame     Start frame
+	 */
 	public StartGameBottonListener(JComboBox[] comboBox, JComboBox maxScore, JTextField[] textField, StartFrame frame) {
 		this.comboBox = comboBox;
 		this.maxScore = maxScore;
@@ -29,6 +39,10 @@ public class StartGameBottonListener implements ActionListener {
 		this.frame = frame;
 	}
 
+	/**
+	 * Instantiates GameStartSetUp with the type of players, their names and the
+	 * maximum score
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String[] config = new String[4];
@@ -45,20 +59,20 @@ public class StartGameBottonListener implements ActionListener {
 			}
 		}
 		frame.setVisible(false);
-		GameStartSetup g;		
-		
-		
-		//setto il punteggio massimo della partita dalla combobox punteggio
-		if(maxScore.getSelectedItem().toString().equals("Punteggio")) {
+		GameStartSetup g;
+
+		if (maxScore.getSelectedItem().toString().equals("Punteggio")) {
 			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames, 5);
-		//	g.getGameController().getGame().setMaxScore(5);
-		}
-		else {
-			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames, Integer.parseInt(maxScore.getSelectedItem().toString()));
-			
+			// g.getGameController().getGame().setMaxScore(5);
+		} else {
+			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames,
+					Integer.parseInt(maxScore.getSelectedItem().toString()));
+
 		}
 		for (HumanPlayerHandler humanPlayerHandler : GUIController.getDefaultGUIController().getPlayers()) {
-			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler).setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " " + humanPlayerHandler.getPlayer().getTeam().getTeamName());
+			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler)
+					.setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " "
+							+ humanPlayerHandler.getPlayer().getTeam().getTeamName());
 		}
 	}
 

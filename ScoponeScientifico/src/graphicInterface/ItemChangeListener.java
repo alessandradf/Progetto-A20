@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+/**
+ * This listener makes the StartFrame change depending on the selected item in the comboBox
+ */
 public class ItemChangeListener implements ActionListener{
 	
 	private JTextField textField;

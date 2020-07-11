@@ -51,8 +51,8 @@ public class GameStartSetup {
 	public void init() {
 		try {
 			game = new Game(playersNames);
-			createPlayers(this.configuration);
 			gameController = new GameController(players, maxScore, game);
+			createPlayers(this.configuration);
 			controller.init(getHumanPlayers(), gameController);
 			gameController.init();
 			addTableObservers(controller);

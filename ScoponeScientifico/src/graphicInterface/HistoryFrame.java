@@ -7,61 +7,63 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
 
 import utility.OutputInterface;
 
+/**
+ * Frame on which is allowed to write through the OutputInterface. 
+ * It's used from the GUIController to set the history.
+ */
 public class HistoryFrame extends JFrame implements OutputInterface {
 	private JLabel historyLabel;
 	private JScrollPane scrollPane;
-	private String historyText; // stringa contenente tutto il testo della cronologia
 
+	/**
+	 * constructor
+	 */
 	public HistoryFrame() {
 		// TODO Auto-generated constructor stub
-		historyText = new String();
 
 		setSize(new Dimension(400, 200));
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int w = this.getSize().width;
-        int h = this.getSize().height;
-        int x = (dim.width-w)/40;
-        int y = (dim.height-h)/5;
-        this.setLocation(x, y);
+		int h = this.getSize().height;
+		int x = (dim.width - w) / 40;
+		int y = (dim.height - h) / 5;
+		this.setLocation(x, y);
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		setTitle("Cronologia Eventi");
-		
+
 		historyLabel = new JLabel();
 		scrollPane = new JScrollPane(historyLabel);
 		add(scrollPane);
 
 	}
 
-
 	@Override
 	public void writeOnOutput(String update) {
-		
+
 		String[] parts = update.split("\n");
 		String entry = "<html><body><ul><li>";
-		
-		for(String s : parts) {
+
+		for (String s : parts) {
 			entry += s + "<br>";
 		}
-		
+
 		entry += "</li></ul>";
-		
+
 		String text = historyLabel.getText() + entry;
-		
+
 		historyLabel.setText(text);
 		historyLabel.repaint();
 		historyLabel.validate();
 		this.repaint();
 		this.validate();
-		
+
 		JScrollBar vert = this.scrollPane.getVerticalScrollBar();
 		vert.setValue(vert.getMaximum());
 	}
-
 
 }
