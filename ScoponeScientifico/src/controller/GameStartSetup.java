@@ -6,6 +6,12 @@ import model.Game;
 import utility.CircularArrayList;
 import utility.TableObserver;
 
+/**
+ * Takes care of setting up the game and starting it.
+ * 
+ * @see InterfaceController
+ * @see GameController
+ */
 public class GameStartSetup {
 
 	private Game game;
@@ -13,37 +19,40 @@ public class GameStartSetup {
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private ArrayList<HumanPlayerHandler> humanPlayers;
 	private InterfaceController controller;
+	private ArrayList<String> playersNames;
+	private String[] configuration;
 	private int maxScore;
 
 	/**
 	 * Initialize and start the Game
 	 * 
-	 * @param config       configuration of players *
+	 * @param configuration       configuration of players
 	 * @param controller   controller of the interface
 	 * @param playersNames names of the players
 	 * @param maxScore     maximum game score
 	 */
-	public GameStartSetup(String[] config, InterfaceController controller, ArrayList<String> playersNames,
+	public GameStartSetup(String[] configuration, InterfaceController controller, ArrayList<String> playersNames,
 			int maxScore) {
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
-		game = new Game(playersNames);
+		this.playersNames = playersNames;
 		this.maxScore = maxScore;
-		init(config);
-
+		this.configuration = configuration;
+		init();
 	}
 
 	/**
-	 * Initialize {@link controller.GameController} and
-	 * {@link controller.InterfaceController}
+	 * Initialize {@link controller.GameController},
+	 * {@link controller.InterfaceController} and start the game
 	 * 
-	 * @param config configuration of the players
+	 * 
 	 */
-	public void init(String[] config) {
+	public void init() {
 		try {
+			game = new Game(playersNames);
+			createPlayers(this.configuration);
 			gameController = new GameController(players, maxScore, game);
-			createPlayers(config);
 			controller.init(getHumanPlayers(), gameController);
 			gameController.init();
 			addTableObservers(controller);
