@@ -1,6 +1,5 @@
 package graphicInterface;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,17 +9,21 @@ import javax.swing.JTextField;
 
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
+import controller.InterfaceController;
 import graphicInterfaceController.GUIController;
 
 /**
- * This listener instantiates the GameStartSetUp through the user's choices made
- * in the StartFrame
+ * Implements {@link ActionListener} and instantiates the GameStartSetup through
+ * the user's choices made in the StartFrame
+ * 
+ * @see StartFrame
+ * @see GameStartSetup
  *
  */
 public class StartGameBottonListener implements ActionListener {
 
-	private JComboBox[] comboBox;
-	private JComboBox maxScore;
+	private JComboBox<String>[] comboBox;
+	private JComboBox<String> maxScore;
 	private StartFrame frame;
 	private JTextField[] textField;
 
@@ -31,8 +34,13 @@ public class StartGameBottonListener implements ActionListener {
 	 * @param maxScore  comboBox with the maximum score's choice
 	 * @param textField array of textField with the names of the players
 	 * @param frame     Start frame
+	 * 
+	 * @see JComboBox
+	 * @see JTextField
+	 * @see StartFrame
 	 */
-	public StartGameBottonListener(JComboBox[] comboBox, JComboBox maxScore, JTextField[] textField, StartFrame frame) {
+	public StartGameBottonListener(JComboBox<String>[] comboBox, JComboBox<String> maxScore, JTextField[] textField,
+			StartFrame frame) {
 		this.comboBox = comboBox;
 		this.maxScore = maxScore;
 		this.textField = textField;
@@ -40,8 +48,15 @@ public class StartGameBottonListener implements ActionListener {
 	}
 
 	/**
-	 * Instantiates GameStartSetUp with the type of players, their names and the
-	 * maximum score
+	 * Instantiates GameStartSetUp with the type of players, their names, the
+	 * maximum score and the GUIController as an InterfaceController. It also sets
+	 * the names of the human players in their TotalFrames
+	 * 
+	 * @see GameStartSetup
+	 * @see HumanPlayerHandler
+	 * @see TotalFrame
+	 * @see InterfaceController
+	 * @see GUIController
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -59,6 +74,7 @@ public class StartGameBottonListener implements ActionListener {
 			}
 		}
 		frame.setVisible(false);
+		@SuppressWarnings("unused")
 		GameStartSetup g;
 
 		if (maxScore.getSelectedItem().toString().equals("Punteggio")) {

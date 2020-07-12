@@ -6,19 +6,26 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Card;
+import model.Team;
 import utility.CardConverter;
 import utility.TeamObserver;
 
 /**
- * This panel shows the team's scores and the last "scopa" made
+ * Extends {@link JPanel} and implements {@link TeamObserver} It shows the
+ * team's scores and the last "scopa" made
+ * 
+ * @see Team
  * 
  */
+@SuppressWarnings("serial")
 public class TeamPanel extends JPanel implements TeamObserver {
 	private JLabel scoreTeamlbl;
 	private JPanel scoreTeamPanel;
 	private JPanel scope;
 	private CardLabel ultimaScopa;
+	@SuppressWarnings("unused")
 	private int scoreTeam;
+	@SuppressWarnings("unused")
 	private int teamNumber;
 	private JLabel scoreLastHand1;
 
@@ -58,6 +65,9 @@ public class TeamPanel extends JPanel implements TeamObserver {
 
 	/**
 	 * Updates the team's score displayed
+	 * 
+	 * @param score         total team's score
+	 * @param lastHandScore team's score in the last hand
 	 */
 	@Override
 	public void updateScore(int score, int lastHandScore) {
@@ -73,6 +83,9 @@ public class TeamPanel extends JPanel implements TeamObserver {
 
 	/**
 	 * Updates the last scopa displayed
+	 * 
+	 * @param scopaCard card's that represents the last scopa
+	 * @see Card
 	 */
 	@Override
 	public void scopa(Card scopaCard) {

@@ -11,16 +11,22 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
- * Personal player's frame, it shows the PlayerPanel, the TablePanel and the
- * TotalTeamPanel
+ * Extends {@link JFrame} Personal player's frame, it shows the PlayerPanel, the
+ * TablePanel and the TotalTeamPanel
+ * 
+ * @see PlayerPanel
+ * @see TablePanel
+ * @see TotalTeamPanel
  *
  */
+@SuppressWarnings("serial")
 public class TotalFrame extends JFrame {
 
 	private JPanel contentPane;
 	private PlayerPanel playerPanel;
 	private TablePanel tablePanel;
 	private TotalTeamPanel teamsPanel;
+	@SuppressWarnings("unused")
 	private String playerNameAndTeam;
 
 	/**
@@ -31,6 +37,9 @@ public class TotalFrame extends JFrame {
 	 * @param playerPanel
 	 * @param team1             team1's panel
 	 * @param team2             team2's panel
+	 * @see TablePanel
+	 * @see PlayerPanel
+	 * @see TeamPanel
 	 */
 	public TotalFrame(String playerNameAndTeam, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1,
 			TeamPanel team2) {
@@ -86,6 +95,7 @@ public class TotalFrame extends JFrame {
 
 	/**
 	 * @return player's panel
+	 * @see PlayerPanel
 	 */
 	public JPanel getPlayerPanel() {
 		return playerPanel;
@@ -93,6 +103,7 @@ public class TotalFrame extends JFrame {
 
 	/**
 	 * @return table's panel
+	 * @see TablePanel
 	 */
 	public TablePanel getTablePanel() {
 		return tablePanel;
@@ -100,6 +111,7 @@ public class TotalFrame extends JFrame {
 
 	/**
 	 * @return TotalTeamPanel in which are located the team panels
+	 * @see TotalTeamPanel
 	 */
 	public TotalTeamPanel getTeamsPanel() {
 		return teamsPanel;

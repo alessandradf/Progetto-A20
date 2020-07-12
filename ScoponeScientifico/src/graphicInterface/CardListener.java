@@ -12,7 +12,9 @@ import exception.CardNotFoundException;
 import utility.CardConverter;
 
 /**
- * this listener allows the player to play the cardLabel
+ * Implements {@link MouseListener} and allows the player to play
+ * {@link CardLabel}
+ * 
  */
 public class CardListener implements MouseListener {
 
@@ -22,7 +24,7 @@ public class CardListener implements MouseListener {
 	private PlayerPanel playerPanel;
 
 	/**
-	 * constructor
+	 * Creates a CardListener
 	 * 
 	 * @param l           cardLabel on which is set the listener
 	 * @param humanPlayer player that owns the card
@@ -36,7 +38,7 @@ public class CardListener implements MouseListener {
 	}
 
 	/**
-	 * allows to play the card when it's clicked
+	 * Allows to play the card when it's clicked
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -64,6 +66,9 @@ public class CardListener implements MouseListener {
 
 	}
 
+	/**
+	 * Enables the card's border when the mouse is on it
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -72,6 +77,9 @@ public class CardListener implements MouseListener {
 		}
 	}
 
+	/**
+	 * Disables the card's border when the mouse is not on the card anymore
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub

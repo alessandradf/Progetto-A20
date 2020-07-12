@@ -13,8 +13,11 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Panel that shows all the cards on the table
+ * Extends {@link JPanel} and shows all the cards on the table
+ * 
+ * @see CardLabel
  */
+@SuppressWarnings("serial")
 public class TablePanel extends JPanel {
 
 	ArrayList<CardLabel> cardsOnTable;
@@ -47,6 +50,7 @@ public class TablePanel extends JPanel {
 	 * Puts a new card on the panel
 	 * 
 	 * @param playedCard
+	 * @see CardLabel
 	 */
 	public void putCardOnTable(CardLabel playedCard) {
 		this.cardsOnTable.add(playedCard);
@@ -60,6 +64,7 @@ public class TablePanel extends JPanel {
 	 * Removes a card from the panel
 	 * 
 	 * @param cardsRemoved
+	 * @see CardLabel
 	 */
 	public void removeCardsFromTable(ArrayList<CardLabel> cardsRemoved) {
 		ArrayList<CardLabel> toRemove = new ArrayList<CardLabel>();

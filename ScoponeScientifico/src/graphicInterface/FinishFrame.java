@@ -15,9 +15,10 @@ import javax.swing.border.EmptyBorder;
 import model.Team;
 
 /**
- * Frame that appears at the end of the game. It announces the winner team and
- * allows the user to choose if he wants to play again.
+ * Extends {@link JFrame} and appears at the end of the game. It announces the
+ * winner team and allows the user to choose if he wants to play again.
  */
+@SuppressWarnings("serial")
 public class FinishFrame extends JFrame {
 	private JPanel contentPane;
 	private JLabel winnerLabel;
@@ -39,17 +40,19 @@ public class FinishFrame extends JFrame {
 	}
 
 	/**
-	 * Creates the frame with a Label on which is wrote the winner team, two buttons
-	 * that allows to choose to play again or not and the ok button used to finalize
-	 * the choice
+	 * Creates the frame with a Label on which is wrote the winner team, two
+	 * JRadioButton that allow to choose to play again or not and the "ok button"
+	 * JButton used to finalize the choice
 	 * 
 	 * @param winnerTeam
+	 * @see Team
+	 * @see JRadioButton
+	 * @see JButton
 	 */
 	public FinishFrame(Team winnerTeam) {
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setSize(500, 300);
-		// setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(2, 1));
@@ -109,6 +112,7 @@ public class FinishFrame extends JFrame {
 
 	/**
 	 * @return ok Button
+	 * @see JButton
 	 */
 	public JButton getOk() {
 		return ok;
