@@ -7,8 +7,8 @@ import utility.PlayerObserver;
 
 /**
  * Represents a Player in a match of Scopone
- * One Player is defines by his name, his @see model.Team and his Cards, stored in his hand
- * 
+ * One Player is defines by his name, his {@link model.Team} and his Cards, stored in his hand
+ * @see Team
  */
 
 public class Player {
