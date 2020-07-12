@@ -12,9 +12,12 @@ import javax.swing.JLabel;
 import model.SeedType;
 
 /**
- * JLabel that represents the GUI's card
+ * Extends {@link JLabel} and represents the GUI's card
  */
+@SuppressWarnings("serial")
 public class CardLabel extends JLabel {
+
+
 
 	private Icon imageCard;
 
@@ -24,7 +27,7 @@ public class CardLabel extends JLabel {
 	private boolean isEnable;
 
 	/**
-	 * constructor
+	 * Creates a CardLabel with a seed, a value and an image
 	 * 
 	 * @param seed        card's seed
 	 * @param value       card's value
@@ -46,7 +49,7 @@ public class CardLabel extends JLabel {
 	}
 
 	/**
-	 * allows to enable or disable the card's listener
+	 * Allows to enable or disable the card's listener
 	 * 
 	 * @param b true to enable the listener, false to disable it
 	 */
@@ -64,6 +67,7 @@ public class CardLabel extends JLabel {
 
 	/**
 	 * @return card's seed
+	 * @see SeedType
 	 */
 	public SeedType getSeed() {
 		return seed;

@@ -8,18 +8,22 @@ import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
+import graphicInterfaceController.GUIController;
 import utility.OutputInterface;
 
 /**
- * Frame on which is allowed to write through the OutputInterface. 
- * It's used from the GUIController to set the history.
+ * Extends {@link JFrame} and implements {@link OutputInterface} It's used from
+ * the GUIController to show the history.
+ * 
+ * @see GUIController
  */
+@SuppressWarnings("serial")
 public class HistoryFrame extends JFrame implements OutputInterface {
 	private JLabel historyLabel;
 	private JScrollPane scrollPane;
 
 	/**
-	 * constructor
+	 * Creates HistoryFrame
 	 */
 	public HistoryFrame() {
 		// TODO Auto-generated constructor stub
@@ -42,6 +46,11 @@ public class HistoryFrame extends JFrame implements OutputInterface {
 
 	}
 
+	/**
+	 * Allows to write a new line on the HistoryFrame
+	 * 
+	 * @param update new line of the history
+	 */
 	@Override
 	public void writeOnOutput(String update) {
 

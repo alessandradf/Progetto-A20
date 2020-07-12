@@ -16,8 +16,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 
 /**
- * This frame allows the user to set the game's options
+ * Extends {@link JFrame} and allows the user to set the game's options
  */
+@SuppressWarnings("serial")
 public class StartFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -29,11 +30,15 @@ public class StartFrame extends JFrame {
 	private JTextField txtInserireNome_3;
 
 	/**
-	 * Creates the Frame with 4 comboBox to choose teams and players (human or
-	 * computer), 1 comboBox to choose the score to reach and the button to start
+	 * Creates the Frame with 4 JComboBox to choose teams and players (human or
+	 * computer), 1 JComboBox to choose the score to reach and the JButton to start
 	 * the game
 	 * 
+	 * @see JComboBox
+	 * @see JButton
+	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public StartFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 400);
@@ -60,9 +65,9 @@ public class StartFrame extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(20, 17, 163, 27);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Computer Player", "Human Player" }));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_1.add(comboBox);
 
 		JLabel label = new JLabel("1");
@@ -88,9 +93,9 @@ public class StartFrame extends JFrame {
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
 
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setBounds(0, 42, 163, 26);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "Computer Player", "Human Player" }));
+		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_3.add(comboBox_1);
 
 		JLabel label_1 = new JLabel("2");
@@ -116,9 +121,9 @@ public class StartFrame extends JFrame {
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		panel_4.add(btnNewButton);
 
-		JComboBox comboBox_4 = new JComboBox();
+		JComboBox<String> comboBox_4 = new JComboBox<String>();
 		comboBox_4.setBounds(44, 72, 119, 27);
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] { "Punteggio", "10", "15" }));
+		comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] { "Punteggio", "10", "15" }));
 		panel_4.add(comboBox_4);
 
 		JPanel panel_5 = new JPanel();
@@ -126,9 +131,9 @@ public class StartFrame extends JFrame {
 		contentPane.add(panel_5);
 		panel_5.setLayout(null);
 
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox<String> comboBox_3 = new JComboBox<String>();
 		comboBox_3.setBounds(27, 44, 163, 26);
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] { "Computer Player", "Human Player" }));
+		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_5.add(comboBox_3);
 
 		JLabel label_3 = new JLabel("4");
@@ -152,9 +157,9 @@ public class StartFrame extends JFrame {
 		contentPane.add(panel_7);
 		panel_7.setLayout(null);
 
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setBounds(20, 71, 163, 26);
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] { "Computer Player", "Human Player" }));
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_7.add(comboBox_2);
 
 		JLabel label_2 = new JLabel("3");
@@ -173,6 +178,8 @@ public class StartFrame extends JFrame {
 		panel_8.setBackground(new Color(0, 128, 0));
 		contentPane.add(panel_8);
 
+		
+		@SuppressWarnings("rawtypes")
 		JComboBox[] jComboBox = { comboBox, comboBox_1, comboBox_2, comboBox_3 };
 
 		this.humanPlayers = 0;
@@ -186,7 +193,7 @@ public class StartFrame extends JFrame {
 
 		int i = 0;
 
-		for (JComboBox jComboBox2 : jComboBox) {
+		for (JComboBox<String> jComboBox2 : jComboBox) {
 			jComboBox2.addActionListener(new ItemChangeListener(textFieldArray[i], jComboBox2));
 			i++;
 		}

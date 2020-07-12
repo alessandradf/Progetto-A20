@@ -11,8 +11,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Personal panel of the player, it shows the player's cards.
+ * Extends {@link JPanel}, personal panel of the player, it shows the player's
+ * cards.
+ * 
+ * @see CardLabel
  */
+@SuppressWarnings("serial")
 public class PlayerPanel extends JPanel {
 
 	ArrayList<CardLabel> playerHand;
@@ -21,7 +25,10 @@ public class PlayerPanel extends JPanel {
 	private JButton readyButton;
 
 	/**
-	 * Constructor
+	 * Creates the PlayerPanel with the "ready button" that allows the player to
+	 * decide when he is ready to see his cards
+	 * 
+	 * @see JButton
 	 */
 	public PlayerPanel() {
 		thisPanel = this;
@@ -48,6 +55,7 @@ public class PlayerPanel extends JPanel {
 	 * Sets the TotalFrame in which is located the panel
 	 * 
 	 * @param totalFrame
+	 * @see TotalFrame
 	 */
 	public void setTotalFrame(TotalFrame totalFrame) {
 		parentFrame = totalFrame;
@@ -92,6 +100,7 @@ public class PlayerPanel extends JPanel {
 
 	/**
 	 * @return player's cards (in cardLabel's form)
+	 * @see CardLabel
 	 */
 	public ArrayList<CardLabel> getPlayerHand() {
 		return playerHand;
@@ -101,6 +110,7 @@ public class PlayerPanel extends JPanel {
 	 * Sets the cards on the panel
 	 * 
 	 * @param playerCards player's cards to set
+	 * @see CardLabel
 	 */
 	public void setCards(ArrayList<CardLabel> playerCards) {
 		playerHand.clear();

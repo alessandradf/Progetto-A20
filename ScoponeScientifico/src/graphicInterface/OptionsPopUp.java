@@ -21,9 +21,12 @@ import java.awt.GridLayout;
 import javax.swing.JComboBox;
 
 /**
- * Frame that allows the user to choose the cards he wants to take when there's
- * a multiple choice
+ * Extends {@link JFrame} and allows the user to choose the cards he wants to
+ * take when there's a multiple choice
+ * 
+ * @see CardLabel
  */
+@SuppressWarnings("serial")
 public class OptionsPopUp extends JFrame {
 
 	private final JPanel contentPanel = new JPanel();
@@ -31,10 +34,12 @@ public class OptionsPopUp extends JFrame {
 	private JButton okButton;
 
 	/**
-	 * constructor
+	 * Creates OptionsPopUp with a JCombobox containing the options
 	 * 
 	 * @param optionCard cards that the user can choose
+	 * @see JComboBox
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public OptionsPopUp(ArrayList<ArrayList<Card>> optionCard) {
 
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -86,7 +91,8 @@ public class OptionsPopUp extends JFrame {
 	}
 
 	/**
-	 * @return comboBox with the options
+	 * @return JComboBox with the options
+	 * @see JComboBox
 	 */
 	public JComboBox<ArrayList<ArrayList<Card>>> getComboBox() {
 		return comboBox;
@@ -94,6 +100,7 @@ public class OptionsPopUp extends JFrame {
 
 	/**
 	 * @return ok button
+	 * @see JButton
 	 */
 	public JButton getOkButton() {
 		return okButton;
