@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,9 +11,12 @@ import utility.GameProcessor;
 import utility.ScoreProcessor;
 
 /**
- * This class represent an implementation of an entire game of scopone.
- * It creates all the entities that participate to the match (4 players and 2 teams)
- * and gives methods to update the domain.
+ * Rappresenta una mano di scopone scientifico, costruendo mazzo, giocatori e
+ * team e permettendo di giocare le carte e consegnarle al giocatore che fa le
+ * prese. Più precisamente...
+ * 
+ * @author Andrea
+ *
  */
 public class Game {
 
@@ -27,12 +31,13 @@ public class Game {
 	private ScoreProcessor scoreProcessor;
 	private int maxScore;
 	
-	private Player lastTakePlayer;		//ultimo giocatore ad avere affettuato una presa. Prender� le carte sul tavolo a fine mano
-	private Card lastCardPlayed;	//ultima carta fetchata nel game
+	private Player lastTakePlayer;		//ultimo giocatore ad avere affettuato una presa. Prender� le carte sul tavolo a fine mano
+	private Card lastCardPlayed;
 
 
 	public Game(ArrayList<String> playersNames) {
-		maxScore = 1; //punteggio di default, è settato a 1 per debug, ma si può settare esternamente
+		maxScore = 1; //punteggio di default, per ora è messo a venti per non creare confusione
+		// nella versione finale bisognerà settarlo all'inizio
 		createDeck();
 		players = createPlayers(playersNames);
 		shuffleDeck();
@@ -42,9 +47,6 @@ public class Game {
 		scoreProcessor = new ScoreProcessor(teams.get(0), teams.get(1));
 	}
 	
-	/**
-	 * Creates a deck of 40 cards
-	 */
 	private void createDeck() {
 		deck = new HashSet<Card>();
 		SeedType seeds[] = SeedType.values();
@@ -56,11 +58,6 @@ public class Game {
 		}
 	}
 
-	/**
-	 * Creates 4 Players. This method is private and only called in the Game constructor
-	 * @param names the player names
-	 * @return the Players
-	 */
 	private ArrayList<Player> createPlayers(ArrayList<String> names) {
 		ArrayList<Player> players = new ArrayList<Player>();
 		/*
@@ -79,9 +76,9 @@ public class Game {
 	}
 
 	/**
-	 * Creates two empty teams.
-	 * This method is private and only called in the constructor. 
-	 * @return the Teams
+	 * Crea due istanze di team
+	 * 
+	 * @return i team di gioco
 	 */
 	private ArrayList<Team> createTeams() {
 		ArrayList<Team> teams = new ArrayList<Team>();
@@ -92,10 +89,6 @@ public class Game {
 		return teams;
 	}
 
-	/**
-	 * Populates the teams, adding, in order, the first two Player in the first team and the other two
-	 * in the second team.
-	 */
 	private void populateTeams() {
 		int j = 0;
 		for (int i = 0; i < TEAM_NUMBER; i++) {
@@ -105,9 +98,6 @@ public class Game {
 		}
 	}
 
-	/**
-	 * Shuffles the deck and gives 10 cards to each player
-	 */
 	private void shuffleDeck() {
 		ArrayList<Card> deckArrayList = new ArrayList<Card>();
 		for (Card c : deck) {
@@ -134,13 +124,6 @@ public class Game {
 	 * @return ArrayList con le possibili scelte, se ce ne sono.
 	 * Se non ci sono scelte, si ritorna un Arraylist vuoto 
 	 */
-	/**
-	 * Tries to put a card into the table and returns all the possible choices of Cards that a player can
-	 * pick from the table with the spiecified Card.
-	 * @param c the Card to be fetched
-	 * @return an ArrayList of choices. If no choice can be made, because the card has to be put on the table and
-	 * no cards can be picked, the Arraylist is empty.
-	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
 		lastCardPlayed = c;
 		ArrayList<ArrayList<Card>> choices = GameProcessor.searchHandle(this.table.getCardsOnTable(), c);
@@ -153,11 +136,8 @@ public class Game {
 	}
 	
 	
-	/**
-	 * Finishes the turn, removing the chosenCards from the table and giving them to the Player's Team
-	 * @param p the player that's finishing the turn
-	 * @param chosenCards the cards to be removed from the Table and picked by the Player
-	 * @throws CardNotFoundException, if the selected Card isn't present on the Player hand 
+	/*
+	 * Conclude il turno, togliendo le carte dal tavolo e dandole a team
 	 */
 	public void finalizeTurn(Player p, ArrayList<Card> chosenCards) throws CardNotFoundException {
 		if(p.getHand().size() == 0)
@@ -175,12 +155,6 @@ public class Game {
 		}
 	}
 	
-	/**
-	 * Finishes the turn, removing the Card from the player hand and putting it on the Table
-	 * @param p the player that's finishing the turn
-	 * @param c the card to be removed from the Player's Hhand
-	 * @throws CardNotFoundException, if the selected Card isn't present on the Player hand 
-	 */
 	public void finalizeTurn(Player p, Card c) throws CardNotFoundException{
 		if(p.getHand().size() == 0)
 			return;
@@ -190,8 +164,7 @@ public class Game {
 	}
 	
 	/**
-	 * Finalizes a single hand (round) of scopone, when all 40 Cards have been played.
-	 * @return true if maxScore has been reached.
+	 * Permette di concludere la mano, calcolare i punteggi e resettare il tavolo
 	 */
 	public boolean finalizeHand() {
 		// le carte rimaste sul tavolo vanno date all'ultimo giocatore che ha fatto una
@@ -256,10 +229,6 @@ public class Game {
 		this.maxScore = maxScore;
 	}
 
-	/**
-	 * 
-	 * @return the last player that took a card from the table
-	 */
 	public Player getLastTakePlayer() {
 		return lastTakePlayer;
 	}
