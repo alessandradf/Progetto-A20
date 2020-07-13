@@ -7,8 +7,10 @@ import utility.CircularArrayList;
 import utility.TableObserver;
 
 /**
- * @author aless
- *
+ * Takes care of setting up the game and starting it.
+ * 
+ * @see InterfaceController
+ * @see GameController
  */
 public class GameStartSetup {
 
@@ -16,40 +18,41 @@ public class GameStartSetup {
 	private GameController gameController;
 	private CircularArrayList<AbstractPlayerHandler> players;
 	private ArrayList<HumanPlayerHandler> humanPlayers;
-	private int humanPlayerNumber;
 	private InterfaceController controller;
+	private ArrayList<String> playersNames;
+	private String[] configuration;
 	private int maxScore;
 
 	/**
-	 * Initialize the Game
+	 * Initialize and start the Game
 	 * 
-	 * @param config               configuration of players
-	 * @param human_players_number
-	 * @param controller           controller of the interface
-	 * @param playersNames         names of the players
-	 * @param maxScore             maximum game score
+	 * @param configuration       configuration of players
+	 * @param controller   controller of the interface
+	 * @param playersNames names of the players
+	 * @param maxScore     maximum game score
 	 */
-	public GameStartSetup(String[] config, int human_players_number, InterfaceController controller,
-			ArrayList<String> playersNames, int maxScore) {
-		this.humanPlayerNumber = human_players_number;
+	public GameStartSetup(String[] configuration, InterfaceController controller, ArrayList<String> playersNames,
+			int maxScore) {
 		this.players = new CircularArrayList<AbstractPlayerHandler>();
 		this.humanPlayers = new ArrayList<HumanPlayerHandler>();
 		this.controller = controller;
-		game = new Game(playersNames);
+		this.playersNames = playersNames;
 		this.maxScore = maxScore;
-		init(config);
-
+		this.configuration = configuration;
+		init();
 	}
 
 	/**
-	 * Initialize the application
+	 * Initialize {@link controller.GameController},
+	 * {@link controller.InterfaceController} and start the game
 	 * 
-	 * @param config configuration of the players
+	 * 
 	 */
-	public void init(String[] config) {
+	public void init() {
 		try {
+			game = new Game(playersNames);
 			gameController = new GameController(players, maxScore, game);
-			createPlayers(config);
+			createPlayers(this.configuration);
 			controller.init(getHumanPlayers(), gameController);
 			gameController.init();
 			addTableObservers(controller);

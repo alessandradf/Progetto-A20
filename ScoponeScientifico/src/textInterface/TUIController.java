@@ -47,7 +47,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames(),
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), this, startText.getPlayersNames(),
 				startText.getMaxScore());
 
 	}
@@ -65,7 +65,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
 		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
-		GameStartSetup g = new GameStartSetup(startText.getConfig(), humanPlayer, this, startText.getPlayersNames(),
+		GameStartSetup g = new GameStartSetup(startText.getConfig(), this, startText.getPlayersNames(),
 				startText.getMaxScore());
 
 	}

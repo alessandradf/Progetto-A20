@@ -1,28 +1,33 @@
 package utility;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import model.Card;
-import model.SeedType;
-import model.Table;
 
+/**
+ * This class uses a recursive algorithm to find all combinations of cards,
+ * whose sum of values is equal to the value of a given card.
+ * 
+ * @see Card
+ */
 public class GameProcessor {
 
 	/**
-	 * @param onTable    carte sul tavolo esclusa playedCard
-	 * @param playedCard carta giocata dal Player
-	 * @return tutte le possibili combinazioni di carte che è possibile prendere
+	 * Search for all possible tricks with a given card.
+	 * 
+	 * @param onTable    cards on Table
+	 * @param playedCard the card played by the player
+	 * @return all possible card combinations that can be taken or a empty list if
+	 *         no hold is possible
 	 */
 	public static ArrayList<ArrayList<Card>> searchHandle(List<Card> onTable, Card playedCard) {
 		ArrayList<ArrayList<Card>> resultCards = new ArrayList<ArrayList<Card>>();
-		
+
 		int numberOfCard = onTable.size();
 		if (numberOfCard == 0)
 			return resultCards;
 
-	
 		ArrayList<Card> doubleCard = searchDouble(onTable, playedCard);
 
 		if (doubleCard != null) {
@@ -42,7 +47,6 @@ public class GameProcessor {
 			if (resultNumbers.size() == 0)
 				return resultCards;
 
-			// costruisco il risultato
 			for (int i = 0; i < resultNumbers.size(); i++) {
 				ArrayList<Card> comb = new ArrayList<Card>();
 				for (int j = 0; j < resultNumbers.get(i).size(); j++) {
@@ -54,16 +58,30 @@ public class GameProcessor {
 				}
 				resultCards.add(comb);
 			}
-
 			return resultCards;
 		}
 
 	}
 
+	/**
+	 * Facade function of {@code sum_up_recursive}.
+	 * 
+	 * @param numbers numbers to analyze
+	 * @param target  result of the sum
+	 * @param result  all combinations of numbers found
+	 */
 	static void sum_up(ArrayList<Integer> numbers, int target, ArrayList<ArrayList<Integer>> result) {
 		sum_up_recursive(numbers, target, new ArrayList<Integer>(), result);
 	}
 
+	/**
+	 * Finds all combinations of numbers whose sum is equal to target.
+	 * 
+	 * @param numbers numbers to analyze
+	 * @param target  result of the sum
+	 * @param partial subset of numbers analyzed
+	 * @param result  all combinations of numbers found
+	 */
 	static void sum_up_recursive(ArrayList<Integer> numbers, int target, ArrayList<Integer> partial,
 			ArrayList<ArrayList<Integer>> result) {
 
@@ -86,6 +104,14 @@ public class GameProcessor {
 		}
 	}
 
+	/**
+	 * Find the pairs of cards i.e. a card with the same value as a card on the
+	 * table.
+	 * 
+	 * @param onTable    cards on Table
+	 * @param playedCard the card played by the player
+	 * @return the taken card or {@code null} if no pair has been found
+	 */
 	private static ArrayList<Card> searchDouble(List<Card> onTable, Card playedCard) {
 		ArrayList<Card> trick = new ArrayList<Card>();
 		for (Card c : onTable) {

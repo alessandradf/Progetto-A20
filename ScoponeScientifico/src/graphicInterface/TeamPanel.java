@@ -1,42 +1,39 @@
 package graphicInterface;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Scrollbar;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.plaf.ScrollBarUI;
-
-import graphicInterfaceController.GUIController;
 import model.Card;
-import model.SeedType;
+import model.Team;
 import utility.CardConverter;
 import utility.TeamObserver;
 
+/**
+ * Extends {@link JPanel} and implements {@link TeamObserver} It shows the
+ * team's scores and the last "scopa" made
+ * 
+ * @see Team
+ * 
+ */
+@SuppressWarnings("serial")
 public class TeamPanel extends JPanel implements TeamObserver {
 	private JLabel scoreTeamlbl;
 	private JPanel scoreTeamPanel;
 	private JPanel scope;
 	private CardLabel ultimaScopa;
+	@SuppressWarnings("unused")
 	private int scoreTeam;
+	@SuppressWarnings("unused")
 	private int teamNumber;
-	
 	private JLabel scoreLastHand1;
 
+	/**
+	 * Creates the panel
+	 * 
+	 * @param teamNumber team's number id
+	 */
 	public TeamPanel(int teamNumber) {
 		// TODO Auto-generated constructor stub
 
@@ -61,28 +58,35 @@ public class TeamPanel extends JPanel implements TeamObserver {
 		scope.setLayout(new GridLayout(1, 1));
 		scope.setBackground(new Color(0, 128, 0));
 		scope.setBorder(BorderFactory.createTitledBorder("Ultima Scopa Team" + teamNumber));
-
-		/*
-		 * String[] paths = new String[2]; paths[0] = "Resources/Cards/2diCUORI.png";
-		 * paths[1] = paths[0];
-		 * 
-		 * scope.add(new CardLabel(SeedType.CUORI, 2, paths));
-		 */
 		add(scope);
 		add(scoreTeamPanel);
 
 	}
 
+	/**
+	 * Updates the team's score displayed
+	 * 
+	 * @param score         total team's score
+	 * @param lastHandScore team's score in the last hand
+	 */
 	@Override
 	public void updateScore(int score, int lastHandScore) {
 		// TODO Auto-generated method stub
 		scoreTeam = score;
-		scoreTeamlbl.setText("<html><body><p style=\"font-size:10px;\">Punteggio totale:" + score + "</p></body></html>");
-		scoreLastHand1.setText("<html><body><p style=\"font-size:10px;\">Ultima mano:" + lastHandScore + "</p></body></html>");
+		scoreTeamlbl
+				.setText("<html><body><p style=\"font-size:10px;\">Punteggio totale:" + score + "</p></body></html>");
+		scoreLastHand1.setText(
+				"<html><body><p style=\"font-size:10px;\">Ultima mano:" + lastHandScore + "</p></body></html>");
 		this.repaint();
 		this.validate();
 	}
 
+	/**
+	 * Updates the last scopa displayed
+	 * 
+	 * @param scopaCard card's that represents the last scopa
+	 * @see Card
+	 */
 	@Override
 	public void scopa(Card scopaCard) {
 		// TODO Auto-generated method stub
@@ -93,7 +97,10 @@ public class TeamPanel extends JPanel implements TeamObserver {
 		scope.validate();
 
 	}
-	
+
+	/**
+	 * Removes the scopa displayed
+	 */
 	public void clear() {
 		if (ultimaScopa != null) {
 			scope.remove(ultimaScopa);

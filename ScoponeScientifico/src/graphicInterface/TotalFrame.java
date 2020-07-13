@@ -1,90 +1,62 @@
 package graphicInterface;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.Menu;
-import java.awt.MenuItem;
-import java.awt.PopupMenu;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
+
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
-import controller.GameController;
-import controller.HumanPlayerHandler;
-import graphicInterfaceController.GUIController;
-import model.Player;
-import model.SeedType;
-
+/**
+ * Extends {@link JFrame} Personal player's frame, it shows the PlayerPanel, the
+ * TablePanel and the TotalTeamPanel
+ * 
+ * @see PlayerPanel
+ * @see TablePanel
+ * @see TotalTeamPanel
+ *
+ */
+@SuppressWarnings("serial")
 public class TotalFrame extends JFrame {
-
-	/*
-	 * prova di come potrebbe essere l'interfaccia totale. I pannelli sono ancora
-	 * tutti da implementare (quello del player ad esempio sar� quello che c'� gi�
-	 * trasformato da JFrame a JPanel)
-	 */
 
 	private JPanel contentPane;
 	private PlayerPanel playerPanel;
 	private TablePanel tablePanel;
 	private TotalTeamPanel teamsPanel;
+	@SuppressWarnings("unused")
 	private String playerNameAndTeam;
 
 	/**
-	 * Launch the application.
+	 * Creates the frame
+	 * 
+	 * @param playerNameAndTeam names of the player and of his team
+	 * @param tablePanel
+	 * @param playerPanel
+	 * @param team1             team1's panel
+	 * @param team2             team2's panel
+	 * @see TablePanel
+	 * @see PlayerPanel
+	 * @see TeamPanel
 	 */
-	/*
-	public static void main(String[] args) {
-		HumanPlayerHandler[] playerProva = new HumanPlayerHandler[1];
-		playerProva[0] = new HumanPlayerHandler(new Player(), GameController.getDefaultGameController());
-		GUIController prova = GUIController.getDefaultGUIController();
-		prova.init(playerProva);
-		String[] cardPaths = new String[2];
-		cardPaths[0] = "Resources/Cards/2diCUORI.png";
-		cardPaths[1] = "Resources/Cards/2diCUORI.png";
-		ArrayList<CardLabel> arrayCards = new ArrayList<CardLabel>();
-		CardLabel card = new CardLabel(SeedType.CUORI, 2, cardPaths);
-		card.addMouseListener(new CardListener(card, new HumanPlayerHandler(new Player(), GameController.getDefaultGameController())));
-		arrayCards.add(card);
-
-		TotalFrame prova1 = new TotalFrame("ciao", new TablePanel(), new PlayerPanel(arrayCards));
-
-		prova1.setVisible(true);
-	}
-	*/
-
-	/**
-	 * Create the frame.
-	 */
-	public TotalFrame(String playerNameAndTeam, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1, TeamPanel team2) {
+	public TotalFrame(String playerNameAndTeam, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1,
+			TeamPanel team2) {
 		this.playerNameAndTeam = playerNameAndTeam;
 		this.tablePanel = tablePanel;
 		this.playerPanel = playerPanel;
-		
+
 		this.setTitle(playerNameAndTeam);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1005, 705);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		int w = this.getSize().width;
-        int h = this.getSize().height;
-        int x = (dim.width-w);
-        int y = (dim.height-h)/5;
-        this.setLocation(x, y);
+		int h = this.getSize().height;
+		int x = (dim.width - w);
+		int y = (dim.height - h) / 5;
+		this.setLocation(x, y);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,7 +66,6 @@ public class TotalFrame extends JFrame {
 		gbl_contentPane.columnWeights = new double[] { 4.0, 1.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 2.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-		
 
 		GridBagConstraints gbc_TablePanel = new GridBagConstraints();
 		gbc_TablePanel.insets = new Insets(0, 0, 5, 5);
@@ -104,8 +75,7 @@ public class TotalFrame extends JFrame {
 
 		contentPane.add(tablePanel, gbc_TablePanel);
 
-
-		teamsPanel = new TotalTeamPanel( team1, team2);
+		teamsPanel = new TotalTeamPanel(team1, team2);
 		GridBagConstraints gbc_TeamsPanel = new GridBagConstraints();
 		gbc_TeamsPanel.gridheight = 2;
 		gbc_TeamsPanel.insets = new Insets(0, 0, 5, 0);
@@ -113,7 +83,6 @@ public class TotalFrame extends JFrame {
 		gbc_TeamsPanel.gridx = 1;
 		gbc_TeamsPanel.gridy = 0;
 		contentPane.add(teamsPanel, gbc_TeamsPanel);
-		// pannello del giocatore
 
 		GridBagConstraints gbc_PlayerPanel = new GridBagConstraints();
 		gbc_PlayerPanel.insets = new Insets(0, 0, 0, 5);
@@ -121,29 +90,38 @@ public class TotalFrame extends JFrame {
 		gbc_PlayerPanel.gridx = 0;
 		gbc_PlayerPanel.gridy = 1;
 		contentPane.add(playerPanel, gbc_PlayerPanel);
-		
+
 	}
 
+	/**
+	 * @return player's panel
+	 * @see PlayerPanel
+	 */
 	public JPanel getPlayerPanel() {
 		return playerPanel;
 	}
 
+	/**
+	 * @return table's panel
+	 * @see TablePanel
+	 */
 	public TablePanel getTablePanel() {
 		return tablePanel;
 	}
 
-	// metodi per sbloccare e bloccare il frame del giocatore
-	public void unlockPlayer() {
-		this.setVisible(true);
-	}
-
-	public void lockPlayer() {
-		this.setVisible(false);
-	}
-
+	/**
+	 * @return TotalTeamPanel in which are located the team panels
+	 * @see TotalTeamPanel
+	 */
 	public TotalTeamPanel getTeamsPanel() {
 		return teamsPanel;
 	}
+
+	/**
+	 * Sets the title of the frame
+	 * 
+	 * @param playerAndTeam names of the player and of his team
+	 */
 	public void setText(String playerAndTeam) {
 		this.setTitle(playerAndTeam);
 	}

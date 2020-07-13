@@ -1,34 +1,63 @@
 package graphicInterface;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
+import controller.InterfaceController;
 import graphicInterfaceController.GUIController;
-import utility.TableObserver;
-import utility.TeamObserver;
 
+/**
+ * Implements {@link ActionListener} and instantiates the GameStartSetup through
+ * the user's choices made in the StartFrame
+ * 
+ * @see StartFrame
+ * @see GameStartSetup
+ *
+ */
 public class StartGameBottonListener implements ActionListener {
 
-	private JComboBox[] comboBox;
-	private JComboBox maxScore;
+	private JComboBox<String>[] comboBox;
+	private JComboBox<String> maxScore;
 	private StartFrame frame;
 	private JTextField[] textField;
 
-	public StartGameBottonListener(JComboBox[] comboBox, JComboBox maxScore, JTextField[] textField, StartFrame frame) {
+	/**
+	 * Initializes the listener with the StartFrame's elements
+	 * 
+	 * @param comboBox  array with the player type's comboBox
+	 * @param maxScore  comboBox with the maximum score's choice
+	 * @param textField array of textField with the names of the players
+	 * @param frame     Start frame
+	 * 
+	 * @see JComboBox
+	 * @see JTextField
+	 * @see StartFrame
+	 */
+	public StartGameBottonListener(JComboBox<String>[] comboBox, JComboBox<String> maxScore, JTextField[] textField,
+			StartFrame frame) {
 		this.comboBox = comboBox;
 		this.maxScore = maxScore;
 		this.textField = textField;
 		this.frame = frame;
 	}
 
+	/**
+	 * Instantiates GameStartSetUp with the type of players, their names, the
+	 * maximum score and the GUIController as an InterfaceController. It also sets
+	 * the names of the human players in their TotalFrames
+	 * 
+	 * @see GameStartSetup
+	 * @see HumanPlayerHandler
+	 * @see TotalFrame
+	 * @see InterfaceController
+	 * @see GUIController
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String[] config = new String[4];
@@ -45,20 +74,21 @@ public class StartGameBottonListener implements ActionListener {
 			}
 		}
 		frame.setVisible(false);
-		GameStartSetup g;		
-		
-		
-		//setto il punteggio massimo della partita dalla combobox punteggio
-		if(maxScore.getSelectedItem().toString().equals("Punteggio")) {
-			g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames, 5);
-		//	g.getGameController().getGame().setMaxScore(5);
-		}
-		else {
-			g = new GameStartSetup(config, frame.getHumanPlayers(), GUIController.getDefaultGUIController(), playerNames, Integer.parseInt(maxScore.getSelectedItem().toString()));
-			
+		@SuppressWarnings("unused")
+		GameStartSetup g;
+
+		if (maxScore.getSelectedItem().toString().equals("Punteggio")) {
+			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames, 5);
+			// g.getGameController().getGame().setMaxScore(5);
+		} else {
+			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames,
+					Integer.parseInt(maxScore.getSelectedItem().toString()));
+
 		}
 		for (HumanPlayerHandler humanPlayerHandler : GUIController.getDefaultGUIController().getPlayers()) {
-			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler).setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " " + humanPlayerHandler.getPlayer().getTeam().getTeamName());
+			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler)
+					.setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " "
+							+ humanPlayerHandler.getPlayer().getTeam().getTeamName());
 		}
 	}
 

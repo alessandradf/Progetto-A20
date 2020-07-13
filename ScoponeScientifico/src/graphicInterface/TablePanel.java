@@ -1,46 +1,37 @@
 package graphicInterface;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
-import model.Card;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Extends {@link JPanel} and shows all the cards on the table
+ * 
+ * @see CardLabel
+ */
+@SuppressWarnings("serial")
 public class TablePanel extends JPanel {
 
-	ArrayList<CardLabel> cardsOnTable; // carte sul tavolo
+	ArrayList<CardLabel> cardsOnTable;
 	JLabel background;
 	private BufferedImage image;
-	private int numberCardsOnTable; //numero di carte sul tavolo
+	private int numberCardsOnTable;
 
 	/**
-	 * Create the panel.
+	 * Creates the panel.
 	 */
 	public TablePanel() {
 		this.numberCardsOnTable = 0;
 		this.setBackground(new Color(0, 100, 0));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		// this.background = new JLabel(new
-		// ImageIcon("Resources/Table/TableDefoult.jpeg")); //immagine di sfondo
-		// background.setMinimumSize(this.getSize()); //in modo che non si ridimensioni
-		// this.add(background);
 
 		try {
 			image = ImageIO.read(new File("Resources/Table/TableDefoult1.jpg"));
@@ -55,16 +46,26 @@ public class TablePanel extends JPanel {
 		setPreferredSize(new Dimension(25, 15));
 	}
 
-	// ho copiato i metodi del tavolo del modello, adattati all'interfaccia
-
+	/**
+	 * Puts a new card on the panel
+	 * 
+	 * @param playedCard
+	 * @see CardLabel
+	 */
 	public void putCardOnTable(CardLabel playedCard) {
 		this.cardsOnTable.add(playedCard);
 		add(cardsOnTable.get(numberCardsOnTable));
-		numberCardsOnTable ++;
+		numberCardsOnTable++;
 		this.repaint();
 		this.validate();
 	}
 
+	/**
+	 * Removes a card from the panel
+	 * 
+	 * @param cardsRemoved
+	 * @see CardLabel
+	 */
 	public void removeCardsFromTable(ArrayList<CardLabel> cardsRemoved) {
 		ArrayList<CardLabel> toRemove = new ArrayList<CardLabel>();
 		for (CardLabel c : cardsOnTable) {
@@ -72,7 +73,7 @@ public class TablePanel extends JPanel {
 				if ((c.getSeed() == c1.getSeed()) && (c.getValue() == c1.getValue())) {
 					toRemove.add(c);
 					this.remove(c);
-					numberCardsOnTable --;
+					numberCardsOnTable--;
 				}
 			}
 		}
@@ -81,6 +82,9 @@ public class TablePanel extends JPanel {
 		this.validate();
 	}
 
+	/**
+	 * Removes all the cards from the panel
+	 */
 	public void clearTable() {
 		this.cardsOnTable.clear();
 		this.removeAll();

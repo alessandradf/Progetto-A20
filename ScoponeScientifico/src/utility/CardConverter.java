@@ -22,8 +22,7 @@ public class CardConverter {
 	 * @return the CardLabel corresponding to c
 	 */
 	public static CardLabel toCardLabel(Card c) {
-		String[] imagePath = new String[2];
-		imagePath[0] = "Resources/Cards/" + c.getValue() + "di" + c.getSeed() + ".png";
+		String imagePath = "Resources/Cards/" + c.getValue() + "di" + c.getSeed() + ".png";
 		return new CardLabel(c.getSeed(), c.getValue(), imagePath);
 	}
 	
