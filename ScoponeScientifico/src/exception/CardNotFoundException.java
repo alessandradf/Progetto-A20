@@ -1,30 +1,28 @@
 package exception;
 
+import controller.HumanPlayerHandler;
+
+/**
+ * Signals that an attempt to take a {@code Card} has failed.
+ * <p> This exception will be thrown by the {@link HumanPlayerHandler} when the
+ * player has no {@code Card} in his hand.
+ *
+ */
 public class CardNotFoundException extends Exception {
 
+	/**
+	 * Constructs a CardNotFoundException with null as its error detail message.
+	 */
 	public CardNotFoundException() {
-		// TODO Auto-generated constructor stub
+
 	}
 
+	/**
+	 * Constructs a CardNotFoundException with the specified detail message.
+	 */
 	public CardNotFoundException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
-	}
 
-	public CardNotFoundException(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
-	}
-
-	public CardNotFoundException(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
-	}
-
-	public CardNotFoundException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
 	}
 
 }

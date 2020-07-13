@@ -6,18 +6,31 @@ import java.util.Random;
 import exception.CardNotFoundException;
 import model.Card;
 import model.Player;
-import model.SeedType;
 
+/**
+ * Handler of an artificial player. Extends {@code AbstractPlayerHandler}.
+ * 
+ * @see AbstractPlayerHandler
+ *
+ */
 public class ComputerPlayerHandler extends AbstractPlayerHandler {
 
 	private Random randomGenerator;
 
+	/**
+	 * 
+	 * @param player     player to manage
+	 * @param controller controller of the Game
+	 */
 	public ComputerPlayerHandler(Player player, GameController controller) {
 		super(player, controller);
 		this.randomGenerator = new Random();
 
 	}
 
+	/**
+	 * Unlock the player game.
+	 */
 	@Override
 	public boolean unlockPlayer() {
 		setPlayedCard(pickACard());
@@ -25,6 +38,10 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 		return true;
 	}
 
+	/**
+	 * Fetches the result of the player's play from the game controller.
+	 * If there are more results chooses the first one.
+	 */
 	@Override
 	public void cardPlayed(Card c) {
 		try {
@@ -32,16 +49,19 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 
 			if (getResultFromFetch().size() > 1) {
 				getController().endTurn(this, getResultFromFetch().get(0));
-				// restituisce sempre la prima scelta, per semplicità
+
 			}
 		} catch (CardNotFoundException e) {
 			System.out.println("Carta non trovata! Computer cardPlayed");
 		}
 	}
 
+	/**
+	 * It does nothing because it is an artificial player.
+	 */
 	@Override
 	public boolean lockPlayer() {
-		// non fa nulla perchè è un giocatore computer
+
 		return true;
 	}
 
@@ -58,29 +78,10 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
 		try {
-		getController().endTurn(this, choices.get(0));
-		}
-		catch( CardNotFoundException e) {
+			getController().endTurn(this, choices.get(0));
+		} catch (CardNotFoundException e) {
 			System.out.println("Carta non trovata! multipleChoice");
 		}
 	}
-
-	// La uso per testare, poi la tolgo
-	/*
-	 * public static void main(String[] args) {
-	 * 
-	 * Player p = new Player("Debug"); ComputerPlayerHandler ph = new
-	 * ComputerPlayerHandler(p, getDefaultGameController());
-	 * 
-	 * ArrayList<Card> cards = new ArrayList<Card>();
-	 * 
-	 * cards.add(new Card(3, SeedType.CUORI)); cards.add(new Card(5,
-	 * SeedType.FIORI)); cards.add(new Card(5, SeedType.CUORI)); cards.add(new
-	 * Card(7, SeedType.PICCHE));
-	 * 
-	 * p.setHand(cards);
-	 * 
-	 * System.out.println(p); System.out.println(ph.pickACard()); }
-	 */
 
 }
