@@ -33,6 +33,10 @@ import model.Team;
 import utility.CardConverter;
 import utility.TeamObserver;
 
+/**
+ * This class manages the graphic interface
+ *
+ */
 public class GUIController implements HumanPlayerInterfaceController, InterfaceTurnFinalizer, InterfaceController {
 	private GameController gameController;
 //	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
@@ -50,7 +54,11 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	private HistoryFrame historyFrame;
 
 	private static GUIController defaultGuiController = null;
-
+	
+	/**
+	 * Initialize the GUIController 
+	 * @return defoultGUIController
+	 */
 	public static GUIController getDefaultGUIController() {
 		if (defaultGuiController == null) {
 			defaultGuiController = new GUIController();
@@ -63,6 +71,9 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 	}
 
+	/**
+	 * Makes the start window to initialize the players number and the type of players
+	 */
 	public void startGame() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -77,7 +88,14 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		});
 
 	}
-
+	
+	/**
+	 * Overload of the previous method, it is called only if the user tries to play
+	 * with only ComputerPlayers
+	 * 
+	 * @param message String with warning massage that explain the user have to choose almost one
+	 * 				  human player
+	 */
 	public void startGame(String message) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -95,6 +113,12 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 	}
 
+	/**
+	 * Generates totalFrame and the relative playerPanel, tablePlanel, teamPanel, historyFrame
+	 * 
+	 * @param playerHandles ArrayList of HumanPlayerHandler created by GameStartSetUp
+	 * @param gameController GameController witch implements TurnFinalizer
+	 */
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
 		this.gameController = gameController;
 		gameController.setTurnFinalizer(this);
@@ -130,10 +154,9 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	}
 
 	/**
-	 * @param playerHandlers
+	 * Initializes the playerPanel with in the player cards for each player
 	 * 
-	 *                       Si occupa di inizializzare i playerPanel con le carte
-	 *                       del Player per ogni Player
+	 * @param playerHandlers ArrayList of HumanPlayerHandles created by GameStartSetUp
 	 */
 	private void initPlayerCards(ArrayList<HumanPlayerHandler> playerHandlers) {
 		ArrayList<CardLabel> playerCards;
@@ -148,10 +171,18 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		}
 	}
 
+	/**
+	 * Add the observer to the teams
+	 */
 	private void addTeamObserver() {
 		gameController.addTeamObserver(getTeam1Observer(), getTeam2Observer());
 	}
 
+	/**
+	 * Converts the model card into cardLabels for the graphic interface
+	 * @param cards 	   List of Card
+	 * @return cardLabels  ArrayList of CardLabel
+	 */
 	private ArrayList<CardLabel> cardsConverter(List<Card> cards) {
 		ArrayList<CardLabel> cardLabels = new ArrayList<CardLabel>();
 		for (Card card : cards) {
@@ -160,11 +191,19 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		return cardLabels;
 	}
 
+	/**
+	 * @return playerView HashMap of HumanPlayerHandler
+	 */
 	public HashMap<HumanPlayerHandler, TotalFrame> getPlayerView() {
 		return playerView;
 	}
 
 	// metodi per aggiornare il tavolo e i frame dei giocatori
+	/**
+	 * Updates the table adding the card played by the players
+	 * 
+	 * @param c Card played by the player
+	 */
 	@Override
 	public void updateOnAddition(Card c) {
 		int i = 0;
@@ -182,6 +221,11 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		}
 	}
 
+	/**
+	 * Update the table removing the card taken
+	 * 
+	 * @param removedCard List of card
+	 */
 	@Override
 	public void updateOnRemoval(List<Card> removedCards) {
 		// TODO Auto-generated method stub
@@ -201,6 +245,10 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 	}
 
+	/**
+	 * 
+	 * @return team1Observers ArrayList of TeamObserve
+	 */
 	public ArrayList<TeamObserver> getTeam1Observer() {
 		ArrayList<TeamObserver> team1Observers = new ArrayList<TeamObserver>();
 		for (TeamPanel t : getTeam1Panels()) {
@@ -209,6 +257,10 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		return team1Observers;
 	}
 
+	/**
+	 * 
+	 * @return team2Observers ArrayList of TeamObserve
+	 */
 	public ArrayList<TeamObserver> getTeam2Observer() {
 		ArrayList<TeamObserver> team2Observers = new ArrayList<TeamObserver>();
 		for (TeamPanel t : getTeam2Panels()) {
@@ -217,17 +269,36 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		return team2Observers;
 	}
 
+	/**
+	 * 
+	 * @return team1Panels ArrayList of TeamPalen
+	 */
 	public ArrayList<TeamPanel> getTeam1Panels() {
 		return team1Panels;
 	}
 
+	/**
+	 * 
+	 * @return team2Panels ArrayList of TeamPalen
+	 */
 	public ArrayList<TeamPanel> getTeam2Panels() {
 		return team2Panels;
 	}
+	
+	/**
+	 * 
+	 * @return players ArrayList of HumanPlayerHandler
+	 */
 	public ArrayList<HumanPlayerHandler> getPlayers() {
 		return players;
 	}
 
+	/**
+	 * Generates a window if the are multiple possibility to take a card in the table
+	 * 
+	 * @param humanPlayerHandler HumanPlayerHandler that has played the card
+	 * @param choices ArrayList of the different choice
+	 */
 	@Override
 	public void multipleChoice(HumanPlayerHandler humanPlayerHandler, ArrayList<ArrayList<Card>> choices) {
 		// TODO Auto-generated method stub
@@ -254,17 +325,30 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		});
 	}
 
+	/**
+	 * Set not enable the player frame who pass the turn
+	 * 
+	 * @param humanPlayerHandler HumanPlayerHandler who has to be disabled
+	 */
 	@Override
 	public void lock(HumanPlayerHandler humanPlayerHandler) {
 		playerPanels.get(humanPlayerHandler).lockPlayer();
 
 	}
 
+	/**
+	 * Set enabled the player who has the turn
+	 * 
+	 * @param humanPlayerHandler HumanPlayerHandler who has to be enabled
+	 */
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
 		playerPanels.get(humanPlayerHandler).unlockPlayer();
 	}
 
+	/**
+	 * Initializes the new frame and panels for the new hand
+	 */
 	@Override
 	public void newHand() {
 
@@ -278,6 +362,11 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		}
 	}
 
+	/**
+	 * Ended the game and calculates the team winner
+	 * 
+	 * @param winnerTeam Team witch wins the game
+	 */
 	@Override
 	public void gameFinished(Team winnerTeam) {
 		// TODO Auto-generated method stub
