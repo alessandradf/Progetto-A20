@@ -16,7 +16,6 @@ public class Team {
 	private ArrayList<Card> cardsTaken;
 	private ArrayList<Card> scope;
 	private String teamName;
-	
 	private ArrayList<TeamObserver> teamObservers;
 
 	
