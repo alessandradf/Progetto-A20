@@ -5,15 +5,22 @@ import java.util.List;
 
 import model.Card;
 
+/**
+ * Implementation of the pattern Observer
+ * The class that implmenets this Interface is updated whenever there's changes in the Table class
+ */
 public interface TableObserver {
 	
-	/*
-	 * Metodi per notificare gli observers che una carta è stata messa sul tavolo
-	 * e che delle carte sono state tolte
+	/**
+	 * Update the Observer after a Card was put on the Table
+	 * @param c: the Card added
 	 */
-	
 	public void updateOnAddition(Card c);
 	
+	/**
+	 * Updates the Observere after the specified List of Cards was removed from the Table
+	 * @param toRemove: the Card List 
+	 */
 	public void updateOnRemoval(List<Card> toRemove);
 
 }

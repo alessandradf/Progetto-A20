@@ -1,7 +1,15 @@
 package utility;
 
+/**
+ * This interface provides a method used to update a generic output (both text or graphic).
+ */
+
 public interface OutputInterface {
 	
-	// metodo che permette di scrivere sull'output l'aggiornamento della cronologia
+	/**
+	 * Write the specified String in the output
+	 * 
+	 * @param update: the string to be written
+	 */
 	public void writeOnOutput(String update); 
 }

@@ -7,27 +7,35 @@ import model.Card;
 import model.SeedType;
 import model.Team;
 
-/*
- * Classe per il calcolo dei vari tipi di punti
- * Va istanziata con i due team
- * Dall'esterno è visibile solo il metodo giveScore()
+/**
+ * This class provides methods to determine the scores of two Teams depending
+ * on the Cards they have. It also assign the calculated scores.
+ * The only public method is giveScore().
  */
 public class ScoreProcessor {
 	
-	// punti posizionali da asso a re per il calcolo della primiera
+	/**
+	 * Array of positional points (sorted from "ace" to "king") used to calculate the PRIMIERA points
+	 */
 	private final static int[] PRIMIERA_POINTS = { 16, 12, 13, 14, 15, 18, 21, 10, 10, 10 };
 	
+	/**
+	 * The two competing teams
+	 */
+	private Team team1, team2;
 	
-	private Team team1, team2;	//I due team della partita
-	
-	
+	/**
+	 * Initialize the ScoreProcessor with the teams
+	 * @param team1
+	 * @param team2
+	 */
 	public ScoreProcessor(Team team1, Team team2) {
 		this.team1 = team1;
 		this.team2 = team2;
 	}
 	
-	/*
-	 * Calcola e assegna i punteggi dei due team usando i metodi interni a questa classe 
+	/**
+	 * Calculates and assign the scores to the teams
 	 */
 	public void giveScore() {
 		
@@ -45,10 +53,10 @@ public class ScoreProcessor {
 		score2 += this.denariSettebello(cards2);
 		score2 += team2.getScope().size();
 		
-		//Punti per la primiera
 		int prim1 = this.sommaPrimiera(cards1);
 		int prim2 = this.sommaPrimiera(cards2);
 		
+		// if primiera scores of both teams are 0 the point is not assigned
 		if (prim1 != 0 || prim2 != 0) {
 			if (prim1 > prim2)
 				score1++;
@@ -60,16 +68,19 @@ public class ScoreProcessor {
 		team2.addScore(score2);
 	}
 
-	/*
-	 * Ritorna il punteggio concorrente per il punto della PRIMIERA
+	/**
+	 * Returns the score competeing for PRIMIERA point. It's calculated on the specified cards and the PRIMIERA_POINTS array
+	 * 
+	 * @param cards: the ArrayList of cards
+	 * @return the score competing for PRIMIERA point
 	 */
 	private int sommaPrimiera(ArrayList<Card> cards) {
 
 		int sommaPrim = 0;
 
-		Collections.sort(cards);
+		Collections.sort(cards);	//sorted by values so they can be compared with the PRIMIERA_POITNS array
 
-		ArrayList<Card> cardsPerSeed = new ArrayList<Card>();	//insieme delle carte di uno stesso seme
+		ArrayList<Card> cardsPerSeed = new ArrayList<Card>();	//ArrayList of cards of the same seed
 
 		for (SeedType seed : SeedType.values()) {
 			for (int i = 0; i < cards.size(); i++) {
@@ -78,7 +89,7 @@ public class ScoreProcessor {
 				}
 			}
 			
-			//se non ho almeno una carta per seme la primiera non è valida
+			//if there's not at least one card for each seed then the score is not valid
 			if (cardsPerSeed.size() == 0) {
 				return 0;
 			}
@@ -90,9 +101,11 @@ public class ScoreProcessor {
 		return sommaPrim;
 	}
 	
-	/*
-	 * Ritorna il massimo valore (secondo i punteggi per la primiera) tra quelli delle carte passate
-	 * Per avere senso dovrebbero essere tutte carte di uno stesso seme 
+	/**
+	 * Returns the max value of the specified cards, according to the PRIMIERA values. The cards must have the same seed
+	 * 
+	 * @param seedCards: ArrayList of cards of the same seed
+	 * @return maxValue: the max PRIMIERA value from the specified cards
 	 */
 	private int maxCardValue(ArrayList<Card> seedCards) {
 
@@ -106,10 +119,11 @@ public class ScoreProcessor {
 		return maxValue;
 	}
 	
-	
-	/*
-	 * Ritorna 1 o 2 in base ai punti SETTEBELLO e DENARI ottenuti, 0 se non sono
-	 * stati fatti questi tipi di punti
+	/**
+	 * Determines if SETTEBELLO or DENARI points have been obtained
+	 * 
+	 * @param cards: the ArrayList of cards
+	 * @return an integer value based on the points obtained. 1 or 2 if only one or both points were obtained, 0 otherwise
 	 */
 	private int denariSettebello(ArrayList<Card> cards) {
 		int points = 0;
@@ -126,14 +140,17 @@ public class ScoreProcessor {
 		}
 
 		if (numDenari >= 6) {
-			points++;
+			points++;	// DENARI
 		}
 
 		return points;
 	}
 
-	/*
-	 * Ritorna 1 se è stato fatto il punto CARTE, 0 altrimenti
+	/**
+	 * Determines if CARTE point was obtained (if the specified cards are more than 21).
+	 * 
+	 * @param cards: ArrayList of cards used to determine the point
+	 * @return 1 if the point was obtained, 0 otherwise
 	 */
 	private int carte(ArrayList<Card> cards) {
 		if (cards.size() >= 21) {
