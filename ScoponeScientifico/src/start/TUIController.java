@@ -237,8 +237,8 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	public void newHand() {
 		// TODO Auto-generated method stub
 		System.out.println("Mano Terminata!");
-		System.out.println("Punteggio Team1:  " + gameController.getGame().getTeams().get(0).getScore());
-		System.out.println("Punteggio Team2:  " + gameController.getGame().getTeams().get(1).getScore());
+		System.out.println("Punteggio Team1:  " + gameController.getTeams().get(0).getScore());
+		System.out.println("Punteggio Team2:  " + gameController.getTeams().get(1).getScore());
 
 	}
 

@@ -1,6 +1,5 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,7 +20,6 @@ public class Game {
 	public static final int PLAYER_NUMBER = 4;
 	public static final int TEAM_NUMBER = 2;
 
-	private static Game defaultGame = null;
 	private Table table;
 	private Set<Card> deck;
 	private ArrayList<Player> players;
@@ -29,13 +27,13 @@ public class Game {
 	private ScoreProcessor scoreProcessor;
 	private int maxScore;
 
-	private Player lastTakePlayer; // ultimo giocatore ad avere affettuato una presa. Prenderà le carte sul tavolo
+	private Player lastTakePlayer; // ultimo giocatore ad avere affettuato una presa. Prenderï¿½ le carte sul tavolo
 									// a fine mano
 
 	private Card lastCardPlayed; // ultima carta fetchata nel game
 
 	public Game(ArrayList<String> playersNames) {
-		maxScore = 1; // punteggio di default, è settato a 1 per debug, ma si può settare esternamente
+		maxScore = 1; // punteggio di default, ï¿½ settato a 1 per debug, ma si puï¿½ settare esternamente
 
 		createDeck();
 		players = createPlayers(playersNames);

@@ -124,13 +124,6 @@ public class Team {
 	public String getTeamName() {
 		return teamName;
 	}
-
-	/**
-	 * @return the playersInTeam
-	 */
-	public ArrayList<Player> getPlayersInTeam() {
-		return playersInTeam;
-	}
 	
 	/**
 	 * Notify the team that the card scopaCard made a scopa.

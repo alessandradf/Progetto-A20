@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.ArrayList;
 
 import exception.CardNotFoundException;
@@ -184,6 +185,10 @@ public class GameController {
 		return game;
 	}
 
+	public List<Team> getTeams() {
+		return game.getTeams();
+	}
+	
 	/**
 	 * @return the players
 	 */
