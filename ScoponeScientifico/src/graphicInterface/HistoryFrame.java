@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
-import graphicInterfaceController.GUIController;
+import start.GUIController;
 import utility.OutputInterface;
 
 /**

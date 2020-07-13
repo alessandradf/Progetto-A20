@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import controller.GameStartSetup;
 import controller.HumanPlayerHandler;
 import controller.InterfaceController;
-import graphicInterfaceController.GUIController;
+import start.GUIController;
 
 /**
  * Implements {@link ActionListener} and instantiates the GameStartSetup through

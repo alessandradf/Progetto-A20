@@ -1,4 +1,4 @@
-package graphicInterfaceController;
+package start;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
