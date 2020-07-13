@@ -1,4 +1,4 @@
-package textInterface;
+package start;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,8 @@ import exception.CardNotFoundException;
 import controller.InterfaceController;
 import model.Card;
 import model.Team;
+import textInterface.StandardOutput;
+import textInterface.StartTextInterface;
 import utility.CardConverter;
 
 /**
