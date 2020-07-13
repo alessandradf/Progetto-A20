@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
- * this class manages the game options chose by the user through the console
+ * Manages the game options chose by the user through the console
  *
  */
 public class StartTextInterface {
@@ -20,7 +20,10 @@ public class StartTextInterface {
 	private int maxScore;
 
 	/**
-	 * constructor
+	 * Creates the StartTextInterface and sets all the options trough the inputs of
+	 * the user read from the Scanner.
+	 * 
+	 * @see Scanner
 	 */
 	public StartTextInterface() {
 
@@ -49,9 +52,11 @@ public class StartTextInterface {
 	}
 
 	/**
-	 * reads the number of human players
+	 * Reads how many human players are in the team from the user's input through
+	 * the Scanner
 	 * 
 	 * @return humanNumber number of human players
+	 * @see Scanner
 	 */
 	private int readHumanNumbers() {
 
@@ -77,7 +82,7 @@ public class StartTextInterface {
 	}
 
 	/**
-	 * allows the user to choose if he wants to play before or after the computer in
+	 * Allows the user to choose if he wants to play before or after the computer in
 	 * his team (if there is a computer player in his team)
 	 * 
 	 * @param teamNumber   team's id
@@ -123,10 +128,12 @@ public class StartTextInterface {
 	}
 
 	/**
-	 * reads the names of the human players in the team
+	 * Reads the names of the human players in the team from the user's input
+	 * through the Scanner
 	 * 
 	 * @param humanPlayers number of human players in the team
 	 * @param teamNumber   team's id
+	 * @see Scanner
 	 */
 	private void readNames(int humanPlayers, int teamNumber) {
 
@@ -144,7 +151,8 @@ public class StartTextInterface {
 	}
 
 	/**
-	 * swaps the names in the team in order to make them coherent with the game's configuration
+	 * Swaps the names in the team in order to make them coherent with the game's
+	 * configuration
 	 * 
 	 * @param teamNumber team's id
 	 */
@@ -156,7 +164,9 @@ public class StartTextInterface {
 	}
 
 	/**
-	 * allows the user to choose the score to reach to finish the game
+	 * Allows the user to choose the score to reach to finish the game
+	 * 
+	 * @see Scanner
 	 */
 	private void chooseMaxScore() {
 		System.out.println("Inserisci il punteggio che deve essere raggiunto dal team vincitore della partita: ");

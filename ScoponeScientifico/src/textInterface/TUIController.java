@@ -12,22 +12,21 @@ import controller.HumanPlayerInterfaceController;
 import controller.InterfaceTurnFinalizer;
 import exception.CardNotFoundException;
 import controller.InterfaceController;
-import graphicInterface.StartFrame;
-import graphicInterface.TeamPanel;
-import graphicInterfaceController.GUIController;
 import model.Card;
 import model.Team;
 import utility.CardConverter;
-import utility.TableObserver;
 
 /**
- * this class manages the text interface
- *
+ * Implements {@link InterfaceController},
+ * {@link HumanPlayerInterfaceController}, {@link InterfaceTurnFinalizer}
+ * 
+ * Manages the text interface
+ * 
+ * @see StartTextInterface
  *
  */
 public class TUIController implements InterfaceController, HumanPlayerInterfaceController, InterfaceTurnFinalizer {
 
-	// TODO togliere variabili non usate
 	private static boolean playAgain = true;
 	private Team winnerTeam;
 	private GameController gameController;
@@ -37,34 +36,35 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	private StandardOutput historyOutput;
 
 	/**
-	 * Makes the game start. This method instantiates the Scanner, the
-	 * StartTextInterface and GameStartSetUp through the values obtained from the
-	 * getters of the StrtTextInterface
+	 * Makes the game start. This method instantiates a Scanner, the
+	 * {@link StartTextInterface} and {@link GameStartSetup}
+	 * 
+	 * @see Scanner
 	 */
 
 	public void startGame() {
 
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
-		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
+		@SuppressWarnings("unused")
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), this, startText.getPlayersNames(),
 				startText.getMaxScore());
 
 	}
 
 	/**
-	 * overload of the previous method, it is called only if the user tries to play
-	 * with only ComputerPlayers
+	 * Overload, it is called only if the user tries to play with only
+	 * ComputerPlayers
 	 * 
 	 * @param message String with a warning message that explain to the user to
-	 *                select at lest one HumanPlayer
+	 *                select at least one HumanPlayer
 	 *
 	 */
 	public void startGame(String message) {
 		System.out.println(message);
 		scanner = new Scanner(System.in);
 		startText = new StartTextInterface();
-		int humanPlayer = startText.getHumanNumbersTeam1() + startText.getHumanNumbersTeam2();
+		@SuppressWarnings("unused")
 		GameStartSetup g = new GameStartSetup(startText.getConfig(), this, startText.getPlayersNames(),
 				startText.getMaxScore());
 
@@ -72,12 +72,13 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 
 	/**
 	 * 
-	 * this method allows the initialization of the TUIController
+	 * Allows the initialization of the {@link TUIController}
 	 * 
 	 * @param playerHandlers ArrayList that contains the HumanPlayerHandlers created
 	 *                       by the GameStartSetUp
 	 * @param gameController GameController in which is set the TurnFinalizer
-	 *
+	 * @see GameStartSetup
+	 * @see GameController
 	 */
 	@Override
 	public void init(ArrayList<HumanPlayerHandler> playerHandlers, GameController gameController) {
@@ -94,24 +95,24 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	}
 
 	/**
-	 * this method update the cards on the table when there is a new card on it
+	 * Updates the cards on the table when there is a new card on it
 	 * 
 	 * @param c the new card on the table
+	 * @see Card
 	 */
 	@Override
 	public void updateOnAddition(Card c) {
-		// TODO Auto-generated method stub
 		table.add(c.toString());
 	}
 
 	/**
-	 * this method update the table when some cards are removed from it
+	 * Updates the table when some cards are removed from it
 	 * 
 	 * @param toRemove List with the cards that need to be removed from the table
+	 * @see Card
 	 */
 	@Override
 	public void updateOnRemoval(List<Card> toRemove) {
-		// TODO Auto-generated method stub
 
 		for (int i = 0; i < toRemove.size(); i++) {
 			for (int j = 0; j < table.size(); j++) {
@@ -129,6 +130,8 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	 * 
 	 * @param humanPlayerHandler player that has to make the choice
 	 * @param choices            options of cards that can be chosen
+	 * @see HumanPlayerHandler
+	 * @see Card
 	 */
 	@Override
 	public void multipleChoice(HumanPlayerHandler humanPlayerHandler, ArrayList<ArrayList<Card>> choices) {
@@ -167,10 +170,11 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	}
 
 	/**
-	 * this method is void because it is supposed to lock the player, but nothing
+	 * This method is void because it is supposed to lock the player, but nothing
 	 * has to be done in the text interface
 	 * 
 	 * @param humanPlayerHandler player that has to be locked
+	 * @see HumanPlayerHandler
 	 *
 	 */
 	@Override
@@ -180,10 +184,11 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	}
 
 	/**
-	 * this method unlocks the player, allowing him to play his turn through the
-	 * choice of the card
+	 * Unlocks the player, allowing him to play his turn through the choice of the
+	 * card
 	 * 
 	 * @param humanPlayerHandler player that has to be unlocked
+	 * @see HumanPlayerHandler
 	 */
 	@Override
 	public void unlock(HumanPlayerHandler humanPlayerHandler) {
@@ -223,7 +228,8 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	}
 
 	/**
-	 * this method is called at the end of every hand
+	 * This method is called at the end of every hand. It shows the scores of the
+	 * teams on the standard output
 	 */
 	@Override
 	public void newHand() {
@@ -235,10 +241,11 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	}
 
 	/**
-	 * this method is called at the end of the game and it's only used to set the
-	 * winner team
+	 * This method is called at the end of the game and it's used to set the winner
+	 * team
 	 * 
 	 * @param winnerTeam team that won
+	 * @see Team
 	 */
 	@Override
 	public void gameFinished(Team winnerTeam) {
@@ -248,7 +255,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	}
 
 	/**
-	 * it is called in the main method and allows the users to choose if he wants to
+	 * It is called in the main method and allows the users to choose if he wants to
 	 * play again or not
 	 */
 	private void trueEnd() {
