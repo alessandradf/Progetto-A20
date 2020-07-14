@@ -110,7 +110,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	 * Generates totalFrame and the relative playerPanel, tablePlanel, teamPanel,
 	 * historyFrame
 	 * 
-	 * @param playerHandles  ArrayList of HumanPlayerHandler created by
+	 * @param playerHandlers  ArrayList of HumanPlayerHandler created by
 	 *                       GameStartSetUp
 	 * @param gameController GameController witch implements TurnFinalizer
 	 */
@@ -214,7 +214,7 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	/**
 	 * Update the table removing the card taken
 	 * 
-	 * @param removedCard List of card
+	 * @param removedCards List of card
 	 */
 	@Override
 	public void updateOnRemoval(List<Card> removedCards) {

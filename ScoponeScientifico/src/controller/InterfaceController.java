@@ -19,14 +19,14 @@ public interface InterfaceController extends TableObserver {
 	/**
 	 * Start the user interface with the specified message.
 	 * 
-	 * @param message
+	 * @param message the message to be displayed
 	 */
 	public void startGame(String message);
 
 	/**
 	 * Initializes the interface.
 	 * 
-	 * </p> Makes the interface visible and ready.
+	 * Makes the interface visible and ready.
 	 * @param playerHandlers handlers of the players
 	 * @param gameController controller of the game
 	 */

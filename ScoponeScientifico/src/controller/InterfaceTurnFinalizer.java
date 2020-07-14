@@ -15,7 +15,7 @@ public interface InterfaceTurnFinalizer {
 
 	/**
 	 * Manages the end of the game. 
-	 * </p> Show the {@link Team} winner and initialize the interface for
+	 * Show the {@link Team} winner and initialize the interface for
 	 * a possible new game.
 	 * 
 	 * @param winnerTeam the {@link Team} that won the game.

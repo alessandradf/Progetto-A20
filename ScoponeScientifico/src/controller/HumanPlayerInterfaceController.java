@@ -8,7 +8,6 @@ import model.Card;
  * Is a level of indirection between the human interface and and the control
  * layer.
  * 
- * </p>
  * Provides methods for handling the multiple choice case, and for unlocking and
  * locking the interface.
  *
@@ -27,7 +26,7 @@ public interface HumanPlayerInterfaceController {
 	 * Locks the player's interface.
 	 * In this way player can't play when it's not his turn.
 	 * 
-	 * @param humanPlayerHandler
+	 * @param humanPlayerHandler the human player to be locked
 	 */
 	public void lock(HumanPlayerHandler humanPlayerHandler);
 
