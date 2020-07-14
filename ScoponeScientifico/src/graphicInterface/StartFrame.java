@@ -2,7 +2,6 @@ package graphicInterface;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,6 +11,9 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -70,11 +72,11 @@ public class StartFrame extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_1.add(comboBox);
 
-		JLabel label = new JLabel("1");
-		label.setBounds(20, 0, 163, 16);
-		label.setForeground(Color.YELLOW);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(label);
+		JLabel lblTeam = new JLabel("Team 1");
+		lblTeam.setBounds(20, 0, 163, 16);
+		lblTeam.setForeground(Color.YELLOW);
+		lblTeam.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblTeam);
 
 		txtInserireNome = new JTextField();
 		txtInserireNome.setEnabled(false);
@@ -98,11 +100,11 @@ public class StartFrame extends JFrame {
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_3.add(comboBox_1);
 
-		JLabel label_1 = new JLabel("2");
-		label_1.setBounds(0, 26, 163, 16);
-		label_1.setForeground(Color.YELLOW);
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_3.add(label_1);
+		JLabel lblTeam_2 = new JLabel("Team 2");
+		lblTeam_2.setBounds(0, 26, 163, 16);
+		lblTeam_2.setForeground(Color.YELLOW);
+		lblTeam_2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_3.add(lblTeam_2);
 
 		txtInserireNome_2 = new JTextField();
 		txtInserireNome_2.setEnabled(false);
@@ -122,8 +124,9 @@ public class StartFrame extends JFrame {
 		panel_4.add(btnNewButton);
 
 		JComboBox<String> comboBox_4 = new JComboBox<String>();
-		comboBox_4.setBounds(44, 72, 119, 27);
-		comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] { "Punteggio", "10", "15" }));
+		comboBox_4.setBounds(44, 72, 119, 48);
+		comboBox_4.setBorder(new TitledBorder("Punteggio"));
+		comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] { "5", "10", "15" }));
 		panel_4.add(comboBox_4);
 
 		JPanel panel_5 = new JPanel();
@@ -136,11 +139,11 @@ public class StartFrame extends JFrame {
 		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_5.add(comboBox_3);
 
-		JLabel label_3 = new JLabel("4");
-		label_3.setBounds(27, 27, 163, 16);
-		label_3.setForeground(Color.YELLOW);
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_5.add(label_3);
+		JLabel lblTeam_3 = new JLabel("Team 2");
+		lblTeam_3.setBounds(27, 27, 163, 16);
+		lblTeam_3.setForeground(Color.YELLOW);
+		lblTeam_3.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_5.add(lblTeam_3);
 
 		txtInserireNome_3 = new JTextField();
 		txtInserireNome_3.setEnabled(false);
@@ -162,11 +165,11 @@ public class StartFrame extends JFrame {
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] { "Computer Player", "Human Player" }));
 		panel_7.add(comboBox_2);
 
-		JLabel label_2 = new JLabel("3");
-		label_2.setBounds(20, 52, 163, 16);
-		label_2.setForeground(Color.YELLOW);
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_7.add(label_2);
+		JLabel lblTeam_1 = new JLabel("Team 1");
+		lblTeam_1.setBounds(20, 52, 163, 16);
+		lblTeam_1.setForeground(Color.YELLOW);
+		lblTeam_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_7.add(lblTeam_1);
 
 		txtInserireNome_1 = new JTextField();
 		txtInserireNome_1.setEnabled(false);

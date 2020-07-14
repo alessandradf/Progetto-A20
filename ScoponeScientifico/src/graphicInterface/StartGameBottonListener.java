@@ -77,14 +77,9 @@ public class StartGameBottonListener implements ActionListener {
 		@SuppressWarnings("unused")
 		GameStartSetup g;
 
-		if (maxScore.getSelectedItem().toString().equals("Punteggio")) {
-			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames, 5);
-			// g.getGameController().getGame().setMaxScore(5);
-		} else {
-			g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames,
-					Integer.parseInt(maxScore.getSelectedItem().toString()));
+		g = new GameStartSetup(config, GUIController.getDefaultGUIController(), playerNames,
+				Integer.parseInt(maxScore.getSelectedItem().toString()));
 
-		}
 		for (HumanPlayerHandler humanPlayerHandler : GUIController.getDefaultGUIController().getPlayers()) {
 			GUIController.getDefaultGUIController().getPlayerView().get(humanPlayerHandler)
 					.setTitle(humanPlayerHandler.getPlayer().getPlayerName() + " "
