@@ -198,7 +198,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	 */
 	@Override
 	public void updateOnAddition(Card c) {
-		int i = 0;
 		for (TablePanel tablePanel : tablePanel) {
 			tablePanel.putCardOnTable(CardConverter.toCardLabel(c));
 			tablePanel.repaint();
@@ -209,7 +208,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 			totalFrame.repaint();
 			totalFrame.validate();
-			i++;
 		}
 	}
 
