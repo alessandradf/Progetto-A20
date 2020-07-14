@@ -4,7 +4,7 @@ import model.Card;
 import model.Player;
 
 /**
- * Implmenetation of the pattern observer.
+ * Implementation of the pattern observer.
  * The class that implements this interface is notified when specific changes occurs in the Player class 
  */
 public interface PlayerObserver {
