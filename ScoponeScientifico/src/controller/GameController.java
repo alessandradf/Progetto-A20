@@ -11,7 +11,10 @@ import model.Team;
 import utility.CircularArrayList;
 import utility.TeamObserver;
 
-//TODO: non è ancora implementata la logica di fine mano e di fine partita
+/**
+ * This class manages the high level players (@see AbstractPlayerHandler) and the game, creating a turn system between the
+ * Players and setting a maximum score, which determines when the game finishes.
+ */
 public class GameController {
 
 	private Game game;
@@ -23,8 +26,8 @@ public class GameController {
 	
 
 	/**
-	 * Crea una partita, dati i giocatori
-	 * @param players gli AbstractPlayerHandler che giocano la partita
+	 * Setup the game, given the AbstractPlayerHandlers
+	 * @param players the AbstractPlayerHandler playing the game
 	 */
 	public GameController(CircularArrayList<AbstractPlayerHandler> players, Game g) {
 		this.game = g;
@@ -34,25 +37,27 @@ public class GameController {
 	}
 
 	/**
-	 * Consente di settare il punteggio massimo
-	 * @param players gli AbstractPlayerHandler che giocano la partita
-	 * @param maxScore il punteggio massimo a cui si arriva
+	 * Constructor with the setup of the maxScore
+	 * @param players the AbstractPlayerHandler playing the game
+	 * @param maxScore the maxScore decided by the players
 	 */
 	public GameController(CircularArrayList<AbstractPlayerHandler> players, int maxScore, Game g) {
 		this(players, g);
 		this.maxScore = maxScore;
 	}
 	
+	/**
+	 * Initalize the Game, locking the players. 
+	 */
 	public void init() {
 		ArrayList<Team> teams = game.getTeams();
 		for (AbstractPlayerHandler p : players) {
 			p.lockPlayer();
 		}
 		/*
-		 * Questo pezzo associa il team al giocatore e viceversa. Fatto così fa schifo,
-		 * ma mi serve per evitare dei NullPointerException. Considerare di spostarlo
-		 * dentro al Game nella versione finale Ad essere onesti non è nemmeno
-		 * necessario che i team conoscano i giocatori. -Andrea
+		 * Questo pezzo associa il team al giocatore e viceversa.
+		 * È comodo farlo direttamente qui una volta sola e non più in basso
+		 * 
 		 */
 		teams.get(0).addPlayer(players.get(0).getPlayer());
 		players.get(0).getPlayer().setTeam(teams.get(0));
@@ -70,13 +75,15 @@ public class GameController {
 		initHistoryObserver();
 	}
 	
+	/**
+	 * Unlocks the first player and starts the match
+	 */
 	public void start() {
-		
 		players.get(0).unlockPlayer();
 	}
 	
-	/*
-	 * Aggiunge la History come observer a Table, Team e ai Player
+	/**
+	 * Adds the History as observer of teams, players and table 
 	 */
 	private void initHistoryObserver() {
 		
@@ -91,6 +98,11 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * Adds the TeamObservers
+	 * @param team1obs observers for the Team 1
+	 * @param team2obs observers for the Team 2
+	 */
 	public void addTeamObserver(ArrayList<TeamObserver> team1obs, ArrayList<TeamObserver> team2obs) {
 		for (int i = 0; i < team1obs.size(); i++) {
 			this.game.getTeams().get(0).addTeamObserver(team1obs.get(i));
@@ -100,7 +112,9 @@ public class GameController {
 		}
 	}
 	
-	
+	/**
+	 * Locks the current player and unlocks the next one
+	 */
 	private void nextPlayer() {
 		AbstractPlayerHandler next_player;
 		next_player = players.unlockNext(turn);
@@ -108,9 +122,11 @@ public class GameController {
 		
 	}
 
-	/*
-	 * Deve controllare che cosa succede se viene giocata la carta che viene
-	 * passata, e restituire le eventuali prese, null se non viene preso nulla
+	/**
+	 * Fetches the Card into the game, returning the possible choices.
+	 * If there are no choices, the Arraylist is empty
+	 * @param c the Card to be fetched
+	 * @return the choices
 	 */
 	public ArrayList<ArrayList<Card>> fetchCard(Card c) {
 		ArrayList<ArrayList<Card>> choices = game.fetchCard(c);
@@ -119,7 +135,10 @@ public class GameController {
 	}
 
 	/**
-	 * Pone fine al turno del giocatore corrente, togliendo al tavolo le carte scelte
+	 * Ends the player turn, picking the Cards from the table
+	 * @param p the player that finishes the turn
+	 * @param choiceMade the Cards to be picked from the table
+	 * @throws CardNotFoundException
 	 */
 	public void endTurn(AbstractPlayerHandler p, ArrayList<Card> choiceMade) throws CardNotFoundException{
 		game.finalizeTurn(p.getPlayer(), choiceMade);
@@ -129,9 +148,10 @@ public class GameController {
 			nextPlayer();
 	}
 
-	/*
-	 * finalizza il turno MA senza modificare nulla del dominio, utile quando non si
-	 * prendono delle carte dal tavolo
+	/**
+	 * Finishes the turn, putting the fetched card on the table
+	 * @param player the player that finishes the turn
+	 * @throws CardNotFoundException
 	 */
 	// è protetto perchè va chiamato solo dagli AbstractPlayerHandler
 	protected void endTurn(AbstractPlayerHandler player) throws CardNotFoundException{
@@ -141,7 +161,10 @@ public class GameController {
 		if(!isLastTurn())
 			nextPlayer();
 	}
-
+	/**
+	 * Check if the current turn is the last
+	 * @return true if it's the last turn of the hand
+	 */
 	private boolean isLastTurn() {
 		if(turn == 40) {
 			turn = 0;
@@ -151,6 +174,9 @@ public class GameController {
 		return false;
 	}
 	
+	/**
+	 * Finalizes the current hand, and controls if the maxScore was reached
+	 */
 	private void finalizeHand() {
 		ArrayList<Card> lastCardsOnTable = new ArrayList<Card>();
 		
@@ -177,14 +203,11 @@ public class GameController {
 		}
 			
 	}
-	
-	/**
-	 * @return the game
-	 */
-	public Game getGame() {
-		return game;
-	}
 
+	/**
+	 * 
+	 * @return the Teams
+	 */
 	public List<Team> getTeams() {
 		return game.getTeams();
 	}
