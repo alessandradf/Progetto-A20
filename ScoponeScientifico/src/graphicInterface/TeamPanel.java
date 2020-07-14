@@ -23,10 +23,6 @@ public class TeamPanel extends JPanel implements TeamObserver {
 	private JPanel scoreTeamPanel;
 	private JPanel scope;
 	private CardLabel ultimaScopa;
-	@SuppressWarnings("unused")
-	private int scoreTeam;
-	@SuppressWarnings("unused")
-	private int teamNumber;
 	private JLabel scoreLastHand1;
 
 	/**
@@ -35,14 +31,9 @@ public class TeamPanel extends JPanel implements TeamObserver {
 	 * @param teamNumber team's number id
 	 */
 	public TeamPanel(int teamNumber) {
-		// TODO Auto-generated constructor stub
-
-		this.teamNumber = teamNumber;
-
 		ultimaScopa = null;
 
 		this.setLayout(new GridLayout(1, 2));
-
 		setBackground(new Color(0, 128, 0));
 
 		scoreTeamlbl = new JLabel("<html><body><p style=\"font-size:10px;\">Punteggio totale: </p></body></html>");
@@ -71,8 +62,7 @@ public class TeamPanel extends JPanel implements TeamObserver {
 	 */
 	@Override
 	public void updateScore(int score, int lastHandScore) {
-		// TODO Auto-generated method stub
-		scoreTeam = score;
+
 		scoreTeamlbl
 				.setText("<html><body><p style=\"font-size:10px;\">Punteggio totale:" + score + "</p></body></html>");
 		scoreLastHand1.setText(

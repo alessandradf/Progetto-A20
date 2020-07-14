@@ -8,6 +8,7 @@ import controller.HumanPlayerHandler;
  * player has no {@code Card} in his hand.
  *
  */
+@SuppressWarnings("serial")
 public class CardNotFoundException extends Exception {
 
 	/**

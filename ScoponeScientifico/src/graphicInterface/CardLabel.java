@@ -16,14 +16,9 @@ import model.SeedType;
  */
 @SuppressWarnings("serial")
 public class CardLabel extends JLabel {
-
-
-
 	private Icon imageCard;
-
 	private SeedType seed;
 	private int value;
-
 	private boolean isEnable;
 
 	/**

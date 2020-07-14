@@ -26,8 +26,6 @@ public class TotalFrame extends JFrame {
 	private PlayerPanel playerPanel;
 	private TablePanel tablePanel;
 	private TotalTeamPanel teamsPanel;
-	@SuppressWarnings("unused")
-	private String playerNameAndTeam;
 
 	/**
 	 * Creates the frame
@@ -43,7 +41,6 @@ public class TotalFrame extends JFrame {
 	 */
 	public TotalFrame(String playerNameAndTeam, TablePanel tablePanel, PlayerPanel playerPanel, TeamPanel team1,
 			TeamPanel team2) {
-		this.playerNameAndTeam = playerNameAndTeam;
 		this.tablePanel = tablePanel;
 		this.playerPanel = playerPanel;
 

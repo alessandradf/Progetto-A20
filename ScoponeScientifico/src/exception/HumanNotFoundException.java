@@ -10,6 +10,7 @@ import controller.GameStartSetup;
  * humans are submitted in the game setup.
  *
  */
+@SuppressWarnings("serial")
 public class HumanNotFoundException extends IllegalArgumentException {
 
 	/**
