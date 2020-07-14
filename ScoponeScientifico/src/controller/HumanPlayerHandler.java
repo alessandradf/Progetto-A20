@@ -8,7 +8,7 @@ import model.Player;
 
 /**
  * Manages the user's player. Extends {@code AbstractPlayerHandler}. Is a level
- * of direction between game controller and player.
+ * of direction between user's interface and control layer.
  *
  */
 public class HumanPlayerHandler extends AbstractPlayerHandler {
@@ -40,8 +40,8 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	}
 
 	/**
-	 * Fetches the result of a player's play from the game controller.</br>
-	 * If there are more results, this method passes control to the interface to
+	 * Fetches the result of a player's play from the game controller.
+	 * </p> If there are more results, this method passes control to the interface to
 	 * allow the player to choose one of the results.
 	 */
 	public void cardPlayed(Card c) throws CardNotFoundException {
@@ -82,7 +82,7 @@ public class HumanPlayerHandler extends AbstractPlayerHandler {
 	/**
 	 * Passes control to the interface when multiple choices are possible.
 	 * 
-	 * @param choice possible choice
+	 * @param choices possible choices
 	 */
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {

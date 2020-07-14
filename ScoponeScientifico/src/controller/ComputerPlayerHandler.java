@@ -52,7 +52,7 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 
 			}
 		} catch (CardNotFoundException e) {
-			System.out.println("Carta non trovata! Computer cardPlayed");
+			System.out.println("Carta non trovata!");
 		}
 	}
 
@@ -65,9 +65,10 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 		return true;
 	}
 
-	/*
-	 * Ritorna una carta casuale dall'ArrayList del Player del modello al quale �
-	 * associato
+	
+	/**
+	 * Takes a random {@code Card} from the hand of the managed {@link model.Player}.
+	 * @return the {@code Card} taken.
 	 */
 	public Card pickACard() {
 		int handSize = this.getPlayer().getHand().size();
@@ -75,12 +76,17 @@ public class ComputerPlayerHandler extends AbstractPlayerHandler {
 		return this.getPlayer().getHand().get(randIndex);
 	}
 
+	
+	/**
+	 * Handles the case where the player has more than one choice.
+	 * Returns the first choice.
+	 */
 	@Override
 	public void multipleChoice(ArrayList<ArrayList<Card>> choices) {
 		try {
 			getController().endTurn(this, choices.get(0));
 		} catch (CardNotFoundException e) {
-			System.out.println("Carta non trovata! multipleChoice");
+			System.out.println("Carta non trovata!");
 		}
 	}
 
