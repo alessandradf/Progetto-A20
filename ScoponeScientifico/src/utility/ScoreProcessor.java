@@ -71,7 +71,7 @@ public class ScoreProcessor {
 	/**
 	 * Returns the score competeing for PRIMIERA point. It's calculated on the specified cards and the PRIMIERA_POINTS array
 	 * 
-	 * @param cards: the ArrayList of cards
+	 * @param cards the {@link ArrayList} of {@link Card}
 	 * @return the score competing for PRIMIERA point
 	 */
 	private int sommaPrimiera(ArrayList<Card> cards) {
@@ -104,8 +104,10 @@ public class ScoreProcessor {
 	/**
 	 * Returns the max value of the specified cards, according to the PRIMIERA values. The cards must have the same seed
 	 * 
-	 * @param seedCards: ArrayList of cards of the same seed
-	 * @return maxValue: the max PRIMIERA value from the specified cards
+	 * @param seedCards ArrayList of cards of the same seed
+	 * @return maxValue the max PRIMIERA value from the specified cards
+	 * 
+	 * @see {@link SeedType}, {@link Card}
 	 */
 	private int maxCardValue(ArrayList<Card> seedCards) {
 
@@ -122,7 +124,7 @@ public class ScoreProcessor {
 	/**
 	 * Determines if SETTEBELLO or DENARI points have been obtained
 	 * 
-	 * @param cards: the ArrayList of cards
+	 * @param cards the ArrayList of cards
 	 * @return an integer value based on the points obtained. 1 or 2 if only one or both points were obtained, 0 otherwise
 	 */
 	private int denariSettebello(ArrayList<Card> cards) {
@@ -149,7 +151,7 @@ public class ScoreProcessor {
 	/**
 	 * Determines if CARTE point was obtained (if the specified cards are more than 21).
 	 * 
-	 * @param cards: ArrayList of cards used to determine the point
+	 * @param cards ArrayList of cards used to determine the point
 	 * @return 1 if the point was obtained, 0 otherwise
 	 */
 	private int carte(ArrayList<Card> cards) {

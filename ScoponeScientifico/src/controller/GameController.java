@@ -9,6 +9,7 @@ import model.Game;
 import model.Player;
 import model.Team;
 import utility.CircularArrayList;
+import utility.History;
 import utility.TeamObserver;
 
 /**

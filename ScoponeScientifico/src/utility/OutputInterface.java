@@ -9,7 +9,7 @@ public interface OutputInterface {
 	/**
 	 * Write the specified String in the output
 	 * 
-	 * @param update: the string to be written
+	 * @param update the string to be written
 	 */
 	public void writeOnOutput(String update); 
 }
