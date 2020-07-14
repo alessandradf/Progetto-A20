@@ -36,20 +36,14 @@ import utility.TeamObserver;
  */
 public class GUIController implements HumanPlayerInterfaceController, InterfaceTurnFinalizer, InterfaceController {
 	private GameController gameController;
-//	private ArrayList<TotalFrame> playerView = new ArrayList<TotalFrame>();
 	private HashMap<HumanPlayerHandler, TotalFrame> playerView = new HashMap<HumanPlayerHandler, TotalFrame>();
 	private ArrayList<TablePanel> tablePanel = new ArrayList<TablePanel>();
 	private ArrayList<TeamPanel> team1Panels = new ArrayList<TeamPanel>();
 	private ArrayList<TeamPanel> team2Panels = new ArrayList<TeamPanel>();
 	private ArrayList<HumanPlayerHandler> players = new ArrayList<HumanPlayerHandler>();
-
-	private JFrame tableFrame; // frame per visualizzare il tavolo durante la scelta delle carte
-
-	// hashmap che associa playerpanel al rispettivo playerhandler
+	private JFrame tableFrame;
 	private HashMap<HumanPlayerHandler, PlayerPanel> playerPanels = new HashMap<HumanPlayerHandler, PlayerPanel>();
-
 	private HistoryFrame historyFrame;
-
 	private static GUIController defaultGuiController = null;
 
 	/**
@@ -144,13 +138,9 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 			playerPanel.setTotalFrame(totalFrame);
 			playerView.put(playerHandler, totalFrame);
 			i++;
-			// playerView[i].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		initPlayerCards(players);
 		tablePanel.add(new TablePanel());
-		// i++;
-		// howManyTablePanels = i;
-		// playerView.get(0).unlockPlayer();
 		addTeamObserver();
 	}
 
@@ -201,7 +191,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 		return playerView;
 	}
 
-	// metodi per aggiornare il tavolo e i frame dei giocatori
 	/**
 	 * Updates the table adding the card played by the players
 	 * 
@@ -231,7 +220,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	 */
 	@Override
 	public void updateOnRemoval(List<Card> removedCards) {
-		// TODO Auto-generated method stub
 
 		for (TablePanel tablePanel : tablePanel) {
 			tablePanel.removeCardsFromTable(cardsConverter(removedCards));
@@ -304,7 +292,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	 */
 	@Override
 	public void multipleChoice(HumanPlayerHandler humanPlayerHandler, ArrayList<ArrayList<Card>> choices) {
-		// TODO Auto-generated method stub
 		lock(humanPlayerHandler);
 		OptionsPopUp op = new OptionsPopUp(choices);
 		tableFrame = new JFrame();
@@ -372,7 +359,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 	 */
 	@Override
 	public void gameFinished(Team winnerTeam) {
-		// TODO Auto-generated method stub
 		for (TotalFrame totalFrame : playerView.values()) {
 			totalFrame.getPlayerPanel().removeAll();
 			totalFrame.getTeamsPanel().getTeam1().removeAll();
@@ -392,7 +378,6 @@ public class GUIController implements HumanPlayerInterfaceController, InterfaceT
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if (finishFrame.getChoose()) {
 					finishFrame.dispose();
 					GUIController.getDefaultGUIController().startGame();

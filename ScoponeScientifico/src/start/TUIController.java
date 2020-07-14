@@ -32,7 +32,7 @@ public class TUIController implements InterfaceController, HumanPlayerInterfaceC
 	private static boolean playAgain = true;
 	private Team winnerTeam;
 	private GameController gameController;
-	StartTextInterface startText;
+	private StartTextInterface startText;
 	private ArrayList<String> table = new ArrayList<String>();
 	private Scanner scanner;
 	private StandardOutput historyOutput;
