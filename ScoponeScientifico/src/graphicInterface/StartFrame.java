@@ -201,7 +201,7 @@ public class StartFrame extends JFrame {
 			i++;
 		}
 
-		btnNewButton.addActionListener(new StartGameBottonListener(jComboBox, comboBox_4, textFieldArray, this));
+		btnNewButton.addActionListener(new StartGameButtonListener(jComboBox, comboBox_4, textFieldArray, this));
 
 	}
 

@@ -20,7 +20,7 @@ import start.GUIController;
  * @see GameStartSetup
  *
  */
-public class StartGameBottonListener implements ActionListener {
+public class StartGameButtonListener implements ActionListener {
 
 	private JComboBox<String>[] comboBox;
 	private JComboBox<String> maxScore;
@@ -39,7 +39,7 @@ public class StartGameBottonListener implements ActionListener {
 	 * @see JTextField
 	 * @see StartFrame
 	 */
-	public StartGameBottonListener(JComboBox<String>[] comboBox, JComboBox<String> maxScore, JTextField[] textField,
+	public StartGameButtonListener(JComboBox<String>[] comboBox, JComboBox<String> maxScore, JTextField[] textField,
 			StartFrame frame) {
 		this.comboBox = comboBox;
 		this.maxScore = maxScore;
